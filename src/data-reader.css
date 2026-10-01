@@ -1,0 +1,66 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body { margin: 0; background: #f5f5f5; color: #141510; }
+.reader-bar { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid #d8d8d5; padding: 12px max(20px, calc((100% - 1040px) / 2)); display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; }
+.reader-bar a, .reader-index a, .reader-meta a, .reader-content a { color: #141510; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.reader-bar a { font-size: 14px; font-weight: 500; }
+.reader-bar span { color: #62635e; font-size: 14px; }
+.reader-main { max-width: 1080px; margin: 28px auto 48px; padding: 0 20px; }
+.reader-index { border: 1.5px solid #141510; border-radius: 22px 24px 21px 25px; padding: 22px 28px; background: #fff; margin-bottom: 24px; }
+.reader-index { scroll-margin-top: 90px; }
+.reader-index h2 { margin: 0 0 12px; font-size: 26px; }
+.reader-index ol { margin: 0; padding-left: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 25px; }
+.reader-index a { font-size: 14px; }
+.reader-meta { font-size: 14px; color: #62635e; margin-bottom: 24px; }
+.reader-meta p { font-size: 14px; margin: 7px 0; }
+.reader-content { background: #fff; border: 1.5px solid #141510; border-radius: 22px 24px 21px 25px; padding: 32px; }
+.reader-missing { color: #62635e; font-size: .92em; overflow-wrap: anywhere; }
+.reader-content h1 { font-size: 32px; margin: 0 0 20px; }
+.reader-content h2 { font-size: 28px; margin: 40px 0 18px; }
+.reader-content p, .reader-content li { line-height: 1.85; }
+.reader-content code { font-family: var(--font-ui); font-size: .92em; overflow-wrap: anywhere; background: #f3f3f0; padding: 1px 4px; border-radius: 4px; }
+.reader-content pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px 18px; background: #f3f3f0; border: 1px solid #deded8; border-radius: 12px; font-size: 14px; line-height: 1.7; }
+.reader-content pre code { padding: 0; background: transparent; font-family: Consolas, "Courier New", var(--font-ui); }
+.reader-content img { max-width: 100%; height: auto; }
+.reader-cloud-audio { display: block; margin: 12px 0; padding: 14px 18px; border: 1px solid #d8d8d5; border-radius: 12px; }
+.reader-cloud-audio > strong, .reader-cloud-audio > span { display: block; }
+.reader-cloud-audio > span { color: #62635e; font-size: 14px; margin-top: 5px; }
+.reader-cloud-audio code { display: block; margin-top: 10px; }
+.reader-cloud-audio audio { width: 100%; margin-top: 10px; }
+.reader-content table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 20px 0; font-size: 14px; }
+.reader-content th, .reader-content td { text-align: left; vertical-align: top; padding: 12px; border: 1px solid #d8d8d5; overflow-wrap: anywhere; }
+.reader-content th { background: #f3f3f0; }
+.reader-content [id] { scroll-margin-top: 90px; }
+.reader-content :is(.stage-details, .record-details) { display: block; }
+.reader-content :is(.stage-details, .record-details) thead { display: none; }
+.reader-content :is(.stage-details, .record-details) tbody { display: grid; gap: 18px; }
+.reader-content :is(.stage-details, .record-details) tr { display: block; border: 1px solid #bdbeb8; border-radius: 16px; padding: 18px 22px; }
+.reader-content :is(.stage-details, .record-details) td { display: block; border: 0; padding: 4px 0; }
+.reader-content :is(.stage-details, .record-details) td:first-child { font-family: var(--font-heading); font-size: 24px; padding-bottom: 12px; }
+.reader-content :is(.stage-details, .record-details) td:not(:first-child)::before { content: attr(data-label) "："; display: block; font-weight: 500; margin: 6px 0 4px; }
+.reader-content :target, .reader-content .reader-target { outline: 2px solid #141510; outline-offset: 5px; background: #f7f7f3; }
+.reader-content details { border-top: 1px solid #d8d8d5; padding-top: 12px; margin-top: 14px; }
+.reader-content summary { cursor: pointer; font-weight: 500; }
+.record-fields { display: grid; grid-template-columns: minmax(140px, .32fr) minmax(0, 1fr); margin: 16px 0 0; }
+.record-fields dt, .record-fields dd { border-bottom: 1px solid #e3e3e0; margin: 0; padding: 9px 8px; overflow-wrap: anywhere; }
+.record-fields dt { color: #62635e; }
+.record-fields dd { font-variant-numeric: tabular-nums; }
+.reader-error { border: 2px solid #141510; padding: 14px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid #141510; outline-offset: 3px; }
+@media (max-width: 700px) {
+  .reader-bar { padding: 10px 16px; }
+  .reader-main { padding: 0 14px; margin-top: 18px; }
+  .reader-index { padding: 18px 22px; }
+  .reader-index ol { grid-template-columns: 1fr; }
+  .reader-content { padding: 22px 18px; }
+  .reader-content h1 { font-size: 28px; }
+  .reader-content h2 { font-size: 25px; }
+  .reader-content table, .reader-content tbody, .reader-content tr, .reader-content td { display: block; }
+  .reader-content thead { display: none; }
+  .reader-content tr { margin: 12px 0; }
+  .reader-content td:not(:first-child)::before { content: attr(data-label) "："; display: block; font-weight: 500; }
+  .reader-content :is(.stage-details, .record-details) tr { padding: 15px; margin: 0; }
+  .record-fields { grid-template-columns: 1fr; }
+  .record-fields dt { border-bottom: 0; padding-bottom: 0; }
+  .record-fields dd { padding-top: 3px; }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>first_batch_proposal.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>first_batch_proposal.md</h1><p>Markdown 文档 · 5,591 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#929">929 规模化建集首批来源与资源提案</a><ul>
+<li><a href="#_1">已核查来源</a></li>
+<li><a href="#_2">建议首批执行顺序</a></li>
+<li><a href="#_3">资源预算与人工工作</a></li>
+<li><a href="#929_1">首批与整个 929 的区别</a></li>
+<li><a href="#_4">证据与本地同步</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\scaled_dataset_prepare_20261001T090202Z\first_batch_proposal.md</p><p>SHA-256：9b6b71f434ffd12da10a5ac1c23db894b084e1a27f406831da2ecc90d6689cf4</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="929">929 规模化建集首批来源与资源提案</h1>
+<p>日期：2026-10-01。状态：具体首批范围待用户确认；最终建集目标尚未确定。本提案只整理可核查来源与预算，不执行下载、分离或新实验代码。</p>
+<h2 id="_1">已核查来源</h2>
+<p><a href="https://twoperapf.org.tw/resource/category/demo-audio">基金会示范音档目录</a>当前列出 9 项，已收录 3 项，新增候选 6 项如下。演唱信息按页面署名记录，含角色标签；不会把角色名误当作演员名。</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>曲调及来源页</th>
+<th>演唱署名</th>
+<th>文件头时长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C004</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/20">古早七字仔</a></td>
+<td>鄭力榮</td>
+<td>1:06.90</td>
+</tr>
+<tr>
+<td>C005</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/22">都馬調</a></td>
+<td>生（薛丁山）/林祉淩、旦（樊梨花）/陳韡慈</td>
+<td>2:44.99</td>
+</tr>
+<tr>
+<td>C006</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/23">西樂都馬</a></td>
+<td>龔俊杰</td>
+<td>1:14.44</td>
+</tr>
+<tr>
+<td>C007</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/26">崁仔腳調</a></td>
+<td>林俊辰</td>
+<td>0:51.39</td>
+</tr>
+<tr>
+<td>C008</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/27">臺東調（平埔調）</a></td>
+<td>張閔鈞</td>
+<td>1:14.05</td>
+</tr>
+<tr>
+<td>C009</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/28">思想起（恆春調)</a></td>
+<td>林祉淩</td>
+<td>1:09.30</td>
+</tr>
+</tbody>
+</table>
+<p>新增候选合计 501.062 秒，约 8 分 21 秒，原始文件预计总计 145,080,840 字节（138.36 MiB）。加上现有三份，全部九项总长约 13 分 03 秒。这是录音时长上限线索，不是已通过审核的配对时长，不能把不同轨或复制片段重复计时。</p>
+<p>六项页面均提供 WAV 直链；只用 HTTP Range 读取每份前 65,536 字节，均返回 206。RIFF 文件头声明 48 kHz、双声道、24-bit PCM，与既有输入格式一致。本轮未保存任何完整音频，未做这些新文件的完整哈希、解码或听验。元数据不完整时应留待核验，不用网页访问量推断时长。</p>
+<h2 id="_2">建议首批执行顺序</h2>
+<ol>
+<li>确认本表六个候选为首批范围后，完整下载到独立录音目录，核对格式、大小、SHA-256 与全文件解码，检查与现有录音是否重复，再登记正式编号。保留原始录音。</li>
+<li>先对最长的 C005 都馬調（约 2 分 45 秒，含生/旦角色署名）执行同参数 Demucs 完整分离。它比当前测试录音更长、角色信息也不同，作为这批的代表录音。技术核查并由用户听验双轨，通过后处理其余五份。</li>
+<li>按既有门槛逐份审核双轨，记录通过、局部可用或剔除；按完整结构选择共同分段边界，保留过门和尾奏，不按固定 30 秒切断。</li>
+<li>保存可追溯配对与质量记录，按已接受的旋律/目标特征、真实长度及 FM 主损失输入规则核验。使用新运行目录，不改旧产物。若复用现有脚本需修改逻辑，先展示核心 diff、解释后确认；本提案不预先批准代码变更。</li>
+<li>汇总这一批的新增合格数量/时长、失败原因、资源实测及后续来源需求。最终数据划分按原录音/演出分组，避免同源片段跨集合；分组数量与长度确定后再选比例，不把 13 对同源片段当作 13 个独立来源。</li>
+</ol>
+<h2 id="_3">资源预算与人工工作</h2>
+<ul>
+<li>存储：新增原音约 138 MiB，44.1 kHz 双声道 FLOAT 完整双轨约 337 MiB，保留全长的配对片段双轨约再占 337 MiB；新特征、试听副本、日志及临时文件另计，建议本批预留 2 GiB。片段是否全部可用未知，因此这是处理预算，不是最终数据大小。</li>
+<li>分离：沿用独立环境与 Demucs <code>htdemucs_ft</code>，逐份单卡执行。先前显存预算为 4–10 GiB，未实测 Demucs 峰值；本批开始前检查空闲 GPU 与磁盘并记录实际资源。由既有录音耗时粗估，六份任务合计数分钟，网络、模型加载和硬件占用会影响实际时间。</li>
+<li>特征/FM 核验：既有 FM 主损失检查峰值约 7.83 GiB，仅支持相近长度与批次设置。新分段长度未确定，不能把它当作任意长段的资源保证。长段出现内存问题时记录并提出明确处理，不静默截断。</li>
+<li>人工工作：六份录音的分离双轨试听和结构边界审核是必需工作；本表尚不能给出最终片段数量或确定审核耗时。不会以自动听音模型代替用户接受结果。</li>
+</ul>
+<h2 id="929_1">首批与整个 929 的区别</h2>
+<p>这六份是有明确来源的第一批扩建候选，不等于整个规模化建集的最终规模。现有目录全部录音合计也只有约 13 分钟；如目标为 1 小时或 5 小时合格配对数据，还需要补充来源，不能先承诺该目录足够，也不能随意设定最低时长保证微调效果。</p>
+<p>最终应由用户明确数量或合格配对时长。目标确定后列出来源计划、预算与停止条件；若来源不足或可用率低，报告缺口并有限调整，不无限追加搜索、处理或研究。达到目标并完成核验、分组划分和交付后结束 929，正式微调另开实验。</p>
+<p>来源与权利状态继续记录为待核实，沿用本次内部技术试验约定，不标记为已授权发表/共享；不在本轮引入新的授权阻塞流程。</p>
+<h2 id="_4">证据与本地同步</h2>
+<p>页面快照、候选 CSV 与元数据结果在同目录的 <code>catalog.html</code>、<code>source_20.html</code> 等、<code>source_candidates.csv</code>、<code>source_inventory.json</code>。候选编号不等于正式收录编号。</p>
+<p>前轮给出的本地同步 ZIP 是不可变快照，保留原哈希。它不包含本次之后的来源提案；本次文档变更在下一轮同步，不重写旧包，也不在收到本地回执前宣称同步已完成。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/scaled_dataset_prepare_20261001T090202Z/first_batch_proposal.md（路径已脱敏）","sha256":"9b6b71f434ffd12da10a5ac1c23db894b084e1a27f406831da2ecc90d6689cf4","text":"# 929 规模化建集首批来源与资源提案\n\n日期：2026-10-01。状态：具体首批范围待用户确认；最终建集目标尚未确定。本提案只整理可核查来源与预算，不执行下载、分离或新实验代码。\n\n## 已核查来源\n\n[基金会示范音档目录](https://twoperapf.org.tw/resource/category/demo-audio)当前列出 9 项，已收录 3 项，新增候选 6 项如下。演唱信息按页面署名记录，含角色标签；不会把角色名误当作演员名。\n\n| 候选 | 曲调及来源页 | 演唱署名 | 文件头时长 |\n| --- | --- | --- | --- |\n| C004 | [古早七字仔](https://twoperapf.org.tw/resource/demo-audio/20) | 鄭力榮 | 1:06.90 |\n| C005 | [都馬調](https://twoperapf.org.tw/resource/demo-audio/22) | 生（薛丁山）/林祉淩、旦（樊梨花）/陳韡慈 | 2:44.99 |\n| C006 | [西樂都馬](https://twoperapf.org.tw/resource/demo-audio/23) | 龔俊杰 | 1:14.44 |\n| C007 | [崁仔腳調](https://twoperapf.org.tw/resource/demo-audio/26) | 林俊辰 | 0:51.39 |\n| C008 | [臺東調（平埔調）](https://twoperapf.org.tw/resource/demo-audio/27) | 張閔鈞 | 1:14.05 |\n| C009 | [思想起（恆春調)](https://twoperapf.org.tw/resource/demo-audio/28) | 林祉淩 | 1:09.30 |\n\n新增候选合计 501.062 秒，约 8 分 21 秒，原始文件预计总计 145,080,840 字节（138.36 MiB）。加上现有三份，全部九项总长约 13 分 03 秒。这是录音时长上限线索，不是已通过审核的配对时长，不能把不同轨或复制片段重复计时。\n\n六项页面均提供 WAV 直链；只用 HTTP Range 读取每份前 65,536 字节，均返回 206。RIFF 文件头声明 48 kHz、双声道、24-bit PCM，与既有输入格式一致。本轮未保存任何完整音频，未做这些新文件的完整哈希、解码或听验。元数据不完整时应留待核验，不用网页访问量推断时长。\n\n## 建议首批执行顺序\n\n1. 确认本表六个候选为首批范围后，完整下载到独立录音目录，核对格式、大小、SHA-256 与全文件解码，检查与现有录音是否重复，再登记正式编号。保留原始录音。\n2. 先对最长的 C005 都馬調（约 2 分 45 秒，含生/旦角色署名）执行同参数 Demucs 完整分离。它比当前测试录音更长、角色信息也不同，作为这批的代表录音。技术核查并由用户听验双轨，通过后处理其余五份。\n3. 按既有门槛逐份审核双轨，记录通过、局部可用或剔除；按完整结构选择共同分段边界，保留过门和尾奏，不按固定 30 秒切断。\n4. 保存可追溯配对与质量记录，按已接受的旋律/目标特征、真实长度及 FM 主损失输入规则核验。使用新运行目录，不改旧产物。若复用现有脚本需修改逻辑，先展示核心 diff、解释后确认；本提案不预先批准代码变更。\n5. 汇总这一批的新增合格数量/时长、失败原因、资源实测及后续来源需求。最终数据划分按原录音/演出分组，避免同源片段跨集合；分组数量与长度确定后再选比例，不把 13 对同源片段当作 13 个独立来源。\n\n## 资源预算与人工工作\n\n- 存储：新增原音约 138 MiB，44.1 kHz 双声道 FLOAT 完整双轨约 337 MiB，保留全长的配对片段双轨约再占 337 MiB；新特征、试听副本、日志及临时文件另计，建议本批预留 2 GiB。片段是否全部可用未知，因此这是处理预算，不是最终数据大小。\n- 分离：沿用独立环境与 Demucs `htdemucs_ft`，逐份单卡执行。先前显存预算为 4–10 GiB，未实测 Demucs 峰值；本批开始前检查空闲 GPU 与磁盘并记录实际资源。由既有录音耗时粗估，六份任务合计数分钟，网络、模型加载和硬件占用会影响实际时间。\n- 特征/FM 核验：既有 FM 主损失检查峰值约 7.83 GiB，仅支持相近长度与批次设置。新分段长度未确定，不能把它当作任意长段的资源保证。长段出现内存问题时记录并提出明确处理，不静默截断。\n- 人工工作：六份录音的分离双轨试听和结构边界审核是必需工作；本表尚不能给出最终片段数量或确定审核耗时。不会以自动听音模型代替用户接受结果。\n\n## 首批与整个 929 的区别\n\n这六份是有明确来源的第一批扩建候选，不等于整个规模化建集的最终规模。现有目录全部录音合计也只有约 13 分钟；如目标为 1 小时或 5 小时合格配对数据，还需要补充来源，不能先承诺该目录足够，也不能随意设定最低时长保证微调效果。\n\n最终应由用户明确数量或合格配对时长。目标确定后列出来源计划、预算与停止条件；若来源不足或可用率低，报告缺口并有限调整，不无限追加搜索、处理或研究。达到目标并完成核验、分组划分和交付后结束 929，正式微调另开实验。\n\n来源与权利状态继续记录为待核实，沿用本次内部技术试验约定，不标记为已授权发表/共享；不在本轮引入新的授权阻塞流程。\n\n## 证据与本地同步\n\n页面快照、候选 CSV 与元数据结果在同目录的 `catalog.html`、`source_20.html` 等、`source_candidates.csv`、`source_inventory.json`。候选编号不等于正式收录编号。\n\n前轮给出的本地同步 ZIP 是不可变快照，保留原哈希。它不包含本次之后的来源提案；本次文档变更在下一轮同步，不重写旧包，也不在收到本地回执前宣称同步已完成。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

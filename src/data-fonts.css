@@ -1,0 +1,5 @@
+@font-face { font-family: "Gezi Data WenKai"; src: url("../assets/fonts/data/wenkai-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Gezi Data WenKai"; src: url("../assets/fonts/data/wenkai-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Gezi Data Sans"; src: url("../assets/fonts/data/gezi-ui-sans-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Gezi Data Sans"; src: url("../assets/fonts/data/gezi-ui-sans-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+body.data-page, body.data-reader { --font-heading: "Gezi Data WenKai", "Kaiti SC", "KaiTi", "STKaiti", serif; --font-ui: "Gezi Data Sans", "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif; }

@@ -1,0 +1,186 @@
+/* Approved site typography: LXGW WenKai headings and Source Han Sans UI text. */
+@font-face {
+  font-family: "Gezi WenKai";
+  src: url("../assets/fonts/wenkai-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gezi WenKai";
+  src: url("../assets/fonts/wenkai-medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gezi UI Sans";
+  src: url("../assets/fonts/gezi-ui-sans-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gezi UI Sans";
+  src: url("../assets/fonts/gezi-ui-sans-medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+:root {
+  --font-heading: "Gezi WenKai", "Kaiti SC", "KaiTi", "STKaiti", serif;
+  --font-ui: "Gezi UI Sans", "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --weight-regular: 400;
+  --weight-emphasis: 500;
+  --size-body: 16px;
+  --size-note: 14px;
+  --size-meta: 12px;
+  --size-control: 14px;
+  --size-page-title: 36px;
+  --size-section-title: 30px;
+  --size-card-title: 24px;
+  --size-hero-title: clamp(88px, 7.5vw, 112px);
+  --size-feature-title: 36px;
+  --leading-body: 1.7;
+  --leading-title: 1.35;
+  --leading-control: 1.4;
+}
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  font-family: var(--font-ui);
+  font-size: var(--size-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  font-synthesis: none;
+}
+body :is(button, input, select, textarea, .nav-item, .text-link, .evidence-link, .history-primary) {
+  font-family: var(--font-ui);
+  font-size: var(--size-control);
+  font-weight: var(--weight-emphasis);
+  line-height: var(--leading-control);
+}
+body :is(h1, h2, h3, h4, h5, h6, .panel-title, .gate-title) {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-emphasis);
+  line-height: var(--leading-title);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+body :is(h1, h2, h3, h4, h5, h6) :is(a, strong, span) { font: inherit; }
+body .doc-card h3 .evidence-link { font: inherit; }
+body .page-head h1 { font-size: var(--size-page-title); }
+body :is(.overview-dashboard-head h2, .hero h2) { font-size: var(--size-section-title); }
+body :is(.panel-title, .gate-title, .goal-card h2, .history-card h2,
+         .milestone-card h3, .candidate-card h3, .doc-card h3) {
+  font-size: var(--size-card-title);
+}
+body :is(.milestone-card h3, .candidate-card h3, .doc-card h3) { font-weight: var(--weight-regular); }
+body :is(p, .gate-text, .boundary, .empty-note, .rights-note, .history-summary,
+         .phase-status, .phase-gate, .data-table td, .route-name, .phase-name, .audio-label) {
+  font-family: var(--font-ui);
+  font-size: var(--size-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  overflow-wrap: anywhere;
+}
+body :is(strong, b, th, .route-name, .phase-name, .stat-value, .candidate-id,
+         .eyebrow, .gate-label, .goal-label, .prep-list span, .history-version) {
+  font-weight: var(--weight-emphasis);
+}
+body :is(.panel-subtitle, .route-detail, .route-state, .stat-label, .stat-foot,
+         .milestone-phase, .badge, .doc-meta, .head-date, .sidebar-note, .private-indicator,
+         .editorial-credit, .history-evidence summary, .hero-tag, .build-time, .local-badge) {
+  font-family: var(--font-ui);
+  font-size: var(--size-note);
+  line-height: var(--leading-body);
+  overflow-wrap: anywhere;
+}
+body :is(.eyebrow, .gate-label, .goal-label, .candidate-id, .overview-dashboard-head span,
+         .editorial-kicker, .editorial-panel-kicker, .editorial-scroll, .history-version) {
+  font-family: var(--font-ui);
+  font-size: var(--size-note);
+  line-height: var(--leading-body);
+}
+body :is(.editorial-kicker, .eyebrow, .gate-label, .goal-label, .candidate-id, .history-version) {
+  font-weight: var(--weight-emphasis);
+}
+body :is(.editorial-panel-kicker, .overview-dashboard-head span, .editorial-scroll, .route-state.active) {
+  font-weight: var(--weight-regular);
+}
+body :is(.brand-caption, .side-label, .footer) { font-size: var(--size-meta); }
+body .brand-title { font-family: var(--font-ui); font-size: var(--size-control); font-weight: var(--weight-emphasis); }
+body .stat-value { font-family: var(--font-ui); font-size: 28px; line-height: 1.4; font-variant-numeric: tabular-nums; }
+body .stat-value-long { font-size: 18px; overflow-wrap: anywhere; }
+body .data-table th { font-family: var(--font-ui); font-size: var(--size-note); line-height: 1.5; }
+body .data-table td:first-child { font-weight: var(--weight-emphasis); }
+body .prep-list strong { font-family: var(--font-ui); font-size: var(--size-body); }
+body .editorial-copy h1 {
+  font-family: var(--font-heading);
+  font-size: var(--size-hero-title);
+  font-weight: var(--weight-emphasis);
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+body .editorial-copy p { font-size: 18px; line-height: var(--leading-body); letter-spacing: .06em; }
+body.overview-page .editorial-panel h2 {
+  font-family: var(--font-heading);
+  font-size: var(--size-feature-title);
+  font-weight: var(--weight-emphasis);
+  line-height: 1.4;
+  margin: 18px 0 20px;
+}
+body.overview-page .editorial-panel p { font-size: var(--size-body); line-height: var(--leading-body); }
+body.overview-page .editorial-panel-kicker { font-size: var(--size-note); letter-spacing: .08em; }
+body.overview-page .brand-title { font-size: var(--size-control); line-height: var(--leading-control); }
+body.overview-page .nav-item { font-size: var(--size-control); font-weight: var(--weight-emphasis); line-height: var(--leading-control); padding: 6px 10px; }
+body.overview-page .editorial-actions button {
+  font-family: var(--font-ui);
+  font-size: var(--size-control);
+  font-weight: var(--weight-emphasis);
+  line-height: var(--leading-control);
+  padding: 10px 18px;
+  min-height: 42px;
+}
+/* Give enlarged text room without changing pictures, borders or colors. */
+body .panel-head { flex-wrap: wrap; align-items: flex-start; gap: 10px 16px; }
+body .panel-head > div { min-width: 0; }
+body .doc-card > div:last-child { min-width: 0; }
+body .doc-card h3 { margin-bottom: 8px; }
+body .doc-meta { margin-top: 8px; }
+body .milestone-top { flex-wrap: wrap; }
+body .history-card h2 { margin: 12px 0 10px; }
+body .route-dot { margin-top: 3px; }
+body .gate-title::before { font-family: var(--font-ui); font-size: var(--size-meta); }
+body .footer { flex-wrap: wrap; gap: 8px 18px; }
+@media (max-width: 800px) {
+  body.overview-page .sidebar { height: auto; min-height: 49px; flex-wrap: wrap; justify-content: center; gap: 4px 5px; }
+  body.overview-page .side-nav { display: contents; }
+}
+@media (max-width: 700px) {
+  :root {
+    --size-page-title: 28px;
+    --size-section-title: 28px;
+    --size-card-title: 22px;
+    --size-hero-title: clamp(40px, 8vw, 56px);
+    --size-feature-title: 28px;
+  }
+  body .editorial-copy p { font-size: var(--size-body); }
+  body.overview-page .nav-item { padding: 6px 8px; }
+  body.overview-page .editorial-panel { padding: 29px 25px 30px; }
+  body .head-date { white-space: normal; }
+}
+@media (max-width: 520px) {
+  :root { --size-hero-title: clamp(36px, 10vw, 48px); }
+  body.overview-page .editorial-panel { padding: 27px 22px 29px; }
+  body.overview-page .editorial-actions { gap: 10px; }
+  body.overview-page .editorial-actions button { padding: 10px 15px; }
+  body .route-row { grid-template-columns: 22px minmax(0, 1fr); gap: 6px 9px; }
+  body .route-state { grid-column: 2; padding-top: 0; }
+}
+@media (max-width: 360px) {
+  :root { --size-feature-title: 26px; }
+  body.overview-page .editorial-actions button { padding: 10px 12px; }
+  body.overview-page .editorial-photo-one { top: 180px; }
+  body.overview-page .editorial-photo-two { top: 200px; }
+  body.overview-page .editorial-copy { margin-top: 350px; }
+}

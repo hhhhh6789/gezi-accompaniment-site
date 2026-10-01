@@ -1,0 +1,5 @@
+@font-face{font-family:"Gezi Reader WenKai";src:url("../assets/fonts/file-readers/wenkai-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Gezi Reader WenKai";src:url("../assets/fonts/file-readers/wenkai-medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Gezi Reader Sans";src:url("../assets/fonts/file-readers/gezi-ui-sans-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Gezi Reader Sans";src:url("../assets/fonts/file-readers/gezi-ui-sans-medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+body.file-reader,body.full-record-reader{--font-heading:"Gezi Reader WenKai","KaiTi",serif;--font-ui:"Gezi Reader Sans","Microsoft YaHei",sans-serif;}

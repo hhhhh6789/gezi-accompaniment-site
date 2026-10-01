@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>report.json · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#file-content">文件内容</a><span>JSON 配置 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>report.json</h1><p>JSON 配置 · 6,422 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\anyaccomp_feature_audit_20261001\features\report.json</p><p>SHA-256：a7e3a272b9b56acc93cdd8edfa8123cda7bf0ea782494b4b0b472f2a9ad97022</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="json"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">{
+</span><span class="file-line" id="L2">  &quot;stage&quot;: &quot;feature_audit_only&quot;,
+</span><span class="file-line" id="L3">  &quot;training_input_status&quot;: &quot;not_verified&quot;,
+</span><span class="file-line" id="L4">  &quot;feature_extraction_status&quot;: &quot;completed&quot;,
+</span><span class="file-line" id="L5">  &quot;manifest_sha256&quot;: &quot;1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f&quot;,
+</span><span class="file-line" id="L6">  &quot;vq_checkpoint_sha256&quot;: &quot;9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc&quot;,
+</span><span class="file-line" id="L7">  &quot;source_root&quot;: &quot;$CLOUD_PROJECT_ROOT/source/AnyAccomp&quot;,
+</span><span class="file-line" id="L8">  &quot;source_sha256&quot;: {
+</span><span class="file-line" id="L9">    &quot;config/flow_matching.json&quot;: &quot;b667cce677587db958a2445a13b1b6d1b3b42ac3368d2ed0b2a4eca67ff66db8&quot;,
+</span><span class="file-line" id="L10">    &quot;anyaccomp/inference_utils.py&quot;: &quot;ac9bf5917b58f49059524054041b52a2f0def9505d09411dc9185a2880899d60&quot;,
+</span><span class="file-line" id="L11">    &quot;models/codec/coco/rep_coco_model.py&quot;: &quot;b5c0bf57bbbc0c043f747970830ea46a50f8f437b5586a29a1b21d199a24e15a&quot;,
+</span><span class="file-line" id="L12">    &quot;models/codec/melvqgan/melspec.py&quot;: &quot;eeacccf417f1da152a1b36e5ff9672a24b556345061c5c6769cee8caf8a45964&quot;
+</span><span class="file-line" id="L13">  },
+</span><span class="file-line" id="L14">  &quot;versions&quot;: {
+</span><span class="file-line" id="L15">    &quot;python&quot;: &quot;3.9.19 | packaged by conda-forge | (main, Mar 20 2024, 12:50:21) \n[GCC 12.3.0]&quot;,
+</span><span class="file-line" id="L16">    &quot;torch&quot;: &quot;2.3.1+cu121&quot;,
+</span><span class="file-line" id="L17">    &quot;librosa&quot;: &quot;0.11.0&quot;,
+</span><span class="file-line" id="L18">    &quot;accelerate&quot;: &quot;1.6.0&quot;,
+</span><span class="file-line" id="L19">    &quot;numpy&quot;: &quot;1.26.4&quot;
+</span><span class="file-line" id="L20">  },
+</span><span class="file-line" id="L21">  &quot;device&quot;: &quot;cuda:0&quot;,
+</span><span class="file-line" id="L22">  &quot;vq_precision&quot;: &quot;bfloat16 autocast on CUDA, float32 on CPU&quot;,
+</span><span class="file-line" id="L23">  &quot;waveform_processing&quot;: &quot;stereo mean, librosa resampling to 24 kHz, no truncation&quot;,
+</span><span class="file-line" id="L24">  &quot;target_feature_definition&quot;: &quot;raw log-mel from released MelSpectrogram; training normalization unverified&quot;,
+</span><span class="file-line" id="L25">  &quot;frame_centers&quot;: {
+</span><span class="file-line" id="L26">    &quot;chroma&quot;: &quot;center=True: 0 + k * hop_size&quot;,
+</span><span class="file-line" id="L27">    &quot;mel&quot;: &quot;center=False with symmetric (n_fft-hop_size)/2 reflection: hop_size/2 + k * hop_size&quot;
+</span><span class="file-line" id="L28">  },
+</span><span class="file-line" id="L29">  &quot;length_policy&quot;: &quot;report all frame differences; no cropping, interpolation or equalizing&quot;,
+</span><span class="file-line" id="L30">  &quot;parameters_updated&quot;: false,
+</span><span class="file-line" id="L31">  &quot;pairs&quot;: [
+</span><span class="file-line" id="L32">    {
+</span><span class="file-line" id="L33">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0001&quot;,
+</span><span class="file-line" id="L34">      &quot;duration_s&quot;: 21.2,
+</span><span class="file-line" id="L35">      &quot;samples_24k&quot;: 508801,
+</span><span class="file-line" id="L36">      &quot;chroma_frames&quot;: 1061,
+</span><span class="file-line" id="L37">      &quot;token_frames&quot;: 1061,
+</span><span class="file-line" id="L38">      &quot;target_mel_frames&quot;: 1060,
+</span><span class="file-line" id="L39">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L40">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L41">      &quot;token_max&quot;: 510,
+</span><span class="file-line" id="L42">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L43">    },
+</span><span class="file-line" id="L44">    {
+</span><span class="file-line" id="L45">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0002&quot;,
+</span><span class="file-line" id="L46">      &quot;duration_s&quot;: 22.05,
+</span><span class="file-line" id="L47">      &quot;samples_24k&quot;: 529200,
+</span><span class="file-line" id="L48">      &quot;chroma_frames&quot;: 1103,
+</span><span class="file-line" id="L49">      &quot;token_frames&quot;: 1103,
+</span><span class="file-line" id="L50">      &quot;target_mel_frames&quot;: 1102,
+</span><span class="file-line" id="L51">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L52">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L53">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L54">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L55">    },
+</span><span class="file-line" id="L56">    {
+</span><span class="file-line" id="L57">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0003&quot;,
+</span><span class="file-line" id="L58">      &quot;duration_s&quot;: 21.26,
+</span><span class="file-line" id="L59">      &quot;samples_24k&quot;: 510241,
+</span><span class="file-line" id="L60">      &quot;chroma_frames&quot;: 1064,
+</span><span class="file-line" id="L61">      &quot;token_frames&quot;: 1064,
+</span><span class="file-line" id="L62">      &quot;target_mel_frames&quot;: 1063,
+</span><span class="file-line" id="L63">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L64">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L65">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L66">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L67">    },
+</span><span class="file-line" id="L68">    {
+</span><span class="file-line" id="L69">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0004&quot;,
+</span><span class="file-line" id="L70">      &quot;duration_s&quot;: 28.076666667,
+</span><span class="file-line" id="L71">      &quot;samples_24k&quot;: 673841,
+</span><span class="file-line" id="L72">      &quot;chroma_frames&quot;: 1404,
+</span><span class="file-line" id="L73">      &quot;token_frames&quot;: 1404,
+</span><span class="file-line" id="L74">      &quot;target_mel_frames&quot;: 1403,
+</span><span class="file-line" id="L75">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L76">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L77">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L78">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L79">    },
+</span><span class="file-line" id="L80">    {
+</span><span class="file-line" id="L81">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L82">      &quot;duration_s&quot;: 26.8,
+</span><span class="file-line" id="L83">      &quot;samples_24k&quot;: 643200,
+</span><span class="file-line" id="L84">      &quot;chroma_frames&quot;: 1341,
+</span><span class="file-line" id="L85">      &quot;token_frames&quot;: 1341,
+</span><span class="file-line" id="L86">      &quot;target_mel_frames&quot;: 1340,
+</span><span class="file-line" id="L87">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L88">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L89">      &quot;token_max&quot;: 510,
+</span><span class="file-line" id="L90">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L91">    },
+</span><span class="file-line" id="L92">    {
+</span><span class="file-line" id="L93">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L94">      &quot;duration_s&quot;: 22.64,
+</span><span class="file-line" id="L95">      &quot;samples_24k&quot;: 543360,
+</span><span class="file-line" id="L96">      &quot;chroma_frames&quot;: 1133,
+</span><span class="file-line" id="L97">      &quot;token_frames&quot;: 1133,
+</span><span class="file-line" id="L98">      &quot;target_mel_frames&quot;: 1132,
+</span><span class="file-line" id="L99">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L100">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L101">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L102">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L103">    },
+</span><span class="file-line" id="L104">    {
+</span><span class="file-line" id="L105">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L106">      &quot;duration_s&quot;: 14.54,
+</span><span class="file-line" id="L107">      &quot;samples_24k&quot;: 348961,
+</span><span class="file-line" id="L108">      &quot;chroma_frames&quot;: 728,
+</span><span class="file-line" id="L109">      &quot;token_frames&quot;: 728,
+</span><span class="file-line" id="L110">      &quot;target_mel_frames&quot;: 727,
+</span><span class="file-line" id="L111">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L112">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L113">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L114">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L115">    },
+</span><span class="file-line" id="L116">    {
+</span><span class="file-line" id="L117">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L118">      &quot;duration_s&quot;: 14.75,
+</span><span class="file-line" id="L119">      &quot;samples_24k&quot;: 354001,
+</span><span class="file-line" id="L120">      &quot;chroma_frames&quot;: 738,
+</span><span class="file-line" id="L121">      &quot;token_frames&quot;: 738,
+</span><span class="file-line" id="L122">      &quot;target_mel_frames&quot;: 737,
+</span><span class="file-line" id="L123">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L124">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L125">      &quot;token_max&quot;: 510,
+</span><span class="file-line" id="L126">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L127">    },
+</span><span class="file-line" id="L128">    {
+</span><span class="file-line" id="L129">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0005&quot;,
+</span><span class="file-line" id="L130">      &quot;duration_s&quot;: 30.107142857,
+</span><span class="file-line" id="L131">      &quot;samples_24k&quot;: 722572,
+</span><span class="file-line" id="L132">      &quot;chroma_frames&quot;: 1506,
+</span><span class="file-line" id="L133">      &quot;token_frames&quot;: 1506,
+</span><span class="file-line" id="L134">      &quot;target_mel_frames&quot;: 1505,
+</span><span class="file-line" id="L135">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L136">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L137">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L138">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L139">    },
+</span><span class="file-line" id="L140">    {
+</span><span class="file-line" id="L141">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L142">      &quot;duration_s&quot;: 13.62,
+</span><span class="file-line" id="L143">      &quot;samples_24k&quot;: 326881,
+</span><span class="file-line" id="L144">      &quot;chroma_frames&quot;: 682,
+</span><span class="file-line" id="L145">      &quot;token_frames&quot;: 682,
+</span><span class="file-line" id="L146">      &quot;target_mel_frames&quot;: 681,
+</span><span class="file-line" id="L147">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L148">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L149">      &quot;token_max&quot;: 510,
+</span><span class="file-line" id="L150">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L151">    },
+</span><span class="file-line" id="L152">    {
+</span><span class="file-line" id="L153">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L154">      &quot;duration_s&quot;: 26.06,
+</span><span class="file-line" id="L155">      &quot;samples_24k&quot;: 625440,
+</span><span class="file-line" id="L156">      &quot;chroma_frames&quot;: 1304,
+</span><span class="file-line" id="L157">      &quot;token_frames&quot;: 1304,
+</span><span class="file-line" id="L158">      &quot;target_mel_frames&quot;: 1303,
+</span><span class="file-line" id="L159">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L160">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L161">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L162">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L163">    },
+</span><span class="file-line" id="L164">    {
+</span><span class="file-line" id="L165">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L166">      &quot;duration_s&quot;: 30.05,
+</span><span class="file-line" id="L167">      &quot;samples_24k&quot;: 721201,
+</span><span class="file-line" id="L168">      &quot;chroma_frames&quot;: 1503,
+</span><span class="file-line" id="L169">      &quot;token_frames&quot;: 1503,
+</span><span class="file-line" id="L170">      &quot;target_mel_frames&quot;: 1502,
+</span><span class="file-line" id="L171">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L172">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L173">      &quot;token_max&quot;: 510,
+</span><span class="file-line" id="L174">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L175">    },
+</span><span class="file-line" id="L176">    {
+</span><span class="file-line" id="L177">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L178">      &quot;duration_s&quot;: 11.074875283,
+</span><span class="file-line" id="L179">      &quot;samples_24k&quot;: 265798,
+</span><span class="file-line" id="L180">      &quot;chroma_frames&quot;: 554,
+</span><span class="file-line" id="L181">      &quot;token_frames&quot;: 554,
+</span><span class="file-line" id="L182">      &quot;target_mel_frames&quot;: 553,
+</span><span class="file-line" id="L183">      &quot;frame_count_delta&quot;: 1,
+</span><span class="file-line" id="L184">      &quot;token_min&quot;: 0,
+</span><span class="file-line" id="L185">      &quot;token_max&quot;: 511,
+</span><span class="file-line" id="L186">      &quot;training_alignment_status&quot;: &quot;pending_frame_origin_and_normalization_resolution&quot;
+</span><span class="file-line" id="L187">    }
+</span><span class="file-line" id="L188">  ],
+</span><span class="file-line" id="L189">  &quot;pair_count&quot;: 13,
+</span><span class="file-line" id="L190">  &quot;peak_gpu_allocated_bytes&quot;: 240420352
+</span><span class="file-line" id="L191">}
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/anyaccomp_feature_audit_20261001/features/report.json（路径已脱敏）","sha256":"a7e3a272b9b56acc93cdd8edfa8123cda7bf0ea782494b4b0b472f2a9ad97022","text":"{\n  \"stage\": \"feature_audit_only\",\n  \"training_input_status\": \"not_verified\",\n  \"feature_extraction_status\": \"completed\",\n  \"manifest_sha256\": \"1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f\",\n  \"vq_checkpoint_sha256\": \"9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc\",\n  \"source_root\": \"$CLOUD_PROJECT_ROOT/source/AnyAccomp\",\n  \"source_sha256\": {\n    \"config/flow_matching.json\": \"b667cce677587db958a2445a13b1b6d1b3b42ac3368d2ed0b2a4eca67ff66db8\",\n    \"anyaccomp/inference_utils.py\": \"ac9bf5917b58f49059524054041b52a2f0def9505d09411dc9185a2880899d60\",\n    \"models/codec/coco/rep_coco_model.py\": \"b5c0bf57bbbc0c043f747970830ea46a50f8f437b5586a29a1b21d199a24e15a\",\n    \"models/codec/melvqgan/melspec.py\": \"eeacccf417f1da152a1b36e5ff9672a24b556345061c5c6769cee8caf8a45964\"\n  },\n  \"versions\": {\n    \"python\": \"3.9.19 | packaged by conda-forge | (main, Mar 20 2024, 12:50:21) \\n[GCC 12.3.0]\",\n    \"torch\": \"2.3.1+cu121\",\n    \"librosa\": \"0.11.0\",\n    \"accelerate\": \"1.6.0\",\n    \"numpy\": \"1.26.4\"\n  },\n  \"device\": \"cuda:0\",\n  \"vq_precision\": \"bfloat16 autocast on CUDA, float32 on CPU\",\n  \"waveform_processing\": \"stereo mean, librosa resampling to 24 kHz, no truncation\",\n  \"target_feature_definition\": \"raw log-mel from released MelSpectrogram; training normalization unverified\",\n  \"frame_centers\": {\n    \"chroma\": \"center=True: 0 + k * hop_size\",\n    \"mel\": \"center=False with symmetric (n_fft-hop_size)/2 reflection: hop_size/2 + k * hop_size\"\n  },\n  \"length_policy\": \"report all frame differences; no cropping, interpolation or equalizing\",\n  \"parameters_updated\": false,\n  \"pairs\": [\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0001\",\n      \"duration_s\": 21.2,\n      \"samples_24k\": 508801,\n      \"chroma_frames\": 1061,\n      \"token_frames\": 1061,\n      \"target_mel_frames\": 1060,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 510,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0002\",\n      \"duration_s\": 22.05,\n      \"samples_24k\": 529200,\n      \"chroma_frames\": 1103,\n      \"token_frames\": 1103,\n      \"target_mel_frames\": 1102,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0003\",\n      \"duration_s\": 21.26,\n      \"samples_24k\": 510241,\n      \"chroma_frames\": 1064,\n      \"token_frames\": 1064,\n      \"target_mel_frames\": 1063,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0004\",\n      \"duration_s\": 28.076666667,\n      \"samples_24k\": 673841,\n      \"chroma_frames\": 1404,\n      \"token_frames\": 1404,\n      \"target_mel_frames\": 1403,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0001\",\n      \"duration_s\": 26.8,\n      \"samples_24k\": 643200,\n      \"chroma_frames\": 1341,\n      \"token_frames\": 1341,\n      \"target_mel_frames\": 1340,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 510,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0002\",\n      \"duration_s\": 22.64,\n      \"samples_24k\": 543360,\n      \"chroma_frames\": 1133,\n      \"token_frames\": 1133,\n      \"target_mel_frames\": 1132,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0003\",\n      \"duration_s\": 14.54,\n      \"samples_24k\": 348961,\n      \"chroma_frames\": 728,\n      \"token_frames\": 728,\n      \"target_mel_frames\": 727,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0004\",\n      \"duration_s\": 14.75,\n      \"samples_24k\": 354001,\n      \"chroma_frames\": 738,\n      \"token_frames\": 738,\n      \"target_mel_frames\": 737,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 510,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0005\",\n      \"duration_s\": 30.107142857,\n      \"samples_24k\": 722572,\n      \"chroma_frames\": 1506,\n      \"token_frames\": 1506,\n      \"target_mel_frames\": 1505,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0001\",\n      \"duration_s\": 13.62,\n      \"samples_24k\": 326881,\n      \"chroma_frames\": 682,\n      \"token_frames\": 682,\n      \"target_mel_frames\": 681,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 510,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0002\",\n      \"duration_s\": 26.06,\n      \"samples_24k\": 625440,\n      \"chroma_frames\": 1304,\n      \"token_frames\": 1304,\n      \"target_mel_frames\": 1303,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0003\",\n      \"duration_s\": 30.05,\n      \"samples_24k\": 721201,\n      \"chroma_frames\": 1503,\n      \"token_frames\": 1503,\n      \"target_mel_frames\": 1502,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 510,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0004\",\n      \"duration_s\": 11.074875283,\n      \"samples_24k\": 265798,\n      \"chroma_frames\": 554,\n      \"token_frames\": 554,\n      \"target_mel_frames\": 553,\n      \"frame_count_delta\": 1,\n      \"token_min\": 0,\n      \"token_max\": 511,\n      \"training_alignment_status\": \"pending_frame_origin_and_normalization_resolution\"\n    }\n  ],\n  \"pair_count\": 13,\n  \"peak_gpu_allocated_bytes\": 240420352\n}\n"}</script><script src="../../src/data-reader.js"></script></body></html>

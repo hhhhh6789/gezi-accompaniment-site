@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据准备完整记录 · 歌仔戏伴奏研究</title>
+<link rel="stylesheet" href="../src/typography.css"><link rel="stylesheet" href="../src/data-fonts.css">
+<link rel="stylesheet" href="../src/data-reader.css"><link rel="stylesheet" href="../src/file-reader-fonts.css"></head><body class="data-reader full-record-reader">
+<header class="reader-bar"><a href="../index.html#data">← 返回数据准备</a><a href="#reader-directory">文档目录</a><span>完整记录 · 更新 2026-10-01</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>数据准备完整记录</h2><ol><li><a href="#scope">1. 实验目标与边界</a></li><li><a href="#progress">2. 当前进度</a></li><li><a href="#validation">3. 小规模验证已完成什么</a></li><li><a href="#recordings">3.1 保存录音、比较分离并完成听验</a></li><li><a href="#validation-segmentation">3.2 结构分段与配对完整性通过</a></li><li><a href="#validation-input">3.3 训练输入与频谱解码的有限验收通过</a></li><li><a href="#models">4. 本次采用的模型与输入规则</a></li><li><a href="#scale">5. 规模化建集：首批候选与计划</a></li><li><a href="#limits">6. 已接受的限制与待验证范围</a></li><li><a href="#delivery">7. 数据交付与结束条件</a></li><li><a href="#evidence">8. 文档、证据与同步状态</a></li></ol></nav>
+<div class="reader-meta"><p>此页保留《929训练数据采集》全文，并在每条录音下附上清单中的完整文件记录。</p>
+<p>原始来源：<a href="data-preparation.html#complete">929训练数据采集.md</a> · <a href="files/recordings-9a6ade03529f.html">recordings.csv</a>。此页为生成时的静态快照，源文件更新后需重新生成。</p></div>
+<p class="reader-meta">本页已从本地新版来源生成；原文末尾的同步描述是云端打包时记录，不代表当前网页仍未更新。未同步的云端材料会明确提示，不假装可在本地打开。</p>
+<div class="reader-content"><h1 id="complete">929训练数据采集：歌仔戏配对数据与训练输入核验</h1>
+<p>更新日期：2026-10-01。本文是<strong>929 实验的当前进度与数据交付主文档，也是更新网页的内容来源</strong>。正文展示最新状态、已确认结论和下一步；详细模型说明、运行报告与完整历史通过末尾链接查阅。</p>
+<p><strong>当前结论：三份录音的小规模流程已按约定范围验收通过，正在规划规模化建集；929 尚未完成，尚未开始正式微调。</strong></p>
+<h2 id="scope">1. 实验目标与边界</h2>
+<p>构建来源可追溯、质量经过审核、时间关系明确，并经约定训练输入接口核验的歌仔戏人声—伴奏配对数据集。人声提供旋律条件，伴奏提供对应的学习目标。</p>
+<p>929 包含完整的数据准备流程：<strong>小规模验证 → 规模化收集与处理 → 质量及训练输入核验 → 数据划分与交付</strong>。规模化建集原本就在本实验范围内，不以当前三份试验录音作为最终数据规模。</p>
+<p>正式微调、长期训练、生成效果评价和完整论文训练配方复现另开实验。达到约定数据规模、完成固定交付项并经用户验收后结束 929，不自动增加规模或延伸新研究。</p>
+<h2 id="progress">2. 当前进度</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>最新状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="项目">已保存完整录音</td>
+<td data-label="最新状态">3 份：R0001–R0003，来源、哈希、格式及完整解码已核验</td>
+</tr>
+<tr>
+<td data-label="项目">已采用分离结果</td>
+<td data-label="最新状态">3 份 Demucs 完整人声/伴奏双轨，均经用户听验通过</td>
+</tr>
+<tr>
+<td data-label="项目">已保存配对片段</td>
+<td data-label="最新状态">13 对，总长 282.229 秒，约 4 分 42 秒</td>
+</tr>
+<tr>
+<td data-label="项目">小规模流程验收</td>
+<td data-label="最新状态">用户已确认有限验收通过：实验 FM 主损失输入接口及已测声码器解码规则</td>
+</tr>
+<tr>
+<td data-label="项目">新增来源候选</td>
+<td data-label="最新状态">6 份，已核查页面及文件头；尚未完整下载、分离或听验</td>
+</tr>
+<tr>
+<td data-label="项目">最终建集数量/时长</td>
+<td data-label="最新状态">待确定，按合格配对数据计量，不重复计算人声与伴奏两轨</td>
+</tr>
+<tr>
+<td data-label="项目">规模化批量处理</td>
+<td data-label="最新状态">尚未开始</td>
+</tr>
+<tr>
+<td data-label="项目">训练/验证/测试划分</td>
+<td data-label="最新状态">尚未执行，现有配对仍为未划分状态</td>
+</tr>
+<tr>
+<td data-label="项目">模型参数更新</td>
+<td data-label="最新状态">0 次，尚未正式微调</td>
+</tr>
+</tbody>
+</table>
+<p>目前可进入规模化来源与目标规划。新增候选不等于已收录音频，小规模验收通过也不等于整个 929 完成。</p>
+<h2 id="validation">3. 小规模验证已完成什么</h2>
+<h3 id="recordings">3.1 保存录音、比较分离并完成听验<span id="validation-separation"><span id="stage-separation"></span></span><span id="stage-download"></span><span id="stage-preserve"></span></h3>
+<table class="record-details">
+<thead>
+<tr>
+<th>录音</th>
+<th>内容</th>
+<th>完整时长</th>
+<th>采用结果</th>
+<th>配对片段数</th>
+</tr>
+</thead>
+<tbody>
+<tr id="record-r0001">
+<td data-label="录音">R0001</td>
+<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/21" target="_blank" rel="noopener">七字調</a></td>
+<td data-label="完整时长">92.587 秒</td>
+<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP02</td>
+<td data-label="配对片段数">4<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0001</dd><dt>候选编号（candidate_id）</dt><dd>C001</dd><dt>名称（title）</dt><dd>七字調示範音檔</dd><dt>演唱者（performer）</dt><dd>待核对</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/21</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/21</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0001/2.七字調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>e086584357c4c97d915a64b393b312e250a4ce038975320979943d584815fb91</dd><dt>文件字节数（bytes）</dt><dd>26807946</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>92.586667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>data/raw/qizi_demo_21.wav</dd><dt>听验状态（review_status）</dt><dd>pending_listening</dd></dl></details></td>
+</tr>
+<tr id="record-r0002">
+<td data-label="录音">R0002</td>
+<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/24" target="_blank" rel="noopener">雜唸調</a></td>
+<td data-label="完整时长">108.837 秒</td>
+<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP01</td>
+<td data-label="配对片段数">5<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0002</dd><dt>候选编号（candidate_id）</dt><dd>C002</dd><dt>名称（title）</dt><dd>雜唸調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/24</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/24</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0002/5.雜唸調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>8fdfb567b55662a8a599434da34e35155730a6c03bb0df7b1b51fcee66e7f80c</dd><dt>文件字节数（bytes）</dt><dd>31512830</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>108.837125</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>pending_listening</dd></dl></details></td>
+</tr>
+<tr id="record-r0003">
+<td data-label="录音">R0003</td>
+<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/25" target="_blank" rel="noopener">江湖調</a></td>
+<td data-label="完整时长">80.805 秒</td>
+<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP01</td>
+<td data-label="配对片段数">4<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0003</dd><dt>候选编号（candidate_id）</dt><dd>C003</dd><dt>名称（title）</dt><dd>江湖調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/25</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/25</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0003/6.江湖調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>245759823c70b115c09f977c1b3f730df15d34004f9f805f75d134d4e48cf6e8</dd><dt>文件字节数（bytes）</dt><dd>23396832</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>80.804854</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>pending_listening</dd></dl></details></td>
+</tr>
+</tbody>
+</table>
+<p>三份原音均为 48 kHz、双声道、24-bit PCM WAV，完整文件保留。R0001 比较公开 MDX23 候选与 Demucs 后，用户认为 Demucs 更好，后两份沿用相同分离方案。公开 MDX23 候选的仓库、提交、权重和配置已留存，但未证明它是 SingNet 的精确版本。</p>
+<p>用户确认三份 Demucs 双轨符合本轮听验门槛。人声仍有分离伪影，但唱腔主体完整；保留这一限制，不将听验通过解释为获得了完全干净的独立轨。</p>
+<h3 id="validation-segmentation">3.2 结构分段与配对完整性通过<span id="stage-alignment"></span><span id="stage-segmentation"></span><span id="stage-pairs"></span></h3>
+<p>13 个片段的共同边界均经用户确认，保留片头伴奏、过门和尾奏。每对来自同一次分离、同一采样边界；各录音的片段重新拼接后与完整分离轨逐样本一致，说明分段没有遗漏内容。</p>
+<p>两段超过 30 秒的片段完整保留，没有按固定时长截断。同源裁切和完整覆盖已验证，但缺少独立干净双轨，不能宣称所有分离细节都达到真值意义上的精确对齐。</p>
+<h3 id="validation-input">3.3 训练输入与频谱解码的有限验收通过<span id="stage-input-check"></span><span id="stage-pilot-review"></span></h3>
+<ul>
+<li><strong>旋律与目标特征</strong>：13 对片段完成冻结 Chroma/VQ 特征核验，以及实验伴奏目标的尺度、时间网格和全长检查。</li>
+<li><strong>FM 主损失接口</strong>：13 个全长单样本、7 个混合长度批次的前向与反向检查通过；损失和梯度有限，梯度非零。前向是计算预测，反向是计算参数变化方向，本轮没有真正更新参数。</li>
+<li><strong>变长提示与补齐</strong>：按每段真实长度选取已知伴奏提示，保留学习位置；7 次补齐内容扰动检查通过，有效预测和损失不受补齐内容影响。</li>
+<li><strong>声码器解码</strong>：短、中、长三段完成频谱到声音的转换及时间/长度核验，用户反馈“都自然完整，没有新增失真”；19 个 CPU 窗口/长度数学案例也通过。</li>
+</ul>
+<p>这证明已测数据可以进入当前实验的 FM 主损失接口，且三段参考伴奏频谱可以按实验规则重建成声音。声码器重建使用真实伴奏目标频谱，不是 FM 生成的新伴奏，不作为微调效果证据。</p>
+<h2 id="models">4. 本次采用的模型与输入规则</h2>
+<table>
+<thead>
+<tr>
+<th>部件或机制</th>
+<th>具体作用</th>
+<th>本次采用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="部件或机制">Demucs <code>htdemucs_ft</code></td>
+<td data-label="具体作用">将完整录音拆成人声和伴奏，准备配对材料</td>
+<td data-label="本次采用方式">沿用已比较并听验的模型、权重和参数</td>
+</tr>
+<tr>
+<td data-label="部件或机制">Chroma + 冻结 VQ</td>
+<td data-label="具体作用">将人声中的音级信息转换为旋律编号，减少直接传入音色与分离细节</td>
+<td data-label="本次采用方式">24 通道 Chroma、约每秒 50 帧、512 条目码本；不更新 VQ 参数</td>
+</tr>
+<tr>
+<td data-label="部件或机制">Mel 伴奏目标</td>
+<td data-label="具体作用">将伴奏波形转换为 FM 学习的频谱矩阵</td>
+<td data-label="本次采用方式">24 kHz 单声道输入、128 通道 Mel；按均值 −4.92、方差 8.14 做 z-score 标准化</td>
+</tr>
+<tr>
+<td data-label="部件或机制">时间网格与解码</td>
+<td data-label="具体作用">让旋律和目标帧对应同一时间中心，并保持输出头尾长度</td>
+<td data-label="本次采用方式">使用已核验的共同帧中心及解码起点/长度适配，保留参考长度，不补波形零值</td>
+</tr>
+<tr>
+<td data-label="部件或机制">FM（流匹配生成模型）</td>
+<td data-label="具体作用">学习如何根据旋律条件，从噪声逐步生成伴奏频谱</td>
+<td data-label="本次采用方式">本轮核验主损失和梯度，没有优化器更新</td>
+</tr>
+<tr>
+<td data-label="部件或机制">Prompt（伴奏提示）</td>
+<td data-label="具体作用">给模型部分真实伴奏，让它学习剩余位置</td>
+<td data-label="本次采用方式">按真实有效长度选左右提示，默认启用概率 0.3</td>
+</tr>
+<tr>
+<td data-label="部件或机制">CFG（条件丢弃与生成引导机制）</td>
+<td data-label="具体作用">训练时让模型学习有旋律/无旋律两种预测</td>
+<td data-label="本次采用方式">本轮保留训练条件丢弃概率 0.2；它不是生成时的引导强度</td>
+</tr>
+<tr>
+<td data-label="部件或机制">Vocos（声码器）</td>
+<td data-label="具体作用">将伴奏频谱转换为可播放波形</td>
+<td data-label="本次采用方式">使用已有权重；已完成三段重建与用户听验</td>
+</tr>
+<tr>
+<td data-label="部件或机制">REPA/MERT</td>
+<td data-label="具体作用">用预训练音乐特征约束 FM 中间表示的辅助训练链路</td>
+<td data-label="本次采用方式">本轮未实现辅助损失，用户已接受将其列为限制，不追加实现任务</td>
+</tr>
+</tbody>
+</table>
+<p>这些输入规则已按有限范围验收，是本实验的处理合同，不宣称作者完整预处理已精确复现。模型职责、输入输出与必要限制详见<a href="files/929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">项目模型与技术说明</a>。</p>
+<p>配对清单的 13 条训练输入状态已登记为 <code>passed_experimental_fm_main_loss_interface</code>，含义是“实验 FM 主损失输入接口通过”，不是完整训练器通过。原音、完整双轨、旧运行产物和模型权重保持保留；实验使用独立环境，不复用 Qwen 环境。Qwen2-Audio 的早期听音试验不作为当前训练标注依据。</p>
+<h2 id="scale">5. 规模化建集：首批候选与计划<span id="stage-scale-up"></span><span id="next-step"></span></h2>
+<p>目前核查的<a href="https://twoperapf.org.tw/resource/category/demo-audio" target="_blank" rel="noopener">基金会示范音档目录</a>列出 9 项，已有 3 项，新增 6 个候选如下。以下时长来自文件头声明，还未通过完整下载、哈希、解码或听验。</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>内容与来源</th>
+<th>文件头时长</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr id="candidate-c004">
+<td data-label="候选">C004</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/20" target="_blank" rel="noopener">古早七字仔</a></td>
+<td data-label="文件头时长">1:06.90</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+<tr id="candidate-c005">
+<td data-label="候选">C005</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/22" target="_blank" rel="noopener">都馬調</a></td>
+<td data-label="文件头时长">2:44.99</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+<tr id="candidate-c006">
+<td data-label="候选">C006</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/23" target="_blank" rel="noopener">西樂都馬</a></td>
+<td data-label="文件头时长">1:14.44</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+<tr id="candidate-c007">
+<td data-label="候选">C007</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/26" target="_blank" rel="noopener">崁仔腳調</a></td>
+<td data-label="文件头时长">0:51.39</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+<tr id="candidate-c008">
+<td data-label="候选">C008</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/27" target="_blank" rel="noopener">臺東調（平埔調）</a></td>
+<td data-label="文件头时长">1:14.05</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+<tr id="candidate-c009">
+<td data-label="候选">C009</td>
+<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/28" target="_blank" rel="noopener">思想起（恆春調)</a></td>
+<td data-label="文件头时长">1:09.30</td>
+<td data-label="当前状态">页面及文件头已核查；未完整下载</td>
+</tr>
+</tbody>
+</table>
+<p>新增候选合计约 <strong>8 分 21 秒</strong>，完整原音预计约 <strong>138 MiB</strong>；连同已有三份，该目录全部九项的录音总长约 <strong>13 分 03 秒</strong>。这些是原始录音时长，不是最终合格配对时长，也不足以承诺小时级数据目标。</p>
+<p>首批方案建议按以下顺序推进：</p>
+<ol>
+<li>确认首批六项范围和最终建集数量或合格时长，明确可计量的结束目标。</li>
+<li>完整下载并做去重、哈希、格式和全文件解码检查，再登记正式录音编号。</li>
+<li>先分离最长的「都馬調」（约 2 分 45 秒）并听验；通过后处理其余五项。</li>
+<li>逐份审核分离结果、确认结构边界、保存配对，再按已接受的输入规则核验。</li>
+<li>汇总新增合格数量/时长、剔除原因和资源实测；如目标仍有缺口，补充明确来源。</li>
+</ol>
+<p>本批原音、完整双轨、配对片段和小型产物建议预留 <strong>2 GiB</strong>。分离使用已选 Demucs 和独立环境，GPU 开始前检查空闲卡与磁盘，开始/结束告知用户并保存日志。预算不等于实测；候选分段长度尚未确定，不把既有显存数值当作任意长段的保证。详细来源、署名与预算见<a href="files/first_batch_proposal-8f4e785e90cc.html">首批建集提案</a>。</p>
+<p><strong>本节是待确认计划，尚未执行完整下载或 GPU 分离。最终建集规模仍待确定。</strong></p>
+<h2 id="limits">6. 已接受的限制与待验证范围<span id="rights"></span></h2>
+<ul>
+<li>分离人声仍可能有伪影；Chroma/VQ 改变模型接收旋律信息的方式，不会直接修复已有 WAV，也不能消除伴奏目标中的缺陷。</li>
+<li>没有独立干净双轨真值；共同边界、完整覆盖和特征中心检查不能替代所有细部对齐证明。</li>
+<li>公开完整训练加载器缺失，源码与检查点存在已记录差异；当前只验证实验主损失接口，没有验证优化器更新、恢复训练或完整作者配方。</li>
+<li>CFG 训练丢条件概率与论文不同，REPA/MERT 辅助损失未实现；用户已接受按本轮有限范围验收，不为消除这些差异自动追加研究。</li>
+<li>声码器听验覆盖三段代表样本，不能写成全部 13 段神经解码或新生成伴奏均已验收。</li>
+<li>来源与权利状态仍为待核实；当前按内部技术试验记录，不将文件标为已授权发表或共享。</li>
+</ul>
+<p>以上限制随数据交付保留。新来源出现具体质量或接口问题时，先说明实际缺口和有限检查方案；新增或修改实验代码仍先展示核心 diff、解释输入输出及逻辑，再等待确认。</p>
+<h2 id="delivery">7. 数据交付与结束条件<span id="stage-delivery"></span></h2>
+<p>929 的最终交付包括：</p>
+<table>
+<thead>
+<tr>
+<th>交付项</th>
+<th>完成要求</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="交付项">固定数据规模</td>
+<td data-label="完成要求">达到用户确定的录音数量或合格配对总时长，避免重复计时</td>
+<td data-label="当前状态">目标待确定</td>
+</tr>
+<tr>
+<td data-label="交付项">合格配对音频</td>
+<td data-label="完成要求">原音与分离轨保留，结构片段成对、边界一致，异常数据不混入合格集</td>
+<td data-label="当前状态">小规模 13 对已保存；规模化部分待执行</td>
+</tr>
+<tr>
+<td data-label="交付项">来源与审核清单</td>
+<td data-label="完成要求">每对可回溯来源、原录音、分离版本、边界、哈希和审核结果</td>
+<td data-label="当前状态">小规模记录已有；规模化部分待执行</td>
+</tr>
+<tr>
+<td data-label="交付项">输入规格与核验证据</td>
+<td data-label="完成要求">明确已采用的特征、尺度、时间网格、提示及有效长度规则，附验证范围与限制</td>
+<td data-label="当前状态">小规模有限验收通过</td>
+</tr>
+<tr>
+<td data-label="交付项">训练/验证/测试划分</td>
+<td data-label="完成要求">按原始录音或演出分组，避免同源片段跨集合泄漏</td>
+<td data-label="当前状态">尚未执行</td>
+</tr>
+<tr>
+<td data-label="交付项">统计、文档与最终验收</td>
+<td data-label="完成要求">交付数量/时长、通过/剔除统计、处理记录及结论，由用户验收</td>
+<td data-label="当前状态">未完成</td>
+</tr>
+</tbody>
+</table>
+<p>以上固定交付项完成并验收后结束 929。当前唯一正在推进的下一阶段是<strong>明确规模化来源、首批处理范围和最终数量/时长</strong>，不是正式微调或生成效果研究。</p>
+<h2 id="evidence">8. 文档、证据与同步状态</h2>
+<table>
+<thead>
+<tr>
+<th>记录</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="记录"><a href="files/929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">项目模型与技术说明</a></td>
+<td data-label="用途">回看各模型和技术负责什么、输入输出及验证范围</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/recordings-9a6ade03529f.html">recordings.csv</a> / <a href="files/separations-c506d4db6e28.html">separations.csv</a></td>
+<td data-label="用途">原录音来源、哈希和分离版本</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/segments-fcfa406e05e7.html">segments.csv</a> / <a href="files/pairs-897b3663ec38.html">pairs.csv</a></td>
+<td data-label="用途">结构边界、配对文件及最新输入接口状态</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/report-1f253104ba23.html">分段覆盖报告</a></td>
+<td data-label="用途">13 对片段完整覆盖与逐样本重拼证据</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/post_validation-f02c7a8be6b7.html">FM 提示/补齐后核验</a></td>
+<td data-label="用途">前向、反向、有效学习位置及补齐扰动证据</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/acceptance-0560a658edc2.html">声码器听验记录</a></td>
+<td data-label="用途">三段时间/长度修正版的用户验收</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/acceptance-0959b36ebe7a.html">小规模有限验收记录</a></td>
+<td data-label="用途">用户确认范围、清单状态与明确限制</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/source_candidates-67059f0998e1.html">首批来源清单</a> / <a href="files/source_inventory-35a8bef6a81a.html">元数据记录</a></td>
+<td data-label="用途">六个新增候选的页面及文件头核查</td>
+</tr>
+<tr>
+<td data-label="记录"><a href="files/929%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86_%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95_20261001T093748Z-7d851c444da6.html">完整历史归档</a></td>
+<td data-label="用途">重整前的原文完整副本，保存每轮提案、执行、旧状态与详细证据</td>
+</tr>
+</tbody>
+</table>
+<p>主工作区在云端 <code>$CLOUD_FINETUNE_ROOT</code>；Windows 本地目录为 <code>$PROJECT_ROOT\anyaccomp_gezi_finetune</code>。两端不自动同步，传输需备份旧版并核对 SHA-256。</p>
+<p>已为本次重整后的主文档准备新版同步包，包含主文档、模型说明、完整历史归档、项目维护约定、四份清单及关键验收/来源报告。旧包保持不变，新版用于后续本地同步。同步包已在云端准备，不等于本地同步完成；尚未收到本地成功回执，网页也未由本轮自动更新。</p>
+<p>后续每完成一个阶段，更新对应的状态、数量、结论与下一步，保持本文为当前摘要。完整运行日志和连续对话记录保存在历史归档或 <code>runs/</code>，不再逐轮追加到主文档末尾；不把旧报告中的待办状态当作最新结论。</p></div>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p><p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/929训练数据采集.md（路径已脱敏）","sha256":"88273272fcca5d86267a80f05d2b3b404abafdfd379202ab3ab35b593f6fcbb2","text":"# 929训练数据采集：歌仔戏配对数据与训练输入核验\n\n更新日期：2026-10-01。本文是**929 实验的当前进度与数据交付主文档，也是更新网页的内容来源**。正文展示最新状态、已确认结论和下一步；详细模型说明、运行报告与完整历史通过末尾链接查阅。\n\n**当前结论：三份录音的小规模流程已按约定范围验收通过，正在规划规模化建集；929 尚未完成，尚未开始正式微调。**\n\n## 1. 实验目标与边界\n\n构建来源可追溯、质量经过审核、时间关系明确，并经约定训练输入接口核验的歌仔戏人声—伴奏配对数据集。人声提供旋律条件，伴奏提供对应的学习目标。\n\n929 包含完整的数据准备流程：**小规模验证 → 规模化收集与处理 → 质量及训练输入核验 → 数据划分与交付**。规模化建集原本就在本实验范围内，不以当前三份试验录音作为最终数据规模。\n\n正式微调、长期训练、生成效果评价和完整论文训练配方复现另开实验。达到约定数据规模、完成固定交付项并经用户验收后结束 929，不自动增加规模或延伸新研究。\n\n## 2. 当前进度\n\n| 项目 | 最新状态 |\n| --- | --- |\n| 已保存完整录音 | 3 份：R0001–R0003，来源、哈希、格式及完整解码已核验 |\n| 已采用分离结果 | 3 份 Demucs 完整人声/伴奏双轨，均经用户听验通过 |\n| 已保存配对片段 | 13 对，总长 282.229 秒，约 4 分 42 秒 |\n| 小规模流程验收 | 用户已确认有限验收通过：实验 FM 主损失输入接口及已测声码器解码规则 |\n| 新增来源候选 | 6 份，已核查页面及文件头；尚未完整下载、分离或听验 |\n| 最终建集数量/时长 | 待确定，按合格配对数据计量，不重复计算人声与伴奏两轨 |\n| 规模化批量处理 | 尚未开始 |\n| 训练/验证/测试划分 | 尚未执行，现有配对仍为未划分状态 |\n| 模型参数更新 | 0 次，尚未正式微调 |\n\n目前可进入规模化来源与目标规划。新增候选不等于已收录音频，小规模验收通过也不等于整个 929 完成。\n\n## 3. 小规模验证已完成什么\n\n### 3.1 保存录音、比较分离并完成听验\n\n| 录音 | 内容 | 完整时长 | 采用结果 | 配对片段数 |\n| --- | --- | --- | --- | --- |\n| R0001 | [七字調](https://twoperapf.org.tw/resource/demo-audio/21) | 92.587 秒 | Demucs `htdemucs_ft`，SEP02 | 4 |\n| R0002 | [雜唸調](https://twoperapf.org.tw/resource/demo-audio/24) | 108.837 秒 | Demucs `htdemucs_ft`，SEP01 | 5 |\n| R0003 | [江湖調](https://twoperapf.org.tw/resource/demo-audio/25) | 80.805 秒 | Demucs `htdemucs_ft`，SEP01 | 4 |\n\n三份原音均为 48 kHz、双声道、24-bit PCM WAV，完整文件保留。R0001 比较公开 MDX23 候选与 Demucs 后，用户认为 Demucs 更好，后两份沿用相同分离方案。公开 MDX23 候选的仓库、提交、权重和配置已留存，但未证明它是 SingNet 的精确版本。\n\n用户确认三份 Demucs 双轨符合本轮听验门槛。人声仍有分离伪影，但唱腔主体完整；保留这一限制，不将听验通过解释为获得了完全干净的独立轨。\n\n### 3.2 结构分段与配对完整性通过\n\n13 个片段的共同边界均经用户确认，保留片头伴奏、过门和尾奏。每对来自同一次分离、同一采样边界；各录音的片段重新拼接后与完整分离轨逐样本一致，说明分段没有遗漏内容。\n\n两段超过 30 秒的片段完整保留，没有按固定时长截断。同源裁切和完整覆盖已验证，但缺少独立干净双轨，不能宣称所有分离细节都达到真值意义上的精确对齐。\n\n### 3.3 训练输入与频谱解码的有限验收通过\n\n- **旋律与目标特征**：13 对片段完成冻结 Chroma/VQ 特征核验，以及实验伴奏目标的尺度、时间网格和全长检查。\n- **FM 主损失接口**：13 个全长单样本、7 个混合长度批次的前向与反向检查通过；损失和梯度有限，梯度非零。前向是计算预测，反向是计算参数变化方向，本轮没有真正更新参数。\n- **变长提示与补齐**：按每段真实长度选取已知伴奏提示，保留学习位置；7 次补齐内容扰动检查通过，有效预测和损失不受补齐内容影响。\n- **声码器解码**：短、中、长三段完成频谱到声音的转换及时间/长度核验，用户反馈“都自然完整，没有新增失真”；19 个 CPU 窗口/长度数学案例也通过。\n\n这证明已测数据可以进入当前实验的 FM 主损失接口，且三段参考伴奏频谱可以按实验规则重建成声音。声码器重建使用真实伴奏目标频谱，不是 FM 生成的新伴奏，不作为微调效果证据。\n\n## 4. 本次采用的模型与输入规则\n\n| 部件或机制 | 具体作用 | 本次采用方式 |\n| --- | --- | --- |\n| Demucs `htdemucs_ft` | 将完整录音拆成人声和伴奏，准备配对材料 | 沿用已比较并听验的模型、权重和参数 |\n| Chroma + 冻结 VQ | 将人声中的音级信息转换为旋律编号，减少直接传入音色与分离细节 | 24 通道 Chroma、约每秒 50 帧、512 条目码本；不更新 VQ 参数 |\n| Mel 伴奏目标 | 将伴奏波形转换为 FM 学习的频谱矩阵 | 24 kHz 单声道输入、128 通道 Mel；按均值 −4.92、方差 8.14 做 z-score 标准化 |\n| 时间网格与解码 | 让旋律和目标帧对应同一时间中心，并保持输出头尾长度 | 使用已核验的共同帧中心及解码起点/长度适配，保留参考长度，不补波形零值 |\n| FM（流匹配生成模型） | 学习如何根据旋律条件，从噪声逐步生成伴奏频谱 | 本轮核验主损失和梯度，没有优化器更新 |\n| Prompt（伴奏提示） | 给模型部分真实伴奏，让它学习剩余位置 | 按真实有效长度选左右提示，默认启用概率 0.3 |\n| CFG（条件丢弃与生成引导机制） | 训练时让模型学习有旋律/无旋律两种预测 | 本轮保留训练条件丢弃概率 0.2；它不是生成时的引导强度 |\n| Vocos（声码器） | 将伴奏频谱转换为可播放波形 | 使用已有权重；已完成三段重建与用户听验 |\n| REPA/MERT | 用预训练音乐特征约束 FM 中间表示的辅助训练链路 | 本轮未实现辅助损失，用户已接受将其列为限制，不追加实现任务 |\n\n这些输入规则已按有限范围验收，是本实验的处理合同，不宣称作者完整预处理已精确复现。模型职责、输入输出与必要限制详见[项目模型与技术说明]($CLOUD_FINETUNE_ROOT/docs/929项目模型与技术说明.md)。\n\n配对清单的 13 条训练输入状态已登记为 `passed_experimental_fm_main_loss_interface`，含义是“实验 FM 主损失输入接口通过”，不是完整训练器通过。原音、完整双轨、旧运行产物和模型权重保持保留；实验使用独立环境，不复用 Qwen 环境。Qwen2-Audio 的早期听音试验不作为当前训练标注依据。\n\n## 5. 规模化建集：首批候选与计划\n\n目前核查的[基金会示范音档目录](https://twoperapf.org.tw/resource/category/demo-audio)列出 9 项，已有 3 项，新增 6 个候选如下。以下时长来自文件头声明，还未通过完整下载、哈希、解码或听验。\n\n| 候选 | 内容与来源 | 文件头时长 | 当前状态 |\n| --- | --- | --- | --- |\n| C004 | [古早七字仔](https://twoperapf.org.tw/resource/demo-audio/20) | 1:06.90 | 页面及文件头已核查；未完整下载 |\n| C005 | [都馬調](https://twoperapf.org.tw/resource/demo-audio/22) | 2:44.99 | 页面及文件头已核查；未完整下载 |\n| C006 | [西樂都馬](https://twoperapf.org.tw/resource/demo-audio/23) | 1:14.44 | 页面及文件头已核查；未完整下载 |\n| C007 | [崁仔腳調](https://twoperapf.org.tw/resource/demo-audio/26) | 0:51.39 | 页面及文件头已核查；未完整下载 |\n| C008 | [臺東調（平埔調）](https://twoperapf.org.tw/resource/demo-audio/27) | 1:14.05 | 页面及文件头已核查；未完整下载 |\n| C009 | [思想起（恆春調)](https://twoperapf.org.tw/resource/demo-audio/28) | 1:09.30 | 页面及文件头已核查；未完整下载 |\n\n新增候选合计约 **8 分 21 秒**，完整原音预计约 **138 MiB**；连同已有三份，该目录全部九项的录音总长约 **13 分 03 秒**。这些是原始录音时长，不是最终合格配对时长，也不足以承诺小时级数据目标。\n\n首批方案建议按以下顺序推进：\n\n1. 确认首批六项范围和最终建集数量或合格时长，明确可计量的结束目标。\n2. 完整下载并做去重、哈希、格式和全文件解码检查，再登记正式录音编号。\n3. 先分离最长的「都馬調」（约 2 分 45 秒）并听验；通过后处理其余五项。\n4. 逐份审核分离结果、确认结构边界、保存配对，再按已接受的输入规则核验。\n5. 汇总新增合格数量/时长、剔除原因和资源实测；如目标仍有缺口，补充明确来源。\n\n本批原音、完整双轨、配对片段和小型产物建议预留 **2 GiB**。分离使用已选 Demucs 和独立环境，GPU 开始前检查空闲卡与磁盘，开始/结束告知用户并保存日志。预算不等于实测；候选分段长度尚未确定，不把既有显存数值当作任意长段的保证。详细来源、署名与预算见[首批建集提案]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/first_batch_proposal.md)。\n\n**本节是待确认计划，尚未执行完整下载或 GPU 分离。最终建集规模仍待确定。**\n\n## 6. 已接受的限制与待验证范围\n\n- 分离人声仍可能有伪影；Chroma/VQ 改变模型接收旋律信息的方式，不会直接修复已有 WAV，也不能消除伴奏目标中的缺陷。\n- 没有独立干净双轨真值；共同边界、完整覆盖和特征中心检查不能替代所有细部对齐证明。\n- 公开完整训练加载器缺失，源码与检查点存在已记录差异；当前只验证实验主损失接口，没有验证优化器更新、恢复训练或完整作者配方。\n- CFG 训练丢条件概率与论文不同，REPA/MERT 辅助损失未实现；用户已接受按本轮有限范围验收，不为消除这些差异自动追加研究。\n- 声码器听验覆盖三段代表样本，不能写成全部 13 段神经解码或新生成伴奏均已验收。\n- 来源与权利状态仍为待核实；当前按内部技术试验记录，不将文件标为已授权发表或共享。\n\n以上限制随数据交付保留。新来源出现具体质量或接口问题时，先说明实际缺口和有限检查方案；新增或修改实验代码仍先展示核心 diff、解释输入输出及逻辑，再等待确认。\n\n## 7. 数据交付与结束条件\n\n929 的最终交付包括：\n\n| 交付项 | 完成要求 | 当前状态 |\n| --- | --- | --- |\n| 固定数据规模 | 达到用户确定的录音数量或合格配对总时长，避免重复计时 | 目标待确定 |\n| 合格配对音频 | 原音与分离轨保留，结构片段成对、边界一致，异常数据不混入合格集 | 小规模 13 对已保存；规模化部分待执行 |\n| 来源与审核清单 | 每对可回溯来源、原录音、分离版本、边界、哈希和审核结果 | 小规模记录已有；规模化部分待执行 |\n| 输入规格与核验证据 | 明确已采用的特征、尺度、时间网格、提示及有效长度规则，附验证范围与限制 | 小规模有限验收通过 |\n| 训练/验证/测试划分 | 按原始录音或演出分组，避免同源片段跨集合泄漏 | 尚未执行 |\n| 统计、文档与最终验收 | 交付数量/时长、通过/剔除统计、处理记录及结论，由用户验收 | 未完成 |\n\n以上固定交付项完成并验收后结束 929。当前唯一正在推进的下一阶段是**明确规模化来源、首批处理范围和最终数量/时长**，不是正式微调或生成效果研究。\n\n## 8. 文档、证据与同步状态\n\n| 记录 | 用途 |\n| --- | --- |\n| [项目模型与技术说明]($CLOUD_FINETUNE_ROOT/docs/929项目模型与技术说明.md) | 回看各模型和技术负责什么、输入输出及验证范围 |\n| [recordings.csv]($CLOUD_FINETUNE_ROOT/data/manifests/recordings.csv) / [separations.csv]($CLOUD_FINETUNE_ROOT/data/manifests/separations.csv) | 原录音来源、哈希和分离版本 |\n| [segments.csv]($CLOUD_FINETUNE_ROOT/data/manifests/segments.csv) / [pairs.csv]($CLOUD_FINETUNE_ROOT/data/manifests/pairs.csv) | 结构边界、配对文件及最新输入接口状态 |\n| [分段覆盖报告]($CLOUD_FINETUNE_ROOT/runs/segmentation_finalize_20261001/report.json) | 13 对片段完整覆盖与逐样本重拼证据 |\n| [FM 提示/补齐后核验]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json) | 前向、反向、有效学习位置及补齐扰动证据 |\n| [声码器听验记录]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/acceptance.json) | 三段时间/长度修正版的用户验收 |\n| [小规模有限验收记录]($CLOUD_FINETUNE_ROOT/runs/small_scale_acceptance_20261001T085524Z/acceptance.json) | 用户确认范围、清单状态与明确限制 |\n| [首批来源清单]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/source_candidates.csv) / [元数据记录]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/source_inventory.json) | 六个新增候选的页面及文件头核查 |\n| [完整历史归档]($CLOUD_FINETUNE_ROOT/docs/archive/929训练数据采集_历史记录_20261001T093748Z.md) | 重整前的原文完整副本，保存每轮提案、执行、旧状态与详细证据 |\n\n主工作区在云端 `$CLOUD_FINETUNE_ROOT`；Windows 本地目录为 `$PROJECT_ROOT\\anyaccomp_gezi_finetune`。两端不自动同步，传输需备份旧版并核对 SHA-256。\n\n已为本次重整后的主文档准备新版同步包，包含主文档、模型说明、完整历史归档、项目维护约定、四份清单及关键验收/来源报告。旧包保持不变，新版用于后续本地同步。同步包已在云端准备，不等于本地同步完成；尚未收到本地成功回执，网页也未由本轮自动更新。\n\n后续每完成一个阶段，更新对应的状态、数量、结论与下一步，保持本文为当前摘要。完整运行日志和连续对话记录保存在历史归档或 `runs/`，不再逐轮追加到主文档末尾；不把旧报告中的待办状态当作最新结论。\n"}</script><script src="../src/data-reader.js"></script></body></html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>歌仔戏伴奏生成历史实现_backstage_v1.1.1_legato.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#history">← 返回历史实现</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>歌仔戏伴奏生成历史实现_backstage_v1.1.1_legato.md</h1><p>Markdown 文档 · 6,495 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#_1">歌仔戏伴奏生成历史实现：七字调授权替代音色与程式化规则</a><ul>
+<li><a href="#1">1. 记录对象与版本</a></li>
+<li><a href="#2">2. 要解决的问题</a></li>
+<li><a href="#3">3. 输入、处理与输出</a><ul>
+<li><a href="#_2">输入</a></li>
+<li><a href="#_3">处理流程</a></li>
+<li><a href="#_4">输出</a></li>
+</ul>
+</li>
+<li><a href="#4">4. 改进后方案的组成</a><ul>
+<li><a href="#41">4.1 主弦：句级锚点与连奏</a></li>
+<li><a href="#42">4.2 弹拨、前奏、过门与尾奏</a></li>
+<li><a href="#43">4.3 样本渲染与曲牌限制</a></li>
+</ul>
+</li>
+<li><a href="#5">5. 最后一次改进对应的问题</a></li>
+<li><a href="#6">6. 已有验收证据与边界</a></li>
+<li><a href="#7">7. 代码与材料索引</a></li>
+<li><a href="#8">8. 与当前项目的关系</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$USER_ARCHIVE_ROOT\歌仔戏伴奏生成历史实现_backstage_v1.1.1_legato.md</p><p>SHA-256：1aa2aeed22866b96e35706cc6a667581c2888b68f84dc63f2ad54990d533cd85</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="_1">歌仔戏伴奏生成历史实现：七字调授权替代音色与程式化规则</h1>
+<blockquote>
+<p><strong>归档属性：历史实现，不属于当前项目。</strong> 本文记录仓库中此前实现并改进过的规则式伴奏方案，供技术追溯；不将其作为当前项目的研究目标、阶段成果或待办事项。</p>
+</blockquote>
+<h2 id="1">1. 记录对象与版本</h2>
+<ul>
+<li>方案名称：七字调真实替代音色与程式化伴奏。</li>
+<li>当前保留版本：<code>backstage_v1.1.1_legato</code>；模板版本：<code>backstage_v1.1.1-legato-qizi</code>。</li>
+<li>主要实现：<code>web_flask/accompaniment/backstage_v1.py</code>、<code>web_flask/accompaniment/templates/backstage_v1/qizi.json</code>。</li>
+<li>这是一套由唱腔条件驱动的规则与模板系统，不是训练得到的神经网络伴奏模型。</li>
+<li>本文聚焦最后改进后的版本。初版及中间版本只作为代码演进背景，不分别整理成独立方案。</li>
+</ul>
+<h2 id="2">2. 要解决的问题</h2>
+<p>早期原型可以按唱腔音符和时值生成 MIDI、渲染伴奏并混音，但通用 GM 占位音色和较简单的伴奏规则难以形成清楚的后场声部关系。后续路线将音色样本、七字调程式和随腔规则结合，优先解决主弦在唱段中断续、句间过门不足、尾奏落在时间轴外等实现问题。</p>
+<p>方案目标是生成结构上可控、能跟随七字调唱腔的伴奏原型。它不以专业复原或专家评审通过为目标，也没有证据证明适用于其他曲牌。</p>
+<h2 id="3">3. 输入、处理与输出</h2>
+<h3 id="_2">输入</h3>
+<ul>
+<li>按时间排序的唱腔事件：音高、起止时间、歌词、乐句编号、句尾标记和休止/过门窗口。</li>
+<li>曲牌固定为七字调（<code>qizi</code>）；编配风格支持 <code>gentle</code>、<code>cheerful</code>、<code>intense</code>。</li>
+<li>唱声文件用于最终混音；机器人示例可复用已有唱声音频，只重新生成伴奏及混音。</li>
+</ul>
+<h3 id="_3">处理流程</h3>
+<pre><code class="language-text">唱腔音符、歌词与时值
+        ↓
+建立带乐句和休止窗口的时间轴
+        ↓
+按句级锚点生成连贯主弦，并稀疏安排弹拨
+        ↓
+在开头、句间休止和唱段末尾选择七字调模板
+        ↓
+导出多轨 MIDI ──→ 按授权清单核验并渲染样本音色
+        ↓                                  ↓
+                伴奏 WAV + 原唱声 → 混音 WAV
+</code></pre>
+<h3 id="_4">输出</h3>
+<ul>
+<li>伴奏 MIDI、伴奏 WAV 和人声/伴奏混音 WAV。</li>
+<li>编配版本、实际使用的模板 ID、主弦覆盖率、尾奏窗口、样本库版本和来源等追踪元数据。</li>
+<li>生成失败时保留纯人声结果；<code>backstage_v1</code> 的样本门禁失败不会静默退回 GM 占位渲染。</li>
+</ul>
+<h2 id="4">4. 改进后方案的组成</h2>
+<h3 id="41">4.1 主弦：句级锚点与连奏</h3>
+<p><code>_lead()</code> 先按乐句分组，再从每句选取锚点：保留句首和句末；与上个锚点间隔较长、当前音较长、处于句尾，或旋律方向发生变化时，也可增加锚点。每个锚点的持续事件连接到下一锚点，减少主弦只在少量唱词上点状出现的断裂感；音高限制在目标音域和五声音阶内，并携带轻微音高曲线。</p>
+<p>最近版本还针对跨音连接作了连奏处理。固定机器人示例的验收记录标明连接尾音为 65 ms；主弦覆盖率在两套示例中为 1.0。覆盖率是技术性结构指标，不代表主观听感或传统真实性。</p>
+<h3 id="42">4.2 弹拨、前奏、过门与尾奏</h3>
+<ul>
+<li>弹拨保持稀疏，主要出现在新乐句开头和较长音符下方。</li>
+<li>前奏仅在首个发声音符前有足够休止时插入。</li>
+<li>过门模板只能进入时间轴提供的句间窗口，并根据窗口长度选择可用模板。</li>
+<li>尾奏放在最后唱句之后的 <code>outro_window</code> 内。这样即使时间轴末尾包含休止，结束式也仍在预期的收束区间出现。</li>
+<li>伴奏风格主要调整力度比例，不改变核心事件结构。</li>
+</ul>
+<h3 id="43">4.3 样本渲染与曲牌限制</h3>
+<p>编配事件经 MIDI 导出后由样本渲染器按声部、音高和技法取样。样本来源及授权由 manifest 记录；不满足样本或许可门禁时，当前 <code>backstage_v1</code> 不以 GM 音色冒充成功结果。代码将音色状态标为“有许可的免费替代音色”，乐师审核状态为“未请求”。因此，“真实音色”在此处指可追溯的真实录音样本，不代表样本就是歌仔戏专用乐器或已由后场乐师认可。</p>
+<h2 id="5">5. 最后一次改进对应的问题</h2>
+<p>固定唱腔中，最后一个时间轴事件可能是较长的句尾休止。如果直接把尾奏接在整个时间轴之后，会使声音结束过晚或留下不必要的空白。改进后的 <code>_ending()</code> 根据末尾休止确定可用尾奏区间，将主弦、弹拨和结束式安排在唱段结束前的窗口内；同时主弦改用句级锚点与跨音连接，保持长句连续性。</p>
+<p>代码和验收记录能够确认这些工程实现。自动检查与样例试听并不能证明它适用于所有唱腔，也不能代替歌仔戏专业听评。</p>
+<h2 id="6">6. 已有验收证据与边界</h2>
+<p>2026-09-20 的机器人表演最终验收记录包含两套输入，均使用 <code>backstage_v1.1.1_legato + qizi + intense</code>：</p>
+<ul>
+<li>两套输出均为 24 kHz、26.367 秒；伴奏文件非空、无削波。</li>
+<li>尾奏覆盖 23.608–26.367 秒；记录中的最后有效声音约在 26.30–26.32 秒。</li>
+<li>42 项相关回归检查通过；检查覆盖结构、输出和尾奏等工程条件。</li>
+<li>用户曾确认一个 v1.1 legato 对照样例方向合适；这不是专业戏曲评审结论。</li>
+</ul>
+<p>这些证据说明指定样例的生成与尾奏修复通过了工程核验。尚不能据此推出：其他唱腔或曲牌同样有效、整体优于所有旧方案、具有专业传统性，或获得后场乐师认可。</p>
+<h2 id="7">7. 代码与材料索引</h2>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>七字调编配与改进版本标识</td>
+<td><code>web_flask/accompaniment/backstage_v1.py</code></td>
+</tr>
+<tr>
+<td>前奏、过门和尾奏模板</td>
+<td><code>web_flask/accompaniment/templates/backstage_v1/qizi.json</code></td>
+</tr>
+<tr>
+<td>MIDI、样本渲染和混音管线</td>
+<td><code>web_flask/accompaniment/pipeline.py</code>、<code>sampler.py</code>、<code>traditional.py</code></td>
+</tr>
+<tr>
+<td>原路线逐阶段实施记录</td>
+<td><code>docs/accompaniment/A_REAL_BACKSTAGE_PLAN.md</code></td>
+</tr>
+<tr>
+<td>最近固定样例与自动验收记录</td>
+<td><code>artifacts/robot_performance_audio/2026-09-20/最终验收.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 与当前项目的关系</h2>
+<p>本方案及其历史实现不计入当前项目的目标、里程碑、数据、实验或验收结论。相关代码和产物按仓库原样保留；需要追溯时，以本文、源代码和验收记录为准。当前项目的阶段状态仍以看板所链接的当前进度文档为准。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：external-source/歌仔戏伴奏生成历史实现_backstage_v1.1.1_legato.md（路径已脱敏）","sha256":"1aa2aeed22866b96e35706cc6a667581c2888b68f84dc63f2ad54990d533cd85","text":"# 歌仔戏伴奏生成历史实现：七字调授权替代音色与程式化规则\n\n\u003e **归档属性：历史实现，不属于当前项目。** 本文记录仓库中此前实现并改进过的规则式伴奏方案，供技术追溯；不将其作为当前项目的研究目标、阶段成果或待办事项。\n\n## 1. 记录对象与版本\n\n- 方案名称：七字调真实替代音色与程式化伴奏。\n- 当前保留版本：`backstage_v1.1.1_legato`；模板版本：`backstage_v1.1.1-legato-qizi`。\n- 主要实现：`web_flask/accompaniment/backstage_v1.py`、`web_flask/accompaniment/templates/backstage_v1/qizi.json`。\n- 这是一套由唱腔条件驱动的规则与模板系统，不是训练得到的神经网络伴奏模型。\n- 本文聚焦最后改进后的版本。初版及中间版本只作为代码演进背景，不分别整理成独立方案。\n\n## 2. 要解决的问题\n\n早期原型可以按唱腔音符和时值生成 MIDI、渲染伴奏并混音，但通用 GM 占位音色和较简单的伴奏规则难以形成清楚的后场声部关系。后续路线将音色样本、七字调程式和随腔规则结合，优先解决主弦在唱段中断续、句间过门不足、尾奏落在时间轴外等实现问题。\n\n方案目标是生成结构上可控、能跟随七字调唱腔的伴奏原型。它不以专业复原或专家评审通过为目标，也没有证据证明适用于其他曲牌。\n\n## 3. 输入、处理与输出\n\n### 输入\n\n- 按时间排序的唱腔事件：音高、起止时间、歌词、乐句编号、句尾标记和休止/过门窗口。\n- 曲牌固定为七字调（`qizi`）；编配风格支持 `gentle`、`cheerful`、`intense`。\n- 唱声文件用于最终混音；机器人示例可复用已有唱声音频，只重新生成伴奏及混音。\n\n### 处理流程\n\n```text\n唱腔音符、歌词与时值\n        ↓\n建立带乐句和休止窗口的时间轴\n        ↓\n按句级锚点生成连贯主弦，并稀疏安排弹拨\n        ↓\n在开头、句间休止和唱段末尾选择七字调模板\n        ↓\n导出多轨 MIDI ──→ 按授权清单核验并渲染样本音色\n        ↓                                  ↓\n                伴奏 WAV + 原唱声 → 混音 WAV\n```\n\n### 输出\n\n- 伴奏 MIDI、伴奏 WAV 和人声/伴奏混音 WAV。\n- 编配版本、实际使用的模板 ID、主弦覆盖率、尾奏窗口、样本库版本和来源等追踪元数据。\n- 生成失败时保留纯人声结果；`backstage_v1` 的样本门禁失败不会静默退回 GM 占位渲染。\n\n## 4. 改进后方案的组成\n\n### 4.1 主弦：句级锚点与连奏\n\n`_lead()` 先按乐句分组，再从每句选取锚点：保留句首和句末；与上个锚点间隔较长、当前音较长、处于句尾，或旋律方向发生变化时，也可增加锚点。每个锚点的持续事件连接到下一锚点，减少主弦只在少量唱词上点状出现的断裂感；音高限制在目标音域和五声音阶内，并携带轻微音高曲线。\n\n最近版本还针对跨音连接作了连奏处理。固定机器人示例的验收记录标明连接尾音为 65 ms；主弦覆盖率在两套示例中为 1.0。覆盖率是技术性结构指标，不代表主观听感或传统真实性。\n\n### 4.2 弹拨、前奏、过门与尾奏\n\n- 弹拨保持稀疏，主要出现在新乐句开头和较长音符下方。\n- 前奏仅在首个发声音符前有足够休止时插入。\n- 过门模板只能进入时间轴提供的句间窗口，并根据窗口长度选择可用模板。\n- 尾奏放在最后唱句之后的 `outro_window` 内。这样即使时间轴末尾包含休止，结束式也仍在预期的收束区间出现。\n- 伴奏风格主要调整力度比例，不改变核心事件结构。\n\n### 4.3 样本渲染与曲牌限制\n\n编配事件经 MIDI 导出后由样本渲染器按声部、音高和技法取样。样本来源及授权由 manifest 记录；不满足样本或许可门禁时，当前 `backstage_v1` 不以 GM 音色冒充成功结果。代码将音色状态标为“有许可的免费替代音色”，乐师审核状态为“未请求”。因此，“真实音色”在此处指可追溯的真实录音样本，不代表样本就是歌仔戏专用乐器或已由后场乐师认可。\n\n## 5. 最后一次改进对应的问题\n\n固定唱腔中，最后一个时间轴事件可能是较长的句尾休止。如果直接把尾奏接在整个时间轴之后，会使声音结束过晚或留下不必要的空白。改进后的 `_ending()` 根据末尾休止确定可用尾奏区间，将主弦、弹拨和结束式安排在唱段结束前的窗口内；同时主弦改用句级锚点与跨音连接，保持长句连续性。\n\n代码和验收记录能够确认这些工程实现。自动检查与样例试听并不能证明它适用于所有唱腔，也不能代替歌仔戏专业听评。\n\n## 6. 已有验收证据与边界\n\n2026-09-20 的机器人表演最终验收记录包含两套输入，均使用 `backstage_v1.1.1_legato + qizi + intense`：\n\n- 两套输出均为 24 kHz、26.367 秒；伴奏文件非空、无削波。\n- 尾奏覆盖 23.608–26.367 秒；记录中的最后有效声音约在 26.30–26.32 秒。\n- 42 项相关回归检查通过；检查覆盖结构、输出和尾奏等工程条件。\n- 用户曾确认一个 v1.1 legato 对照样例方向合适；这不是专业戏曲评审结论。\n\n这些证据说明指定样例的生成与尾奏修复通过了工程核验。尚不能据此推出：其他唱腔或曲牌同样有效、整体优于所有旧方案、具有专业传统性，或获得后场乐师认可。\n\n## 7. 代码与材料索引\n\n| 用途 | 文件 |\n|---|---|\n| 七字调编配与改进版本标识 | `web_flask/accompaniment/backstage_v1.py` |\n| 前奏、过门和尾奏模板 | `web_flask/accompaniment/templates/backstage_v1/qizi.json` |\n| MIDI、样本渲染和混音管线 | `web_flask/accompaniment/pipeline.py`、`sampler.py`、`traditional.py` |\n| 原路线逐阶段实施记录 | `docs/accompaniment/A_REAL_BACKSTAGE_PLAN.md` |\n| 最近固定样例与自动验收记录 | `artifacts/robot_performance_audio/2026-09-20/最终验收.md` |\n\n## 8. 与当前项目的关系\n\n本方案及其历史实现不计入当前项目的目标、里程碑、数据、实验或验收结论。相关代码和产物按仓库原样保留；需要追溯时，以本文、源代码和验收记录为准。当前项目的阶段状态仍以看板所链接的当前进度文档为准。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

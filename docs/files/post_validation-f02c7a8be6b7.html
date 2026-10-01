@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>post_validation.json · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#file-content">文件内容</a><span>JSON 配置 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>post_validation.json</h1><p>JSON 配置 · 7,129 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\anyaccomp_fm_prompt_smoke_20261001\post_validation.json</p><p>SHA-256：3caf137ddb2b2f49a5ea3465cefe62bcaaf667c38fae5984087f2e0b5de28e02</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="json"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">{
+</span><span class="file-line" id="L2">  &quot;verified_at_utc&quot;: &quot;2026-10-01T07:51:54.155453+00:00&quot;,
+</span><span class="file-line" id="L3">  &quot;status&quot;: &quot;passed&quot;,
+</span><span class="file-line" id="L4">  &quot;single_sample_forward_backward_batches&quot;: 13,
+</span><span class="file-line" id="L5">  &quot;mixed_length_forward_backward_batches&quot;: 7,
+</span><span class="file-line" id="L6">  &quot;padding_perturbation_checks_passed&quot;: 7,
+</span><span class="file-line" id="L7">  &quot;prompt_loss_partition_counts_verified&quot;: true,
+</span><span class="file-line" id="L8">  &quot;positive_loss_frames_in_every_sample&quot;: true,
+</span><span class="file-line" id="L9">  &quot;minimum_observed_loss_frames&quot;: 415.0,
+</span><span class="file-line" id="L10">  &quot;loss_range_all_batches&quot;: [
+</span><span class="file-line" id="L11">    0.1493411511182785,
+</span><span class="file-line" id="L12">    0.3083399534225464
+</span><span class="file-line" id="L13">  ],
+</span><span class="file-line" id="L14">  &quot;gradient_l2_range_all_batches&quot;: [
+</span><span class="file-line" id="L15">    0.16950056968572302,
+</span><span class="file-line" id="L16">    2.2561232748233744
+</span><span class="file-line" id="L17">  ],
+</span><span class="file-line" id="L18">  &quot;sources_weights_manifests_raw_and_clips_preserved&quot;: true,
+</span><span class="file-line" id="L19">  &quot;input_features_reports_and_previous_fm_script_preserved&quot;: true,
+</span><span class="file-line" id="L20">  &quot;parameters_updated&quot;: false,
+</span><span class="file-line" id="L21">  &quot;optimizer_steps&quot;: 0,
+</span><span class="file-line" id="L22">  &quot;scope&quot;: &quot;length-aware prompts and padding contract on 13 full samples; no optimizer or inference generation&quot;,
+</span><span class="file-line" id="L23">  &quot;training_input_status&quot;: &quot;pending_recipe_validation&quot;,
+</span><span class="file-line" id="L24">  &quot;remaining_recipe_issues&quot;: [
+</span><span class="file-line" id="L25">    &quot;original full training loader unavailable&quot;,
+</span><span class="file-line" id="L26">    &quot;CFG dropout kept at local 0.2, paper differs&quot;,
+</span><span class="file-line" id="L27">    &quot;MERT/REPA auxiliary loss not implemented&quot;,
+</span><span class="file-line" id="L28">    &quot;3 checkpoint tag tensors not represented in released model&quot;,
+</span><span class="file-line" id="L29">    &quot;experimental target grid, normalization and decoder policy&quot;
+</span><span class="file-line" id="L30">  ],
+</span><span class="file-line" id="L31">  &quot;mixed_batches&quot;: [
+</span><span class="file-line" id="L32">    {
+</span><span class="file-line" id="L33">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L34">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L35">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L36">      ],
+</span><span class="file-line" id="L37">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L38">        554,
+</span><span class="file-line" id="L39">        1506
+</span><span class="file-line" id="L40">      ],
+</span><span class="file-line" id="L41">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L42">        952,
+</span><span class="file-line" id="L43">        0
+</span><span class="file-line" id="L44">      ],
+</span><span class="file-line" id="L45">      &quot;loss&quot;: 0.1828830987215042,
+</span><span class="file-line" id="L46">      &quot;seed&quot;: 929,
+</span><span class="file-line" id="L47">      &quot;prompt_probability&quot;: 0,
+</span><span class="file-line" id="L48">      &quot;prompt_placement&quot;: &quot;random&quot;,
+</span><span class="file-line" id="L49">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L50">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L51">          554,
+</span><span class="file-line" id="L52">          1506
+</span><span class="file-line" id="L53">        ],
+</span><span class="file-line" id="L54">        &quot;left&quot;: [
+</span><span class="file-line" id="L55">          0,
+</span><span class="file-line" id="L56">          0
+</span><span class="file-line" id="L57">        ],
+</span><span class="file-line" id="L58">        &quot;right&quot;: [
+</span><span class="file-line" id="L59">          0,
+</span><span class="file-line" id="L60">          0
+</span><span class="file-line" id="L61">        ],
+</span><span class="file-line" id="L62">        &quot;total&quot;: [
+</span><span class="file-line" id="L63">          0,
+</span><span class="file-line" id="L64">          0
+</span><span class="file-line" id="L65">        ],
+</span><span class="file-line" id="L66">        &quot;batch_enabled&quot;: false
+</span><span class="file-line" id="L67">      },
+</span><span class="file-line" id="L68">      &quot;gradient_l2_norm&quot;: 0.5110853267708955,
+</span><span class="file-line" id="L69">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L70">        0.0,
+</span><span class="file-line" id="L71">        0.0
+</span><span class="file-line" id="L72">      ],
+</span><span class="file-line" id="L73">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L74">        554.0,
+</span><span class="file-line" id="L75">        1506.0
+</span><span class="file-line" id="L76">      ],
+</span><span class="file-line" id="L77">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L78">    },
+</span><span class="file-line" id="L79">    {
+</span><span class="file-line" id="L80">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L81">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L82">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L83">      ],
+</span><span class="file-line" id="L84">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L85">        554,
+</span><span class="file-line" id="L86">        1506
+</span><span class="file-line" id="L87">      ],
+</span><span class="file-line" id="L88">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L89">        952,
+</span><span class="file-line" id="L90">        0
+</span><span class="file-line" id="L91">      ],
+</span><span class="file-line" id="L92">      &quot;loss&quot;: 0.16810277104377747,
+</span><span class="file-line" id="L93">      &quot;seed&quot;: 929,
+</span><span class="file-line" id="L94">      &quot;prompt_probability&quot;: 1,
+</span><span class="file-line" id="L95">      &quot;prompt_placement&quot;: &quot;left&quot;,
+</span><span class="file-line" id="L96">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L97">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L98">          554,
+</span><span class="file-line" id="L99">          1506
+</span><span class="file-line" id="L100">        ],
+</span><span class="file-line" id="L101">        &quot;left&quot;: [
+</span><span class="file-line" id="L102">          138,
+</span><span class="file-line" id="L103">          352
+</span><span class="file-line" id="L104">        ],
+</span><span class="file-line" id="L105">        &quot;right&quot;: [
+</span><span class="file-line" id="L106">          0,
+</span><span class="file-line" id="L107">          0
+</span><span class="file-line" id="L108">        ],
+</span><span class="file-line" id="L109">        &quot;total&quot;: [
+</span><span class="file-line" id="L110">          138,
+</span><span class="file-line" id="L111">          352
+</span><span class="file-line" id="L112">        ],
+</span><span class="file-line" id="L113">        &quot;batch_enabled&quot;: true
+</span><span class="file-line" id="L114">      },
+</span><span class="file-line" id="L115">      &quot;gradient_l2_norm&quot;: 0.5572248837113328,
+</span><span class="file-line" id="L116">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L117">        138.0,
+</span><span class="file-line" id="L118">        352.0
+</span><span class="file-line" id="L119">      ],
+</span><span class="file-line" id="L120">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L121">        416.0,
+</span><span class="file-line" id="L122">        1154.0
+</span><span class="file-line" id="L123">      ],
+</span><span class="file-line" id="L124">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L125">    },
+</span><span class="file-line" id="L126">    {
+</span><span class="file-line" id="L127">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L128">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L129">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L130">      ],
+</span><span class="file-line" id="L131">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L132">        554,
+</span><span class="file-line" id="L133">        1506
+</span><span class="file-line" id="L134">      ],
+</span><span class="file-line" id="L135">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L136">        952,
+</span><span class="file-line" id="L137">        0
+</span><span class="file-line" id="L138">      ],
+</span><span class="file-line" id="L139">      &quot;loss&quot;: 0.1806752234697342,
+</span><span class="file-line" id="L140">      &quot;seed&quot;: 929,
+</span><span class="file-line" id="L141">      &quot;prompt_probability&quot;: 1,
+</span><span class="file-line" id="L142">      &quot;prompt_placement&quot;: &quot;right&quot;,
+</span><span class="file-line" id="L143">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L144">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L145">          554,
+</span><span class="file-line" id="L146">          1506
+</span><span class="file-line" id="L147">        ],
+</span><span class="file-line" id="L148">        &quot;left&quot;: [
+</span><span class="file-line" id="L149">          0,
+</span><span class="file-line" id="L150">          0
+</span><span class="file-line" id="L151">        ],
+</span><span class="file-line" id="L152">        &quot;right&quot;: [
+</span><span class="file-line" id="L153">          138,
+</span><span class="file-line" id="L154">          352
+</span><span class="file-line" id="L155">        ],
+</span><span class="file-line" id="L156">        &quot;total&quot;: [
+</span><span class="file-line" id="L157">          138,
+</span><span class="file-line" id="L158">          352
+</span><span class="file-line" id="L159">        ],
+</span><span class="file-line" id="L160">        &quot;batch_enabled&quot;: true
+</span><span class="file-line" id="L161">      },
+</span><span class="file-line" id="L162">      &quot;gradient_l2_norm&quot;: 0.5773826578269458,
+</span><span class="file-line" id="L163">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L164">        138.0,
+</span><span class="file-line" id="L165">        352.0
+</span><span class="file-line" id="L166">      ],
+</span><span class="file-line" id="L167">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L168">        416.0,
+</span><span class="file-line" id="L169">        1154.0
+</span><span class="file-line" id="L170">      ],
+</span><span class="file-line" id="L171">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L172">    },
+</span><span class="file-line" id="L173">    {
+</span><span class="file-line" id="L174">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L175">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L176">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L177">      ],
+</span><span class="file-line" id="L178">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L179">        554,
+</span><span class="file-line" id="L180">        1506
+</span><span class="file-line" id="L181">      ],
+</span><span class="file-line" id="L182">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L183">        952,
+</span><span class="file-line" id="L184">        0
+</span><span class="file-line" id="L185">      ],
+</span><span class="file-line" id="L186">      &quot;loss&quot;: 0.15172713994979858,
+</span><span class="file-line" id="L187">      &quot;seed&quot;: 929,
+</span><span class="file-line" id="L188">      &quot;prompt_probability&quot;: 1,
+</span><span class="file-line" id="L189">      &quot;prompt_placement&quot;: &quot;both&quot;,
+</span><span class="file-line" id="L190">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L191">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L192">          554,
+</span><span class="file-line" id="L193">          1506
+</span><span class="file-line" id="L194">        ],
+</span><span class="file-line" id="L195">        &quot;left&quot;: [
+</span><span class="file-line" id="L196">          109,
+</span><span class="file-line" id="L197">          156
+</span><span class="file-line" id="L198">        ],
+</span><span class="file-line" id="L199">        &quot;right&quot;: [
+</span><span class="file-line" id="L200">          29,
+</span><span class="file-line" id="L201">          196
+</span><span class="file-line" id="L202">        ],
+</span><span class="file-line" id="L203">        &quot;total&quot;: [
+</span><span class="file-line" id="L204">          138,
+</span><span class="file-line" id="L205">          352
+</span><span class="file-line" id="L206">        ],
+</span><span class="file-line" id="L207">        &quot;batch_enabled&quot;: true
+</span><span class="file-line" id="L208">      },
+</span><span class="file-line" id="L209">      &quot;gradient_l2_norm&quot;: 0.2838060368021524,
+</span><span class="file-line" id="L210">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L211">        138.0,
+</span><span class="file-line" id="L212">        352.0
+</span><span class="file-line" id="L213">      ],
+</span><span class="file-line" id="L214">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L215">        416.0,
+</span><span class="file-line" id="L216">        1154.0
+</span><span class="file-line" id="L217">      ],
+</span><span class="file-line" id="L218">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L219">    },
+</span><span class="file-line" id="L220">    {
+</span><span class="file-line" id="L221">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L222">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L223">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L224">      ],
+</span><span class="file-line" id="L225">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L226">        554,
+</span><span class="file-line" id="L227">        1506
+</span><span class="file-line" id="L228">      ],
+</span><span class="file-line" id="L229">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L230">        952,
+</span><span class="file-line" id="L231">        0
+</span><span class="file-line" id="L232">      ],
+</span><span class="file-line" id="L233">      &quot;loss&quot;: 0.1828830987215042,
+</span><span class="file-line" id="L234">      &quot;seed&quot;: 929,
+</span><span class="file-line" id="L235">      &quot;prompt_probability&quot;: 0.3,
+</span><span class="file-line" id="L236">      &quot;prompt_placement&quot;: &quot;random&quot;,
+</span><span class="file-line" id="L237">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L238">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L239">          554,
+</span><span class="file-line" id="L240">          1506
+</span><span class="file-line" id="L241">        ],
+</span><span class="file-line" id="L242">        &quot;left&quot;: [
+</span><span class="file-line" id="L243">          0,
+</span><span class="file-line" id="L244">          0
+</span><span class="file-line" id="L245">        ],
+</span><span class="file-line" id="L246">        &quot;right&quot;: [
+</span><span class="file-line" id="L247">          0,
+</span><span class="file-line" id="L248">          0
+</span><span class="file-line" id="L249">        ],
+</span><span class="file-line" id="L250">        &quot;total&quot;: [
+</span><span class="file-line" id="L251">          0,
+</span><span class="file-line" id="L252">          0
+</span><span class="file-line" id="L253">        ],
+</span><span class="file-line" id="L254">        &quot;batch_enabled&quot;: false
+</span><span class="file-line" id="L255">      },
+</span><span class="file-line" id="L256">      &quot;gradient_l2_norm&quot;: 0.5110853267708955,
+</span><span class="file-line" id="L257">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L258">        0.0,
+</span><span class="file-line" id="L259">        0.0
+</span><span class="file-line" id="L260">      ],
+</span><span class="file-line" id="L261">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L262">        554.0,
+</span><span class="file-line" id="L263">        1506.0
+</span><span class="file-line" id="L264">      ],
+</span><span class="file-line" id="L265">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L266">    },
+</span><span class="file-line" id="L267">    {
+</span><span class="file-line" id="L268">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L269">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L270">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L271">      ],
+</span><span class="file-line" id="L272">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L273">        554,
+</span><span class="file-line" id="L274">        1506
+</span><span class="file-line" id="L275">      ],
+</span><span class="file-line" id="L276">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L277">        952,
+</span><span class="file-line" id="L278">        0
+</span><span class="file-line" id="L279">      ],
+</span><span class="file-line" id="L280">      &quot;loss&quot;: 0.16084156930446625,
+</span><span class="file-line" id="L281">      &quot;seed&quot;: 930,
+</span><span class="file-line" id="L282">      &quot;prompt_probability&quot;: 0.3,
+</span><span class="file-line" id="L283">      &quot;prompt_placement&quot;: &quot;random&quot;,
+</span><span class="file-line" id="L284">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L285">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L286">          554,
+</span><span class="file-line" id="L287">          1506
+</span><span class="file-line" id="L288">        ],
+</span><span class="file-line" id="L289">        &quot;left&quot;: [
+</span><span class="file-line" id="L290">          127,
+</span><span class="file-line" id="L291">          161
+</span><span class="file-line" id="L292">        ],
+</span><span class="file-line" id="L293">        &quot;right&quot;: [
+</span><span class="file-line" id="L294">          12,
+</span><span class="file-line" id="L295">          12
+</span><span class="file-line" id="L296">        ],
+</span><span class="file-line" id="L297">        &quot;total&quot;: [
+</span><span class="file-line" id="L298">          139,
+</span><span class="file-line" id="L299">          173
+</span><span class="file-line" id="L300">        ],
+</span><span class="file-line" id="L301">        &quot;batch_enabled&quot;: true
+</span><span class="file-line" id="L302">      },
+</span><span class="file-line" id="L303">      &quot;gradient_l2_norm&quot;: 0.35815235555560154,
+</span><span class="file-line" id="L304">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L305">        139.0,
+</span><span class="file-line" id="L306">        173.0
+</span><span class="file-line" id="L307">      ],
+</span><span class="file-line" id="L308">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L309">        415.0,
+</span><span class="file-line" id="L310">        1333.0
+</span><span class="file-line" id="L311">      ],
+</span><span class="file-line" id="L312">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L313">    },
+</span><span class="file-line" id="L314">    {
+</span><span class="file-line" id="L315">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L316">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L317">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L318">      ],
+</span><span class="file-line" id="L319">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L320">        554,
+</span><span class="file-line" id="L321">        1506
+</span><span class="file-line" id="L322">      ],
+</span><span class="file-line" id="L323">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L324">        952,
+</span><span class="file-line" id="L325">        0
+</span><span class="file-line" id="L326">      ],
+</span><span class="file-line" id="L327">      &quot;loss&quot;: 0.1493411511182785,
+</span><span class="file-line" id="L328">      &quot;seed&quot;: 931,
+</span><span class="file-line" id="L329">      &quot;prompt_probability&quot;: 0.3,
+</span><span class="file-line" id="L330">      &quot;prompt_placement&quot;: &quot;random&quot;,
+</span><span class="file-line" id="L331">      &quot;prompt_plan&quot;: {
+</span><span class="file-line" id="L332">        &quot;lengths&quot;: [
+</span><span class="file-line" id="L333">          554,
+</span><span class="file-line" id="L334">          1506
+</span><span class="file-line" id="L335">        ],
+</span><span class="file-line" id="L336">        &quot;left&quot;: [
+</span><span class="file-line" id="L337">          0,
+</span><span class="file-line" id="L338">          0
+</span><span class="file-line" id="L339">        ],
+</span><span class="file-line" id="L340">        &quot;right&quot;: [
+</span><span class="file-line" id="L341">          0,
+</span><span class="file-line" id="L342">          0
+</span><span class="file-line" id="L343">        ],
+</span><span class="file-line" id="L344">        &quot;total&quot;: [
+</span><span class="file-line" id="L345">          0,
+</span><span class="file-line" id="L346">          0
+</span><span class="file-line" id="L347">        ],
+</span><span class="file-line" id="L348">        &quot;batch_enabled&quot;: false
+</span><span class="file-line" id="L349">      },
+</span><span class="file-line" id="L350">      &quot;gradient_l2_norm&quot;: 0.16950056968572302,
+</span><span class="file-line" id="L351">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L352">        0.0,
+</span><span class="file-line" id="L353">        0.0
+</span><span class="file-line" id="L354">      ],
+</span><span class="file-line" id="L355">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L356">        554.0,
+</span><span class="file-line" id="L357">        1506.0
+</span><span class="file-line" id="L358">      ],
+</span><span class="file-line" id="L359">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L360">    }
+</span><span class="file-line" id="L361">  ]
+</span><span class="file-line" id="L362">}
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json（路径已脱敏）","sha256":"3caf137ddb2b2f49a5ea3465cefe62bcaaf667c38fae5984087f2e0b5de28e02","text":"{\n  \"verified_at_utc\": \"2026-10-01T07:51:54.155453+00:00\",\n  \"status\": \"passed\",\n  \"single_sample_forward_backward_batches\": 13,\n  \"mixed_length_forward_backward_batches\": 7,\n  \"padding_perturbation_checks_passed\": 7,\n  \"prompt_loss_partition_counts_verified\": true,\n  \"positive_loss_frames_in_every_sample\": true,\n  \"minimum_observed_loss_frames\": 415.0,\n  \"loss_range_all_batches\": [\n    0.1493411511182785,\n    0.3083399534225464\n  ],\n  \"gradient_l2_range_all_batches\": [\n    0.16950056968572302,\n    2.2561232748233744\n  ],\n  \"sources_weights_manifests_raw_and_clips_preserved\": true,\n  \"input_features_reports_and_previous_fm_script_preserved\": true,\n  \"parameters_updated\": false,\n  \"optimizer_steps\": 0,\n  \"scope\": \"length-aware prompts and padding contract on 13 full samples; no optimizer or inference generation\",\n  \"training_input_status\": \"pending_recipe_validation\",\n  \"remaining_recipe_issues\": [\n    \"original full training loader unavailable\",\n    \"CFG dropout kept at local 0.2, paper differs\",\n    \"MERT/REPA auxiliary loss not implemented\",\n    \"3 checkpoint tag tensors not represented in released model\",\n    \"experimental target grid, normalization and decoder policy\"\n  ],\n  \"mixed_batches\": [\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.1828830987215042,\n      \"seed\": 929,\n      \"prompt_probability\": 0,\n      \"prompt_placement\": \"random\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          0,\n          0\n        ],\n        \"right\": [\n          0,\n          0\n        ],\n        \"total\": [\n          0,\n          0\n        ],\n        \"batch_enabled\": false\n      },\n      \"gradient_l2_norm\": 0.5110853267708955,\n      \"prompt_lengths\": [\n        0.0,\n        0.0\n      ],\n      \"loss_frames\": [\n        554.0,\n        1506.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.16810277104377747,\n      \"seed\": 929,\n      \"prompt_probability\": 1,\n      \"prompt_placement\": \"left\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          138,\n          352\n        ],\n        \"right\": [\n          0,\n          0\n        ],\n        \"total\": [\n          138,\n          352\n        ],\n        \"batch_enabled\": true\n      },\n      \"gradient_l2_norm\": 0.5572248837113328,\n      \"prompt_lengths\": [\n        138.0,\n        352.0\n      ],\n      \"loss_frames\": [\n        416.0,\n        1154.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.1806752234697342,\n      \"seed\": 929,\n      \"prompt_probability\": 1,\n      \"prompt_placement\": \"right\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          0,\n          0\n        ],\n        \"right\": [\n          138,\n          352\n        ],\n        \"total\": [\n          138,\n          352\n        ],\n        \"batch_enabled\": true\n      },\n      \"gradient_l2_norm\": 0.5773826578269458,\n      \"prompt_lengths\": [\n        138.0,\n        352.0\n      ],\n      \"loss_frames\": [\n        416.0,\n        1154.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.15172713994979858,\n      \"seed\": 929,\n      \"prompt_probability\": 1,\n      \"prompt_placement\": \"both\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          109,\n          156\n        ],\n        \"right\": [\n          29,\n          196\n        ],\n        \"total\": [\n          138,\n          352\n        ],\n        \"batch_enabled\": true\n      },\n      \"gradient_l2_norm\": 0.2838060368021524,\n      \"prompt_lengths\": [\n        138.0,\n        352.0\n      ],\n      \"loss_frames\": [\n        416.0,\n        1154.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.1828830987215042,\n      \"seed\": 929,\n      \"prompt_probability\": 0.3,\n      \"prompt_placement\": \"random\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          0,\n          0\n        ],\n        \"right\": [\n          0,\n          0\n        ],\n        \"total\": [\n          0,\n          0\n        ],\n        \"batch_enabled\": false\n      },\n      \"gradient_l2_norm\": 0.5110853267708955,\n      \"prompt_lengths\": [\n        0.0,\n        0.0\n      ],\n      \"loss_frames\": [\n        554.0,\n        1506.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.16084156930446625,\n      \"seed\": 930,\n      \"prompt_probability\": 0.3,\n      \"prompt_placement\": \"random\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          127,\n          161\n        ],\n        \"right\": [\n          12,\n          12\n        ],\n        \"total\": [\n          139,\n          173\n        ],\n        \"batch_enabled\": true\n      },\n      \"gradient_l2_norm\": 0.35815235555560154,\n      \"prompt_lengths\": [\n        139.0,\n        173.0\n      ],\n      \"loss_frames\": [\n        415.0,\n        1333.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.1493411511182785,\n      \"seed\": 931,\n      \"prompt_probability\": 0.3,\n      \"prompt_placement\": \"random\",\n      \"prompt_plan\": {\n        \"lengths\": [\n          554,\n          1506\n        ],\n        \"left\": [\n          0,\n          0\n        ],\n        \"right\": [\n          0,\n          0\n        ],\n        \"total\": [\n          0,\n          0\n        ],\n        \"batch_enabled\": false\n      },\n      \"gradient_l2_norm\": 0.16950056968572302,\n      \"prompt_lengths\": [\n        0.0,\n        0.0\n      ],\n      \"loss_frames\": [\n        554.0,\n        1506.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    }\n  ]\n}\n"}</script><script src="../../src/data-reader.js"></script></body></html>

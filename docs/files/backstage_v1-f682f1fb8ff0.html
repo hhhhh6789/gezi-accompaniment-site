@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>backstage_v1.py · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#history">← 返回历史实现</a><a href="#file-content">文件内容</a><span>Python 源代码 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>backstage_v1.py</h1><p>Python 源代码 · 12,066 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\web_flask\accompaniment\backstage_v1.py</p><p>SHA-256：7bc8b464088a687ef1f1ff5026d583a57720f328a132f76cd284987d7951531a</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="py"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">&quot;&quot;&quot;Minimal licensed-real-timbre qizi accompaniment for backstage_v1.&quot;&quot;&quot;
+</span><span class="file-line" id="L2">
+</span><span class="file-line" id="L3">from __future__ import annotations
+</span><span class="file-line" id="L4">
+</span><span class="file-line" id="L5">import json
+</span><span class="file-line" id="L6">from functools import lru_cache
+</span><span class="file-line" id="L7">from pathlib import Path
+</span><span class="file-line" id="L8">
+</span><span class="file-line" id="L9">from .pipeline import AccompanimentError, PENTATONIC, infer_tonic
+</span><span class="file-line" id="L10">from .traditional import PARTS, Arrangement, PerformanceEvent, export_traditional_midi
+</span><span class="file-line" id="L11">
+</span><span class="file-line" id="L12">
+</span><span class="file-line" id="L13">ARRANGEMENT_VERSION = &quot;backstage_v1.1.1_legato&quot;
+</span><span class="file-line" id="L14">TIMBRE_STATUS = &quot;licensed_free_substitute&quot;
+</span><span class="file-line" id="L15">EXPERT_REVIEW_STATUS = &quot;not_requested&quot;
+</span><span class="file-line" id="L16">
+</span><span class="file-line" id="L17">
+</span><span class="file-line" id="L18">@lru_cache(maxsize=1)
+</span><span class="file-line" id="L19">def load_qizi_template():
+</span><span class="file-line" id="L20">    path = Path(__file__).with_name(&quot;templates&quot;) / &quot;backstage_v1&quot; / &quot;qizi.json&quot;
+</span><span class="file-line" id="L21">    if not path.is_file():
+</span><span class="file-line" id="L22">        raise AccompanimentError(&quot;backstage_v1 qizi template is missing&quot;)
+</span><span class="file-line" id="L23">    return json.loads(path.read_text(encoding=&quot;utf-8&quot;))
+</span><span class="file-line" id="L24">
+</span><span class="file-line" id="L25">
+</span><span class="file-line" id="L26">def _nearest_scale(target, tonic, low, high):
+</span><span class="file-line" id="L27">    allowed = [pitch for pitch in range(low, high + 1) if (pitch - tonic) % 12 in PENTATONIC]
+</span><span class="file-line" id="L28">    return min(allowed, key=lambda pitch: (abs(pitch - target), pitch))
+</span><span class="file-line" id="L29">
+</span><span class="file-line" id="L30">
+</span><span class="file-line" id="L31">def _fit_range(pitch, low, high):
+</span><span class="file-line" id="L32">    while pitch &lt; low:
+</span><span class="file-line" id="L33">        pitch += 12
+</span><span class="file-line" id="L34">    while pitch &gt; high:
+</span><span class="file-line" id="L35">        pitch -= 12
+</span><span class="file-line" id="L36">    return max(low, min(high, pitch))
+</span><span class="file-line" id="L37">
+</span><span class="file-line" id="L38">
+</span><span class="file-line" id="L39">def _event(start, end, pitch, velocity, technique, pitch_curve=()):
+</span><span class="file-line" id="L40">    return PerformanceEvent(float(start), max(float(start) + 0.001, float(end)), int(pitch),
+</span><span class="file-line" id="L41">                            int(velocity), technique, tuple(pitch_curve))
+</span><span class="file-line" id="L42">
+</span><span class="file-line" id="L43">
+</span><span class="file-line" id="L44">def _lead(timeline, tonic, style):
+</span><span class="file-line" id="L45">    velocity = {&quot;gentle&quot;: 43, &quot;cheerful&quot;: 49, &quot;intense&quot;: 55}[style]
+</span><span class="file-line" id="L46">    result = []
+</span><span class="file-line" id="L47">    phrase_ids = []
+</span><span class="file-line" id="L48">    for source in timeline:
+</span><span class="file-line" id="L49">        if source.midi is not None and source.phrase_id not in phrase_ids:
+</span><span class="file-line" id="L50">            phrase_ids.append(source.phrase_id)
+</span><span class="file-line" id="L51">    for phrase_id in phrase_ids:
+</span><span class="file-line" id="L52">        phrase = [source for source in timeline
+</span><span class="file-line" id="L53">                  if source.midi is not None and source.phrase_id == phrase_id]
+</span><span class="file-line" id="L54">        if not phrase:
+</span><span class="file-line" id="L55">            continue
+</span><span class="file-line" id="L56">        anchors = [phrase[0]]
+</span><span class="file-line" id="L57">        for index, source in enumerate(phrase[1:-1], start=1):
+</span><span class="file-line" id="L58">            previous = phrase[index - 1]
+</span><span class="file-line" id="L59">            following = phrase[index + 1]
+</span><span class="file-line" id="L60">            direction_before = source.midi - previous.midi
+</span><span class="file-line" id="L61">            direction_after = following.midi - source.midi
+</span><span class="file-line" id="L62">            direction_change = direction_before * direction_after &lt; 0
+</span><span class="file-line" id="L63">            spaced = source.start - anchors[-1].start &gt;= 0.72
+</span><span class="file-line" id="L64">            expressive = source.duration &gt;= 0.68 or source.phrase_end
+</span><span class="file-line" id="L65">            if spaced or expressive or (direction_change and source.start - anchors[-1].start &gt;= 0.32):
+</span><span class="file-line" id="L66">                anchors.append(source)
+</span><span class="file-line" id="L67">        if phrase[-1] is not anchors[-1]:
+</span><span class="file-line" id="L68">            anchors.append(phrase[-1])
+</span><span class="file-line" id="L69">        for index, source in enumerate(anchors):
+</span><span class="file-line" id="L70">            end = anchors[index + 1].start if index + 1 &lt; len(anchors) else phrase[-1].end
+</span><span class="file-line" id="L71">            pitch = _nearest_scale(_fit_range(source.midi, 59, 81), tonic, 59, 81)
+</span><span class="file-line" id="L72">            curve = ((0.0, 0.0), (0.38, 0.10), (0.62, -0.10), (1.0, 0.0))
+</span><span class="file-line" id="L73">            if index == len(anchors) - 1:
+</span><span class="file-line" id="L74">                curve = ((0.0, 0.0), (0.78, -0.35), (1.0, 0.0))
+</span><span class="file-line" id="L75">            result.append(_event(source.start, end, pitch, velocity, &quot;sustain&quot;, curve))
+</span><span class="file-line" id="L76">    return result
+</span><span class="file-line" id="L77">
+</span><span class="file-line" id="L78">
+</span><span class="file-line" id="L79">def _lead_coverage_ratio(timeline, events):
+</span><span class="file-line" id="L80">    phrases = {}
+</span><span class="file-line" id="L81">    for source in timeline:
+</span><span class="file-line" id="L82">        if source.midi is not None:
+</span><span class="file-line" id="L83">            start, end = phrases.get(source.phrase_id, (source.start, source.end))
+</span><span class="file-line" id="L84">            phrases[source.phrase_id] = (min(start, source.start), max(end, source.end))
+</span><span class="file-line" id="L85">    singing = sum(end - start for start, end in phrases.values())
+</span><span class="file-line" id="L86">    covered = 0.0
+</span><span class="file-line" id="L87">    for start, end in phrases.values():
+</span><span class="file-line" id="L88">        intervals = sorted((max(start, event.start), min(end, event.end)) for event in events
+</span><span class="file-line" id="L89">                           if max(start, event.start) &lt; min(end, event.end))
+</span><span class="file-line" id="L90">        cursor = start
+</span><span class="file-line" id="L91">        for left, right in intervals:
+</span><span class="file-line" id="L92">            if right &lt;= cursor:
+</span><span class="file-line" id="L93">                continue
+</span><span class="file-line" id="L94">            covered += right - max(left, cursor)
+</span><span class="file-line" id="L95">            cursor = max(cursor, right)
+</span><span class="file-line" id="L96">    return covered / singing if singing else 0.0
+</span><span class="file-line" id="L97">
+</span><span class="file-line" id="L98">
+</span><span class="file-line" id="L99">def _sparse_plucks_under_voice(timeline, tonic, style):
+</span><span class="file-line" id="L100">    velocity = {&quot;gentle&quot;: 31, &quot;cheerful&quot;: 36, &quot;intense&quot;: 41}[style]
+</span><span class="file-line" id="L101">    result = []
+</span><span class="file-line" id="L102">    previous_phrase = None
+</span><span class="file-line" id="L103">    for source in timeline:
+</span><span class="file-line" id="L104">        if source.midi is None:
+</span><span class="file-line" id="L105">            continue
+</span><span class="file-line" id="L106">        phrase_start = source.phrase_id != previous_phrase
+</span><span class="file-line" id="L107">        previous_phrase = source.phrase_id
+</span><span class="file-line" id="L108">        if not phrase_start and source.duration &lt; 0.82:
+</span><span class="file-line" id="L109">            continue
+</span><span class="file-line" id="L110">        pitch = _nearest_scale(source.midi - 12, tonic, 56, 72)
+</span><span class="file-line" id="L111">        technique = &quot;tremolo&quot; if source.duration &gt;= 0.82 else &quot;short_pluck&quot;
+</span><span class="file-line" id="L112">        duration = min(source.duration * 0.72, 0.72 if technique == &quot;tremolo&quot; else 0.13)
+</span><span class="file-line" id="L113">        result.append(_event(source.start, source.start + duration, pitch, velocity, technique))
+</span><span class="file-line" id="L114">    return result
+</span><span class="file-line" id="L115">
+</span><span class="file-line" id="L116">
+</span><span class="file-line" id="L117">def _template_pitch(source_pitch, degree, tonic, part):
+</span><span class="file-line" id="L118">    if part == &quot;wind&quot;:
+</span><span class="file-line" id="L119">        return _nearest_scale(source_pitch + int(degree), tonic, 69, 87)
+</span><span class="file-line" id="L120">    return _nearest_scale(source_pitch + int(degree), tonic, 56, 72)
+</span><span class="file-line" id="L121">
+</span><span class="file-line" id="L122">
+</span><span class="file-line" id="L123">def _intro(timeline, tonic, style, template):
+</span><span class="file-line" id="L124">    parts = {part: [] for part in PARTS}
+</span><span class="file-line" id="L125">    first = next((source for source in timeline if source.midi is not None), None)
+</span><span class="file-line" id="L126">    if first is None or first.start &lt; 0.18:
+</span><span class="file-line" id="L127">        return parts, [], [&quot;intro skipped because the initial rest is shorter than 0.18 s&quot;]
+</span><span class="file-line" id="L128">    lyric_signature = sum(ord(char) for source in timeline for char in source.lyric if source.midi is not None)
+</span><span class="file-line" id="L129">    variant = template[&quot;intros&quot;][lyric_signature % len(template[&quot;intros&quot;])]
+</span><span class="file-line" id="L130">    scale = {&quot;gentle&quot;: 0.9, &quot;cheerful&quot;: 1.0, &quot;intense&quot;: 1.1}[style]
+</span><span class="file-line" id="L131">    for spec in variant[&quot;events&quot;]:
+</span><span class="file-line" id="L132">        start = float(spec[&quot;offset&quot;])
+</span><span class="file-line" id="L133">        end = min(first.start, start + float(spec[&quot;duration&quot;]))
+</span><span class="file-line" id="L134">        if end &lt;= start:
+</span><span class="file-line" id="L135">            continue
+</span><span class="file-line" id="L136">        pitch = spec.get(&quot;pitch&quot;)
+</span><span class="file-line" id="L137">        if pitch is None:
+</span><span class="file-line" id="L138">            pitch = _template_pitch(first.midi, spec.get(&quot;degree&quot;, 0), tonic, spec[&quot;part&quot;])
+</span><span class="file-line" id="L139">        parts[spec[&quot;part&quot;]].append(_event(start, end, pitch, round(spec[&quot;velocity&quot;] * scale), spec[&quot;technique&quot;]))
+</span><span class="file-line" id="L140">    return parts, [variant[&quot;id&quot;]], []
+</span><span class="file-line" id="L141">
+</span><span class="file-line" id="L142">
+</span><span class="file-line" id="L143">def _interludes(timeline, tonic, style, template):
+</span><span class="file-line" id="L144">    parts = {part: [] for part in PARTS}
+</span><span class="file-line" id="L145">    selected_ids, warnings = [], []
+</span><span class="file-line" id="L146">    scale = {&quot;gentle&quot;: 0.9, &quot;cheerful&quot;: 1.0, &quot;intense&quot;: 1.1}[style]
+</span><span class="file-line" id="L147">    variants = template[&quot;interludes&quot;]
+</span><span class="file-line" id="L148">    last_pitched = next((source for source in reversed(timeline) if source.midi is not None), None)
+</span><span class="file-line" id="L149">    for source in timeline:
+</span><span class="file-line" id="L150">        if source.midi is None or not source.phrase_end or not source.interlude_window:
+</span><span class="file-line" id="L151">            continue
+</span><span class="file-line" id="L152">        if source is last_pitched:
+</span><span class="file-line" id="L153">            continue
+</span><span class="file-line" id="L154">        window_start, window_end = source.interlude_window
+</span><span class="file-line" id="L155">        gap = window_end - window_start
+</span><span class="file-line" id="L156">        preferred = variants[(source.phrase_id or 0) % len(variants)]
+</span><span class="file-line" id="L157">        usable = [item for item in variants if gap &gt;= float(item[&quot;minimum_gap&quot;])]
+</span><span class="file-line" id="L158">        if not usable:
+</span><span class="file-line" id="L159">            continue
+</span><span class="file-line" id="L160">        variant = preferred if preferred in usable else usable[-1]
+</span><span class="file-line" id="L161">        selected_ids.append(variant[&quot;id&quot;])
+</span><span class="file-line" id="L162">        for spec in variant[&quot;events&quot;]:
+</span><span class="file-line" id="L163">            if &quot;offset_from_end&quot; in spec:
+</span><span class="file-line" id="L164">                start = window_end - float(spec[&quot;offset_from_end&quot;])
+</span><span class="file-line" id="L165">            else:
+</span><span class="file-line" id="L166">                start = window_start + float(spec.get(&quot;offset&quot;, 0.0))
+</span><span class="file-line" id="L167">            start = max(window_start, start)
+</span><span class="file-line" id="L168">            end = min(window_end, start + float(spec[&quot;duration&quot;]))
+</span><span class="file-line" id="L169">            if end &lt;= start:
+</span><span class="file-line" id="L170">                continue
+</span><span class="file-line" id="L171">            pitch = spec.get(&quot;pitch&quot;)
+</span><span class="file-line" id="L172">            if pitch is None:
+</span><span class="file-line" id="L173">                pitch = _template_pitch(source.midi, spec.get(&quot;degree&quot;, 0), tonic, spec[&quot;part&quot;])
+</span><span class="file-line" id="L174">            parts[spec[&quot;part&quot;]].append(_event(start, end, pitch, round(spec[&quot;velocity&quot;] * scale), spec[&quot;technique&quot;]))
+</span><span class="file-line" id="L175">    return parts, selected_ids, warnings
+</span><span class="file-line" id="L176">
+</span><span class="file-line" id="L177">
+</span><span class="file-line" id="L178">def _ending(timeline, tonic, style, template):
+</span><span class="file-line" id="L179">    parts = {part: [] for part in PARTS}
+</span><span class="file-line" id="L180">    phrase_count = len({source.phrase_id for source in timeline if source.phrase_id is not None})
+</span><span class="file-line" id="L181">    variant = template[&quot;endings&quot;][max(0, phrase_count - 1) % len(template[&quot;endings&quot;])]
+</span><span class="file-line" id="L182">    scale = {&quot;gentle&quot;: 0.9, &quot;cheerful&quot;: 1.0, &quot;intense&quot;: 1.1}[style]
+</span><span class="file-line" id="L183">    last_pitched = next((source for source in reversed(timeline) if source.midi is not None), None)
+</span><span class="file-line" id="L184">    if last_pitched is None:
+</span><span class="file-line" id="L185">        return parts, []
+</span><span class="file-line" id="L186">    total = timeline[-1].end
+</span><span class="file-line" id="L187">    outro_start = timeline[-1].start if timeline[-1].midi is None else last_pitched.end
+</span><span class="file-line" id="L188">    available = total - outro_start
+</span><span class="file-line" id="L189">    if available &lt;= 0.18:
+</span><span class="file-line" id="L190">        return parts, []
+</span><span class="file-line" id="L191">    melodic_end = max(outro_start + 0.12, total - 0.45)
+</span><span class="file-line" id="L192">    midpoint = min(melodic_end, outro_start + min(0.92, available * 0.42))
+</span><span class="file-line" id="L193">    first_pitch = _nearest_scale(last_pitched.midi + 2, tonic, 59, 81)
+</span><span class="file-line" id="L194">    final_pitch = _nearest_scale(last_pitched.midi, tonic, 59, 81)
+</span><span class="file-line" id="L195">    if midpoint &gt; outro_start + 0.03:
+</span><span class="file-line" id="L196">        parts[&quot;lead_bowed&quot;].append(_event(
+</span><span class="file-line" id="L197">            outro_start + 0.02, midpoint, first_pitch, round(42 * scale), &quot;sustain&quot;,
+</span><span class="file-line" id="L198">            ((0.0, 0.0), (0.55, 0.12), (1.0, 0.0)),
+</span><span class="file-line" id="L199">        ))
+</span><span class="file-line" id="L200">    if melodic_end &gt; midpoint:
+</span><span class="file-line" id="L201">        parts[&quot;lead_bowed&quot;].append(_event(
+</span><span class="file-line" id="L202">            midpoint, melodic_end, final_pitch, round(40 * scale), &quot;sustain&quot;,
+</span><span class="file-line" id="L203">            ((0.0, 0.0), (0.72, -0.28), (1.0, -0.45)),
+</span><span class="file-line" id="L204">        ))
+</span><span class="file-line" id="L205">    plucked_pitch = _nearest_scale(last_pitched.midi - 12, tonic, 56, 72)
+</span><span class="file-line" id="L206">    plucked_end = max(outro_start + 0.16, total - 0.52)
+</span><span class="file-line" id="L207">    parts[&quot;plucked&quot;].append(_event(
+</span><span class="file-line" id="L208">        outro_start + 0.05, plucked_end, plucked_pitch,
+</span><span class="file-line" id="L209">        round(29 * scale), &quot;tremolo&quot;,
+</span><span class="file-line" id="L210">    ))
+</span><span class="file-line" id="L211">    latest_template_end = max(float(spec[&quot;offset&quot;]) + float(spec[&quot;duration&quot;])
+</span><span class="file-line" id="L212">                              for spec in variant[&quot;events&quot;])
+</span><span class="file-line" id="L213">    template_shift = max(outro_start, total - 0.05 - latest_template_end)
+</span><span class="file-line" id="L214">    for spec in variant[&quot;events&quot;]:
+</span><span class="file-line" id="L215">        start = template_shift + float(spec[&quot;offset&quot;])
+</span><span class="file-line" id="L216">        end = min(total, start + float(spec[&quot;duration&quot;]))
+</span><span class="file-line" id="L217">        if end &gt; start:
+</span><span class="file-line" id="L218">            parts[spec[&quot;part&quot;]].append(_event(
+</span><span class="file-line" id="L219">                start, end, spec[&quot;pitch&quot;], round(spec[&quot;velocity&quot;] * scale), spec[&quot;technique&quot;]))
+</span><span class="file-line" id="L220">    return parts, [variant[&quot;id&quot;]]
+</span><span class="file-line" id="L221">
+</span><span class="file-line" id="L222">
+</span><span class="file-line" id="L223">def _merge(target, source):
+</span><span class="file-line" id="L224">    for part in PARTS:
+</span><span class="file-line" id="L225">        target[part].extend(source[part])
+</span><span class="file-line" id="L226">
+</span><span class="file-line" id="L227">
+</span><span class="file-line" id="L228">def arrange_backstage_v1(timeline, qupai=&quot;qizi&quot;, style=&quot;gentle&quot;):
+</span><span class="file-line" id="L229">    if qupai != &quot;qizi&quot;:
+</span><span class="file-line" id="L230">        raise AccompanimentError(&quot;backstage_v1 currently supports qizi only&quot;)
+</span><span class="file-line" id="L231">    if style not in {&quot;gentle&quot;, &quot;cheerful&quot;, &quot;intense&quot;}:
+</span><span class="file-line" id="L232">        raise AccompanimentError(f&quot;unknown accompaniment style: {style}&quot;)
+</span><span class="file-line" id="L233">    if not timeline:
+</span><span class="file-line" id="L234">        raise AccompanimentError(&quot;backstage_v1 requires a non-empty timeline&quot;)
+</span><span class="file-line" id="L235">    template = load_qizi_template()
+</span><span class="file-line" id="L236">    tonic = infer_tonic(timeline)
+</span><span class="file-line" id="L237">    parts = {part: [] for part in PARTS}
+</span><span class="file-line" id="L238">    parts[&quot;lead_bowed&quot;] = _lead(timeline, tonic, style)
+</span><span class="file-line" id="L239">    parts[&quot;plucked&quot;] = _sparse_plucks_under_voice(timeline, tonic, style)
+</span><span class="file-line" id="L240">    intro, intro_ids, warnings = _intro(timeline, tonic, style, template)
+</span><span class="file-line" id="L241">    interludes, interlude_ids, interlude_warnings = _interludes(timeline, tonic, style, template)
+</span><span class="file-line" id="L242">    ending, ending_ids = _ending(timeline, tonic, style, template)
+</span><span class="file-line" id="L243">    _merge(parts, intro)
+</span><span class="file-line" id="L244">    _merge(parts, interludes)
+</span><span class="file-line" id="L245">    _merge(parts, ending)
+</span><span class="file-line" id="L246">    for part in PARTS:
+</span><span class="file-line" id="L247">        parts[part].sort(key=lambda item: (item.start, item.end, item.pitch, item.technique))
+</span><span class="file-line" id="L248">    arrangement = Arrangement(
+</span><span class="file-line" id="L249">        parts=parts,
+</span><span class="file-line" id="L250">        template_version=template[&quot;template_version&quot;],
+</span><span class="file-line" id="L251">        review_status=&quot;unreviewed&quot;,
+</span><span class="file-line" id="L252">        qupai=&quot;qizi&quot;,
+</span><span class="file-line" id="L253">        fallback_reason=&quot;&quot;,
+</span><span class="file-line" id="L254">        warnings=[*warnings, *interlude_warnings],
+</span><span class="file-line" id="L255">    )
+</span><span class="file-line" id="L256">    metadata = {
+</span><span class="file-line" id="L257">        &quot;arrangement_version&quot;: ARRANGEMENT_VERSION,
+</span><span class="file-line" id="L258">        &quot;timbre_status&quot;: TIMBRE_STATUS,
+</span><span class="file-line" id="L259">        &quot;expert_review_status&quot;: EXPERT_REVIEW_STATUS,
+</span><span class="file-line" id="L260">        &quot;template_ids&quot;: [*intro_ids, *interlude_ids, *ending_ids],
+</span><span class="file-line" id="L261">        &quot;lead_strategy&quot;: &quot;phrase_anchor_legato_v1&quot;,
+</span><span class="file-line" id="L262">        &quot;lead_coverage_ratio&quot;: round(_lead_coverage_ratio(timeline, parts[&quot;lead_bowed&quot;]), 6),
+</span><span class="file-line" id="L263">        &quot;outro_window&quot;: {
+</span><span class="file-line" id="L264">            &quot;start&quot;: timeline[-1].start if timeline[-1].midi is None else timeline[-1].end,
+</span><span class="file-line" id="L265">            &quot;end&quot;: timeline[-1].end,
+</span><span class="file-line" id="L266">        },
+</span><span class="file-line" id="L267">    }
+</span><span class="file-line" id="L268">    return arrangement, metadata
+</span><span class="file-line" id="L269">
+</span><span class="file-line" id="L270">
+</span><span class="file-line" id="L271">def export_backstage_v1_midi(timeline, arrangement, output_path, render_path=None):
+</span><span class="file-line" id="L272">    return export_traditional_midi(timeline, arrangement, output_path, render_path)
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：web_flask/accompaniment/backstage_v1.py（路径已脱敏）","sha256":"7bc8b464088a687ef1f1ff5026d583a57720f328a132f76cd284987d7951531a","text":"\"\"\"Minimal licensed-real-timbre qizi accompaniment for backstage_v1.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom functools import lru_cache\nfrom pathlib import Path\n\nfrom .pipeline import AccompanimentError, PENTATONIC, infer_tonic\nfrom .traditional import PARTS, Arrangement, PerformanceEvent, export_traditional_midi\n\n\nARRANGEMENT_VERSION = \"backstage_v1.1.1_legato\"\nTIMBRE_STATUS = \"licensed_free_substitute\"\nEXPERT_REVIEW_STATUS = \"not_requested\"\n\n\n@lru_cache(maxsize=1)\ndef load_qizi_template():\n    path = Path(__file__).with_name(\"templates\") / \"backstage_v1\" / \"qizi.json\"\n    if not path.is_file():\n        raise AccompanimentError(\"backstage_v1 qizi template is missing\")\n    return json.loads(path.read_text(encoding=\"utf-8\"))\n\n\ndef _nearest_scale(target, tonic, low, high):\n    allowed = [pitch for pitch in range(low, high + 1) if (pitch - tonic) % 12 in PENTATONIC]\n    return min(allowed, key=lambda pitch: (abs(pitch - target), pitch))\n\n\ndef _fit_range(pitch, low, high):\n    while pitch \u003c low:\n        pitch += 12\n    while pitch \u003e high:\n        pitch -= 12\n    return max(low, min(high, pitch))\n\n\ndef _event(start, end, pitch, velocity, technique, pitch_curve=()):\n    return PerformanceEvent(float(start), max(float(start) + 0.001, float(end)), int(pitch),\n                            int(velocity), technique, tuple(pitch_curve))\n\n\ndef _lead(timeline, tonic, style):\n    velocity = {\"gentle\": 43, \"cheerful\": 49, \"intense\": 55}[style]\n    result = []\n    phrase_ids = []\n    for source in timeline:\n        if source.midi is not None and source.phrase_id not in phrase_ids:\n            phrase_ids.append(source.phrase_id)\n    for phrase_id in phrase_ids:\n        phrase = [source for source in timeline\n                  if source.midi is not None and source.phrase_id == phrase_id]\n        if not phrase:\n            continue\n        anchors = [phrase[0]]\n        for index, source in enumerate(phrase[1:-1], start=1):\n            previous = phrase[index - 1]\n            following = phrase[index + 1]\n            direction_before = source.midi - previous.midi\n            direction_after = following.midi - source.midi\n            direction_change = direction_before * direction_after \u003c 0\n            spaced = source.start - anchors[-1].start \u003e= 0.72\n            expressive = source.duration \u003e= 0.68 or source.phrase_end\n            if spaced or expressive or (direction_change and source.start - anchors[-1].start \u003e= 0.32):\n                anchors.append(source)\n        if phrase[-1] is not anchors[-1]:\n            anchors.append(phrase[-1])\n        for index, source in enumerate(anchors):\n            end = anchors[index + 1].start if index + 1 \u003c len(anchors) else phrase[-1].end\n            pitch = _nearest_scale(_fit_range(source.midi, 59, 81), tonic, 59, 81)\n            curve = ((0.0, 0.0), (0.38, 0.10), (0.62, -0.10), (1.0, 0.0))\n            if index == len(anchors) - 1:\n                curve = ((0.0, 0.0), (0.78, -0.35), (1.0, 0.0))\n            result.append(_event(source.start, end, pitch, velocity, \"sustain\", curve))\n    return result\n\n\ndef _lead_coverage_ratio(timeline, events):\n    phrases = {}\n    for source in timeline:\n        if source.midi is not None:\n            start, end = phrases.get(source.phrase_id, (source.start, source.end))\n            phrases[source.phrase_id] = (min(start, source.start), max(end, source.end))\n    singing = sum(end - start for start, end in phrases.values())\n    covered = 0.0\n    for start, end in phrases.values():\n        intervals = sorted((max(start, event.start), min(end, event.end)) for event in events\n                           if max(start, event.start) \u003c min(end, event.end))\n        cursor = start\n        for left, right in intervals:\n            if right \u003c= cursor:\n                continue\n            covered += right - max(left, cursor)\n            cursor = max(cursor, right)\n    return covered / singing if singing else 0.0\n\n\ndef _sparse_plucks_under_voice(timeline, tonic, style):\n    velocity = {\"gentle\": 31, \"cheerful\": 36, \"intense\": 41}[style]\n    result = []\n    previous_phrase = None\n    for source in timeline:\n        if source.midi is None:\n            continue\n        phrase_start = source.phrase_id != previous_phrase\n        previous_phrase = source.phrase_id\n        if not phrase_start and source.duration \u003c 0.82:\n            continue\n        pitch = _nearest_scale(source.midi - 12, tonic, 56, 72)\n        technique = \"tremolo\" if source.duration \u003e= 0.82 else \"short_pluck\"\n        duration = min(source.duration * 0.72, 0.72 if technique == \"tremolo\" else 0.13)\n        result.append(_event(source.start, source.start + duration, pitch, velocity, technique))\n    return result\n\n\ndef _template_pitch(source_pitch, degree, tonic, part):\n    if part == \"wind\":\n        return _nearest_scale(source_pitch + int(degree), tonic, 69, 87)\n    return _nearest_scale(source_pitch + int(degree), tonic, 56, 72)\n\n\ndef _intro(timeline, tonic, style, template):\n    parts = {part: [] for part in PARTS}\n    first = next((source for source in timeline if source.midi is not None), None)\n    if first is None or first.start \u003c 0.18:\n        return parts, [], [\"intro skipped because the initial rest is shorter than 0.18 s\"]\n    lyric_signature = sum(ord(char) for source in timeline for char in source.lyric if source.midi is not None)\n    variant = template[\"intros\"][lyric_signature % len(template[\"intros\"])]\n    scale = {\"gentle\": 0.9, \"cheerful\": 1.0, \"intense\": 1.1}[style]\n    for spec in variant[\"events\"]:\n        start = float(spec[\"offset\"])\n        end = min(first.start, start + float(spec[\"duration\"]))\n        if end \u003c= start:\n            continue\n        pitch = spec.get(\"pitch\")\n        if pitch is None:\n            pitch = _template_pitch(first.midi, spec.get(\"degree\", 0), tonic, spec[\"part\"])\n        parts[spec[\"part\"]].append(_event(start, end, pitch, round(spec[\"velocity\"] * scale), spec[\"technique\"]))\n    return parts, [variant[\"id\"]], []\n\n\ndef _interludes(timeline, tonic, style, template):\n    parts = {part: [] for part in PARTS}\n    selected_ids, warnings = [], []\n    scale = {\"gentle\": 0.9, \"cheerful\": 1.0, \"intense\": 1.1}[style]\n    variants = template[\"interludes\"]\n    last_pitched = next((source for source in reversed(timeline) if source.midi is not None), None)\n    for source in timeline:\n        if source.midi is None or not source.phrase_end or not source.interlude_window:\n            continue\n        if source is last_pitched:\n            continue\n        window_start, window_end = source.interlude_window\n        gap = window_end - window_start\n        preferred = variants[(source.phrase_id or 0) % len(variants)]\n        usable = [item for item in variants if gap \u003e= float(item[\"minimum_gap\"])]\n        if not usable:\n            continue\n        variant = preferred if preferred in usable else usable[-1]\n        selected_ids.append(variant[\"id\"])\n        for spec in variant[\"events\"]:\n            if \"offset_from_end\" in spec:\n                start = window_end - float(spec[\"offset_from_end\"])\n            else:\n                start = window_start + float(spec.get(\"offset\", 0.0))\n            start = max(window_start, start)\n            end = min(window_end, start + float(spec[\"duration\"]))\n            if end \u003c= start:\n                continue\n            pitch = spec.get(\"pitch\")\n            if pitch is None:\n                pitch = _template_pitch(source.midi, spec.get(\"degree\", 0), tonic, spec[\"part\"])\n            parts[spec[\"part\"]].append(_event(start, end, pitch, round(spec[\"velocity\"] * scale), spec[\"technique\"]))\n    return parts, selected_ids, warnings\n\n\ndef _ending(timeline, tonic, style, template):\n    parts = {part: [] for part in PARTS}\n    phrase_count = len({source.phrase_id for source in timeline if source.phrase_id is not None})\n    variant = template[\"endings\"][max(0, phrase_count - 1) % len(template[\"endings\"])]\n    scale = {\"gentle\": 0.9, \"cheerful\": 1.0, \"intense\": 1.1}[style]\n    last_pitched = next((source for source in reversed(timeline) if source.midi is not None), None)\n    if last_pitched is None:\n        return parts, []\n    total = timeline[-1].end\n    outro_start = timeline[-1].start if timeline[-1].midi is None else last_pitched.end\n    available = total - outro_start\n    if available \u003c= 0.18:\n        return parts, []\n    melodic_end = max(outro_start + 0.12, total - 0.45)\n    midpoint = min(melodic_end, outro_start + min(0.92, available * 0.42))\n    first_pitch = _nearest_scale(last_pitched.midi + 2, tonic, 59, 81)\n    final_pitch = _nearest_scale(last_pitched.midi, tonic, 59, 81)\n    if midpoint \u003e outro_start + 0.03:\n        parts[\"lead_bowed\"].append(_event(\n            outro_start + 0.02, midpoint, first_pitch, round(42 * scale), \"sustain\",\n            ((0.0, 0.0), (0.55, 0.12), (1.0, 0.0)),\n        ))\n    if melodic_end \u003e midpoint:\n        parts[\"lead_bowed\"].append(_event(\n            midpoint, melodic_end, final_pitch, round(40 * scale), \"sustain\",\n            ((0.0, 0.0), (0.72, -0.28), (1.0, -0.45)),\n        ))\n    plucked_pitch = _nearest_scale(last_pitched.midi - 12, tonic, 56, 72)\n    plucked_end = max(outro_start + 0.16, total - 0.52)\n    parts[\"plucked\"].append(_event(\n        outro_start + 0.05, plucked_end, plucked_pitch,\n        round(29 * scale), \"tremolo\",\n    ))\n    latest_template_end = max(float(spec[\"offset\"]) + float(spec[\"duration\"])\n                              for spec in variant[\"events\"])\n    template_shift = max(outro_start, total - 0.05 - latest_template_end)\n    for spec in variant[\"events\"]:\n        start = template_shift + float(spec[\"offset\"])\n        end = min(total, start + float(spec[\"duration\"]))\n        if end \u003e start:\n            parts[spec[\"part\"]].append(_event(\n                start, end, spec[\"pitch\"], round(spec[\"velocity\"] * scale), spec[\"technique\"]))\n    return parts, [variant[\"id\"]]\n\n\ndef _merge(target, source):\n    for part in PARTS:\n        target[part].extend(source[part])\n\n\ndef arrange_backstage_v1(timeline, qupai=\"qizi\", style=\"gentle\"):\n    if qupai != \"qizi\":\n        raise AccompanimentError(\"backstage_v1 currently supports qizi only\")\n    if style not in {\"gentle\", \"cheerful\", \"intense\"}:\n        raise AccompanimentError(f\"unknown accompaniment style: {style}\")\n    if not timeline:\n        raise AccompanimentError(\"backstage_v1 requires a non-empty timeline\")\n    template = load_qizi_template()\n    tonic = infer_tonic(timeline)\n    parts = {part: [] for part in PARTS}\n    parts[\"lead_bowed\"] = _lead(timeline, tonic, style)\n    parts[\"plucked\"] = _sparse_plucks_under_voice(timeline, tonic, style)\n    intro, intro_ids, warnings = _intro(timeline, tonic, style, template)\n    interludes, interlude_ids, interlude_warnings = _interludes(timeline, tonic, style, template)\n    ending, ending_ids = _ending(timeline, tonic, style, template)\n    _merge(parts, intro)\n    _merge(parts, interludes)\n    _merge(parts, ending)\n    for part in PARTS:\n        parts[part].sort(key=lambda item: (item.start, item.end, item.pitch, item.technique))\n    arrangement = Arrangement(\n        parts=parts,\n        template_version=template[\"template_version\"],\n        review_status=\"unreviewed\",\n        qupai=\"qizi\",\n        fallback_reason=\"\",\n        warnings=[*warnings, *interlude_warnings],\n    )\n    metadata = {\n        \"arrangement_version\": ARRANGEMENT_VERSION,\n        \"timbre_status\": TIMBRE_STATUS,\n        \"expert_review_status\": EXPERT_REVIEW_STATUS,\n        \"template_ids\": [*intro_ids, *interlude_ids, *ending_ids],\n        \"lead_strategy\": \"phrase_anchor_legato_v1\",\n        \"lead_coverage_ratio\": round(_lead_coverage_ratio(timeline, parts[\"lead_bowed\"]), 6),\n        \"outro_window\": {\n            \"start\": timeline[-1].start if timeline[-1].midi is None else timeline[-1].end,\n            \"end\": timeline[-1].end,\n        },\n    }\n    return arrangement, metadata\n\n\ndef export_backstage_v1_midi(timeline, arrangement, output_path, render_path=None):\n    return export_traditional_midi(timeline, arrangement, output_path, render_path)\n"}</script><script src="../../src/data-reader.js"></script></body></html>

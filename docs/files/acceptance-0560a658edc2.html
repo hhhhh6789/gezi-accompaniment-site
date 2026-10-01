@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>acceptance.json · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#file-content">文件内容</a><span>JSON 配置 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>acceptance.json</h1><p>JSON 配置 · 3,210 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\anyaccomp_vocoder_timing_20261001\acceptance.json</p><p>SHA-256：28d9e8fa05e97c8ff03c3bbc642dfaa7e48ed33d267d0c096c4a2c4224af895b</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="json"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">{
+</span><span class="file-line" id="L2">  &quot;recorded_at_utc&quot;: &quot;2026-10-01T07:04:41.604702+00:00&quot;,
+</span><span class="file-line" id="L3">  &quot;user_statement&quot;: &quot;都自然完整，没有新增失真&quot;,
+</span><span class="file-line" id="L4">  &quot;scope&quot;: &quot;the three presented token-centered reconstruction previews: short, middle and long&quot;,
+</span><span class="file-line" id="L5">  &quot;human_listening_status&quot;: &quot;passed&quot;,
+</span><span class="file-line" id="L6">  &quot;stage_status&quot;: &quot;technical_and_user_listening_passed_under_experimental_decoder&quot;,
+</span><span class="file-line" id="L7">  &quot;checks&quot;: {
+</span><span class="file-line" id="L8">    &quot;start_and_end_natural_and_complete&quot;: true,
+</span><span class="file-line" id="L9">    &quot;new_distortion_absent_by_user_listening&quot;: true
+</span><span class="file-line" id="L10">  },
+</span><span class="file-line" id="L11">  &quot;technical_evidence&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/post_validation.json&quot;,
+</span><span class="file-line" id="L12">  &quot;execution_report_snapshot&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/report.json&quot;,
+</span><span class="file-line" id="L13">  &quot;limitations&quot;: [
+</span><span class="file-line" id="L14">    &quot;three neural reconstruction examples and 19 CPU length/window cases; not all 13 neural reconstructions&quot;,
+</span><span class="file-line" id="L15">    &quot;RMS envelope timing diagnostics are not sample-level alignment ground truth&quot;,
+</span><span class="file-line" id="L16">    &quot;original author preprocessing/decoding recipe not independently confirmed&quot;,
+</span><span class="file-line" id="L17">    &quot;full training recipe, prompt/CFG and REPA/MERT remain unresolved&quot;
+</span><span class="file-line" id="L18">  ],
+</span><span class="file-line" id="L19">  &quot;training_input_status&quot;: &quot;pending_recipe_validation&quot;,
+</span><span class="file-line" id="L20">  &quot;parameters_updated&quot;: false,
+</span><span class="file-line" id="L21">  &quot;pairs&quot;: [
+</span><span class="file-line" id="L22">    {
+</span><span class="file-line" id="L23">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L24">      &quot;category&quot;: &quot;short&quot;,
+</span><span class="file-line" id="L25">      &quot;listening_status&quot;: &quot;passed&quot;,
+</span><span class="file-line" id="L26">      &quot;start_and_end_status&quot;: &quot;natural_and_complete&quot;,
+</span><span class="file-line" id="L27">      &quot;new_distortion_status&quot;: &quot;none_reported&quot;,
+</span><span class="file-line" id="L28">      &quot;wav&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.wav&quot;,
+</span><span class="file-line" id="L29">      &quot;wav_sha256&quot;: &quot;b88191c4df3b42cc2c54cc3256e2aefdddf49cf0ba51b8c41e24d5e14d05b0dc&quot;,
+</span><span class="file-line" id="L30">      &quot;preview&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.mp3&quot;,
+</span><span class="file-line" id="L31">      &quot;preview_sha256&quot;: &quot;b1f60c0c3c4585a8c1692ff2f4468922d33b6667d7206e4784b41de94f313409&quot;
+</span><span class="file-line" id="L32">    },
+</span><span class="file-line" id="L33">    {
+</span><span class="file-line" id="L34">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0001&quot;,
+</span><span class="file-line" id="L35">      &quot;category&quot;: &quot;middle&quot;,
+</span><span class="file-line" id="L36">      &quot;listening_status&quot;: &quot;passed&quot;,
+</span><span class="file-line" id="L37">      &quot;start_and_end_status&quot;: &quot;natural_and_complete&quot;,
+</span><span class="file-line" id="L38">      &quot;new_distortion_status&quot;: &quot;none_reported&quot;,
+</span><span class="file-line" id="L39">      &quot;wav&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.wav&quot;,
+</span><span class="file-line" id="L40">      &quot;wav_sha256&quot;: &quot;fd6f5445f332e85d14eb28d2af3bc8648b9b50745963c34f16752ca999677b0a&quot;,
+</span><span class="file-line" id="L41">      &quot;preview&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.mp3&quot;,
+</span><span class="file-line" id="L42">      &quot;preview_sha256&quot;: &quot;9be0682c0b4c3d9c5f49aeaa1af2c831eb5f3f65799fc25109286ba595cc64fe&quot;
+</span><span class="file-line" id="L43">    },
+</span><span class="file-line" id="L44">    {
+</span><span class="file-line" id="L45">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0005&quot;,
+</span><span class="file-line" id="L46">      &quot;category&quot;: &quot;long&quot;,
+</span><span class="file-line" id="L47">      &quot;listening_status&quot;: &quot;passed&quot;,
+</span><span class="file-line" id="L48">      &quot;start_and_end_status&quot;: &quot;natural_and_complete&quot;,
+</span><span class="file-line" id="L49">      &quot;new_distortion_status&quot;: &quot;none_reported&quot;,
+</span><span class="file-line" id="L50">      &quot;wav&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.wav&quot;,
+</span><span class="file-line" id="L51">      &quot;wav_sha256&quot;: &quot;0482b158c76cf42a30ea75a2a69c8475d63ad5fdfbda168e37cb0a73e0c60143&quot;,
+</span><span class="file-line" id="L52">      &quot;preview&quot;: &quot;$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.mp3&quot;,
+</span><span class="file-line" id="L53">      &quot;preview_sha256&quot;: &quot;1eadb3aa99711caf09f79455d72a6c6faa2a9eaf58089fce242ed65f62616c05&quot;
+</span><span class="file-line" id="L54">    }
+</span><span class="file-line" id="L55">  ]
+</span><span class="file-line" id="L56">}
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/anyaccomp_vocoder_timing_20261001/acceptance.json（路径已脱敏）","sha256":"28d9e8fa05e97c8ff03c3bbc642dfaa7e48ed33d267d0c096c4a2c4224af895b","text":"{\n  \"recorded_at_utc\": \"2026-10-01T07:04:41.604702+00:00\",\n  \"user_statement\": \"都自然完整，没有新增失真\",\n  \"scope\": \"the three presented token-centered reconstruction previews: short, middle and long\",\n  \"human_listening_status\": \"passed\",\n  \"stage_status\": \"technical_and_user_listening_passed_under_experimental_decoder\",\n  \"checks\": {\n    \"start_and_end_natural_and_complete\": true,\n    \"new_distortion_absent_by_user_listening\": true\n  },\n  \"technical_evidence\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/post_validation.json\",\n  \"execution_report_snapshot\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/report.json\",\n  \"limitations\": [\n    \"three neural reconstruction examples and 19 CPU length/window cases; not all 13 neural reconstructions\",\n    \"RMS envelope timing diagnostics are not sample-level alignment ground truth\",\n    \"original author preprocessing/decoding recipe not independently confirmed\",\n    \"full training recipe, prompt/CFG and REPA/MERT remain unresolved\"\n  ],\n  \"training_input_status\": \"pending_recipe_validation\",\n  \"parameters_updated\": false,\n  \"pairs\": [\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0004\",\n      \"category\": \"short\",\n      \"listening_status\": \"passed\",\n      \"start_and_end_status\": \"natural_and_complete\",\n      \"new_distortion_status\": \"none_reported\",\n      \"wav\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.wav\",\n      \"wav_sha256\": \"b88191c4df3b42cc2c54cc3256e2aefdddf49cf0ba51b8c41e24d5e14d05b0dc\",\n      \"preview\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.mp3\",\n      \"preview_sha256\": \"b1f60c0c3c4585a8c1692ff2f4468922d33b6667d7206e4784b41de94f313409\"\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0001\",\n      \"category\": \"middle\",\n      \"listening_status\": \"passed\",\n      \"start_and_end_status\": \"natural_and_complete\",\n      \"new_distortion_status\": \"none_reported\",\n      \"wav\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.wav\",\n      \"wav_sha256\": \"fd6f5445f332e85d14eb28d2af3bc8648b9b50745963c34f16752ca999677b0a\",\n      \"preview\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.mp3\",\n      \"preview_sha256\": \"9be0682c0b4c3d9c5f49aeaa1af2c831eb5f3f65799fc25109286ba595cc64fe\"\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0005\",\n      \"category\": \"long\",\n      \"listening_status\": \"passed\",\n      \"start_and_end_status\": \"natural_and_complete\",\n      \"new_distortion_status\": \"none_reported\",\n      \"wav\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.wav\",\n      \"wav_sha256\": \"0482b158c76cf42a30ea75a2a69c8475d63ad5fdfbda168e37cb0a73e0c60143\",\n      \"preview\": \"$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.mp3\",\n      \"preview_sha256\": \"1eadb3aa99711caf09f79455d72a6c6faa2a9eaf58089fce242ed65f62616c05\"\n    }\n  ]\n}\n"}</script><script src="../../src/data-reader.js"></script></body></html>

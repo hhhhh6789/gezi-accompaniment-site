@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>README.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#documents">← 返回当前项目资料</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>README.md</h1><p>Markdown 文档 · 1,896 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#anyaccomp">AnyAccomp云端最小运行包</a><ul>
+<li><a href="#_1">内容</a></li>
+<li><a href="#_2">云端固定目录</a></li>
+<li><a href="#_3">执行顺序</a></li>
+<li><a href="#_4">运行记录要求</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\deploy\cloud_anyaccomp\README.md</p><p>SHA-256：6a5181b4642ae44e5362c171103e055d0fa01df7d990eeb439a4044c68fae312</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="anyaccomp">AnyAccomp云端最小运行包</h1>
+<p>状态：输入已准备，等待2026年9月11日配置实验室云服务器。本目录不保存服务器地址、账号、密码、私钥或访问令牌。</p>
+<h2 id="_1">内容</h2>
+<ul>
+<li><code>inputs/</code>：三个FT-GAN人声副本，覆盖7.07秒、10.26秒和27.55秒。</li>
+<li><code>manifest.csv</code>：来源、音频属性、音量检查和SHA-256。</li>
+<li>AnyAccomp代码与预训练权重不在本地保存，由云服务器从官方仓库直接下载。</li>
+</ul>
+<h2 id="_2">云端固定目录</h2>
+<p>在服务器配置文档指定的数据盘下创建一个 <code>Gezi-Opera-Synthesis-master-clean</code> 目录，并划分：</p>
+<pre><code class="language-text">source/AnyAccomp/
+environments/anyaccomp/
+pretrained/anyaccomp/
+inputs/
+outputs/accompaniment/
+outputs/mixture/
+logs/
+</code></pre>
+<p>实际绝对路径在服务器配置完成后记录，不把连接凭据写入本目录。</p>
+<h2 id="_3">执行顺序</h2>
+<ol>
+<li>只读检查系统、GPU、显存、驱动、CUDA、Conda、磁盘和外网访问。</li>
+<li>创建独立Python 3.9环境，不复用当前项目 <code>.venv</code>。</li>
+<li>拉取 <code>https://github.com/AmphionTeam/AnyAccomp.git</code> 并记录提交号。</li>
+<li>下载 <code>amphion/anyaccomp</code> 模型仓库并记录版本与权重哈希。</li>
+<li>先运行官方样例；通过后上传本目录的三个输入样例。</li>
+<li>固定 <code>device=cuda</code>、<code>seed=1024</code>、<code>n_timesteps=50</code>，先short，再medium和long。</li>
+<li>重复运行short，检查固定种子的可复现性。</li>
+<li>下载伴奏、混合音频、配置和日志到 <code>artifacts/pretrained_accompaniment/2026-09-10_AnyAccomp/</code>。</li>
+</ol>
+<h2 id="_4">运行记录要求</h2>
+<p>每次运行单独保存JSON，至少包含：输入文件与SHA-256、代码提交号、模型版本、参数、GPU、开始和结束时间、运行时长、显存峰值、状态、输出路径和错误摘要。</p>
+<p>完成前不得把官方演示、计划或空目录写成实际结果。通用伴奏成功只表示预训练链路跑通，不表示已经得到合格的歌仔戏伴奏。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：deploy/cloud_anyaccomp/README.md（路径已脱敏）","sha256":"6a5181b4642ae44e5362c171103e055d0fa01df7d990eeb439a4044c68fae312","text":"# AnyAccomp云端最小运行包\n\n状态：输入已准备，等待2026年9月11日配置实验室云服务器。本目录不保存服务器地址、账号、密码、私钥或访问令牌。\n\n## 内容\n\n- `inputs/`：三个FT-GAN人声副本，覆盖7.07秒、10.26秒和27.55秒。\n- `manifest.csv`：来源、音频属性、音量检查和SHA-256。\n- AnyAccomp代码与预训练权重不在本地保存，由云服务器从官方仓库直接下载。\n\n## 云端固定目录\n\n在服务器配置文档指定的数据盘下创建一个 `Gezi-Opera-Synthesis-master-clean` 目录，并划分：\n\n```text\nsource/AnyAccomp/\nenvironments/anyaccomp/\npretrained/anyaccomp/\ninputs/\noutputs/accompaniment/\noutputs/mixture/\nlogs/\n```\n\n实际绝对路径在服务器配置完成后记录，不把连接凭据写入本目录。\n\n## 执行顺序\n\n1. 只读检查系统、GPU、显存、驱动、CUDA、Conda、磁盘和外网访问。\n2. 创建独立Python 3.9环境，不复用当前项目 `.venv`。\n3. 拉取 `https://github.com/AmphionTeam/AnyAccomp.git` 并记录提交号。\n4. 下载 `amphion/anyaccomp` 模型仓库并记录版本与权重哈希。\n5. 先运行官方样例；通过后上传本目录的三个输入样例。\n6. 固定 `device=cuda`、`seed=1024`、`n_timesteps=50`，先short，再medium和long。\n7. 重复运行short，检查固定种子的可复现性。\n8. 下载伴奏、混合音频、配置和日志到 `artifacts/pretrained_accompaniment/2026-09-10_AnyAccomp/`。\n\n## 运行记录要求\n\n每次运行单独保存JSON，至少包含：输入文件与SHA-256、代码提交号、模型版本、参数、GPU、开始和结束时间、运行时长、显存峰值、状态、输出路径和错误摘要。\n\n完成前不得把官方演示、计划或空目录写成实际结果。通用伴奏成功只表示预训练链路跑通，不表示已经得到合格的歌仔戏伴奏。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

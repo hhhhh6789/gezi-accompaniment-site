@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>acceptance.json · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#file-content">文件内容</a><span>JSON 配置 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>acceptance.json</h1><p>JSON 配置 · 3,327 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\small_scale_acceptance_20261001T085524Z\acceptance.json</p><p>SHA-256：73ba597ee67a0924615c3859ea6251f88035cd93756d3b56b50e6908898fb7cf</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="json"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">{
+</span><span class="file-line" id="L2">  &quot;recorded_at_utc&quot;: &quot;2026-10-01T08:55:24.524671+00:00&quot;,
+</span><span class="file-line" id="L3">  &quot;timezone&quot;: &quot;Asia/Shanghai&quot;,
+</span><span class="file-line" id="L4">  &quot;user_statement&quot;: &quot;可以的，有什么音频或者是文件需要下载到本地的吗&quot;,
+</span><span class="file-line" id="L5">  &quot;status&quot;: &quot;small_scale_workflow_user_accepted_with_explicit_limits&quot;,
+</span><span class="file-line" id="L6">  &quot;scope&quot;: &quot;3 recordings / 13 paired segments; experimental FM main-loss input interface and tested vocoder reconstruction&quot;,
+</span><span class="file-line" id="L7">  &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L8">    &quot;R0001_SEP02_SEG0001&quot;,
+</span><span class="file-line" id="L9">    &quot;R0001_SEP02_SEG0002&quot;,
+</span><span class="file-line" id="L10">    &quot;R0001_SEP02_SEG0003&quot;,
+</span><span class="file-line" id="L11">    &quot;R0001_SEP02_SEG0004&quot;,
+</span><span class="file-line" id="L12">    &quot;R0002_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L13">    &quot;R0002_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L14">    &quot;R0002_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L15">    &quot;R0002_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L16">    &quot;R0002_SEP01_SEG0005&quot;,
+</span><span class="file-line" id="L17">    &quot;R0003_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L18">    &quot;R0003_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L19">    &quot;R0003_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L20">    &quot;R0003_SEP01_SEG0004&quot;
+</span><span class="file-line" id="L21">  ],
+</span><span class="file-line" id="L22">  &quot;total_duration_s&quot;: 282.22868480725623,
+</span><span class="file-line" id="L23">  &quot;training_input_status&quot;: &quot;passed_experimental_fm_main_loss_interface&quot;,
+</span><span class="file-line" id="L24">  &quot;original_author_full_recipe_verified&quot;: false,
+</span><span class="file-line" id="L25">  &quot;optimizer_or_resume_tested&quot;: false,
+</span><span class="file-line" id="L26">  &quot;parameters_updated&quot;: false,
+</span><span class="file-line" id="L27">  &quot;cfg_condition_dropout_probability&quot;: 0.2,
+</span><span class="file-line" id="L28">  &quot;prompt_probability&quot;: 0.3,
+</span><span class="file-line" id="L29">  &quot;repa_mert_auxiliary_loss_included&quot;: false,
+</span><span class="file-line" id="L30">  &quot;accepted_limits&quot;: [
+</span><span class="file-line" id="L31">    &quot;residual separation artifacts; no independent clean source truth&quot;,
+</span><span class="file-line" id="L32">    &quot;sample-index paired slicing and experimental feature center checks; fine source alignment not proven&quot;,
+</span><span class="file-line" id="L33">    &quot;experimental preprocessing and decoder rules; exact author preprocessing unverified&quot;,
+</span><span class="file-line" id="L34">    &quot;3 checkpoint tag tensors excluded because absent from released model&quot;,
+</span><span class="file-line" id="L35">    &quot;vocoder listening covers 3 examples, not all 13 neural outputs&quot;,
+</span><span class="file-line" id="L36">    &quot;full training loader, optimizer updates, recovery and generated quality unverified&quot;
+</span><span class="file-line" id="L37">  ],
+</span><span class="file-line" id="L38">  &quot;evidence&quot;: [
+</span><span class="file-line" id="L39">    {
+</span><span class="file-line" id="L40">      &quot;relative_path&quot;: &quot;runs/segmentation_finalize_20261001/report.json&quot;,
+</span><span class="file-line" id="L41">      &quot;sha256&quot;: &quot;efc011d8c226e36f0affc2a59229bba61216cb6a25d568bb882bfd8f9c6f5880&quot;
+</span><span class="file-line" id="L42">    },
+</span><span class="file-line" id="L43">    {
+</span><span class="file-line" id="L44">      &quot;relative_path&quot;: &quot;runs/anyaccomp_feature_audit_20261001/features/report.json&quot;,
+</span><span class="file-line" id="L45">      &quot;sha256&quot;: &quot;a7e3a272b9b56acc93cdd8edfa8123cda7bf0ea782494b4b0b472f2a9ad97022&quot;
+</span><span class="file-line" id="L46">    },
+</span><span class="file-line" id="L47">    {
+</span><span class="file-line" id="L48">      &quot;relative_path&quot;: &quot;runs/anyaccomp_fm_zscore_smoke_20261001/results/report.json&quot;,
+</span><span class="file-line" id="L49">      &quot;sha256&quot;: &quot;eab64f68919a8bd2f0523fe067b1a2e2e4fbb36f307fa06a8515a3b455c88610&quot;
+</span><span class="file-line" id="L50">    },
+</span><span class="file-line" id="L51">    {
+</span><span class="file-line" id="L52">      &quot;relative_path&quot;: &quot;runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json&quot;,
+</span><span class="file-line" id="L53">      &quot;sha256&quot;: &quot;3caf137ddb2b2f49a5ea3465cefe62bcaaf667c38fae5984087f2e0b5de28e02&quot;
+</span><span class="file-line" id="L54">    },
+</span><span class="file-line" id="L55">    {
+</span><span class="file-line" id="L56">      &quot;relative_path&quot;: &quot;runs/anyaccomp_vocoder_timing_20261001/acceptance.json&quot;,
+</span><span class="file-line" id="L57">      &quot;sha256&quot;: &quot;28d9e8fa05e97c8ff03c3bbc642dfaa7e48ed33d267d0c096c4a2c4224af895b&quot;
+</span><span class="file-line" id="L58">    },
+</span><span class="file-line" id="L59">    {
+</span><span class="file-line" id="L60">      &quot;relative_path&quot;: &quot;runs/anyaccomp_vocoder_timing_20261001/post_validation.json&quot;,
+</span><span class="file-line" id="L61">      &quot;sha256&quot;: &quot;0499d2178e2e234f86941f6202023c68c168eead6d1eb730f4b8c68866350a6f&quot;
+</span><span class="file-line" id="L62">    }
+</span><span class="file-line" id="L63">  ],
+</span><span class="file-line" id="L64">  &quot;pairs_manifest_before_sha256&quot;: &quot;1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f&quot;,
+</span><span class="file-line" id="L65">  &quot;pairs_manifest_after_sha256&quot;: &quot;29ff21865233c87969f23cdbd9a0de423940fbe4a413b7ce858d6a7fb42738e1&quot;,
+</span><span class="file-line" id="L66">  &quot;pairs_manifest_backup&quot;: &quot;runs/small_scale_acceptance_20261001T085524Z/pairs.before_acceptance.csv&quot;,
+</span><span class="file-line" id="L67">  &quot;audio_integrity_rechecked_files&quot;: 29,
+</span><span class="file-line" id="L68">  &quot;recordings_separations_segments_unchanged&quot;: true,
+</span><span class="file-line" id="L69">  &quot;dataset_split_unchanged&quot;: &quot;unassigned&quot;,
+</span><span class="file-line" id="L70">  &quot;929_complete&quot;: false,
+</span><span class="file-line" id="L71">  &quot;next_gate&quot;: &quot;define source list and target count or accepted paired hours for scaled dataset; no bulk processing started&quot;
+</span><span class="file-line" id="L72">}
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/small_scale_acceptance_20261001T085524Z/acceptance.json（路径已脱敏）","sha256":"73ba597ee67a0924615c3859ea6251f88035cd93756d3b56b50e6908898fb7cf","text":"{\n  \"recorded_at_utc\": \"2026-10-01T08:55:24.524671+00:00\",\n  \"timezone\": \"Asia/Shanghai\",\n  \"user_statement\": \"可以的，有什么音频或者是文件需要下载到本地的吗\",\n  \"status\": \"small_scale_workflow_user_accepted_with_explicit_limits\",\n  \"scope\": \"3 recordings / 13 paired segments; experimental FM main-loss input interface and tested vocoder reconstruction\",\n  \"pair_ids\": [\n    \"R0001_SEP02_SEG0001\",\n    \"R0001_SEP02_SEG0002\",\n    \"R0001_SEP02_SEG0003\",\n    \"R0001_SEP02_SEG0004\",\n    \"R0002_SEP01_SEG0001\",\n    \"R0002_SEP01_SEG0002\",\n    \"R0002_SEP01_SEG0003\",\n    \"R0002_SEP01_SEG0004\",\n    \"R0002_SEP01_SEG0005\",\n    \"R0003_SEP01_SEG0001\",\n    \"R0003_SEP01_SEG0002\",\n    \"R0003_SEP01_SEG0003\",\n    \"R0003_SEP01_SEG0004\"\n  ],\n  \"total_duration_s\": 282.22868480725623,\n  \"training_input_status\": \"passed_experimental_fm_main_loss_interface\",\n  \"original_author_full_recipe_verified\": false,\n  \"optimizer_or_resume_tested\": false,\n  \"parameters_updated\": false,\n  \"cfg_condition_dropout_probability\": 0.2,\n  \"prompt_probability\": 0.3,\n  \"repa_mert_auxiliary_loss_included\": false,\n  \"accepted_limits\": [\n    \"residual separation artifacts; no independent clean source truth\",\n    \"sample-index paired slicing and experimental feature center checks; fine source alignment not proven\",\n    \"experimental preprocessing and decoder rules; exact author preprocessing unverified\",\n    \"3 checkpoint tag tensors excluded because absent from released model\",\n    \"vocoder listening covers 3 examples, not all 13 neural outputs\",\n    \"full training loader, optimizer updates, recovery and generated quality unverified\"\n  ],\n  \"evidence\": [\n    {\n      \"relative_path\": \"runs/segmentation_finalize_20261001/report.json\",\n      \"sha256\": \"efc011d8c226e36f0affc2a59229bba61216cb6a25d568bb882bfd8f9c6f5880\"\n    },\n    {\n      \"relative_path\": \"runs/anyaccomp_feature_audit_20261001/features/report.json\",\n      \"sha256\": \"a7e3a272b9b56acc93cdd8edfa8123cda7bf0ea782494b4b0b472f2a9ad97022\"\n    },\n    {\n      \"relative_path\": \"runs/anyaccomp_fm_zscore_smoke_20261001/results/report.json\",\n      \"sha256\": \"eab64f68919a8bd2f0523fe067b1a2e2e4fbb36f307fa06a8515a3b455c88610\"\n    },\n    {\n      \"relative_path\": \"runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json\",\n      \"sha256\": \"3caf137ddb2b2f49a5ea3465cefe62bcaaf667c38fae5984087f2e0b5de28e02\"\n    },\n    {\n      \"relative_path\": \"runs/anyaccomp_vocoder_timing_20261001/acceptance.json\",\n      \"sha256\": \"28d9e8fa05e97c8ff03c3bbc642dfaa7e48ed33d267d0c096c4a2c4224af895b\"\n    },\n    {\n      \"relative_path\": \"runs/anyaccomp_vocoder_timing_20261001/post_validation.json\",\n      \"sha256\": \"0499d2178e2e234f86941f6202023c68c168eead6d1eb730f4b8c68866350a6f\"\n    }\n  ],\n  \"pairs_manifest_before_sha256\": \"1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f\",\n  \"pairs_manifest_after_sha256\": \"29ff21865233c87969f23cdbd9a0de423940fbe4a413b7ce858d6a7fb42738e1\",\n  \"pairs_manifest_backup\": \"runs/small_scale_acceptance_20261001T085524Z/pairs.before_acceptance.csv\",\n  \"audio_integrity_rechecked_files\": 29,\n  \"recordings_separations_segments_unchanged\": true,\n  \"dataset_split_unchanged\": \"unassigned\",\n  \"929_complete\": false,\n  \"next_gate\": \"define source list and target count or accepted paired hours for scaled dataset; no bulk processing started\"\n}\n"}</script><script src="../../src/data-reader.js"></script></body></html>

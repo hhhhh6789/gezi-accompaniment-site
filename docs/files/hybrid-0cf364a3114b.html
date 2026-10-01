@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>hybrid.py · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#history">← 返回历史实现</a><a href="#file-content">文件内容</a><span>Python 源代码 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>hybrid.py</h1><p>Python 源代码 · 5,815 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\web_flask\accompaniment\hybrid.py</p><p>SHA-256：bbe9905714278ce769bf9c8ee4b70642b39bac0827351613fb19c9e6960af86e</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="py"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">&quot;&quot;&quot;Orchestration entrypoint for the research_hybrid_v1 profile.&quot;&quot;&quot;
+</span><span class="file-line" id="L2">
+</span><span class="file-line" id="L3">from __future__ import annotations
+</span><span class="file-line" id="L4">
+</span><span class="file-line" id="L5">from dataclasses import dataclass
+</span><span class="file-line" id="L6">from typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple
+</span><span class="file-line" id="L7">
+</span><span class="file-line" id="L8">from .candidates import ArrangementCandidate, CandidateProvider, RuleCandidateProvider
+</span><span class="file-line" id="L9">from .conditions import ConditionBundle, condition_bundle_from_request, condition_bundle_from_timeline
+</span><span class="file-line" id="L10">from .constraints import CandidateEvaluation, evaluate_candidates, rank_candidates
+</span><span class="file-line" id="L11">from .evaluation import TechnicalEvaluation, evaluate_technical_alignment
+</span><span class="file-line" id="L12">from .pipeline import AccompanimentError
+</span><span class="file-line" id="L13">from .structure import OperaTimeline, build_opera_timeline
+</span><span class="file-line" id="L14">
+</span><span class="file-line" id="L15">
+</span><span class="file-line" id="L16">RESEARCH_PROFILE = &quot;research_hybrid_v1&quot;
+</span><span class="file-line" id="L17">RESEARCH_SCHEMA_VERSION = 1
+</span><span class="file-line" id="L18">RESEARCH_IMPLEMENTATION_VERSION = &quot;research_hybrid_v1.0&quot;
+</span><span class="file-line" id="L19">
+</span><span class="file-line" id="L20">
+</span><span class="file-line" id="L21">@dataclass(frozen=True)
+</span><span class="file-line" id="L22">class ResearchGenerationResult:
+</span><span class="file-line" id="L23">    selected: ArrangementCandidate
+</span><span class="file-line" id="L24">    evaluations: Tuple[CandidateEvaluation, ...]
+</span><span class="file-line" id="L25">    timeline: OperaTimeline
+</span><span class="file-line" id="L26">    technical_evaluation: TechnicalEvaluation
+</span><span class="file-line" id="L27">    seed: int
+</span><span class="file-line" id="L28">    provider_name: str
+</span><span class="file-line" id="L29">
+</span><span class="file-line" id="L30">    def metadata(self, include_timeline: bool = True, include_candidate_events: bool = False) -&gt; Dict[str, Any]:
+</span><span class="file-line" id="L31">        ranked = list(self.evaluations)
+</span><span class="file-line" id="L32">        selected_rank = next(index for index, item in enumerate(ranked)
+</span><span class="file-line" id="L33">                             if item.candidate_id == self.selected.candidate_id) + 1
+</span><span class="file-line" id="L34">        return {
+</span><span class="file-line" id="L35">            &quot;schema_version&quot;: RESEARCH_SCHEMA_VERSION,
+</span><span class="file-line" id="L36">            &quot;profile&quot;: RESEARCH_PROFILE,
+</span><span class="file-line" id="L37">            &quot;implementation_version&quot;: RESEARCH_IMPLEMENTATION_VERSION,
+</span><span class="file-line" id="L38">            &quot;review_status&quot;: &quot;unreviewed&quot;,
+</span><span class="file-line" id="L39">            &quot;expert_review_status&quot;: &quot;not_requested&quot;,
+</span><span class="file-line" id="L40">            &quot;claims_status&quot;: &quot;technical_framework_only&quot;,
+</span><span class="file-line" id="L41">            &quot;seed&quot;: self.seed,
+</span><span class="file-line" id="L42">            &quot;provider&quot;: self.provider_name,
+</span><span class="file-line" id="L43">            &quot;condition_summary&quot;: self.timeline.conditions.summary(),
+</span><span class="file-line" id="L44">            &quot;structure&quot;: self.timeline.as_dict(include_units=False) if include_timeline else None,
+</span><span class="file-line" id="L45">            &quot;candidate_count&quot;: len(ranked),
+</span><span class="file-line" id="L46">            &quot;candidate_ranking&quot;: [evaluation.as_dict() for evaluation in ranked],
+</span><span class="file-line" id="L47">            &quot;selected_candidate&quot;: self.selected.as_dict(include_events=include_candidate_events),
+</span><span class="file-line" id="L48">            &quot;selected_rank&quot;: selected_rank,
+</span><span class="file-line" id="L49">            &quot;technical_evaluation&quot;: self.technical_evaluation.as_dict(),
+</span><span class="file-line" id="L50">            &quot;warnings&quot;: [
+</span><span class="file-line" id="L51">                *[dict(warning) for warning in self.timeline.warnings],
+</span><span class="file-line" id="L52">                {&quot;code&quot;: &quot;not_expert_validated&quot;, &quot;level&quot;: &quot;warning&quot;,
+</span><span class="file-line" id="L53">                 &quot;message&quot;: &quot;technical constraints do not establish Gezi-opera authenticity&quot;},
+</span><span class="file-line" id="L54">                {&quot;code&quot;: &quot;not_a_learned_model&quot;, &quot;level&quot;: &quot;info&quot;,
+</span><span class="file-line" id="L55">                 &quot;message&quot;: &quot;this release provides a rule candidate baseline and model interface only&quot;},
+</span><span class="file-line" id="L56">            ],
+</span><span class="file-line" id="L57">        }
+</span><span class="file-line" id="L58">
+</span><span class="file-line" id="L59">
+</span><span class="file-line" id="L60">def _normalize_seed(seed: Any) -&gt; int:
+</span><span class="file-line" id="L61">    try:
+</span><span class="file-line" id="L62">        value = int(seed)
+</span><span class="file-line" id="L63">    except (TypeError, ValueError) as exc:
+</span><span class="file-line" id="L64">        raise AccompanimentError(&quot;research seed must be an integer&quot;) from exc
+</span><span class="file-line" id="L65">    if not -(2 ** 63) &lt;= value &lt; 2 ** 63:
+</span><span class="file-line" id="L66">        raise AccompanimentError(&quot;research seed must fit in signed 64-bit range&quot;)
+</span><span class="file-line" id="L67">    return value
+</span><span class="file-line" id="L68">
+</span><span class="file-line" id="L69">
+</span><span class="file-line" id="L70">def _condition_bundle(
+</span><span class="file-line" id="L71">    legacy_timeline: Optional[Sequence[Any]],
+</span><span class="file-line" id="L72">    conditions: Optional[Any],
+</span><span class="file-line" id="L73">    qupai: str,
+</span><span class="file-line" id="L74">) -&gt; ConditionBundle:
+</span><span class="file-line" id="L75">    if isinstance(conditions, ConditionBundle):
+</span><span class="file-line" id="L76">        bundle = conditions
+</span><span class="file-line" id="L77">    elif isinstance(conditions, Mapping):
+</span><span class="file-line" id="L78">        bundle = condition_bundle_from_request(conditions)
+</span><span class="file-line" id="L79">    elif conditions is not None:
+</span><span class="file-line" id="L80">        raise AccompanimentError(&quot;conditions must be a ConditionBundle or mapping&quot;)
+</span><span class="file-line" id="L81">    elif legacy_timeline is not None:
+</span><span class="file-line" id="L82">        bundle = condition_bundle_from_timeline(legacy_timeline, qupai=qupai)
+</span><span class="file-line" id="L83">    else:
+</span><span class="file-line" id="L84">        raise AccompanimentError(&quot;legacy timeline or conditions are required&quot;)
+</span><span class="file-line" id="L85">    if bundle.qupai != &quot;qizi&quot;:
+</span><span class="file-line" id="L86">        raise AccompanimentError(&quot;research_hybrid_v1 currently supports qizi only&quot;)
+</span><span class="file-line" id="L87">    if qupai not in {&quot;qizi&quot;, &quot;xiaodiao&quot;} and qupai != bundle.qupai:
+</span><span class="file-line" id="L88">        raise AccompanimentError(&quot;qupai conflicts with supplied condition bundle&quot;)
+</span><span class="file-line" id="L89">    return bundle
+</span><span class="file-line" id="L90">
+</span><span class="file-line" id="L91">
+</span><span class="file-line" id="L92">def build_research_generation(
+</span><span class="file-line" id="L93">    legacy_timeline: Optional[Sequence[Any]],
+</span><span class="file-line" id="L94">    style: str = &quot;gentle&quot;,
+</span><span class="file-line" id="L95">    seed: int = 0,
+</span><span class="file-line" id="L96">    conditions: Optional[Any] = None,
+</span><span class="file-line" id="L97">    provider: Optional[CandidateProvider] = None,
+</span><span class="file-line" id="L98">    sample_parts: Optional[Iterable[str]] = None,
+</span><span class="file-line" id="L99">    qupai: str = &quot;qizi&quot;,
+</span><span class="file-line" id="L100">) -&gt; ResearchGenerationResult:
+</span><span class="file-line" id="L101">    &quot;&quot;&quot;Build and rank arrangements without rendering audio.&quot;&quot;&quot;
+</span><span class="file-line" id="L102">
+</span><span class="file-line" id="L103">    normalized_seed = _normalize_seed(seed)
+</span><span class="file-line" id="L104">    bundle = _condition_bundle(legacy_timeline, conditions, qupai)
+</span><span class="file-line" id="L105">    timeline = build_opera_timeline(bundle)
+</span><span class="file-line" id="L106">    active_provider = provider or RuleCandidateProvider()
+</span><span class="file-line" id="L107">    candidates = tuple(active_provider.generate(timeline, style, normalized_seed))
+</span><span class="file-line" id="L108">    if not candidates:
+</span><span class="file-line" id="L109">        raise AccompanimentError(&quot;candidate provider returned no arrangements&quot;)
+</span><span class="file-line" id="L110">    evaluations = evaluate_candidates(candidates, timeline, style, sample_parts)
+</span><span class="file-line" id="L111">    selected, ranked = rank_candidates(candidates, evaluations)
+</span><span class="file-line" id="L112">    technical = evaluate_technical_alignment(selected.arrangement, timeline)
+</span><span class="file-line" id="L113">    return ResearchGenerationResult(selected, ranked, timeline, technical,
+</span><span class="file-line" id="L114">                                    normalized_seed, active_provider.provider_name)
+</span><span class="file-line" id="L115">
+</span><span class="file-line" id="L116">
+</span><span class="file-line" id="L117">def arrange_research_hybrid(
+</span><span class="file-line" id="L118">    legacy_timeline: Optional[Sequence[Any]],
+</span><span class="file-line" id="L119">    qupai: str = &quot;qizi&quot;,
+</span><span class="file-line" id="L120">    style: str = &quot;gentle&quot;,
+</span><span class="file-line" id="L121">    seed: int = 0,
+</span><span class="file-line" id="L122">    conditions: Optional[Any] = None,
+</span><span class="file-line" id="L123">    sample_parts: Optional[Iterable[str]] = None,
+</span><span class="file-line" id="L124">):
+</span><span class="file-line" id="L125">    &quot;&quot;&quot;Return the selected Arrangement and versioned, explainable metadata.&quot;&quot;&quot;
+</span><span class="file-line" id="L126">
+</span><span class="file-line" id="L127">    result = build_research_generation(legacy_timeline, style, seed, conditions,
+</span><span class="file-line" id="L128">                                       sample_parts=sample_parts, qupai=qupai)
+</span><span class="file-line" id="L129">    metadata = result.metadata()
+</span><span class="file-line" id="L130">    result.selected.arrangement.warnings = [warning[&quot;message&quot;] for warning in metadata[&quot;warnings&quot;]]
+</span><span class="file-line" id="L131">    return result.selected.arrangement, metadata
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：web_flask/accompaniment/hybrid.py（路径已脱敏）","sha256":"bbe9905714278ce769bf9c8ee4b70642b39bac0827351613fb19c9e6960af86e","text":"\"\"\"Orchestration entrypoint for the research_hybrid_v1 profile.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom typing import Any, Dict, Iterable, Mapping, Optional, Sequence, Tuple\n\nfrom .candidates import ArrangementCandidate, CandidateProvider, RuleCandidateProvider\nfrom .conditions import ConditionBundle, condition_bundle_from_request, condition_bundle_from_timeline\nfrom .constraints import CandidateEvaluation, evaluate_candidates, rank_candidates\nfrom .evaluation import TechnicalEvaluation, evaluate_technical_alignment\nfrom .pipeline import AccompanimentError\nfrom .structure import OperaTimeline, build_opera_timeline\n\n\nRESEARCH_PROFILE = \"research_hybrid_v1\"\nRESEARCH_SCHEMA_VERSION = 1\nRESEARCH_IMPLEMENTATION_VERSION = \"research_hybrid_v1.0\"\n\n\n@dataclass(frozen=True)\nclass ResearchGenerationResult:\n    selected: ArrangementCandidate\n    evaluations: Tuple[CandidateEvaluation, ...]\n    timeline: OperaTimeline\n    technical_evaluation: TechnicalEvaluation\n    seed: int\n    provider_name: str\n\n    def metadata(self, include_timeline: bool = True, include_candidate_events: bool = False) -\u003e Dict[str, Any]:\n        ranked = list(self.evaluations)\n        selected_rank = next(index for index, item in enumerate(ranked)\n                             if item.candidate_id == self.selected.candidate_id) + 1\n        return {\n            \"schema_version\": RESEARCH_SCHEMA_VERSION,\n            \"profile\": RESEARCH_PROFILE,\n            \"implementation_version\": RESEARCH_IMPLEMENTATION_VERSION,\n            \"review_status\": \"unreviewed\",\n            \"expert_review_status\": \"not_requested\",\n            \"claims_status\": \"technical_framework_only\",\n            \"seed\": self.seed,\n            \"provider\": self.provider_name,\n            \"condition_summary\": self.timeline.conditions.summary(),\n            \"structure\": self.timeline.as_dict(include_units=False) if include_timeline else None,\n            \"candidate_count\": len(ranked),\n            \"candidate_ranking\": [evaluation.as_dict() for evaluation in ranked],\n            \"selected_candidate\": self.selected.as_dict(include_events=include_candidate_events),\n            \"selected_rank\": selected_rank,\n            \"technical_evaluation\": self.technical_evaluation.as_dict(),\n            \"warnings\": [\n                *[dict(warning) for warning in self.timeline.warnings],\n                {\"code\": \"not_expert_validated\", \"level\": \"warning\",\n                 \"message\": \"technical constraints do not establish Gezi-opera authenticity\"},\n                {\"code\": \"not_a_learned_model\", \"level\": \"info\",\n                 \"message\": \"this release provides a rule candidate baseline and model interface only\"},\n            ],\n        }\n\n\ndef _normalize_seed(seed: Any) -\u003e int:\n    try:\n        value = int(seed)\n    except (TypeError, ValueError) as exc:\n        raise AccompanimentError(\"research seed must be an integer\") from exc\n    if not -(2 ** 63) \u003c= value \u003c 2 ** 63:\n        raise AccompanimentError(\"research seed must fit in signed 64-bit range\")\n    return value\n\n\ndef _condition_bundle(\n    legacy_timeline: Optional[Sequence[Any]],\n    conditions: Optional[Any],\n    qupai: str,\n) -\u003e ConditionBundle:\n    if isinstance(conditions, ConditionBundle):\n        bundle = conditions\n    elif isinstance(conditions, Mapping):\n        bundle = condition_bundle_from_request(conditions)\n    elif conditions is not None:\n        raise AccompanimentError(\"conditions must be a ConditionBundle or mapping\")\n    elif legacy_timeline is not None:\n        bundle = condition_bundle_from_timeline(legacy_timeline, qupai=qupai)\n    else:\n        raise AccompanimentError(\"legacy timeline or conditions are required\")\n    if bundle.qupai != \"qizi\":\n        raise AccompanimentError(\"research_hybrid_v1 currently supports qizi only\")\n    if qupai not in {\"qizi\", \"xiaodiao\"} and qupai != bundle.qupai:\n        raise AccompanimentError(\"qupai conflicts with supplied condition bundle\")\n    return bundle\n\n\ndef build_research_generation(\n    legacy_timeline: Optional[Sequence[Any]],\n    style: str = \"gentle\",\n    seed: int = 0,\n    conditions: Optional[Any] = None,\n    provider: Optional[CandidateProvider] = None,\n    sample_parts: Optional[Iterable[str]] = None,\n    qupai: str = \"qizi\",\n) -\u003e ResearchGenerationResult:\n    \"\"\"Build and rank arrangements without rendering audio.\"\"\"\n\n    normalized_seed = _normalize_seed(seed)\n    bundle = _condition_bundle(legacy_timeline, conditions, qupai)\n    timeline = build_opera_timeline(bundle)\n    active_provider = provider or RuleCandidateProvider()\n    candidates = tuple(active_provider.generate(timeline, style, normalized_seed))\n    if not candidates:\n        raise AccompanimentError(\"candidate provider returned no arrangements\")\n    evaluations = evaluate_candidates(candidates, timeline, style, sample_parts)\n    selected, ranked = rank_candidates(candidates, evaluations)\n    technical = evaluate_technical_alignment(selected.arrangement, timeline)\n    return ResearchGenerationResult(selected, ranked, timeline, technical,\n                                    normalized_seed, active_provider.provider_name)\n\n\ndef arrange_research_hybrid(\n    legacy_timeline: Optional[Sequence[Any]],\n    qupai: str = \"qizi\",\n    style: str = \"gentle\",\n    seed: int = 0,\n    conditions: Optional[Any] = None,\n    sample_parts: Optional[Iterable[str]] = None,\n):\n    \"\"\"Return the selected Arrangement and versioned, explainable metadata.\"\"\"\n\n    result = build_research_generation(legacy_timeline, style, seed, conditions,\n                                       sample_parts=sample_parts, qupai=qupai)\n    metadata = result.metadata()\n    result.selected.arrangement.warnings = [warning[\"message\"] for warning in metadata[\"warnings\"]]\n    return result.selected.arrangement, metadata\n"}</script><script src="../../src/data-reader.js"></script></body></html>

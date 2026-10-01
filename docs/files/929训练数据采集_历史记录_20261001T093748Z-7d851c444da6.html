@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>929训练数据采集_历史记录_20261001T093748Z.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>929训练数据采集_历史记录_20261001T093748Z.md</h1><p>Markdown 文档 · 112,192 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#929">929训练数据采集：歌仔戏配对数据与训练输入核验</a><ul>
+<li><a href="#1">1. 目标、路线与边界</a><ul>
+<li><a href="#11">1.1 固定交付项与完成条件（包含规模化建集）</a></li>
+</ul>
+</li>
+<li><a href="#2">2. 工作区与责任</a></li>
+<li><a href="#3">3. 数据目录、编号与命名</a></li>
+<li><a href="#4">4. 当前状态与阶段门槛</a></li>
+<li><a href="#5">5. 首轮流程验证录音（尚非规模化训练数据）</a></li>
+<li><a href="#6">6. 分离模型与训练入口：只读核查</a></li>
+<li><a href="#7">7. 本轮完成项、下一步与变更记录</a><ul>
+<li><a href="#2026-09-30">2026-09-30 云端分离候选准备（尚未执行分离）</a></li>
+<li><a href="#2026-09-30-r0001">2026-09-30 R0001 完整录音双方案试分离（已比较，质量验收待定）</a></li>
+<li><a href="#2026-09-30_1">2026-09-30 用户比较意见与下一关口</a></li>
+<li><a href="#2026-09-30_2">2026-09-30 人声伪影反馈与临时质量门槛</a></li>
+<li><a href="#2026-09-30-anyaccomp">2026-09-30 伴奏听验反馈与 AnyAccomp 旋律瓶颈核查</a></li>
+<li><a href="#2026-09-30-r0001-r0002r0003-demucs">2026-09-30 R0001 听验结论与 R0002/R0003 Demucs 完整分离</a></li>
+<li><a href="#2026-09-30_3">2026-09-30 三份分离轨听验通过，进入结构分段边界准备</a></li>
+<li><a href="#2026-09-30_4">2026-09-30 伴奏区间反馈与首轮完整候选片段</a></li>
+<li><a href="#2026-09-30-r0001_1">2026-09-30 R0001 前两个片段边界确认与配对保存</a></li>
+<li><a href="#2026-09-30-r0001-r0002r0003">2026-09-30 R0001 分段全部确认与 R0002/R0003 候选准备</a></li>
+<li><a href="#2026-10-01-13">2026-10-01 全部候选边界通过与 13 对片段保存</a></li>
+<li><a href="#2026-10-01-anyaccomp">2026-10-01 AnyAccomp 特征核验代码提案（未落地、未执行）</a></li>
+<li><a href="#2026-10-01">2026-10-01 特征核验提案确认与环境准备</a></li>
+<li><a href="#2026-10-01-13-anyaccomp">2026-10-01 13 对 AnyAccomp 特征核验完成</a></li>
+<li><a href="#2026-10-01-fm">2026-10-01 真实 FM 输入适配核查与代码提案（待确认）</a></li>
+<li><a href="#2026-10-01-fm_1">2026-10-01 用户确认 FM 提案与真实输入核验完成</a></li>
+<li><a href="#_1">当前流程中工具与模型的作用（逐步讲解依据）</a></li>
+<li><a href="#2026-10-01_1">2026-10-01 声码器目标重建核验提案（具体代码待确认）</a></li>
+<li><a href="#2026-10-01-mel">2026-10-01 声码器核验执行完成，原始 mel 重建存在尺度异常</a></li>
+<li><a href="#2026-10-01-z-score">2026-10-01 归一化推断修正与 z-score 对照提案（未执行）</a></li>
+<li><a href="#2026-10-01-z-score_1">2026-10-01 z-score 声码器对照完成，待用户听验</a></li>
+<li><a href="#2026-10-01_2">2026-10-01 标准化重建听验反馈与时间网格说明</a></li>
+<li><a href="#2026-10-01-fm-diff">2026-10-01 标准化 FM 输入复核提案（具体 diff 待确认）</a></li>
+<li><a href="#2026-10-01-fm_2">2026-10-01 标准化 FM 输入复核执行完成</a></li>
+<li><a href="#2026-10-01_3">2026-10-01 声码器时间与边界适配提案（具体核心代码待确认）</a></li>
+<li><a href="#2026-10-01_4">2026-10-01 声码器时间与边界适配执行完成，待修正输出听验</a></li>
+<li><a href="#2026-10-01_5">2026-10-01 声码器时间/边界适配听验通过</a></li>
+<li><a href="#2026-10-01-fm_3">2026-10-01 变长 FM 随机提示适配提案（具体核心代码待确认）</a></li>
+<li><a href="#2026-10-01-fm_4">2026-10-01 变长 FM 提示适配执行与后核验通过</a></li>
+<li><a href="#2026-10-01_6">2026-10-01 小规模流程有限验收提案（待用户确认）</a></li>
+<li><a href="#2026-10-01_7">2026-10-01 用户确认小规模有限验收，准备本地记录同步</a></li>
+<li><a href="#2026-10-01_8">2026-10-01 规模化首批来源只读核查与具体提案（待确认）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\archive\929训练数据采集_历史记录_20261001T093748Z.md</p><p>SHA-256：bbe987bd8a1289d3a16b4587460588edb73ff63249f957dd7d1f9f60faa58e98</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="929">929训练数据采集：歌仔戏配对数据与训练输入核验</h1>
+<p>更新日期：2026-10-01。本文是<strong>本次数据实验的进度文档与最终数据交付记录</strong>；每结束一个有独立产物的阶段，就更新实际结果、证据、用户判断、遗留问题和下一步，并同步本地与云端副本。状态以实际证据为准，不把已下载录音或计划写成可训练样本。</p>
+<p>模型、工具与技术在本项目中的职责、输入输出、当前使用状态及验证范围，单独整理于<a href="929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">929 项目模型与技术说明</a>，方便回看；本进度文档继续保存实际执行证据。</p>
+<p><strong>2026-10-01 用户重申的推进边界</strong>：规模化建集原已列入 929 的目标与阶段表；用户本次明确“包含规模化建集”，是重申原范围，不是新增任务。929 的范围固定为“小规模流程验证 → 按明确规模建集 → 质量与训练输入核验 → 数据划分和交付”，完成后报告结论并停止。正式微调、长期训练、生成效果研究和其他实验不自动纳入。扩大建集前仍需完成小规模验收并确定来源清单、目标数量或合格配对时长；此次确认范围不等于已有明确批量任务清单。下文既有“下一步”描述是候选待办，不表示用户已批准立即执行新增实验代码。</p>
+<p><strong>有限验收与停止规则</strong>：先汇总已有分离听验、结构边界、配对可追溯性、特征/时间网格、FM 主损失及提示/补齐检查、声码器听验的证据；对剩余项明确标为“通过 / 未验证 / 本轮不做”，不为消除所有不确定性不断追加研究。形成剩余必需检查的固定清单、明确本轮采用的输入规则及未实现的论文配方；完成已确认的验收项和文档交付后，报告 929 结论并停止。不能把遗留限制写成通过，也不能把保留限制当作无限扩展任务的理由。完整作者配方复现不是默认验收要求。若确需新增实验代码，仍先展示核心 diff、解释并等待确认。</p>
+<p><strong>明确的终点</strong>：交付达到约定规模、来源可追溯、经质量与配对审核及约定训练输入核验的歌仔戏人声—伴奏数据集，同时交付训练/验证/测试清单、输入规格、处理与审核记录、统计及遗留限制说明，并由用户验收。当前三份录音和 13 对片段是流程验证材料，不能作为整个 929 已完成的依据。具体建集数量或合格时长尚未确定；确定后写入记录，达到目标后不自动提高规模或增加新研究。</p>
+<h2 id="1">1. 目标、路线与边界</h2>
+<p>目标是先用少量录音验证数据构建全流程，再扩大音频收集与处理，最终获得<strong>足量、来源可追溯、质量合格、时间对齐，并经 AnyAccomp 实际训练输入流程核验可用</strong>的歌仔戏人声—伴奏配对训练数据。只有孤立人声不能直接提供对应的戏曲配器、节奏和过门监督信号。</p>
+<p><strong>小规模流程验证</strong>：少量音频收集与下载 → 保存完整录音 → 分离 → 质量与对齐核验 → 按戏曲结构同步分段 → 保存配对唱段 → 训练输入兼容性核验。</p>
+<p><strong>通过后规模化建集</strong>：扩大音频收集与下载 → 对每份完整录音执行已验证的分离、核验、同步分段和配对流程 → 按训练输入规则组织并复核全部样本 → 数据划分与交付。小规模录音只是试流程的材料，不是本实验预定的最终数据规模。</p>
+<p>只有小规模链路的分离质量、时间对齐、结构分段、配对关系与训练输入兼容性均通过，并由用户确认后，才按确定的来源清单和处理规模开展批量数据构建。听音大模型不是必需前置。完整录音和戏曲结构性长唱段始终保留；论文报告的训练片段范围不作为本实验的硬性分段上限。能否直接训练长片段，要由实际训练实现验证。</p>
+<p><strong>实验边界</strong>：本实验包括伴奏目标能否被训练流程读取、对齐并用于计算损失的兼容性验证，必要时进行一个批次/一步的临时冒烟测试；这只是数据可用性的证据，不作为模型训练成果。正式微调策略、长时间训练、生成效果评价和训练报告另开实验，不在本文中宣称完成。</p>
+<h3 id="11">1.1 固定交付项与完成条件（包含规模化建集）</h3>
+<table>
+<thead>
+<tr>
+<th>交付项</th>
+<th>929 的完成条件</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小规模流程验收</td>
+<td>汇总同一批录音的分离听验、结构分段、完整覆盖、配对与约定训练输入证据；明确限制并经用户确认可复用</td>
+<td>用户已确认有限验收通过；范围为实验 FM 主损失接口及已测解码，不是完整作者训练配方</td>
+</tr>
+<tr>
+<td>建集范围</td>
+<td>明确来源清单、目标录音数量或合格配对总时长、质量门槛与必要资源；数量/时长以最终合格数据统计为准</td>
+<td>尚待确定；不把“越多越好”作为终点</td>
+</tr>
+<tr>
+<td>规模化配对音频</td>
+<td>按确定范围收集、完整保存、分离、审核和同步分段；合格数据达到约定规模，异常样本剔除或标记可用范围</td>
+<td>尚未开始</td>
+</tr>
+<tr>
+<td>可追溯清单与审核</td>
+<td>每对能回溯原录音、来源、分离版本、共同边界、文件哈希和审核状态；保留不通过样本的原因</td>
+<td>三份录音已有清单，规模化部分待执行</td>
+</tr>
+<tr>
+<td>训练输入规格与验证</td>
+<td>固定采样率/声道、旋律条件、目标尺度与网格、变长补齐/掩码等规则，记录约定兼容性检查；未复现的作者配方明确列为限制</td>
+<td>当前主损失等局部核验通过，整体规则与验收待汇总</td>
+</tr>
+<tr>
+<td>数据划分与最终交付</td>
+<td>按原始录音/演出等分组划分训练、验证、测试，避免同源片段跨集合泄漏；交付清单、数量/时长统计、处理证据、输入说明及实验结论</td>
+<td>尚未执行</td>
+</tr>
+</tbody>
+</table>
+<p><strong>停止条件</strong>：以上已确认交付项完成并经用户验收，即结束 929；后续新增来源、扩大数量、改变处理方法、实现完整论文配方或正式训练另立任务。不以模型生成效果好坏作为本次数据实验的完成标准。为完成固定验收所需的补充检查，应先说明具体缺口、输入输出与完成条件，不无限追加试验。</p>
+<p>本阶段的优先目标是<strong>内部数据与训练输入技术试验</strong>。来源与权利状态仍逐件记录为“待核实”，但不作为当前小规模数据准备的阻塞项；不把这些文件标为已授权、可公开发布或可用于论文交付。若进入论文发表或数据共享阶段，使用范围和权利由用户与老师核实，并对正式数据重做来源、质量、划分和实验记录。</p>
+<h2 id="2">2. 工作区与责任</h2>
+<table>
+<thead>
+<tr>
+<th>工作区</th>
+<th>路径</th>
+<th>责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地 Codex</td>
+<td><code>$PROJECT_ROOT\anyaccomp_gezi_finetune</code></td>
+<td>来源筛选、授权状态记录、听音/边界清单、配置与报告整理；只保留必要试听样本，不重复存放大型权重。</td>
+</tr>
+<tr>
+<td>云服务器上的 Codex</td>
+<td><code>$CLOUD_FINETUNE_ROOT</code>（<code>lab-4090</code>）</td>
+<td>经确认的完整录音、分离轨、配对片段、训练输入核验及其临时冒烟日志；准备耗时 GPU 分离的启动与监控命令。</td>
+</tr>
+<tr>
+<td>用户</td>
+<td>两端结果的判断者</td>
+<td>确认收录范围、亲自听验分离结果和分段边界、确认训练输入可用性的验收证据，；本次云端耗时 GPU 任务由 Codex 执行，开始与结束均告知用户。</td>
+</tr>
+</tbody>
+</table>
+<p>两端目录<strong>不自动同步</strong>。同步时先检查目标文件是否已存在，明确传输清单与方向，再核对 SHA-256；不覆盖未核对的记录。本文两端使用同名副本，任何实质决策更新均写明日期和来源，避免分叉。</p>
+<p><strong>进度更新规则</strong>：阶段结束后在第 4 节更新状态与验收证据，在第 7 节记录实际产物、与你的判断及遗留问题，再核对两端文档哈希。未完成的阶段保留“待执行/待核验”；“三份试验录音下载成功”“小规模流程跑通”和“规模化训练数据完成”是三个不同状态。数据实验的最终验收是“经过规模化处理的可追溯配对数据 + 质量/对齐审核 + 训练输入兼容性证据 + 数据交付清单”，不是正式模型效果。</p>
+<h2 id="3">3. 数据目录、编号与命名</h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>路径或命名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始录音</td>
+<td><code>data/raw/R0001/原始文件名.wav</code></td>
+<td>保留下载文件原名及内容；格式可不是 WAV，按真实后缀保存。现有 <code>data/raw/qizi_demo_21.wav</code> 是旧路径，不因本文而移动或改名。</td>
+</tr>
+<tr>
+<td>完整分离轨</td>
+<td><code>data/separated/R0001/SEP01_vocal.wav</code>、<code>SEP01_accompaniment.wav</code></td>
+<td><code>SEP01</code> 对应一次固定模型、权重和配置的分离结果；不同试验用新编号。</td>
+</tr>
+<tr>
+<td>配对唱段</td>
+<td><code>data/clips/R0001/SEP01/SEG0001_vocal.wav</code>、<code>SEG0001_accompaniment.wav</code></td>
+<td>两轨来自同一次分离、相同的原录音起止位置；时间以清单为准，不靠文件名猜测。</td>
+</tr>
+<tr>
+<td>数据清单</td>
+<td><code>data/manifests/recordings.csv</code>、<code>separations.csv</code>、<code>segments.csv</code>、<code>pairs.csv</code></td>
+<td><code>recordings.csv</code> 已记录本轮三份原音；其余清单分别用于后续分离版本、边界/歌词/审核状态和最终配对关系。未产生实际数据时不填造记录。</td>
+</tr>
+<tr>
+<td>其他产物</td>
+<td><code>models/</code>、<code>environments/</code>、<code>configs/</code>、<code>scripts/</code>、<code>runs/</code>、<code>reports/</code></td>
+<td>模型、环境信息、配置、脚本、运行记录和阶段报告分别归档，不混入原项目。</td>
+</tr>
+</tbody>
+</table>
+<p><code>R0001</code> 是正式收录录音编号，<code>SEP01</code> 是该录音的一次分离编号，<code>SEG0001</code> 是确认边界后的唱段编号。编号一经分配不复用；来源、分离版本或边界变更时建立新记录，不静默覆盖旧产物。候选来源另用 <code>C001</code> 等编号，<strong>候选编号不代表已收录、已授权或已分段</strong>。歌词只记录有依据且经过核对的内容；无法辨识处标记“听不清/待核”，不猜填。</p>
+<h2 id="4">4. 当前状态与阶段门槛</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>当前状态（2026-10-01）</th>
+<th>进入下一阶段的证据与用户关口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小规模音频来源与下载</td>
+<td><strong>仅下载检查通过</strong>：<code>R0001–R0003</code> 已下载，详情见第 5 节及 <code>recordings.csv</code>；<strong>全流程尚未跑通</strong></td>
+<td>三条官方直链、文件格式、大小、时长、完整解码与 SHA-256 已记录；权利状态保持“待核实”，不阻塞本次内部技术试验，也不视为论文/共享授权。</td>
+</tr>
+<tr>
+<td>小规模完整录音保存</td>
+<td><strong>仅保存检查通过</strong>：三份完整录音保存在云端 <code>data/raw/R0001–R0003/</code></td>
+<td>原有旧文件未移动或覆盖；<code>R0001</code> 与旧示范录音哈希一致；三份录音互不重复。长录音不为分离而预先按固定秒数切段。</td>
+</tr>
+<tr>
+<td>分离模型小规模比较</td>
+<td><strong>R0001 两方案比较已完成；R0002/R0003 的 <code>htdemucs_ft</code> 完整分离已完成</strong></td>
+<td>R0001 用户认为 Demucs 更好；R0002/R0003 沿用相同模型与参数，保存版本、权重来源、日志和完整双轨；三份 Demucs 双轨均经用户听验通过，作为后续小规模流程验证输入。GPU 任务按本次授权由云端 Codex 执行并通知用户。</td>
+</tr>
+<tr>
+<td>分离质量与时间对齐</td>
+<td><strong>三份 Demucs 双轨均经用户听验通过；基础技术检查通过，细部对齐仍待核验</strong></td>
+<td>R0001 已明确报告伪影但唱腔主体完整；R0002/R0003 用户按要求的质量标准答复“都通过”，没有单独的伪影时间点记录。检查起点、采样率、帧数、整体延迟和局部漂移；已有近似检查不等于细部对齐证明。</td>
+</tr>
+<tr>
+<td>按戏曲结构同步分段</td>
+<td><strong>三份录音共 13 个片段边界均经用户确认</strong></td>
+<td>R0001 四段、R0002 五段、R0003 四段；片头伴奏、内部过门与尾奏保留。片段未按固定 30 秒上限截断。</td>
+</tr>
+<tr>
+<td>保存配对唱段</td>
+<td><strong>三份录音的 13 对 WAV 已保存并登记；实验 FM 主损失输入接口有限验收通过</strong></td>
+<td>每对同源同样本边界，回溯至原音及分离版本；每份录音的分段连续覆盖完整双轨，重新拼接后逐样本一致。原音和完整分离轨保留。</td>
+</tr>
+<tr>
+<td>训练样本兼容性</td>
+<td><strong>有限验收通过：实验 z-score FM 主损失、逐条有效长度提示及七种混合补齐检查；三段声码器时间/长度技术核验与听验通过；完整作者配方、优化器及恢复训练未验证</strong></td>
+<td>核实实际训练入口、采样率/声道、伴奏目标特征、变长批处理/补齐/有效长度掩码；短、中、长样本及混合长度批次须成功加载并与对应人声对齐。使用真实训练接口核验前向损失和反向传播；必要时仅做一个批次/一步的临时参数更新及检查点重载，验证输入确实可用于训练，产物不作为正式训练模型。不得出现未记录的静默截断。若缺少训练入口或需修改实验代码，先单独说明逻辑、展示核心 diff 并按用户确认流程实施。</td>
+</tr>
+<tr>
+<td>小规模全流程验收</td>
+<td><strong>用户已确认有限验收通过；可进入来源与规模规划</strong></td>
+<td>汇总同一批试验录音的分离听验、时间对齐、结构分段、配对可追溯性和训练输入兼容性证据；由用户确认流程可复用。若正式来源的录音明显长于试验录音，批量处理前还要补验代表性长录音的分离稳定性。任一关键环节未通过，先修正并重验，不直接批量下载或处理。</td>
+</tr>
+<tr>
+<td>规模化音频收集与处理</td>
+<td><strong>待执行，属于本数据实验主要工作</strong></td>
+<td>流程验收后，由用户确认扩大收集的来源清单和规模；批量保存完整录音，并逐批执行已验证的分离、对齐核验、同步分段、配对和训练输入检查。逐件留存来源/哈希/处理版本/时间戳，每批记录通过、局部可用、剔除数量与原因；异常录音不混入训练集。耗时 GPU 批量任务按当次授权由云端 Codex 执行并通知用户。</td>
+</tr>
+<tr>
+<td>数据划分与交付</td>
+<td><strong>待执行，属于本数据实验终点</strong></td>
+<td>对规模化产出的合格配对样本按原始录音/演出等分组准备训练、验证、测试清单，避免同源泄漏；核对样本数、总时长、人声/伴奏文件、时间戳、审核状态和输入规格，交付可复现的数据清单及本进度文档。不能只交付 <code>R0001–R0003</code> 的试验结果。<strong>正式微调与效果评价由另一实验承担</strong>。</td>
+</tr>
+</tbody>
+</table>
+<p>没有真实独立人声/伴奏轨作为参照时，不宣称有可靠的参考型分离质量分数。两轨长度相同也不等于已经证明时间对齐。一个批次的兼容性冒烟成功只证明数据与该训练接口可衔接，不证明模型已学到合适的歌仔戏伴奏。</p>
+<h2 id="5">5. 首轮流程验证录音（尚非规模化训练数据）</h2>
+<p>优先少量、官方、直接提供下载的录音。以下页面和直链于 2026-09-30 核查，并已将三份完整 WAV 小规模下载到云端。基金会虽然公开表示曲调音档可免费下载，但其<a href="https://twoperapf.org.tw/copyright">著作权声明</a>并未给出本实验所需训练使用范围的明确许可；本轮只把它们作为<strong>权利状态待核实的内部技术试验材料</strong>，不将其称为已授权的正式论文数据。没有进行批量抓取，也未绕过访问限制。</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>内容与来源</th>
+<th>官方页面 / 直接下载</th>
+<th>核查结果与下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C001 → R0001</code></td>
+<td>七字調示範音檔；旧文件 <code>data/raw/qizi_demo_21.wav</code> 仍保留</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/21">资源页</a> / <a href="https://twoperapf.org.tw/resource/download/21">WAV 直链</a></td>
+<td>新下载的 <code>data/raw/R0001/2.七字調-示範音檔.wav</code> 与旧示范录音 SHA-256 相同；92.586667 秒。旧 21 秒裁切不是本路线的正式分段样本。</td>
+</tr>
+<tr>
+<td><code>C002 → R0002</code></td>
+<td>雜唸調示範音檔；官网列作詞/編腔劉秀庭/周以謙、編曲周以謙、演唱龔俊杰，并提供歌词</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/24">资源页</a> / <a href="https://twoperapf.org.tw/resource/download/24">WAV 直链</a></td>
+<td>已下载到 <code>data/raw/R0002/5.雜唸調-示範音檔.wav</code>；108.837125 秒，完整解码通过；尚未听验。</td>
+</tr>
+<tr>
+<td><code>C003 → R0003</code></td>
+<td>江湖調示範音檔；官网列編曲周以謙、演唱龔俊杰，并提供歌词</td>
+<td><a href="https://twoperapf.org.tw/resource/demo-audio/25">资源页</a> / <a href="https://twoperapf.org.tw/resource/download/25">WAV 直链</a></td>
+<td>已下载到 <code>data/raw/R0003/6.江湖調-示範音檔.wav</code>；80.804854 秒，完整解码通过；尚未听验。</td>
+</tr>
+</tbody>
+</table>
+<p>三份音频均经 <code>ffprobe</code> 检查为 48 kHz、双声道、24-bit PCM WAV，<code>ffmpeg</code> 全文件解码通过；大小与 SHA-256 详见 <code>data/manifests/recordings.csv</code>。<code>R0002/R0003</code> 来自同一来源与演唱者，适合验证流程，但不能代表歌仔戏风格、演员与录音条件的充分多样性；也不能因为官网另有同曲名伴奏音档，就假定它与示范唱段已严格对齐。<strong>下一步必须用这些录音跑完整条数据链路；通过后才扩大下载和处理，形成训练数据</strong>。</p>
+<h2 id="6">6. 分离模型与训练入口：只读核查</h2>
+<ul>
+<li><strong>论文关联事实</strong>：<a href="https://arxiv.org/html/2509.14052v1">AnyAccomp 论文</a>描述从歌曲构建配对训练数据；其所关联的<a href="https://arxiv.org/html/2505.09325v1#S3.SS1.SSS1">SingNet 论文 §3.1.1</a>写明使用 Solovyev 等人的开源分离库和引用 Fabbro 等人的 MDX23 预训练模型。<a href="https://github.com/ZFTurbo/MVSEP-MDX23-music-separation-model">Solovyev 维护的 MVSEP-MDX23 仓库</a>是可核查的实现候选，但<strong>尚未证明 SingNet 使用了该仓库的哪个提交、精确权重和配置</strong>，不能把某个同名检查点冒充作者原版。</li>
+<li><strong>比较候选</strong>：<a href="https://github.com/facebookresearch/demucs">Demucs 官方仓库</a>提供 <code>htdemucs_ft</code>；它可接收整段录音并在内部处理窗口，不要求先按戏曲唱句切段。它只是比较对象，最终选择要看同源试听和对齐核验。</li>
+<li><strong>云端只读环境快照（2026-09-30）</strong>：服务器有 8 张 RTX 4090（单卡报告 24564 MiB 显存），实验目录位于 <code>$CLOUD_HOME</code>，<code>/data</code> 当时剩余约 864 GiB、使用率约 97%。当前命令路径未找到 <code>demucs</code>，本实验 <code>models/</code> 中未见分离模型权重；现有 <code>qwen_audio</code> 环境不作为本次分离环境复用。后续应在本实验目录准备隔离环境并先检查模型来源、版本、空间与输出路径，当时计划交由用户启动 GPU 分离；本轮授权已变更，实际由云端 Codex 执行。</li>
+<li><strong>训练输入核验的现实条件</strong>：2026-09-30 只读查看 <a href="https://github.com/AmphionTeam/AnyAccomp">AnyAccomp 官方仓库</a>当前文件树和 README，可见推理脚本、配置和模型定义，但<strong>未见完整公开的训练入口与数据加载器</strong>。推理可运行不等于数据能被训练流程接受。本数据实验必须解决或明确这一接口；若需补建最小训练数据加载/冒烟链路，先解释拟修改的实验逻辑与核心 diff，按用户确认流程实施。正式训练系统和长任务仍属下一实验。</li>
+</ul>
+<h2 id="7">7. 本轮完成项、下一步与变更记录</h2>
+<p><strong>本轮已完成</strong>：三份完整录音的来源和下载核验；R0001 两方案比较后选择 Demucs；三份 Demucs 完整双轨和全部 13 个片段边界均经用户听音通过。配对 WAV、来源/分离/边界/哈希清单已保存；三份录音各自的分段重拼与完整分离轨逐样本一致。<strong>实验 FM 主损失输入接口及小规模流程有限验收已由用户确认；未启动正式训练，未扩大下载；这 13 对仍是小规模流程验证材料</strong>。</p>
+<p><strong>下一步关口</strong>：用户已确认本文末尾的小规模流程有限验收范围。采用已核验的实验输入规则，CFG 条件丢弃概率保留 0.2；REPA/MERT 辅助损失不纳入本轮，完整作者训练配方、优化器及恢复训练保持未验证。13 对配对清单已登记为 <code>passed_experimental_fm_main_loss_interface</code>，不能解释为完整训练器或微调效果通过。下一步提出明确的规模化来源清单、数量或合格配对时长、质量门槛及资源预算；目标明确后开展批量处理。本轮先交付本地记录同步材料，没有扩大下载或启动 GPU。正式微调与生成效果评价另开实验，规模化数据核验、划分和交付完成并验收后结束 929。</p>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>决策/变更</th>
+<th>证据与状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-09-30</td>
+<td>确认从收集与下载开始、完整录音先分离、用户核验通过后再同步分段；两端同名实验文档；长唱段不预设固定 30 秒上限</td>
+<td>已确认的路线；后续分离、核验、分段和训练输入兼容性核验仍待执行。</td>
+</tr>
+<tr>
+<td>2026-09-30</td>
+<td>用户确认授权问题暂不阻塞当前微调技术试验；论文阶段另行寻求可授权数据源</td>
+<td>三份录音已小规模下载并登记，权利状态仍为 <code>unverified</code>；不据此认定公开使用许可。</td>
+</tr>
+<tr>
+<td>2026-09-30</td>
+<td>用户明确本文是数据实验的阶段进度文档；“伴奏能否进入训练流程”仍在本实验，正式模型训练另开实验</td>
+<td>训练输入兼容性属于本实验的前置验收，不把最小冒烟测试误写为正式训练。</td>
+</tr>
+<tr>
+<td>2026-09-30</td>
+<td>用户明确 <code>R0001–R0003</code> 仅用于验证完整数据流程；通过后还需扩大下载与处理规模，产出训练数据</td>
+<td>增加“小规模全流程验收 → 规模化收集与处理 → 数据划分交付”的阶段门槛；当前仅完成三份录音的下载与保存，不能宣称数据实验结束。</td>
+</tr>
+<tr>
+<td>2026-10-01</td>
+<td>用户要求限定 929 边界，并重申原计划已包含规模化建集</td>
+<td>固定终点为达到约定规模的合格配对数据、输入核验、划分和交付；完成并验收后停止。具体规模与来源待确定，正式微调和生成效果评价另开实验。本轮只更新文档，没有启动新任务。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2026-09-30">2026-09-30 云端分离候选准备（尚未执行分离）</h3>
+<ul>
+<li>已在本实验目录建立独立 <code>environments/separation_929</code>，未复用 Qwen 环境；Python 3.10、PyTorch/torchaudio <code>2.3.1+cu121</code>、Demucs <code>4.0.1</code>、ONNX Runtime GPU <code>1.18.0</code> CUDA12/cuDNN8 构建。包版本、安装日志、CPU 检查和系统快照在 <code>runs/separation_prepare/</code>。</li>
+<li>MDX23 公开候选固定为 <code>ZFTurbo/MVSEP-MDX23-music-separation-model@765bd312ff0b4213d4ad48ab554a0fc11389633d</code>；Demucs 固定为 <code>facebookresearch/demucs@ef66d254cd6d558e207eeff2c4b8d053db2e77dd</code>（<code>v4.0.1</code>）。<strong>未确定 SingNet 的精确仓库提交、权重或配置，不把本候选称为作者精确版本。</strong></li>
+<li>9 个权重文件已下载并逐个记录来源 URL、大小、完整 SHA-256，Demucs 文件还核对了上游文件名中的哈希前缀；记录见 <code>configs/separation/weights_verified.csv</code>。MDX 人声候选采用 <code>Kim_Vocal_2.onnx</code>、<code>Kim_Inst.onnx</code> 与 Demucs <code>04573f0d</code> 融合；初始化还会加载其他 Demucs 模型，均记录在清单。参数见 <code>configs/separation/mdx23_R0001.json</code> 与 <code>provenance.json</code>。</li>
+<li><code>pip check</code>、Demucs CPU 权重加载、两个 ONNX schema/CPU 会话加载及 CUDA 动态库依赖解析通过；<strong>没有执行 GPU 推理或任何音频分离</strong>。启动前实际 CUDA provider 加载检查由用户启动块执行。上游源码和已有实验代码未修改；通过 import API 避开 MDX 主入口强制 GPU 0，使用能正确实现 <code>only_vocals</code> 的 <code>large_gpu</code> 分支。</li>
+<li>R0001–R0003 原音哈希再次与清单一致，R0001 完整解码通过。为同一 R0001 完整录音准备 <code>SEP01_mdx23</code> / <code>SEP02_htdemucs_ft</code> 两个全新输出目录与防覆盖命令，见 <code>runs/separation_prepare/launch_commands.txt</code>；目录中尚无分离结果，不写造 <code>separations.csv</code> 记录。输出预计为 44.1 kHz 双声道 FLOAT，原始 48 kHz 文件保留。Demucs CLI 的伴奏求和及可能的独立防削波缩放与 MDX 残差伴奏有差异，后续核验记录，不假定严格重构或已对齐。</li>
+<li>资源仅作预算、未实测：MDX 单卡显存预留 12–20 GiB、主存 6–12 GiB、1–10 分钟；Demucs 4–10 GiB、2–6 GiB、1–5 分钟。双方案输出合计约 125 MiB；缓存/环境/权重准备峰值预留 15 GiB。准备后 <code>/data</code> 约剩 850 GiB；GPU 0、1、3 有占用，2、4–7 当时近乎空闲，<strong>启动前重新检查，不视为预留</strong>。</li>
+<li>当时下一关口为用户亲自启动分离，再做技术核验与同时间听验；未经用户听验通过不开始分段。本次仅更新云端副本；Windows 本地副本未访问，<strong>两端同步与哈希核对待进行</strong>。</li>
+</ul>
+<h3 id="2026-09-30-r0001">2026-09-30 R0001 完整录音双方案试分离（已比较，质量验收待定）</h3>
+<p>用户本轮明确授权云端 Codex 在 SSH 工作区直接执行，并要求开始、结束时告知；已分别告知启动和阶段结果。此前“用户亲自启动 GPU”的约定由本次授权更新。</p>
+<ul>
+<li><code>SEP01</code>：公开 MDX23 集成候选；GPU 4，退出码 0，耗时 41.84 秒。完整人声/伴奏在 <code>data/separated/R0001/SEP01_mdx23/</code>；日志和资源记录在 <code>runs/separation_R0001_SEP01/</code>。这不是已证实的 SingNet 精确版本。</li>
+<li><code>SEP02</code>：Demucs <code>htdemucs_ft</code>；同一 GPU，退出码 0，耗时 12.38 秒。完整双轨在 <code>data/separated/R0001/SEP02_htdemucs_ft/htdemucs_ft/</code>；日志在 <code>runs/separation_R0001_SEP02/</code>。</li>
+<li>四轨均全文件解码通过；44.1 kHz、双声道、FLOAT，各 4,083,072 帧、92.586667 秒。输入原音 SHA-256 未改变。产物路径、SHA-256、模型提交与审核状态见 <code>data/manifests/separations.csv</code>。近似窗口相关检查未见整体时间偏移，但不能证明细部严格对齐。</li>
+<li>与另行重采样原音比较，SEP01 双轨和相对 RMS 误差 -60.86 dB，SEP02 为 -15.35 dB；两方案的伴奏定义及 Demucs CLI 的防削波缩放不同，不能据此直接排序听感质量。统计见 <code>runs/separation_prepare/R0001_pair_technical_check.json</code>；GPU 峰值显存未采样。</li>
+<li><strong>下一步由用户听验</strong>：检查人声残留、拖腔损伤、弦乐/锣鼓丢失与失真，必要时标记局部可用范围；听验前状态为 <code>pending_user_listening</code>，不分段、不宣称可训练配对样本。R0002/R0003 尚未分离。云端文档已更新；Windows 本地副本同步和两端哈希核对待进行。</li>
+</ul>
+<h3 id="2026-09-30_1">2026-09-30 用户比较意见与下一关口</h3>
+<p>用户听后反馈“Demucs 给出的结果更好”。据此记录 <code>htdemucs_ft</code> 优先于本轮 MDX23 候选；这是一项相对比较，<strong>尚未明确判定 Demucs 是否整体通过质量验收、仅局部可用或不通过</strong>。<code>separations.csv</code> 已将两方案更新为已听比较、质量结论待定，未标记合格配对样本。</p>
+<p>下一步先由用户给出 Demucs 的质量结论，重点是伴奏残留人声、人声拖腔损伤、弦乐/锣鼓丢失与失真。若 R0001 通过，则云端 Codex 按同一固定模型和配置试分离 R0002/R0003，执行解码与时间初查并供用户逐份听验；这两份通过后才讨论结构分段和配对。若仅局部可用，先记录可用范围并评估是否值得调整分离；不把整个录音标为通过。</p>
+<h3 id="2026-09-30_2">2026-09-30 人声伪影反馈与临时质量门槛</h3>
+<p>用户反馈：Demucs 分离的人声仍有可闻伪影，但比本轮 MDX23 候选好。伪影的位置、持续范围与严重程度尚未记录；<code>separations.csv</code> 保持质量待定，不能仅因“相对更好”标为通过。本轮没有独立干净轨作为真值，不设置凭空推算的 SDR 合格线。Demucs 官方以听众对自然度/伪影和串音的分别评分评价分离质量；AnyAccomp 论文指出分离伪影可造成训练与推理输入不匹配，并用旋律瓶颈缓解输入侧影响，但并未给出本实验的固定合格阈值。</p>
+<p>本实验试用以下<strong>人工审核门槛</strong>，不是论文或模型官方标准：</p>
+<ol>
+<li>将原音、人声和伴奏在相同时间位置、相近播放响度下对照。人声应保住唱词/旋律、起音和拖腔主体；偶发轻微金属声或水声可记录，但持续破音、音高断裂或乐器大面积混入属于明显缺陷。</li>
+<li>伴奏应保住主要弦乐、锣鼓、节奏和过门，不出现持续清晰可辨的主唱唱词或大段配器被挖空。由于它是训练目标，明显人声泄漏或主要配器缺损不能仅凭人声轨较好而放行。</li>
+<li>同时查看两轨是否有明显错位、突跳、削波或局部漂移。已有帧数/解码/近似窗口相关通过只是初查，不证明每处听觉对齐。</li>
+<li>若问题轻微且不妨碍上述核心信息，可暂记“试流程可用”，后续仍须通过结构分段、配对和训练输入兼容性检查；若明显缺陷只在少数位置，记“局部可用”并记录时间范围，整段不标通过；若缺陷跨多数唱句或关键乐器/拖腔，记“不通过”，先比较改进分离方案。</li>
+</ol>
+<p>用户不必凭“有没有任何伪影”二选一；下一步先定位最让人担心的约一两处时间点，并说明是人声唱腔损伤、伴奏残留人声，还是乐器损失。云端 Codex可据此判断当前是否只是轻微伪影，或先试调整同一模型配置。未经用户确认质量门槛，不开始正式结构分段或把它列为合格训练配对数据。</p>
+<h3 id="2026-09-30-anyaccomp">2026-09-30 伴奏听验反馈与 AnyAccomp 旋律瓶颈核查</h3>
+<p>用户听验 <code>R0001/SEP02</code> 伴奏后报告“伴奏很好，一点唱词都没有”；<code>separations.csv</code> 已单独记录伴奏侧这一积极判断。人声仍有伪影，整体质量状态继续待定，不把整对直接列为合格训练样本。</p>
+<p>附图中的概括方向正确，但技术位置需要说清：AnyAccomp 在<strong>分离得到人声之后、Flow Matching 伴奏生成之前</strong>，先将输入人声提取为 chromagram，再用预训练 VQ-VAE/量化器映射成离散旋律编码。生成模型以这些编码为条件学习/生成伴奏 mel，随后由 vocoder 合成音频。论文使用 24-bin chromagram、50 Hz 编码序列、512 项码本，音频预处理为 24 kHz。这个瓶颈降低条件表示对音色和部分分离伪影的敏感性；它<strong>不修复人声 WAV 本身，也不自动清理伴奏目标轨</strong>，若伪影已破坏旋律或拖腔音高，不能假定编码仍正确。</p>
+<p>云端只读核查：<code>$CLOUD_PROJECT_ROOT/source/AnyAccomp/</code> 的关键推理、配置、Coco 量化器文件与官方 <code>AmphionTeam/AnyAccomp@82604b5e3107944ad4c49fc64900b86118ae2c62</code> 内容一致；已有 VQ、Flow Matching、vocoder 权重与独立 <code>anyaccomp</code> 环境。VQ 权重 SHA-256 <code>9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc</code>。公开仓库可见推理调用 <code>chroma_stft → coco_model.quantize → reverse_diffusion → vocoder</code>，未见完整公开训练入口/数据加载器。因此本实验<strong>可以用现有预训练 VQ 做只读条件编码验证</strong>，但不能据此宣称配对数据已经通过真实训练接口或已可微调；训练输入核验仍需解决入口问题。</p>
+<p>可行的后续核验路径：保留 R0001 两条完整分离 WAV；在用户确认唱腔主体可用后，用与模型一致的方式将人声重采样为 24 kHz 单声道，得到离散旋律编码，并核对时间长度及明显拖腔处编码是否稳定；伴奏仍作为对应训练目标，不能只交编码。随后核查实际 Flow Matching 训练接口能否读取成对样本并计算损失。若需要新增/修改实验训练代码，按用户约定先解释逻辑、展示核心 diff，等确认后实施；本轮未改代码、未启动训练。</p>
+<h3 id="2026-09-30-r0001-r0002r0003-demucs">2026-09-30 R0001 听验结论与 R0002/R0003 Demucs 完整分离</h3>
+<ul>
+<li>用户进一步确认 R0001/SEP02 的人声虽有伪影，但<strong>没有损坏主要旋律和拖腔，人声部分完整</strong>；结合先前“伴奏很好，一点唱词都没有”的反馈，标记为<strong>小规模流程验证可用</strong>。此结论不等于无伪影、正式训练数据通过或时间对齐全面证明；若后续局部核验发现问题仍需重新记录。<code>data/manifests/separations.csv</code> 已更新。</li>
+<li>2026-09-30 18:38–18:39（Asia/Shanghai）在 GPU 4 依次对 R0002、R0003 完整录音运行 Demucs <code>htdemucs_ft</code>。与 R0001/SEP02 相同的仓库提交、权重和参数（<code>--two-stems vocals --segment 7 --shifts 1 --overlap 0.25 --float32 --clip-mode rescale</code>）；原音及权重 SHA-256 启动前复核通过，独立输出目录，未覆盖原音。任务开始和结束均已告知用户；两项退出码 0，耗时分别 12.36 秒、12.67 秒。</li>
+<li>R0002 双轨在 <code>data/separated/R0002/SEP01_htdemucs_ft/htdemucs_ft/</code>，各 4,799,718 帧、108.837143 秒；R0003 双轨在 <code>data/separated/R0003/SEP01_htdemucs_ft/htdemucs_ft/</code>，各 3,563,495 帧、80.804875 秒。均为 44.1 kHz、双声道、FLOAT，完整解码和有限值检查通过，峰值未超 1；原音哈希未变。近似窗口相关检查均未见整体偏移，但细部对齐仍待核验。重采样原音与双轨和的相对 RMS 误差分别为 -19.83 dB、-17.68 dB；因 Demucs 分离轨和 CLI 缩放定义，不能将该数值当作听感或干净程度评分。</li>
+<li>产物 SHA-256、模型版本和待听验状态见 <code>data/manifests/separations.csv</code>；运行命令、日志、资源和检查结果分别见 <code>runs/separation_R0002_SEP01/</code>、<code>runs/separation_R0003_SEP01/</code>。<strong>R0002/R0003 均待用户听验；未分段、未训练、未扩大下载。</strong>本次仅更新云端副本，Windows 本地副本和哈希同步仍待进行。</li>
+</ul>
+<h3 id="2026-09-30_3">2026-09-30 三份分离轨听验通过，进入结构分段边界准备</h3>
+<p>用户在查看 R0002/R0003 原音与 Demucs 双轨、被明确请按人声旋律/拖腔完整性和伴奏唱词/配器标准判定后，回复“都通过”。结合 R0001 的单独反馈，三份 Demucs 双轨均标为<strong>小规模流程验证可用</strong>；R0002/R0003 没有逐处伪影时间点或细项说明，不能据此宣称“无伪影”。<code>data/manifests/separations.csv</code> 已记录用户听验结果。</p>
+<p>下一步先提出 R0001 的<strong>候选结构边界</strong>：原音、人声、伴奏同时间对照；声学低人声活动窗口仅用于帮助定位，不自动等同于唱句或过门边界。未经用户听验候选边界，不写入正式 <code>segments.csv</code> 或输出配对唱段。原始完整录音与完整分离轨继续保留；正式训练仍未开始。</p>
+<p>已生成 R0001 的只用于试听定位的 <code>runs/segmentation_prepare/R0001/candidate_windows.csv</code> 和每窗口同时间的原音／人声／伴奏预览（共 6 个窗口、18 个预览 WAV）。方法为人声单声道 10 ms RMS、110 ms 中值平滑，选低于 -40 dBFS 且持续至少 1.5 秒的窗口；该阈值是定位工具，不是戏曲结构判定。窗口为 0.00–2.33、19.09–21.45、33.35–43.54、47.37–50.74、60.79–64.76、83.50–92.58 秒；这些位置的伴奏 RMS 仍为约 -24 至 -17.5 dBFS，不能称为整段静音。预览含前后约 2 秒上下文，<strong>没有生成正式分段、<code>segments.csv</code> 或配对样本</strong>。先请用户核对这些位置的实际唱句、拖腔与过门关系，再决定长唱段的结构边界。</p>
+<h3 id="2026-09-30_4">2026-09-30 伴奏区间反馈与首轮完整候选片段</h3>
+<p>用户描述 W02、W03 两个预览均为“开始一点人声，中间一直伴奏，末尾又一小段人声”。此反馈确认预览含两次人声之间的伴奏区间，但没有确认其戏曲结构名称或精确切点。已写入 <code>candidate_windows.csv</code>；不能将该描述直接记为分段边界通过。W03 曾在客户端显示不可用；文件完整解码正常，另生成 MP3 和 PCM16 WAV 试听副本，原文件保留。</p>
+<p>为让下一轮听验覆盖完整唱腔与伴奏过程，建立 <code>runs/segmentation_prepare/R0001/paired_candidates_v1/</code>：<code>CAND01</code> 为 0.00–21.20 秒（21.20 秒），<code>CAND02</code> 为 21.20–43.25 秒（22.05 秒）。暂把每次人声结束后的伴奏区间保留在前一候选片段，切点落在下一次人声活动之前约 0.25–0.29 秒的低人声窗口中；这些切点来自声学定位，尚未证明是自然音乐落点。保留片头伴奏，不设置统一片长上限。</p>
+<p>每个候选均有同时间原音、人声和伴奏 WAV，以及仅供播放的 MP3 副本。人声/伴奏按同一 44.1 kHz 样本边界裁切，帧数分别为 934,920、972,405；解码后样本与对应完整分离轨片段逐样本一致，未淡化、归一化或重采样。路径、样本索引、SHA-256 和待审核状态见 <code>paired_candidates_v1/candidate_pairs.csv</code>。<strong>仅为候选试听材料，未创建正式 <code>segments.csv</code>/<code>pairs.csv</code>，未启动训练，未修改实验源代码。</strong>下一关口由用户听验两个候选的起止是否完整、是否切断唱腔/伴奏，以及伴奏区间归属是否合适；必要时调整切点后再复核。</p>
+<h3 id="2026-09-30-r0001_1">2026-09-30 R0001 前两个片段边界确认与配对保存</h3>
+<p>用户明确反馈首轮两个候选“没有截断、自然、完整”（此前“没有阶段”为随即更正的输入，不作独立判断）。据此将 CAND01/CAND02 边界记为通过，分别保存为 <code>data/clips/R0001/SEP02/SEG0001_{vocal,accompaniment}.wav</code> 和 <code>SEG0002_{vocal,accompaniment}.wav</code>；范围为 0.00–21.20 秒、21.20–43.25 秒。建立 <code>data/manifests/segments.csv</code> 和 <code>pairs.csv</code>，记录同源分离版本、同一开始/结束样本索引、SHA-256 与用户审核依据；两对的训练输入状态保持 <code>pending_compatibility_check</code>，细部源对齐仍为初查状态，数据划分未分配。</p>
+<p>保存文件与已审核候选 WAV 哈希一致；解码后与完整分离轨对应范围逐样本一致，人声与伴奏帧数分别为 934,920 和 972,405。完整原音和完整分离轨保留；未修改实验源代码、未运行训练。本轮仅更新云端记录，Windows 本地同步仍待进行。</p>
+<p>R0001 剩余内容在 <code>runs/segmentation_prepare/R0001/paired_candidates_v2/</code> 准备为 CAND03（43.25–64.51 秒，21.26 秒）、CAND04（64.51–92.586667 秒，28.076667 秒）。暂切于低人声活动窗口内、下一次人声进入前约 0.25 秒；CAND03 保留内部短伴奏间隔，CAND04 保留完整录音尾部。两者只是候选；当前并未确认 64.51 秒为自然结构边界。双轨样本边界一致，帧数分别为 937,566、1,238,181，候选 WAV 解码后与完整分离轨对应范围逐样本一致，MP3 仅作播放副本。经审核的前两段与这两候选在样本索引上连续覆盖 R0001 全长，没有空隙或重叠；候选尚未写入正式分段和配对清单。</p>
+<h3 id="2026-09-30-r0001-r0002r0003">2026-09-30 R0001 分段全部确认与 R0002/R0003 候选准备</h3>
+<p>用户对 R0001 CAND03/CAND04 再次明确反馈“没有截断、自然、完整”；据此保存为 SEG0003/SEG0004，并更新 <code>segments.csv</code>、<code>pairs.csv</code> 和候选审核记录。R0001 共四对已确认片段，边界为 0、21.20、43.25、64.51、92.586667 秒；同一人声／伴奏轨的四段重新拼接后，分别与完整分离轨逐样本一致。总计 4,083,072 帧，没有遗漏或重叠。训练输入兼容性仍保持待检查，未训练。</p>
+<p>使用同样的低人声活动定位办法为后两份准备完整候选，精确音乐边界均待用户审核。R0002 在 <code>runs/segmentation_prepare/R0002/paired_candidates_v1/</code> 有五个候选：0–26.80、26.80–49.44、49.44–63.98、63.98–78.73、78.73–108.837143 秒。R0003 在 <code>runs/segmentation_prepare/R0003/paired_candidates_v1/</code> 有四个候选：0–13.62、13.62–39.68、39.68–69.73、69.73–80.804875 秒。切点处 ±0.10 秒的人声双声道 RMS 均低于 -35 dBFS，且位于已定位的人声低活动窗口内；这一检查只支持声学定位，不能代替自然音乐边界听验。R0003 的较短唱腔和其后伴奏间隔保留在较长候选内；片头伴奏与尾奏均保留。</p>
+<p>各候选具备同时间原音、人声、伴奏 WAV 和独立 MP3 试听副本；按原采样率样本索引裁切，不做淡化、归一化或重采样。各录音的候选人声／伴奏连续拼接后分别与其完整分离轨逐样本一致。范围、索引、哈希、待听验状态与定位依据见各目录 <code>candidate_pairs.csv</code> 和 <code>proposal.json</code>。R0002 末段约 30.107 秒、R0003 第三段约 30.050 秒，按当前不设统一时长上限的约定保留，没有静默截至 30 秒；实际训练对较长片段的支持仍须核验。R0002/R0003 候选未写入正式配对清单，未修改实验源代码，未启动训练；仅更新云端记录，本地同步仍待进行。</p>
+<h3 id="2026-10-01-13">2026-10-01 全部候选边界通过与 13 对片段保存</h3>
+<p>用户对 R0002 和 R0003 全部候选回复“两个全都通过”。据此前提出的“没有截断、起止自然、内容完整”审核要求，将九个候选边界记为通过，R0002 保存为 <code>data/clips/R0002/SEP01/SEG0001–SEG0005</code> 的人声／伴奏 WAV，R0003 保存为 <code>data/clips/R0003/SEP01/SEG0001–SEG0004</code> 的人声／伴奏 WAV。更新 <code>segments.csv</code>、<code>pairs.csv</code> 与候选审核记录；源文件和原候选均保留，旧清单备份在 <code>runs/segmentation_finalize_20261001/</code>。</p>
+<p>合计 R0001 四对、R0002 五对、R0003 四对，共 <strong>13 对、12,446,285 帧、282.228685 秒（4 分 42.23 秒）</strong>，单段 11.074875–30.107143 秒。每对人声／伴奏帧数与样本边界一致，保存文件 SHA-256 与候选一致；各原录音分段在开始/结束样本索引上连续、无遗漏无重叠，分段双轨重拼后分别与完整分离轨逐样本一致。详细核验报告见 <code>runs/segmentation_finalize_20261001/report.json</code>。源录音细部对齐仍为初查状态，不能把精确裁切和重拼检查误写为独立分轨真值对齐证明。</p>
+<p>全部 <code>training_input_status</code> 保持 <code>pending_compatibility_check</code>，数据划分保持 <code>unassigned</code>。尚未核验实际训练输入、未执行正式或临时训练，也未扩大下载；13 对并非最终规模化训练集。仅更新云端记录，Windows 本地副本及哈希同步仍待进行。</p>
+<h3 id="2026-10-01-anyaccomp">2026-10-01 AnyAccomp 特征核验代码提案（未落地、未执行）</h3>
+<p>读取实际公开实现发现：输入 chroma 调用 <code>chroma_stft</code> 的居中窗口，伴奏 <code>MelSpectrogram</code> 默认 <code>center=False</code> 且反射补齐 <code>(n_fft-hop_size)/2</code>；按当前 24 kHz、480 hop 的定义，二者帧数和帧中心可能不一致。配置另列 <code>mel_mean/mel_var</code>，但公开训练加载器缺失，不能仅凭字段名选定目标归一化方式。这些问题需要先核验，不能用静默裁切或插值掩盖。</p>
+<p>首轮拟新增 <code>scripts/validate_anyaccomp_features.py</code>：读取全部已审核 <code>pairs.csv</code>，先检查哈希、元信息和全长；按官方推理方式转 24 kHz 单声道、提取 24-bin chroma 并调用冻结的现有 VQ（CUDA 使用 bfloat16 autocast），同时调用公开 <code>MelSpectrogram</code> 提取伴奏原始 log-mel。保留全长特征、码本范围、帧数差、帧中心定义与来源/权重/环境记录；不自动统一长度、不选定未经证实的训练归一化、不修改权重、不更新数据合格状态。若提取成功也只称“特征核验完成”，完整训练兼容性仍需解决对齐与归一化后接真实 FM 前向/反向和变长批次；REPA/MERT 的完整训练链路亦尚未实现。</p>
+<p>审阅稿在 <code>runs/training_input_prepare/validate_anyaccomp_features.py.proposed</code>，完整新增 diff 在 <code>runs/training_input_prepare/proposed_feature_audit.patch</code>。已做 AST 语法检查和 <code>git apply --check</code>，尚未把 patch 应用到 <code>scripts/</code>，未执行 GPU。用户最初明确要求“实验代码如需修改，先解释逻辑、展示核心 diff，等我确认”，因此当前等待本提案确认。确认后在本实验目录建立独立 AnyAccomp 核验环境，现有项目源码/预训练权重只读使用，不复用 Qwen 环境；任务开始与结束通知用户。</p>
+<h3 id="2026-10-01">2026-10-01 特征核验提案确认与环境准备</h3>
+<p>用户回复“确认”，授权实施上述特征核验提案。已按审阅稿原样新增 <code>scripts/validate_anyaccomp_features.py</code>，内容与 <code>.proposed</code> 逐字一致，AST 语法检查通过；确认记录写入 <code>runs/training_input_prepare/review_status.json</code>。正在以现有独立 AnyAccomp 环境为依赖来源，克隆到本实验的 <code>environments/anyaccomp_input_929</code>；不使用 Qwen 环境，原项目源码与权重只读引用。环境与执行日志保存在 <code>runs/anyaccomp_feature_audit_20261001/</code>，本阶段只核验特征，不修改模型参数。</p>
+<h3 id="2026-10-01-13-anyaccomp">2026-10-01 13 对 AnyAccomp 特征核验完成</h3>
+<p>独立环境 <code>environments/anyaccomp_input_929</code> 已建立（约 6.3 GB），从现有独立 AnyAccomp 环境克隆，不使用 Qwen。Python 3.9.19、torch 2.3.1+cu121、librosa 0.11.0、accelerate 1.6.0；依赖冻结清单见 <code>runs/anyaccomp_feature_audit_20261001/pip_freeze.txt</code>，克隆日志与执行记录在同目录。使用物理 GPU 4（UUID <code>GPU-f37d634b-c2bd-b66f-44a2-6608ae61b06e</code>，进程内 <code>cuda:0</code>）按已批准脚本执行，退出码为 0，已分别通知用户开始与结束，GPU 已释放。PyTorch 最大已分配显存 240,420,352 字节（约 229.3 MiB）；这不包含全部 CUDA 上下文/驱动占用，也不是后续 FM 训练的显存估计。</p>
+<p>全部 13 对通过输入哈希、解码与元信息检查，按完整片段转 24 kHz 单声道并生成 24-bin chroma、冻结 VQ 整数 token 和 128-bin 伴奏原始 log-mel。输出 13 份 <code>.npz</code>（合计目录约 7.3 MB），见 <code>runs/anyaccomp_feature_audit_20261001/features/</code>。全部 token ID 在 0–511 范围内，特征有限、保存形状与报告一致；没有裁切、插值或长度统一，原音与正式配对 WAV 保留。结果报告 <code>features/report.json</code>，逐对执行日志 <code>feature_audit.log</code>，保存产物哈希与后验核验 <code>post_validation.json</code>。仅构建量化器时，检查点中的解码器和 chroma 重建输出层未使用属于预期；所需张量均存在且形状一致。</p>
+<p><strong>确认的接口问题</strong>：13 对均为 <code>token_frames = target_mel_frames + 1</code>。当前 chroma 的窗口中心为 <code>0 + k*480</code>，目标 mel 为 <code>240 + k*480</code>，两者中心定义相差 240 个样本（24 kHz 下 10 ms）；只删一个 token 能统一数量，不能据此证明时间起点已对齐。这是特征定义差异，不能写成 WAV 分离轨本身错位。目标训练归一化仍未确定，公开完整训练加载器缺失。本轮未调用 FM 前向/反向，未修改权重，REPA/MERT 链路亦未实现；所有配对训练输入状态仍为 <code>pending_compatibility_check</code>，报告为 <code>not_verified</code>。</p>
+<p>下一步先只读核查实际 FM 对条件序列/目标的长度处理和归一化线索，明确可追溯的实验适配方案，再展示核心代码或 diff 并解释输入输出、关键逻辑、用途和必要限制，等待用户确认后实施真实前向/反向及混合长度批次验证。不扩大下载或宣称全流程通过。云端文档已更新，Windows 本地同步仍待进行。</p>
+<h3 id="2026-10-01-fm">2026-10-01 真实 FM 输入适配核查与代码提案（待确认）</h3>
+<p>用户要求“开始下一步”，并再次明确询问当前是否仍在数据处理部分。此阶段仍属数据处理与训练输入兼容性验证；前向、计算损失、反向仅检查输入能否用于训练，正式微调和效果评价尚未开始。本轮仅只读检查实际源码、官方论文/推理及 CPU 上的检查点参数合同，没有执行 GPU 或模型前向/反向。</p>
+<p>FM 源码 <code>DiffLlamaConcat</code> 将条件表示与目标 mel 表示按时间索引直接相加，没有自动时间插值；因此长度相同和共同时间网格是适配要求。官方 <code>infer_from_folder.py</code> 将 <code>reverse_diffusion</code> 输出直接交给 vocoder，Vocos 的公开 forward 只有 backbone/head，没有 <code>mel_mean/mel_var</code> 的反归一化。公开 Python 文件未找到该两字段的操作；据此选择原始自然对数 mel 做本实验接口验证，但这是从公开推理作出的推断，不能证明缺失的作者训练加载器使用了什么归一化。原始样本 log-mel 均值约 -4.56 至 -3.03、标准差约 1.43 至 2.54，仅作为诊断记录，不据此判断参数 <code>mel_var</code> 的语义。</p>
+<p>FM 检查点 SHA-256 <code>e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129</code>。完整严格加载发现公开模型没有对应的三个张量：<code>tag_infilling_emb</code>、<code>tag_emb.weight</code>、<code>tag_emb.bias</code>；其来源用途尚不明确，不冒称代码与完整检查点精确匹配。拟只明确排除这三个张量，再对公开模型实际需要的全部参数严格核对键名、形状和加载；不得使用不加约束的 <code>strict=False</code> 掩盖额外差异。只读 CPU 核验结果见 <code>runs/training_input_prepare/fm_adapter_v1/checkpoint_inspection.json</code>，分析记录见 <code>inspection.json</code>。</p>
+<p>拟新增 <code>scripts/validate_fm_inputs.py</code>：人声 chroma/VQ 编码原样保留；针对完整伴奏 WAV 重提原始 log-mel，显式使用 960 样本两侧反射补齐、非居中 STFT，使帧中心为 <code>0+k*480</code>，与官方人声 chroma 网格一致。保留音频全长和末尾帧，不截 token、不插值离散 ID；此前默认目标使用 720 样本补齐、中心为 <code>240+k*480</code>。这是本实验选择的目标网格适配，尚未证明作者训练使用了该规则，也未验证此目标网格对预训练 vocoder 的边界/输出时间含义，不能直接当作最终训练配方。</p>
+<p>对 13 对完整片段逐对调用现有 220M FM 训练 forward，按论文速度目标 <code>x-(1-sigma)*noise</code> 计算有效非 prompt 帧的 MSE，并做反向检查非零、有限梯度；另对最短+最长混合长度批次补齐，核验 attention/loss 有效长度掩码，使用相同随机抽样扰动 padding 内容，确认有效帧预测和损失不受影响。超过 30 秒的完整段也包含在核验中。没有优化器和参数更新。保持公开原生 CFG 掉条件概率 0.2 和随机 prompt 逻辑；其 prompt 随机长度依赖 padded T 而非逐条有效长度，且配置 <code>prompt_prob=0</code> 没有阻止该分支，均记录为原训练配方待核验问题。REPA 投影保留但冻结，尚不计算 MERT/REPA 损失；本轮只能验证 FM 主损失接口。</p>
+<p>完整审阅稿 <code>runs/training_input_prepare/fm_adapter_v1/validate_fm_inputs.py.proposed</code> 和新增 diff <code>proposed_fm_adapter.patch</code> 已准备，AST 与 patch 应用预检查通过。脚本未落地到 <code>scripts/</code>、未执行；用户确认核心改动后才落地和启动，继续使用本实验独立环境，并通知任务开始和结束。预计单 GPU 4090、数分钟，显存预算约 8–18 GiB，仅为估计；若 OOM 则停止记录，不静默截断或改批次。所有数据合格状态仍待兼容性与配方核验；Windows 同步仍待进行。</p>
+<h3 id="2026-10-01-fm_1">2026-10-01 用户确认 FM 提案与真实输入核验完成</h3>
+<p>用户回复“确认当前提案”，并要求之后各步骤均讲解使用的工具/模型是什么、用途、输入输出及验收含义。该表达要求已追加到云端 Codex 全局个性化文件 <code>$CLOUD_HOME/codex/home/AGENTS.md</code>，当前会话也已加载；尚未同步到 Windows。批准稿原样新增为 <code>scripts/validate_fm_inputs.py</code>（SHA-256 <code>1ffe3b4ca7c3ffcbdeb5bd1a222cb22a00cc91cc4704e75330ef60f20d5a4d02</code>），内容与审阅稿一致，语法检查通过。</p>
+<p>执行在本实验独立 <code>environments/anyaccomp_input_929</code> 中，使用 GPU 4。已向用户通知开始、日志与查询命令，并在任务结束时通知释放 GPU。实际 <code>/usr/bin/time</code> 壁钟耗时 <strong>10.86 秒</strong>，退出码 0，最大常驻内存 1,832,292 KiB（约 1.75 GiB）；PyTorch 最大已分配显存 <strong>8,407,889,408 字节（约 7.83 GiB）</strong>，不包含全部驱动/上下文占用。此前“数分钟、8–18 GiB”为执行前预算，实测替代该预算，不将它用于估算正式微调资源。</p>
+<p>在批准的实验目标网格下，13 对完整片段均成功提取目标并经过真实预训练 FM forward、有效非 prompt 帧 MSE 和 backward；均得到有限损失与非零有限梯度，没有缺失的应训练 FM 参数梯度。单样本损失约 2.98–9.29，这些数值仅作接口诊断，未作训练收敛、分离质量或生成效果阈值。包含两个超过 30 秒的完整片段，没有缩短。最短 <code>R0003_SEP01_SEG0004</code>（554 帧）与最长 <code>R0002_SEP01_SEG0005</code>（1,506 帧）组成混合批次，最短补齐 952 帧；反向与掩码检查通过，补齐位置的目标值改为 100、条件 token 改为 511 后，使用相同随机抽样，有效帧预测与损失在规定容差内保持一致。该结果支持当前批次的补齐不会污染有效位置，不能证明任意 prompt/长度组合都安全。</p>
+<p>共完成 14 个前向/反向批次（13 个单样本 + 1 个混合长度批次），另有一次无梯度的 padding 扰动前向。没有优化器、没有参数更新或新训练检查点。全部 13 份人声 token 与上一轮核验产物完全一致；目标 mel 在新网格上帧数匹配、数值有限并全长保存。三份原音 SHA-256 与下载记录一致，四份原清单内容不变。源 FM 检查点前后哈希一致。正式 <code>pairs.csv</code> 的 <code>pending_compatibility_check</code> 保留，细分进展由报告记录为 <code>fm_forward_backward_status=passed_under_experimental_adapter</code> 和 <code>training_input_status=pending_recipe_validation</code>，不将部分通过写成完整可训练验收。</p>
+<p>日志和产物根目录：<code>runs/anyaccomp_fm_input_smoke_20261001/</code>。结果 <code>results/report.json</code>、13 份 <code>results/*.npz</code>、执行配置 <code>execution.json</code>、执行日志 <code>fm_input_smoke.log</code>、资源记录 <code>resources.txt</code> 与后验哈希检查 <code>post_validation.json</code> 均保存。批准/完成记录见 <code>runs/training_input_prepare/fm_adapter_v1/review_status.json</code>。</p>
+<p>待核验限制沿用批准提案：目标时间网格是实验适配；原始 log-mel 的选择依据公开推理作出，原作者训练归一化未确认；三份 tag 张量不在公开模型定义中且明确排除，其余 137 个实际需要的张量按名字/形状严格加载；公开随机 prompt 以补齐后的最大长度取样，配置 <code>prompt_prob=0</code> 未控制该分支；公开 CFG 掉条件概率 0.2 与论文 0.1 不同；MERT/REPA 主链路未实现，REPA 投影只保留并冻结。本轮通过不能消除这些配方差异，未完成小规模全流程验收，未扩大收集、未正式微调。仅云端更新，Windows 同步待进行。</p>
+<h3 id="_1">当前流程中工具与模型的作用（逐步讲解依据）</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>使用的东西与作用</th>
+<th>输入 → 输出</th>
+<th>当前结果能证明什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下载和文件检查</td>
+<td>完整 WAV、SHA-256 哈希、解码检查；哈希是文件内容指纹，解码检查验证音频能完整读取</td>
+<td>来源文件 → 有记录的完整录音</td>
+<td>三份录音完整可读、内容可追溯；这些检查不评价音乐质量。</td>
+</tr>
+<tr>
+<td>分离</td>
+<td>Demucs <code>htdemucs_ft</code> 从混合音频中估计人声和其余伴奏；两轨用于建立监督配对</td>
+<td>完整混合录音 → <code>vocals.wav</code> / <code>no_vocals.wav</code></td>
+<td>已由用户听验接受小规模流程使用；有伪影，未取得独立干净真值。</td>
+</tr>
+<tr>
+<td>分段和配对</td>
+<td>按用户听验过的边界，用同一采样索引切两轨；CSV 清单记录来源、时间和哈希</td>
+<td>两条完整分离轨 → 13 对 WAV + 清单</td>
+<td>边界通过听验、双轨一一对应、拼回完整轨逐样本一致；不等于已证明独立真值对齐。</td>
+</tr>
+<tr>
+<td>模型输入预处理</td>
+<td>SoundFile 读取，NumPy 合并声道，librosa 重采样；统一为模型所用的 24 kHz 单声道</td>
+<td>已保存的 44.1 kHz 双声道片段 → 临时 24 kHz 单声道数组</td>
+<td>模型输入格式统一，原始 WAV 不改写。</td>
+</tr>
+<tr>
+<td>人声旋律表示</td>
+<td>librosa 24-bin chromagram 表示随时间变化的音级能量，再用冻结预训练 VQ 映射到 512 项码本 ID；离散瓶颈压缩音色/部分伪影信息</td>
+<td>人声音频 → chroma → 旋律 token 序列</td>
+<td>编码可提取、范围与长度合同通过；不能保证已受损的旋律被修复，也不清理伴奏目标。</td>
+</tr>
+<tr>
+<td>伴奏目标表示</td>
+<td>STFT 将波形转成时频表示，128-band mel 滤波与自然对数压缩，得到训练目标；本实验将其帧中心与旋律编码对齐</td>
+<td>完整伴奏片段 → 原始 log-mel</td>
+<td>13 对目标帧数、定义的时间网格和有限值检查通过；作者原预处理和 vocoder 时间含义仍待核验。</td>
+</tr>
+<tr>
+<td>FM 输入兼容性</td>
+<td>FM（Flow Matching）以旋律 token 为条件预测噪声通向伴奏 mel 的变化方向。训练前向为随机中间状态预测方向，MSE 衡量与目标方向的差异；backward 计算参数梯度，当前没有执行参数更新</td>
+<td>token、目标 mel、有效长度掩码 → 预测、损失、梯度</td>
+<td>13 对全长及混合长度批次通过主损失接口；有限损失/梯度不证明模型已学会歌仔戏或生成效果好。</td>
+</tr>
+<tr>
+<td>声音输出检查</td>
+<td>vocoder（声码器）把 FM 生成的 mel 转成可播放的音频；本次先从真实伴奏 mel 重建音频，检查目标表示与声码器衔接</td>
+<td>伴奏 mel → 合成 WAV</td>
+<td>三段、两种网格的 raw/z-score 对照已执行；z-score 改善幅度尺度，质量听验与时间规则仍待完成。未运行 FM 生成。</td>
+</tr>
+<tr>
+<td>后续完整训练配方</td>
+<td>MERT 提供预训练音乐表征，REPA 是让 FM 中间表示与该表征对齐的辅助训练损失；CFG 训练时随机丢条件，推理时加强条件约束</td>
+<td>音乐目标/中间表示 → 辅助损失与条件引导</td>
+<td>这些配方仍待明确；正式微调和效果评价属于后续模型实验。</td>
+</tr>
+</tbody>
+</table>
+<p>FM 的作用可串起来理解：人声 WAV → chroma/VQ 旋律 token → <strong>FM 根据旋律从噪声生成伴奏 mel</strong> → vocoder 生成伴奏 WAV。训练时已知对应伴奏 mel，用来教 FM 学习变化方向；推理时只有输入旋律和随机噪声，逐步积分得到新的伴奏。当前数据实验只是验证训练数据能够正确进入这条链路，没有完成模型训练。</p>
+<h3 id="2026-10-01_1">2026-10-01 声码器目标重建核验提案（具体代码待确认）</h3>
+<p>用户对“先准备核验核心 diff，讲解后确认运行”的下一步回复“确认”。本轮据此准备代码和核验清单；仍按此前明确约定，在展示具体核心 diff 后取得代码确认，再落地到 <code>scripts/</code> 并启动 GPU。未运行声码器 forward 或生成试听音频。</p>
+<p>使用既有 Vocos 声码器，作用是把 128-band mel 频谱转换成 24 kHz 单声道波形。公开配置为 30 层、dim 1024、hop 480、ISTFT <code>padding=same</code>。只读 CPU 检查确认 255,042,434 个参数、279 个所需张量与下载检查点名称及形状完全一致，严格加载通过，未发现缺失或额外张量。检查点 <code>pretrained/anyaccomp/pretrained/vocoder/model.safetensors</code>（位于原项目权重目录，只读使用）SHA-256 <code>1b7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da</code>。来源/config 哈希与 CPU 加载记录见 <code>runs/training_input_prepare/vocoder_audit_v1/inspection.json</code>；源定义对应此前检查的 AnyAccomp 公共快照，不改源码或权重。</p>
+<p>计划选短 <code>R0003_SEP01_SEG0004</code>（11.074875 秒）、中 <code>R0001_SEP02_SEG0001</code>（21.20 秒）、长 <code>R0002_SEP01_SEG0005</code>（30.107143 秒），每段从真实伴奏目标的原网格 mel 和实验对齐网格 mel 各重建一次，共六次推理。不运行 FM 生成、不训练或修改参数。独立环境沿用本实验 <code>environments/anyaccomp_input_929</code>，计划用 GPU 4，运行前复查空闲状态并通知开始/结束。声码器使用 float32、eval、inference_mode，保持公开推理传入 float mel 的方式，不加入额外标准化。</p>
+<p>每段保存同一 24 kHz 单声道参考 WAV、两种未经裁切/补齐/移位/淡化的原生重建 FLOAT WAV，各附 MP3 试听副本，共九份 WAV 和九份 MP3。试听预览如需避免幅度过载，三份共享同一个只衰减不增益的系数；该系数只用于 MP3，诊断使用原生 FLOAT WAV，不单独均衡响度。源录音、正式配对 WAV 和清单保留。检查输入哈希及来源、输出形状/有限值/峰值/RMS/超过幅度 1 的数量，记录头尾 0.5 秒统计；不把峰值统计或相关性当作自动听觉验收阈值。</p>
+<p>ISTFT 合成源码给出的原生长度为 <code>mel_frames * 480</code>；原网格与实验对齐网格相差一帧，因此两类重建长度预计相差 480 个样本（20 ms）。它们分别相对完整参考的预计长度差：短段 -14.9167 / +5.0833 ms，中段 -0.0417 / +19.9583 ms，长段 -7.1667 / +12.8333 ms。这些是输入帧数和源码公式的推算，尚非 GPU 实测。合成窗口中心为 <code>240+k*480</code>，实验对齐目标中心为 <code>0+k*480</code>；由此可提出 10 ms 偏移的待验证假设，不能把结构推算冒充实际音频对齐结果。</p>
+<p>拟用归一化波形相关搜索 ±50 ms（采样点精度）及 10 ms RMS 平滑包络搜索 ±100 ms（1 ms 精度），另外分别检查开头、中间和末尾的 2 秒窗口。正估计偏移表示重建滞后参考，弱相关或峰值在搜索边界需要进一步审查；不自动移位，也不认为有相关峰就已证明每个乐器/位置对齐。CPU 合成信号验证了 +240/-240 样本偏移、反相与退化输入的算法处理，结果见 <code>timing_algorithm_checks.json</code>；这不是声码器实际输出测试。最终仍由用户比较三个完整参考及两种重建，判断配器、节奏、过门、边界和新增失真。</p>
+<p>完整审阅稿 <code>runs/training_input_prepare/vocoder_audit_v1/validate_vocoder_targets.py.proposed</code>，新增 diff <code>proposed_vocoder_audit.patch</code>。AST 语法与 <code>git apply --check</code> 通过，未应用到 <code>scripts/</code>、未执行 GPU；审核状态见同目录 <code>review_status.json</code>。预计单 4090 float32 前向数十秒到数分钟、显存预算约 2–6 GiB，仅是预算，实际运行会记录。输出与监听状态将在执行后记录为技术生成完成、用户听验待定；不提前判定完整训练输入兼容性通过，不开始规模化采集。本地 Windows 同步仍待进行。</p>
+<h3 id="2026-10-01-mel">2026-10-01 声码器核验执行完成，原始 mel 重建存在尺度异常</h3>
+<p>用户对展示后的具体代码回复“确认”。已按批准稿原样新增 <code>scripts/validate_vocoder_targets.py</code>，SHA-256 <code>70c68b290f1b15608cc4db1591ee05fb6eb7375e90d2cc3266db2866f049fad9</code>；沿用实验独立环境，在 GPU 4 执行六次 float32 Vocos 重建。开始、监控路径及结束释放 GPU 均已通知用户。退出码 0，实际壁钟耗时 <strong>10.90 秒</strong>，最大常驻内存 1,590,320 KiB（约 1.52 GiB），PyTorch 最大已分配显存约 <strong>1.046 GiB</strong>。无 FM 调用、无参数更新，全部原音与正式清单哈希保持不变。</p>
+<p>产物位于 <code>runs/anyaccomp_vocoder_audit_20261001/results/</code>：三个片段各有 <code>reference_24k</code>、<code>original_grid</code>、<code>aligned_grid</code> 的 FLOAT WAV 和 MP3，合计九份 WAV、九份 MP3。全部 WAV 有限、24 kHz 单声道、原生帧数符合 <code>mel_frames*480</code>；九份 MP3 均通过完整解码，试听共享增益均为 1，没有掩盖输出幅度变化。资源/执行记录、逐段诊断和后验检查分别见同目录上层 <code>resources.txt</code>、<code>execution.json</code>、<code>vocoder_audit.log</code>、<code>post_validation.json</code>；结果报告为 <code>results/report.json</code>。</p>
+<p><strong>技术生成完成不等于重建质量通过</strong>：六份重建 RMS 比参考低约 37.97–38.81 dB，输出峰值约 0.0083–0.0132，参考峰值约 0.718–0.860。整体波形相关绝对值仅约 0.12–0.21，波形相关的局部峰不稳定，不能用其给出可靠采样点级对齐结论。RMS 包络相关约 0.895–0.963，原网格滞后约 1–2 ms，对齐网格约 9–12 ms；此结果支持网格改变带来约 10 ms 时间差异的线索，不证明所有音符/乐器/边界精确对齐。原生输出长度实测与提案推算一致，均未裁切、补齐或移位。</p>
+<p>下表每格顺序均为“原网格 / 对齐网格”。正时间偏移表示重建滞后参考。</p>
+<table>
+<thead>
+<tr>
+<th>片段</th>
+<th>输出相对参考的长度差（ms）</th>
+<th>RMS 包络估计滞后（ms）</th>
+<th>输出相对参考 RMS 差（dB）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0003_SEP01_SEG0004</td>
+<td>-14.9167 / 5.0833</td>
+<td>1 / 9</td>
+<td>-38.57 / -38.59</td>
+</tr>
+<tr>
+<td>R0001_SEP02_SEG0001</td>
+<td>-0.0417 / 19.9583</td>
+<td>1 / 11</td>
+<td>-38.80 / -38.81</td>
+</tr>
+<tr>
+<td>R0002_SEP01_SEG0005</td>
+<td>-7.1667 / 12.8333</td>
+<td>2 / 12</td>
+<td>-38.00 / -37.97</td>
+</tr>
+</tbody>
+</table>
+<p>当前诊断结论为 <code>reconstruction_amplitude_anomaly_requires_preprocessing_review</code>；重建验收与用户听验保持待定，完整训练输入配方仍为 <code>pending_recipe_validation</code>。不能只调大播放器音量或在输出端增益后把本轮写成输入兼容性通过；应先核查频谱尺度、标准化和实现合同。ISTFT 的保存窗幅度为正常 Hann（min 0、max 1、mean 0.5、平方和 720），未发现该 buffer 损坏证据；权重张量合同完整不能代替输入尺度核验。</p>
+<h3 id="2026-10-01-z-score">2026-10-01 归一化推断修正与 z-score 对照提案（未执行）</h3>
+<p>进一步查阅上游 <a href="https://github.com/open-mmlab/Amphion/blob/58d8b48945281efdfe539151d01ee98010acc425/models/vc/vevo/vevo_utils.py">Vevo 官方源码</a>发现：<code>extract_mel_feature</code> 明确使用 <code>(mel - mel_mean) / sqrt(mel_var)</code>，而预测的 mel 直接送入 vocoder。该文件对应 <code>open-mmlab/Amphion@58d8b48945281efdfe539151d01ee98010acc425</code>；证据副本与 SHA-256 <code>38b7f2a927600b15dc76eea3a07733c1db2d67bd094df9a8a9deacf50389cdd3</code> 保存在 <code>runs/training_input_prepare/vocoder_normalization_v1/normalization_evidence.json</code> 和 <code>upstream_vevo_utils.reference.py.txt</code>。这说明“没有反归一化”也可能表示整个生成链在标准化 mel 空间工作；此前以公开 AnyAccomp 直接送入 vocoder 的代码支持原始 log-mel 的推断不充分，必须修正。先前 FM 检查仅证明原始尺度输入可计算有限损失/梯度，不证明尺度符合预训练合同。</p>
+<p>这是上游 Vevo 的明确实现线索，<strong>尚不等于证明 AnyAccomp 原训练采用相同处理</strong>；声码器原始尺度幅度异常也不能单独锁定唯一原因。拟增加显式 <code>--mel-normalization raw|zscore</code>，默认保留 <code>raw</code> 可复现前轮，下一轮选 <code>zscore</code>，按本地 vocoder 配置 <code>mel_mean=-4.92</code>、<code>mel_var=8.14</code> 将两种网格的临时 mel 数组标准化后再输入模型。输入变换改变频谱数值尺度，原音与保存的原始/对齐特征均保留，窗口网格/输出长度不变，诊断仍用原生输出幅度。继续使用同样三段、两种网格作六次重建，写入全新输出目录，与本轮基线比较；如支持候选，后续还需以一致的目标尺度重做 FM 输入核验并保留训练配方来源限制。</p>
+<p>提案审阅稿 <code>runs/training_input_prepare/vocoder_normalization_v1/validate_vocoder_targets.py.proposed</code>、核心修改 diff <code>proposed_normalization.patch</code> 与审核状态 <code>review_status.json</code> 已准备，AST 和 <code>git apply --check</code> 通过。<strong>尚未修改已批准脚本、未启动标准化候选 GPU</strong>，按用户约定展示并简要讲解核心 diff 后等待确认。当前六份原始尺度重建作为诊断材料，不作最终合格听验结论。云端记录已更新，Windows 同步仍待进行。</p>
+<p>本轮原始尺度试听文件（重建音量明显偏低，诊断状态待定）：</p>
+<p><strong>short：R0003_SEP01_SEG0004</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3">R0003_SEP01_SEG0004 参考伴奏（本地素材未同步）</span></p>
+<p>原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/original_grid.mp3">R0003_SEP01_SEG0004 原网格重建（本地素材未同步）</span></p>
+<p>对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/aligned_grid.mp3">R0003_SEP01_SEG0004 对齐网格重建（本地素材未同步）</span></p>
+<p><strong>middle：R0001_SEP02_SEG0001</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3">R0001_SEP02_SEG0001 参考伴奏（本地素材未同步）</span></p>
+<p>原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/original_grid.mp3">R0001_SEP02_SEG0001 原网格重建（本地素材未同步）</span></p>
+<p>对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/aligned_grid.mp3">R0001_SEP02_SEG0001 对齐网格重建（本地素材未同步）</span></p>
+<p><strong>long：R0002_SEP01_SEG0005</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3">R0002_SEP01_SEG0005 参考伴奏（本地素材未同步）</span></p>
+<p>原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/original_grid.mp3">R0002_SEP01_SEG0005 原网格重建（本地素材未同步）</span></p>
+<p>对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/aligned_grid.mp3">R0002_SEP01_SEG0005 对齐网格重建（本地素材未同步）</span></p>
+<h3 id="2026-10-01-z-score_1">2026-10-01 z-score 声码器对照完成，待用户听验</h3>
+<p>用户回复“确认”批准具体标准化 diff 后，审阅稿原样应用至 <code>scripts/validate_vocoder_targets.py</code>，脚本 SHA-256 为 <code>1408d8c15072ce27fa41bc7df3539ef673ce84c903a023881d877c56a5d1d599</code>。执行采用 <code>--mel-normalization zscore</code>，默认 <code>raw</code> 仍可复现基线。本次用原有独立环境和 GPU 4，对相同短、中、长三段及原/对齐两种网格共执行六次声码器推理；开始、结束已通知用户。北京时间 13:30:44–13:30:55 完成，退出码 0，耗时 11.34 秒，PyTorch 峰值分配显存约 1.046 GiB，最大 CPU RSS 约 1.515 GiB；任务结束后 GPU 4 已释放。</p>
+<p>本步骤用 Vocos 声码器把真实伴奏 mel 重建为 WAV，检验频谱目标与预训练声码器的衔接。输入在送入模型前按 <code>(raw_logmel + 4.92) / sqrt(8.14)</code> 变换数值尺度，输出为原生长度、原生幅度的 24 kHz 单声道 FLOAT WAV 和播放副本；没有输出端补偿增益，三组 MP3 的共同增益均为 1。此步骤不直接消除分离伪影，不调用 FM，不更新模型参数。上游 Vevo 源码提供标准化候选依据，仍缺少 AnyAccomp 原训练加载器的直接证据。</p>
+<table>
+<thead>
+<tr>
+<th>样本</th>
+<th style="text-align: right;">raw 原/对齐 RMS 差（dB）</th>
+<th style="text-align: right;">z-score 原/对齐 RMS 差（dB）</th>
+<th style="text-align: right;">z-score 原/对齐包络滞后（ms）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0003_SEP01_SEG0004</td>
+<td style="text-align: right;">-38.57 / -38.59</td>
+<td style="text-align: right;">-0.17 / -0.23</td>
+<td style="text-align: right;">0 / 9</td>
+</tr>
+<tr>
+<td>R0001_SEP02_SEG0001</td>
+<td style="text-align: right;">-38.80 / -38.81</td>
+<td style="text-align: right;">-0.23 / -0.27</td>
+<td style="text-align: right;">0 / 10</td>
+</tr>
+<tr>
+<td>R0002_SEP01_SEG0005</td>
+<td style="text-align: right;">-38.00 / -37.97</td>
+<td style="text-align: right;">-0.52 / -0.49</td>
+<td style="text-align: right;">0 / 10</td>
+</tr>
+</tbody>
+</table>
+<p>RMS 差指重建相对参考的整体幅度差，负值表示较低。z-score 对照把此前约 38 dB 的异常缩小到约 0.17–0.52 dB，六份重建均有限，采样绝对值超过 1 的数量为 0。包络相关约 0.968–0.982；原网格估计为 0 ms，对齐网格约滞后 9–10 ms，支持存在窗口网格差异，但不证明各乐器逐点对齐。波形相关仍较弱，不能作为精确偏移依据；mel 重建的相位变化也会影响波形比较。</p>
+<p>输出长度与 raw 基线完全相同：短段原/对齐分别比参考短 14.917 ms / 长 5.083 ms，中段短 0.042 ms / 长 19.958 ms，长段短 7.167 ms / 长 12.833 ms。没有自动裁切、补齐、移位或淡化，边界仍需听验。输入与旋律 token 对齐的实验 mel 网格和声码器本身的合成时间约定不是同一个问题，尚未确定训练/解码的最终时间处理规则。</p>
+<p>九份 WAV 的格式、长度、有限值与报告哈希通过，九份 MP3 全文件解码通过。三段参考与 raw 基线的解码采样逐样本一致；FLOAT WAV 容器的 PEAK 元数据时间戳不同，文件哈希因此不同，不能把容器哈希不同误判为音频采样变化。三份原始录音、四份 CSV 清单及 raw 基线报告哈希均保持不变。完整证据见 <code>runs/anyaccomp_vocoder_zscore_20261001/results/report.json</code>、<code>post_validation.json</code>、<code>execution.json</code>、<code>vocoder_audit.log</code> 和 <code>resources.txt</code>。</p>
+<p><strong>当前结论与下一步</strong>：标准化是得到数值支持的输入尺度候选，声音质量仍为 <code>pending</code>。先由用户听验六份重建，比较主要乐器、节奏/过门、头尾完整性与新增失真；通过后提出时间处理规则和统一尺度 FM 核验的核心 diff，解释后再次确认。原始尺度 FM 有限损失/梯度不能替代标准化目标的重新核验；不在本轮自动执行 FM 重测或正式训练。配对清单仍为 <code>pending_compatibility_check</code>，完整配方仍为 <code>pending_recipe_validation</code>。云端文档已更新，Windows 同步待进行。</p>
+<p>以下每组依次为参考伴奏、z-score 原网格重建、z-score 对齐网格重建。原网格沿用公开 mel 窗口约定；对齐网格使目标 mel 帧中心与旋律 token 帧中心一致，两种网格都使用相同的标准化公式。</p>
+<p><strong>short：R0003_SEP01_SEG0004，参考 11.07 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3">R0003_SEP01_SEG0004 参考伴奏（本地素材未同步）</span></p>
+<p>z-score 原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/original_grid.mp3">R0003_SEP01_SEG0004 z-score 原网格重建（本地素材未同步）</span></p>
+<p>z-score 对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/aligned_grid.mp3">R0003_SEP01_SEG0004 z-score 对齐网格重建（本地素材未同步）</span></p>
+<p><strong>middle：R0001_SEP02_SEG0001，参考 21.20 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3">R0001_SEP02_SEG0001 参考伴奏（本地素材未同步）</span></p>
+<p>z-score 原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/original_grid.mp3">R0001_SEP02_SEG0001 z-score 原网格重建（本地素材未同步）</span></p>
+<p>z-score 对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/aligned_grid.mp3">R0001_SEP02_SEG0001 z-score 对齐网格重建（本地素材未同步）</span></p>
+<p><strong>long：R0002_SEP01_SEG0005，参考 30.11 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3">R0002_SEP01_SEG0005 参考伴奏（本地素材未同步）</span></p>
+<p>z-score 原网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/original_grid.mp3">R0002_SEP01_SEG0005 z-score 原网格重建（本地素材未同步）</span></p>
+<p>z-score 对齐网格重建</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/aligned_grid.mp3">R0002_SEP01_SEG0005 z-score 对齐网格重建（本地素材未同步）</span></p>
+<h3 id="2026-10-01_2">2026-10-01 标准化重建听验反馈与时间网格说明</h3>
+<p>用户反馈：“我听起来感觉和原版参照都差不多。”记录为标准化对照的整体听感未发现明显差异，不扩展为用户已逐项确认六份重建的边界或采样级对齐。反馈原文与范围见 <code>runs/anyaccomp_vocoder_zscore_20261001/user_listening_feedback.json</code>。完整训练输入兼容性与最终时间规则仍待验证，本轮没有新 GPU 任务或实验代码修改。</p>
+<p>时间网格指特征帧在音频上取窗口的时间位置。本实验采样率 24 kHz，hop=480 即每 20 ms 一帧，mel 窗长 1920 即 80 ms，窗口彼此重叠。公开 chroma/VQ 条件中心为 0、20、40…ms；原网格 mel 采用两端反射补齐 720 个样本，中心为 10、30、50…ms；实验对齐网格 mel 补齐 960 个样本，中心为 0、20、40…ms。两者的 mel 定义与标准化相同，但窗口位置不同。对齐网格比原网格多一帧是边界窗口数量变化，不是在原始录音中插入声音，也没有修改已有旋律 token。</p>
+<p>对齐网格解决条件与目标特征的帧中心定义差异；声码器原生合成约定仍对应 10、30、50…ms，因此直接解码对齐 mel 时观察到约 9–10 ms 的包络滞后。这两种“对齐”须分开核验，不能只因特征数量相同或听感相近就确定完整训练/解码合同。</p>
+<h3 id="2026-10-01-fm-diff">2026-10-01 标准化 FM 输入复核提案（具体 diff 待确认）</h3>
+<p>用户询问下一步。鉴于标准化声码器重建已得到整体听感接近参考的反馈，拟保留现有实验对齐网格和全部旋律 token，仅将实际送入 FM 的目标改为 <code>(raw_logmel - mel_mean) / sqrt(mel_var)</code>。两份本地配置的采样率、FFT/窗长、hop、mel 数量、频率范围、均值与方差逐项一致；新增 z-score 模式时检查一致性以及均值有限、方差有限且为正。默认 raw 用于保留基线模式，并修正旧报告中对原始尺度的过度推断。</p>
+<p>拟重新检查 13 对完整片段的原生 FM 前向、有效非 prompt 帧主损失、反向梯度，以及最短/最长混合批次的补齐与补齐扰动不变性。保存同一份原始 mel、实际输入 mel、未改动 token、特征范围和归一化来源；没有优化器步骤，不修改预训练参数。使用相同独立环境，预计 PyTorch 峰值约 8 GiB（前次 7.83 GiB），运行及核对预计几十秒至数分钟，选卡仍须执行前检查。仅 FM 主损失接口范围内验收；REPA/MERT、原生随机 prompt/CFG、检查点额外 tag 张量及缺失公开完整训练加载器的限制沿用，不宣称完整训练配方复现。</p>
+<p>本轮不自动修正解码波形或改变时间网格。条件/目标中心仍为 0+k<em>480，声码器原生合成中心为 240+k</em>480；约 10 ms 解码偏移及边界长度规则继续显式标为待验证。标准化 FM 复核通过后，还需单独制定并验证解码时间/边界处理，不能把这一轮结果写成整条训练输入链路已通过。</p>
+<p>审阅稿为 <code>runs/training_input_prepare/fm_normalization_v1/validate_fm_inputs.py.proposed</code>，完整 diff 为 <code>proposed_fm_normalization.patch</code>，状态为 <code>pending_user_confirmation_of_core_diff</code>。AST 与 <code>git apply --check</code> 通过；CPU 检查 13 份既有数组，标准化结果有限、帧数不变，与声码器候选公式一致，反变换误差最大约 9.54e-7，详见 <code>cpu_normalization_checks.json</code>。尚未修改 <code>scripts/validate_fm_inputs.py</code>，未启动 GPU 或 FM 前向/反向，需按用户约定展示核心 diff 并讲解后确认。当前仅云端保存提案。</p>
+<h3 id="2026-10-01-fm_2">2026-10-01 标准化 FM 输入复核执行完成</h3>
+<p>用户回复“确认”批准标准化 FM 的具体 diff。审阅稿原样应用到 <code>scripts/validate_fm_inputs.py</code>，SHA-256 <code>5a65d86b39aff24699918f648f574ac98f08e944e73e6a0afdc038452a8e6c2a</code>。沿用本实验独立环境 <code>environments/anyaccomp_input_929</code>；执行前 GPU 4 为 1 MiB / 0% 空闲，磁盘剩余约 817 GiB，三份原音及 13 对双轨片段哈希复查通过。运行以 <code>--mel-normalization zscore</code> 开始与结束均已告知用户，退出码 0，结束后 GPU 4 为 1 MiB / 0%，已释放。</p>
+<p>FM 的输入是保留的旋律 token、实验对齐网格上的标准化伴奏目标、有效帧掩码和原生随机扩散/提示条件。主损失衡量预测变化方向与目标方向的差异，反向传播检查参数能否获得梯度；本次没有优化器步骤，未更新参数，也没有执行 FM 生成或重新合成音频。先前声码器听验的音频继续有效。</p>
+<p>13 对全长片段的前向、有效非 prompt 帧损失及反向全部通过；包含两个超过 30 秒的片段，没有裁短。13 个单样本损失为 0.155664–0.261474，14 个批次的梯度 L2 范数为 0.602593–3.090335，均有限且非零。原始尺度与标准化尺度的目标不同，不能将损失数值下降解释为微调进步或生成效果提升。</p>
+<p>最短/最长片段组成的混合批次长度为 554 / 1,506 帧，短样本补齐 952 帧，前向与反向通过；补齐目标改为 100、token 改为 511 后，保持同一随机抽样，有效位置预测和损失的扰动不变性检查通过。结论限于本次抽样与批次，不代表原生随机 prompt 对任意变长批次都安全：公开实现按补齐后的 T 选择左右提示长度，该配方问题仍保留。</p>
+<p>实际耗时 13.44 秒，PyTorch 峰值分配显存 8,407,889,408 字节（约 7.83 GiB），最大 CPU RSS 1,832,868 KiB（约 1.75 GiB）。输出位于 <code>runs/anyaccomp_fm_zscore_smoke_20261001/results/</code>，每对保存 <code>tokens</code>、<code>target_raw_logmel</code> 和实际输入 <code>target_mel</code>；与 raw 基线逐数组比较，旋律 token 和原始对齐 mel 均完全一致，标准化变换验证通过，帧数与全长合同不变。四份 CSV 清单、三份原始录音、13 对片段、先前特征及相关基线报告保持不变，源文件及 FM 预训练权重哈希亦复核通过。</p>
+<p>运行与复核证据：<code>execution.json</code>、<code>fm_smoke.log</code>、<code>resources.txt</code>、<code>results/report.json</code>、<code>post_validation.json</code>。审核状态见 <code>runs/training_input_prepare/fm_normalization_v1/review_status.json</code>，已标记标准化 FM 运行及后核验通过。状态为 <code>passed_under_experimental_adapter</code>；配对清单仍保留 <code>pending_compatibility_check</code>，完整训练输入配方为 <code>pending_recipe_validation</code>。</p>
+<p>下一步需提出并核验声码器解码的时间起点和边界长度处理，解释对齐网格与合成中心相差 240 个采样点（10 ms）时如何保留头尾，展示核心 diff 后确认再实施。此轮没有自动移位、裁切或补齐输出声音。完整训练加载器缺失、三个额外 tag 张量、REPA/MERT 未实现、CFG 配方差异等限制继续保留；不得宣称整条训练链路或作者训练配方已经通过。云端记录更新完成，Windows 本地同步仍待进行。</p>
+<h3 id="2026-10-01_3">2026-10-01 声码器时间与边界适配提案（具体核心代码待确认）</h3>
+<p>用户要求“下一步”。本轮只读复核 Vocos 的 ISTFT 与已通过的 z-score FM/声码器报告，准备新的实验审阅稿；没有修改现有执行脚本或公开源码，没有运行 GPU、神经声码器或训练。</p>
+<p>时间问题定位在公开 ISTFT 的最终裁剪约定：1920 点窗、480 hop 的 <code>padding=same</code> 对未裁剪 overlap-add（将各窗口波形重叠相加的合成结果）左右各裁 720 点，因此第 0 帧中心在输出第 240 点（10 ms）。实验目标与旋律 token 的第 0 帧中心是 0；对应的合成结果应从完整 overlap-add 第 960 点开始，取参考 24 kHz 音频的 N 个采样点。这个 240 点差来自明确的窗口约定，不按相关峰逐段选择移位。</p>
+<p>不直接在已保存的原生 WAV 上删去 240 点后补零：13 个实际长度中有 4 个会出现尾部采样缺口，分别为 R0001_SEG0004 的 161 点、R0002_SEG0004 的 1 点、R0003_SEG0003 的 1 点和 R0003_SEG0004 的 118 点。完整 overlap-add 的长度为 <code>(T-1)*480+1920</code>，这些参考长度均可在 <code>[960:960+N]</code> 范围内覆盖，无需新增 mel 帧或插入波形零值。该覆盖结论来自数学范围检查，不等于真实模型已经重建出正确的末尾乐器。</p>
+<p>拟新增独立的 <code>scripts/validate_vocoder_timing.py</code>。每个短/中/长片段只调用一次原生声码器，临时的 forward pre-hook（只读取模块输入的回调）捕获送入 ISTFT 的复数频谱；预测网络和源定义不变。复数频谱包含合成所需的幅度及相位，保存为 NPZ 以支持事后复核。用同一频谱重建完整 overlap-add 与窗口平方和，分别输出原生裁剪与对齐裁剪；只在请求且窗口平方和有效的范围内归一化。检查重新构造的原生输出与原生 ISTFT 一致、与上一轮 z-score 原生基线一致，以及两种裁剪在相同物理位置的重叠采样完全相同。</p>
+<p>输入使用 <code>runs/anyaccomp_fm_zscore_smoke_20261001/results/</code> 中的实际 <code>target_mel</code>，同时验证标准化公式、token/目标帧数、输入哈希、旧基线 WAV 哈希与参考采样。选择与前轮相同三段；每组输出参考、原生对齐网格解码、修正起点且精确参考长度的解码，共九份 WAV 和九份 MP3。预计新运行目录 <code>runs/anyaccomp_vocoder_timing_20261001/</code>，使用同一独立环境，GPU 执行前复查空闲卡；预计峰值显存约 1.1 GiB、CPU RSS 约 1.6–2 GiB，运行及核对几十秒至数分钟。没有 FM 调用、参数更新、波形补零、重采样或淡化；原生输出与旧基线保留。</p>
+<p>提案检查通过：AST 与 <code>git apply --check</code>；CPU 对 13 个实际长度及 hop 余数 0/1/239/240/241/479 的六个边界案例（共 19 个）做已知随机信号及首尾脉冲 STFT/ISTFT 重建。原生重构与公开 ISTFT 逐样本一致，重叠区域逐样本一致，对齐输出首尾与已知信号的最大误差约 1.79e-7，所取范围的窗口平方和最小值约 0.253，未遇到无效归一化。证据见 <code>cpu_crop_checks.json</code> 与 <code>coverage_plan.json</code>。这些 CPU 检查只证明窗口/长度数学，不证明神经声码器的质量或作者训练配方。</p>
+<p>审阅稿 <code>runs/training_input_prepare/vocoder_timing_v1/validate_vocoder_timing.py.proposed</code>，SHA-256 <code>76723c04786c23273d6cf4959acac510610fbb2d0cfe12f86f013b2df3afdeba</code>；完整新增 diff 为 <code>proposed_vocoder_timing.patch</code>，状态为 <code>pending_user_confirmation_of_core_diff</code>。待展示核心代码及输入输出、关键逻辑和限制后由用户确认，再落地执行。GPU 后应检查输出长度、同源采样一致性、包络估计偏移是否接近 0，以及头尾是否引入异常，最终由用户听验。此次适配仅是本实验的解码候选，不能称为作者原始实现；完整训练配方及此前 REPA/MERT、prompt/CFG 等限制继续保留。云端记录已更新，本地同步待进行。</p>
+<h3 id="2026-10-01_4">2026-10-01 声码器时间与边界适配执行完成，待修正输出听验</h3>
+<p>用户回复“确认”批准具体提案。审阅稿原样新增为 <code>scripts/validate_vocoder_timing.py</code>，SHA-256 <code>76723c04786c23273d6cf4959acac510610fbb2d0cfe12f86f013b2df3afdeba</code>。执行前核查 13 对输入特征/片段、旧基线的 18 份 WAV/MP3 以及三份原音哈希；GPU 4 空闲，磁盘剩余约 817 GiB。任务沿用独立环境 <code>environments/anyaccomp_input_929</code>，开始/结束均已通知用户，退出码 0，实际耗时 12.01 秒，PyTorch 峰值分配显存约 1.046 GiB，最大 CPU RSS 约 1.516 GiB。结束后 GPU 4 为 1 MiB / 0%，已释放。</p>
+<p>三段各调用一次原生声码器，捕获预测的复数频谱，按公开定义重建完整窗口叠加结果及窗口平方和；保留 <code>[720:720+T*480]</code> 原生输出，并输出 <code>[960:960+N]</code> 起点修正版。N 为参考 24 kHz 音频采样数；模型参数、标准化频谱目标和旋律 token 均未修改。没有 FM 调用或参数更新。</p>
+<table>
+<thead>
+<tr>
+<th>样本</th>
+<th style="text-align: right;">参考/修正后采样数</th>
+<th style="text-align: right;">原生 → 修正包络估计滞后（ms）</th>
+<th style="text-align: right;">从原生裁剪范围外取回的尾部采样</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0003_SEP01_SEG0004</td>
+<td style="text-align: right;">265798 / 265798</td>
+<td style="text-align: right;">9 → -1</td>
+<td style="text-align: right;">118</td>
+</tr>
+<tr>
+<td>R0001_SEP02_SEG0001</td>
+<td style="text-align: right;">508801 / 508801</td>
+<td style="text-align: right;">10 → 0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>R0002_SEP01_SEG0005</td>
+<td style="text-align: right;">722572 / 722572</td>
+<td style="text-align: right;">10 → 0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>包络估计分辨率为 1 ms；修正后三段约为 −1/0/0 ms，包络相关约 0.968–0.979。三份修正版长度均与参考完全一致，幅度绝对值超过 1 的采样数量均为 0，与参考的 RMS 差约 −0.23/−0.27/−0.49 dB。数学起点修正固定为 240 点，没有按每段相关峰调参。波形相关仍较弱，不能据此宣称每个乐器的采样级精确对齐。</p>
+<p>原生神经输出与上一轮 z-score 基线逐样本一致；完整窗口合成的原生裁剪与原生 ISTFT 逐样本一致；修正版和原生输出在同物理时间的重叠区域逐样本一致。短段新增覆盖的 118 个尾部采样来自同一预测频谱的完整合成结果，118 点全部非零，RMS 约 1.136e-4，没有插入波形零值。技术上覆盖完整参考范围，不等于尾部配器已获得人耳验收。</p>
+<p>九份 FLOAT WAV 的格式、采样数、有限值及报告哈希通过，九份 MP3 全文件解码通过；三个保存的复数频谱 NPZ 哈希、形状和有限值通过。只用 CPU 从保存频谱及检查点窗口重建两种裁剪，与实际 GPU 保存输出的最大误差约 2.53e-7，支持保存产物可追溯。三组播放副本共同增益均为 1。源文件、预训练声码器权重、三份原音、13 对片段、四份 CSV 清单、先前特征、报告与旧基线音频哈希均保持不变。</p>
+<p>结果位于 <code>runs/anyaccomp_vocoder_timing_20261001/</code>，证据包括 <code>execution.json</code>、<code>resources.txt</code>、<code>vocoder_timing.log</code>、<code>results/report.json</code>、<code>post_validation.json</code>；每段目录保存 <code>predicted_spectrum.npz</code>、参考/原生/修正版 WAV 和 MP3。审核记录 <code>runs/training_input_prepare/vocoder_timing_v1/review_status.json</code> 标记执行及后核验通过、听验待定。</p>
+<p>下一步由用户听验三份修正版，重点检查开头声音进入、末尾收音是否自然完整，有无新增噪声或失真；时间偏移的定量诊断由报告承担，不要求用户凭听觉识别 10 ms。<code>human_listening_status=pending</code>，完整训练输入配方仍为 <code>pending_recipe_validation</code>，配对清单的训练兼容性状态尚未修改。本轮只支持三段神经输出及此前 19 个 CPU 数学案例的时间/长度合同，不代表所有训练配方问题已解决。该解码规则仍是本实验候选，不能声称作者原始实现。云端记录已更新，本地同步待进行。</p>
+<p>以下每组依次为参考、原生对齐网格解码、起点/长度修正版。原生解码与上一轮逐样本一致。</p>
+<p><strong>short：R0003_SEP01_SEG0004，参考 11.07 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3">R0003_SEP01_SEG0004 参考伴奏（本地素材未同步）</span></p>
+<p>原生对齐网格解码</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_native.mp3">R0003_SEP01_SEG0004 原生对齐网格解码（本地素材未同步）</span></p>
+<p>起点与长度修正版</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.mp3">R0003_SEP01_SEG0004 起点与长度修正版（本地素材未同步）</span></p>
+<p><strong>middle：R0001_SEP02_SEG0001，参考 21.20 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3">R0001_SEP02_SEG0001 参考伴奏（本地素材未同步）</span></p>
+<p>原生对齐网格解码</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_native.mp3">R0001_SEP02_SEG0001 原生对齐网格解码（本地素材未同步）</span></p>
+<p>起点与长度修正版</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.mp3">R0001_SEP02_SEG0001 起点与长度修正版（本地素材未同步）</span></p>
+<p><strong>long：R0002_SEP01_SEG0005，参考 30.11 秒</strong></p>
+<p>参考伴奏</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3">R0002_SEP01_SEG0005 参考伴奏（本地素材未同步）</span></p>
+<p>原生对齐网格解码</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_native.mp3">R0002_SEP01_SEG0005 原生对齐网格解码（本地素材未同步）</span></p>
+<p>起点与长度修正版</p>
+<p><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.mp3">R0002_SEP01_SEG0005 起点与长度修正版（本地素材未同步）</span></p>
+<h3 id="2026-10-01_5">2026-10-01 声码器时间/边界适配听验通过</h3>
+<p>用户对展示的短、中、长三份修正版明确反馈：“都自然完整，没有新增失真”。据此将三份修正版的头尾完整性、自然程度及新增失真听验记录为通过；与已通过的长度、同源频谱、重叠采样一致性和文件完整性检查共同构成本轮解码适配验收。证据见 <code>runs/anyaccomp_vocoder_timing_20261001/acceptance.json</code>；后核验和审核状态已更新为听验通过，<code>results/report.json</code> 保留执行时的诊断快照，后续验收以 <code>acceptance.json</code> 为准。</p>
+<p>已验证的实验输入规则为：24 kHz 单声道音频，冻结 chroma/VQ 旋律条件，目标 mel 与 token 使用 0+k*480 帧中心，目标按配置均值 −4.92、方差 8.14 做 z-score 标准化；解码使用同一预测复数频谱的完整窗口合成结果，从 960 点开始取参考长度。该规则有 13 对 FM 主损失/反向和一次混合补齐抽样检查、三段声码器技术核验及用户听验、19 个 CPU 数学案例支持，范围不扩展为作者完整配方复现或全部 13 段神经解码都已听验。</p>
+<p>下一步汇总训练输入规范与剩余问题，先核查并提出变长批次随机 prompt 的逐条有效长度处理方案。prompt 是提供给模型的已知伴奏区域；其选择须遵守每个样本的真实长度并为训练目标保留有效位置，当前公开实现以补齐后 T 取样，单次混合测试通过不能覆盖任意抽样。CFG 是随机丢条件的训练/推理引导机制；本地配置与论文的概率差异需要明确实验选择。REPA/MERT 是音乐表征辅助损失，现有主损失冒烟未实现该链路，须与完整作者配方分开记录。公开完整训练加载器缺失和额外 tag 张量的限制继续保留。任何新增或修改实验代码仍先展示核心 diff、讲解并等待确认。</p>
+<p>本轮仅记录听验并更新云端进度，没有新增 GPU 任务、模型参数更新、批量下载或正式训练。CSV 清单保持不变，训练兼容性整体仍待配方收口；Windows 同步待进行。</p>
+<h3 id="2026-10-01-fm_3">2026-10-01 变长 FM 随机提示适配提案（具体核心代码待确认）</h3>
+<p>用户在前轮文档同步确认后要求“下一步”。本轮只读核对公开 <code>anyaccomp/fmt_model.py</code>、条件模型、当前主损失核验及配置，准备实验目录内的独立适配模块与新核验脚本，尚未落地到 <code>scripts/</code> 或启动 GPU。</p>
+<p>prompt（提示区域）是训练时直接提供给模型的真实伴奏频谱区域，模型学习生成剩余位置。公开实现以补齐后最大 T 选择提示总长度，并用 T 定位右侧提示；同批短样本的右提示可能全部在补齐区，左提示可能遮住其所有有效位置。以有效长度 554/1,506 为例，原始规则允许 600 帧左提示，使短样本的损失帧为零；100 帧右提示位于 1,406–1,505，短样本看不到任何有效右提示。前轮单次混合抽样通过不能排除此类情况。配置 <code>prompt_prob=0</code> 不被该原生分支读取，实际仍以每批共享的约 30% 概率启用提示。</p>
+<p>拟新增 <code>scripts/fm_length_aware_prompt.py</code>，继承同一公开 FM 模型且不新增学习参数；按有效长度 L 选提示总长，左右提示只位于该段有效前缀的两端，满足 <code>left+right &lt; L</code>，至少保留一帧损失。正常长度沿用约 40% 的提示长度上界，短到原生 randint 区间失效的案例显式安全处理。损失掩码为有效位置减去提示位置，估计器输入的补齐位置显式归零。保留公开时间采样/调度、噪声插值、旋律条件投影、估计器和返回接口；默认提示出现概率显式设为 0.3，沿用原生每批共享启用门；<code>--prompt-probability 0</code> 在本实验中明确禁用提示。CFG 仍为当前配置 0.2（随机关闭旋律条件的训练机制），不在本轮处理与论文概率不同的问题。原项目源文件和预训练权重只读使用。</p>
+<p>拟新增 <code>scripts/validate_fm_prompts.py</code>，直接读取上一轮已核验且未修改的 z-score <code>target_mel</code> 和旋律 token，不重新提取特征。13 对全长单样本真实前向/反向，加最短/最长混合批次的七种检查：无提示、仅左、仅右、左右都有提示、默认概率下三个随机种子，共 20 个损失/反向批次；七个混合批次另做相同随机抽样下的补齐目标/token 扰动前向，核查有效预测、损失和提示计划不被补齐内容影响。保存每批有效长度、左右提示长度、提示总长、实际损失帧数、损失和梯度。没有优化器步骤、参数更新、MERT/REPA 辅助损失或音频生成。</p>
+<p>准备检查通过：两个文件的 AST；<code>git apply --check</code>；768 个 CPU 提示方案（每案 24 个长度，覆盖 1–100 的短长度及 13 对实际帧数、三种概率、四种位置模式、64 个种子），提示均在有效区，保留损失帧，增加 71 帧补齐不改变提示计划；四个无效掩码/提示案例被拒绝。已知合成 CPU 张量的 FM 插值、提示保留和补齐归零公式通过，没有执行估计器前向/反向。meta 模型状态字典的 137 个参数/缓冲张量名字和形状与公开模型一致，未新增学习参数。CPU 结果不能替代真实预训练模型的 GPU 前向/反向与扰动验证。</p>
+<p>提案目录 <code>runs/training_input_prepare/fm_prompt_v1/</code> 包含审阅稿、<code>proposed_fm_prompt.patch</code>、<code>cpu_prompt_checks.json</code>、<code>inspection.json</code> 和 <code>review_status.json</code>。适配稿 SHA-256 <code>62baf9dc873aa91dc320ddbab0fd6f2b258baa0183f509e11871c9bcf37aa9f0</code>，核验稿 SHA-256 <code>cd7a03414fe760e0fef326b6d0ad09a0c625f160de14064f69c26d2637264963</code>。状态为 <code>pending_user_confirmation_of_core_diff</code>，两份新执行文件尚不存在。预计峰值分配显存约 8 GiB（同结构前轮实测 7.83 GiB），运行及检查几十秒至数分钟，执行前仍复查 GPU；输出使用新目录 <code>runs/anyaccomp_fm_prompt_smoke_20261001/</code>。</p>
+<p>这些是本实验的提示/变长处理候选，不宣称作者原始训练规则。公开完整训练加载器缺失、额外 tag 张量、CFG 配方差异、REPA/MERT 未实现等限制继续保留，完整配方为 <code>pending_recipe_validation</code>。用户此前明确要求实验代码先展示核心 diff 并讲解后确认，故本轮准备到具体可审阅产物后等待确认，不自动执行。</p>
+<p>同步状态：用户提供的终端截图已确认前轮记录同步成功，云端与本地哈希均为 <code>aca3cf454e5bb13cab6f4ad876558b304c4c6e8d60b28368805e6ecda39e63f2</code>；同步登记见 <code>runs/record_sync_20261001T070911Z/sync_confirmation.json</code>。本节属于该同步之后的新云端变更，Windows 本地仍是上一次同步版本，后续阶段同步时需再次传输并核对。</p>
+<h3 id="2026-10-01-fm_4">2026-10-01 变长 FM 提示适配执行与后核验通过</h3>
+<p>用户回复“确认”批准前节具体核心 diff。两个审阅稿原样落地为 <code>scripts/fm_length_aware_prompt.py</code>（SHA-256 <code>62baf9dc873aa91dc320ddbab0fd6f2b258baa0183f509e11871c9bcf37aa9f0</code>）和 <code>scripts/validate_fm_prompts.py</code>（SHA-256 <code>cd7a03414fe760e0fef326b6d0ad09a0c625f160de14064f69c26d2637264963</code>）。沿用独立环境 <code>environments/anyaccomp_input_929</code> 和同一预训练 FM，读取上一轮已有 z-score <code>target_mel</code> 与旋律 token，没有重新提取或改写输入特征。适配类不新增学习参数，137 个公开模型所需张量加载一致；三个公开定义未包含的检查点 tag 张量继续显式排除。</p>
+<p>FM 在本轮的作用是核查“已知旋律条件、部分真实伴奏提示、带噪目标 → 剩余位置的生成训练损失”能否在不同长度输入上计算并反向传播。按每段真实有效长度选择左右提示，损失只计算有效且未被提示的位置，补齐位置在估计器输入中归零。提示默认以每批共享的 0.3 概率启用；强制左/右/双侧与关闭提示仅用作压力核验。CFG 随机关闭旋律条件的概率继续使用本地配置 0.2，REPA/MERT 辅助损失未引入。本轮没有优化器、模型参数更新、音频生成或新增听验。</p>
+<p>执行开始与结束均已通知用户；使用空闲 GPU 4（RTX 4090，UUID <code>GPU-f37d634b-c2bd-b66f-44a2-6608ae61b06e</code>），退出码 0。实际 GPU 核验进程耗时 10.07 秒，PyTorch 峰值分配显存 8,410,742,272 字节（约 7.83 GiB），最大 CPU RSS 1,694,340 KiB（约 1.62 GiB）；结束后 GPU 4 为 1 MiB / 0%，已释放。</p>
+<p>13 个全长单样本与七个混合长度批次全部完成真实前向/反向。混合输入是最短 R0003_SEP01_SEG0004（554 帧）和最长 R0002_SEP01_SEG0005（1,506 帧），短样本补齐 952 帧。下表提示长度与损失帧数按“短 / 长”记录；随机模式同时覆盖提示启用与未启用分支。</p>
+<table>
+<thead>
+<tr>
+<th>混合模式</th>
+<th style="text-align: right;">左提示帧</th>
+<th style="text-align: right;">右提示帧</th>
+<th style="text-align: right;">实际损失帧</th>
+<th>补齐扰动检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无提示，概率 0，seed 929</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">554 / 1506</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>强制左提示，seed 929</td>
+<td style="text-align: right;">138 / 352</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">416 / 1154</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>强制右提示，seed 929</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">138 / 352</td>
+<td style="text-align: right;">416 / 1154</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>强制双侧提示，seed 929</td>
+<td style="text-align: right;">109 / 156</td>
+<td style="text-align: right;">29 / 196</td>
+<td style="text-align: right;">416 / 1154</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>默认概率 0.3，seed 929，未启用</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">554 / 1506</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>默认概率 0.3，seed 930，启用</td>
+<td style="text-align: right;">127 / 161</td>
+<td style="text-align: right;">12 / 12</td>
+<td style="text-align: right;">415 / 1333</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>默认概率 0.3，seed 931，未启用</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">0 / 0</td>
+<td style="text-align: right;">554 / 1506</td>
+<td>通过</td>
+</tr>
+</tbody>
+</table>
+<p>所有样本的提示帧与损失帧构成有效长度的完整分区，没有提示落在补齐区，也没有有效位置全部被提示遮住；本轮实际最少保留 415 个损失帧。20 个批次损失均有限，范围约 0.14934–0.30834；梯度有限且非零，L2 范围约 0.16950–2.25612。七次补齐扰动在保持随机状态一致时，将补齐 mel 改为 100、补齐 token 改为 511，有效预测、损失和提示计划均通过一致性检查。损失数值仅作为接口诊断，不能据此评价微调提升或生成质量。</p>
+<p>输出目录 <code>runs/anyaccomp_fm_prompt_smoke_20261001/</code>，包含 <code>execution.json</code>、<code>fm_prompt.log</code>、<code>resources.txt</code>、<code>results/report.json</code>、<code>post_validation.json</code>。后核验复查批次数、提示分区、有效损失帧、补齐扰动、代码与审阅稿哈希、输入及源文件完整性，状态为 <code>passed</code>。原音、13 对片段、四份 CSV 清单、既有特征和报告、公开源文件、预训练权重及上一轮 <code>scripts/validate_fm_inputs.py</code> 均保持不变。提案审核记录 <code>runs/training_input_prepare/fm_prompt_v1/review_status.json</code> 已更新为用户确认、执行及后核验通过。</p>
+<p>此结果证明当前实验适配在已测输入和提示方案下可以安全计算 FM 主损失及梯度，与此前 CPU 提示检查共同支持逐条有效长度处理；不代表任意批次或完整作者训练配方已验证，也不代表分离伪影已经被清除。配对清单继续保持原兼容性状态，整体训练输入配方为 <code>pending_recipe_validation</code>。未解决事项包括公开完整训练加载器缺失、三个额外 tag 张量、CFG 0.2 与论文 0.1 的差异、REPA/MERT 辅助损失未实现，以及实验时间网格、标准化与解码规则不能直接称为作者原始预处理。</p>
+<p>下一步整理已通过的输入规范与小规模流程验收清单，明确 CFG 及 REPA/MERT 的实验取舍，再展示可审阅的训练入口方案与核心 diff。是否执行临时参数更新、保存与重载检查点，以及之后的生成对照/正式微调，均属于后续具体提案范围；本轮没有自动推进这些任务。仍需先解释代码并得到确认。云端记录已更新；Windows 本地仍为前轮同步快照，本轮新增记录尚未同步。</p>
+<h3 id="2026-10-01_6">2026-10-01 小规模流程有限验收提案（待用户确认）</h3>
+<p>用户问“下一步做什么”。按已经重申的 929 范围，下一步先完成当前三份录音的小规模验收，再确定规模化来源和数量/合格时长。本轮只核对已有报告和清单、整理输入规范及提案，没有修改实验代码、清单状态或启动 GPU、优化器更新、批量下载。以下是可审阅的有限验收范围，尚未替用户作整体通过判断。</p>
+<p><strong>验收对象</strong>：R0001–R0003 经用户接受的三份 Demucs 双轨及 13 对结构片段；总长 282.228684807 秒（约 4 分 42 秒）。最长片段约 30.107 秒，R0002_SEG0005 和 R0003_SEG0003 两段超过 30 秒，保留全长并纳入已有特征/FM 核验。</p>
+<table>
+<thead>
+<tr>
+<th>固定验收项</th>
+<th>已有证据</th>
+<th>建议如何记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原音与分离版本可追溯</td>
+<td>三份原音下载/哈希/解码；模型提交、权重、参数与日志登记；三份 Demucs 双轨听验通过</td>
+<td>通过本次流程门槛；保留人声伪影及无独立干净轨的限制</td>
+</tr>
+<tr>
+<td>结构分段与配对覆盖</td>
+<td>13 个共同边界经用户确认；片段重拼与各完整分离轨逐样本一致</td>
+<td>同源裁切和完整覆盖通过；不宣称独立真值下的细部对齐</td>
+</tr>
+<tr>
+<td>旋律/伴奏特征接口</td>
+<td>全部 13 对冻结 Chroma/VQ 提取与范围检查；全长 token 与实验目标时间网格/尺度核验</td>
+<td>按已验证的实验输入规则接受；不称为作者原始预处理</td>
+</tr>
+<tr>
+<td>FM 主损失与变长输入</td>
+<td>13 个单样本、七个混合提示批次前向/反向；七次补齐扰动通过</td>
+<td>主损失、梯度、真实长度/提示/损失掩码接口通过；不扩展为完整训练器通过</td>
+</tr>
+<tr>
+<td>频谱到声音的转换</td>
+<td>三段声码器技术核验及用户“自然完整、没有新增失真”的听验；19 个 CPU 数学案例</td>
+<td>接受本实验解码起点/长度规则在已测范围内的证据；不声称全部片段解码已听验</td>
+</tr>
+<tr>
+<td>输入规范与限制交付</td>
+<td>本提案及模型与技术说明，相关报告路径见下</td>
+<td>待用户确认有限验收范围；确认后登记整体结论和后续建集要求</td>
+</tr>
+</tbody>
+</table>
+<p><strong>建议固定的实验输入规则</strong>：分离沿用已比较的 Demucs <code>htdemucs_ft</code>；保持原音、完整双轨及共同边界的配对 WAV；处理输入转为 24 kHz 单声道。旋律条件使用冻结的 24 通道 Chroma/VQ、每秒约 50 帧、512 条目码本；伴奏目标使用 128 通道 Mel、hop 480、帧中心 <code>0+k*480</code>，按均值 −4.92、方差 8.14 做 z-score。变长批次使用真实有效长度掩码及已确认的逐条提示适配，提示概率 0.3；解码从完整合成结果第 960 点取参考长度，不补波形零值。这些是已核验的实验规则，不新增算法。</p>
+<p><strong>CFG 的有限取舍</strong>：CFG 的训练条件丢弃机制让 FM 同时学习“看旋律”和“不看旋律”的预测。建议保留已核验代码中的丢条件概率 0.2，不在 929 为调整成论文的 0.1 再跑一轮主损失核验；该值不是推理时的引导强度，差异写入限制。正式微调采用何值另行设计。</p>
+<p><strong>REPA/MERT 的有限取舍</strong>：MERT 是提取音乐特征的教师模型，REPA 是约束 FM 中间特征接近教师表征的辅助损失。当前没有这项计算，建议本次验收明确仅覆盖 FM 主损失输入，不新增 MERT 下载或 REPA 实现，不把未实现写成通过。完整论文配方不是本次数据实验的默认门槛。</p>
+<p><strong>训练入口的声明范围</strong>：当前有真实预训练模型的前向、主损失和反向证据，但没有优化器步骤、参数更新或训练恢复测试；三个检查点 tag 张量不在公开模型定义中，已明确排除。本次建议以“实验 FM 主损失输入接口已核验”作为可复用范围，完整作者训练器及精确配方保持未验证。无需为了消除这些限制自动追加临时更新；如后续所选实际训练入口提出新的数据接口要求，先说明具体缺口与有限检查，再按代码确认规则处理。</p>
+<p><strong>确认后的固定下一步</strong>：登记有限验收结论并对应更新清单，不覆盖历史执行报告；提出规模化来源清单与可计量的建集目标（录音数量或最终合格配对时长），以及资源预算和质量门槛。达到约定规模、完成配对/输入核验、按原录音或演出分组划分及数据交付后，结束 929。若候选来源明显更长或录音条件不同，只按实际差异提出必要的代表样本检查，不重新比较所有模型或不断追加技术研究。</p>
+<p>证据：<a href="report-1f253104ba23.html">分段覆盖报告</a>、<a href="report-e3e4920b0859.html">特征报告</a>、<a href="report-105333cff344.html">z-score FM 报告</a>、<a href="post_validation-f02c7a8be6b7.html">提示/补齐后核验</a>、<a href="acceptance-0560a658edc2.html">声码器听验记录</a>。早期报告中的待办状态保留为执行时快照，后续验收须按较新阶段证据解释。</p>
+<p>当前整体训练输入状态仍未升级，四份 CSV 清单不变；这是提案，不是整体验收完成记录。云端文档已更新，本地仍待同步。</p>
+<h3 id="2026-10-01_7">2026-10-01 用户确认小规模有限验收，准备本地记录同步</h3>
+<p>用户答复“可以的”，确认前节具体有限验收范围，并询问是否有音频或文件需下载到本地；随后要求提供提示词，由本地 Codex 对话执行同步。已登记三份录音、13 对片段的有限流程验收，通过范围是当前实验 FM 主损失输入及已测声码器解码规则；CFG 条件丢弃概率保留 0.2，REPA/MERT 辅助损失不纳入本轮，完整作者配方与完整训练器保持未验证。</p>
+<p>验收记录：<code>runs/small_scale_acceptance_20261001T085524Z/acceptance.json</code>。登记前再次核对三份原音和 26 份配对 WAV 哈希，全都与清单一致。<code>pairs.csv</code> 的 13 条 <code>training_input_status</code> 从 <code>pending_compatibility_check</code> 改为 <code>passed_experimental_fm_main_loss_interface</code>；其余列和数据划分不变。变更前清单备份为同目录 <code>pairs.before_acceptance.csv</code>，验收 JSON 记录前后哈希与证据哈希。其他三份 CSV、音频、源代码和权重未修改；历史报告及提案段落保留原时点状态，最新结论以本节和验收 JSON 为准。</p>
+<p>现有音频已经完成本轮所需听验，没有新试听待办，不要求再次下载。为本地回看和交接，准备同步两份说明/进度文档、README、四份 CSV 清单、验收记录及关键小型 JSON 报告；不包含音频、权重、运行环境或大型 NPZ。云端准备不可变同步包和逐文件 SHA-256 清单，本地 Codex 经 <code>lab-4090</code> 下载到临时目录，校验后备份不同的旧版再写入项目路径，并生成本地同步回执。</p>
+<p>本轮没有 GPU 任务、参数更新或规模化下载，929 尚未完成，下一步是明确规模化来源及可计量目标。同步包准备完成不等于本地已更新；本地下载与哈希核验成功后才登记同步完成。</p>
+<h3 id="2026-10-01_8">2026-10-01 规模化首批来源只读核查与具体提案（待确认）</h3>
+<p>用户问“下一步做什么”。已完成小规模有限验收，进入规模化来源与可计量目标规划。本轮核对基金会示范音档目录、九份详情页和现有录音清单，目录列出九项，其中三项已收录，另外六项为新候选。新候选 C004–C009：古早七字仔、都馬調、西樂都馬、崁仔腳調、臺東調（平埔調）、思想起（恆春調）。</p>
+<p>六项 HTTP Range 文件头读取均返回 206，每份最多 65,536 字节，没有保存完整音频或执行 GPU。RIFF 文件头声明 48 kHz、双声道、24-bit PCM，新增录音合计约 8 分 21 秒，预计下载约 138 MiB；连同现有三份，目录全部九项合计约 13 分 03 秒。这是原始录音的元数据线索，不是合格配对时长，完整下载、哈希、解码与听验尚未进行。演唱署名中的角色与演员信息完整保存，候选状态不等于正式收录。</p>
+<p>具体首批方案：<a href="first_batch_proposal-8f4e785e90cc.html">首批来源与资源提案</a>，元数据见同目录 <code>source_inventory.json</code>，候选清单见 <code>source_candidates.csv</code>。建议确认首批六项后，完整下载并核验，先对最长 C005 都馬調做同参数完整分离并听验，通过后处理其余五项，然后逐份结构分段、配对与输入核验。本批保留原音/完整双轨/片段预计预留 2 GiB，GPU 分离沿用既有预算并记录实测；没有为提案修改实验代码。</p>
+<p>最终规模仍待明确。六项候选只是首批，不将约 13 分钟自动作为整个 929 的结束目标；如需要小时级合格数据，必须补充来源。已向用户询问最终合格配对时长或先审阅首批方案的偏好。来源与目标明确前不直接批量执行；不重启完整作者配方研究或正式训练。</p>
+<p>本地同步状态未改变。前轮 <code>record_handoff_20261001T085731Z/929_records.zip</code> 的固定快照和哈希保持不变，本提案属于它之后的新记录，后续同步另建版本；没有收到本地同步回执，不宣称本地已更新。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/archive/929训练数据采集_历史记录_20261001T093748Z.md（路径已脱敏）","sha256":"bbe987bd8a1289d3a16b4587460588edb73ff63249f957dd7d1f9f60faa58e98","text":"# 929训练数据采集：歌仔戏配对数据与训练输入核验\n\n更新日期：2026-10-01。本文是**本次数据实验的进度文档与最终数据交付记录**；每结束一个有独立产物的阶段，就更新实际结果、证据、用户判断、遗留问题和下一步，并同步本地与云端副本。状态以实际证据为准，不把已下载录音或计划写成可训练样本。\n\n模型、工具与技术在本项目中的职责、输入输出、当前使用状态及验证范围，单独整理于[929 项目模型与技术说明]($CLOUD_FINETUNE_ROOT/docs/929项目模型与技术说明.md)，方便回看；本进度文档继续保存实际执行证据。\n\n**2026-10-01 用户重申的推进边界**：规模化建集原已列入 929 的目标与阶段表；用户本次明确“包含规模化建集”，是重申原范围，不是新增任务。929 的范围固定为“小规模流程验证 → 按明确规模建集 → 质量与训练输入核验 → 数据划分和交付”，完成后报告结论并停止。正式微调、长期训练、生成效果研究和其他实验不自动纳入。扩大建集前仍需完成小规模验收并确定来源清单、目标数量或合格配对时长；此次确认范围不等于已有明确批量任务清单。下文既有“下一步”描述是候选待办，不表示用户已批准立即执行新增实验代码。\n\n**有限验收与停止规则**：先汇总已有分离听验、结构边界、配对可追溯性、特征/时间网格、FM 主损失及提示/补齐检查、声码器听验的证据；对剩余项明确标为“通过 / 未验证 / 本轮不做”，不为消除所有不确定性不断追加研究。形成剩余必需检查的固定清单、明确本轮采用的输入规则及未实现的论文配方；完成已确认的验收项和文档交付后，报告 929 结论并停止。不能把遗留限制写成通过，也不能把保留限制当作无限扩展任务的理由。完整作者配方复现不是默认验收要求。若确需新增实验代码，仍先展示核心 diff、解释并等待确认。\n\n**明确的终点**：交付达到约定规模、来源可追溯、经质量与配对审核及约定训练输入核验的歌仔戏人声—伴奏数据集，同时交付训练/验证/测试清单、输入规格、处理与审核记录、统计及遗留限制说明，并由用户验收。当前三份录音和 13 对片段是流程验证材料，不能作为整个 929 已完成的依据。具体建集数量或合格时长尚未确定；确定后写入记录，达到目标后不自动提高规模或增加新研究。\n\n## 1. 目标、路线与边界\n\n目标是先用少量录音验证数据构建全流程，再扩大音频收集与处理，最终获得**足量、来源可追溯、质量合格、时间对齐，并经 AnyAccomp 实际训练输入流程核验可用**的歌仔戏人声—伴奏配对训练数据。只有孤立人声不能直接提供对应的戏曲配器、节奏和过门监督信号。\n\n**小规模流程验证**：少量音频收集与下载 → 保存完整录音 → 分离 → 质量与对齐核验 → 按戏曲结构同步分段 → 保存配对唱段 → 训练输入兼容性核验。\n\n**通过后规模化建集**：扩大音频收集与下载 → 对每份完整录音执行已验证的分离、核验、同步分段和配对流程 → 按训练输入规则组织并复核全部样本 → 数据划分与交付。小规模录音只是试流程的材料，不是本实验预定的最终数据规模。\n\n只有小规模链路的分离质量、时间对齐、结构分段、配对关系与训练输入兼容性均通过，并由用户确认后，才按确定的来源清单和处理规模开展批量数据构建。听音大模型不是必需前置。完整录音和戏曲结构性长唱段始终保留；论文报告的训练片段范围不作为本实验的硬性分段上限。能否直接训练长片段，要由实际训练实现验证。\n\n**实验边界**：本实验包括伴奏目标能否被训练流程读取、对齐并用于计算损失的兼容性验证，必要时进行一个批次/一步的临时冒烟测试；这只是数据可用性的证据，不作为模型训练成果。正式微调策略、长时间训练、生成效果评价和训练报告另开实验，不在本文中宣称完成。\n\n### 1.1 固定交付项与完成条件（包含规模化建集）\n\n| 交付项 | 929 的完成条件 | 当前状态 |\n| --- | --- | --- |\n| 小规模流程验收 | 汇总同一批录音的分离听验、结构分段、完整覆盖、配对与约定训练输入证据；明确限制并经用户确认可复用 | 用户已确认有限验收通过；范围为实验 FM 主损失接口及已测解码，不是完整作者训练配方 |\n| 建集范围 | 明确来源清单、目标录音数量或合格配对总时长、质量门槛与必要资源；数量/时长以最终合格数据统计为准 | 尚待确定；不把“越多越好”作为终点 |\n| 规模化配对音频 | 按确定范围收集、完整保存、分离、审核和同步分段；合格数据达到约定规模，异常样本剔除或标记可用范围 | 尚未开始 |\n| 可追溯清单与审核 | 每对能回溯原录音、来源、分离版本、共同边界、文件哈希和审核状态；保留不通过样本的原因 | 三份录音已有清单，规模化部分待执行 |\n| 训练输入规格与验证 | 固定采样率/声道、旋律条件、目标尺度与网格、变长补齐/掩码等规则，记录约定兼容性检查；未复现的作者配方明确列为限制 | 当前主损失等局部核验通过，整体规则与验收待汇总 |\n| 数据划分与最终交付 | 按原始录音/演出等分组划分训练、验证、测试，避免同源片段跨集合泄漏；交付清单、数量/时长统计、处理证据、输入说明及实验结论 | 尚未执行 |\n\n**停止条件**：以上已确认交付项完成并经用户验收，即结束 929；后续新增来源、扩大数量、改变处理方法、实现完整论文配方或正式训练另立任务。不以模型生成效果好坏作为本次数据实验的完成标准。为完成固定验收所需的补充检查，应先说明具体缺口、输入输出与完成条件，不无限追加试验。\n\n本阶段的优先目标是**内部数据与训练输入技术试验**。来源与权利状态仍逐件记录为“待核实”，但不作为当前小规模数据准备的阻塞项；不把这些文件标为已授权、可公开发布或可用于论文交付。若进入论文发表或数据共享阶段，使用范围和权利由用户与老师核实，并对正式数据重做来源、质量、划分和实验记录。\n\n## 2. 工作区与责任\n\n| 工作区 | 路径 | 责任 |\n| --- | --- | --- |\n| 本地 Codex | `$PROJECT_ROOT\\anyaccomp_gezi_finetune` | 来源筛选、授权状态记录、听音/边界清单、配置与报告整理；只保留必要试听样本，不重复存放大型权重。 |\n| 云服务器上的 Codex | `$CLOUD_FINETUNE_ROOT`（`lab-4090`） | 经确认的完整录音、分离轨、配对片段、训练输入核验及其临时冒烟日志；准备耗时 GPU 分离的启动与监控命令。 |\n| 用户 | 两端结果的判断者 | 确认收录范围、亲自听验分离结果和分段边界、确认训练输入可用性的验收证据，；本次云端耗时 GPU 任务由 Codex 执行，开始与结束均告知用户。 |\n\n两端目录**不自动同步**。同步时先检查目标文件是否已存在，明确传输清单与方向，再核对 SHA-256；不覆盖未核对的记录。本文两端使用同名副本，任何实质决策更新均写明日期和来源，避免分叉。\n\n**进度更新规则**：阶段结束后在第 4 节更新状态与验收证据，在第 7 节记录实际产物、与你的判断及遗留问题，再核对两端文档哈希。未完成的阶段保留“待执行/待核验”；“三份试验录音下载成功”“小规模流程跑通”和“规模化训练数据完成”是三个不同状态。数据实验的最终验收是“经过规模化处理的可追溯配对数据 + 质量/对齐审核 + 训练输入兼容性证据 + 数据交付清单”，不是正式模型效果。\n\n## 3. 数据目录、编号与命名\n\n| 内容 | 路径或命名 | 说明 |\n| --- | --- | --- |\n| 原始录音 | `data/raw/R0001/原始文件名.wav` | 保留下载文件原名及内容；格式可不是 WAV，按真实后缀保存。现有 `data/raw/qizi_demo_21.wav` 是旧路径，不因本文而移动或改名。 |\n| 完整分离轨 | `data/separated/R0001/SEP01_vocal.wav`、`SEP01_accompaniment.wav` | `SEP01` 对应一次固定模型、权重和配置的分离结果；不同试验用新编号。 |\n| 配对唱段 | `data/clips/R0001/SEP01/SEG0001_vocal.wav`、`SEG0001_accompaniment.wav` | 两轨来自同一次分离、相同的原录音起止位置；时间以清单为准，不靠文件名猜测。 |\n| 数据清单 | `data/manifests/recordings.csv`、`separations.csv`、`segments.csv`、`pairs.csv` | `recordings.csv` 已记录本轮三份原音；其余清单分别用于后续分离版本、边界/歌词/审核状态和最终配对关系。未产生实际数据时不填造记录。 |\n| 其他产物 | `models/`、`environments/`、`configs/`、`scripts/`、`runs/`、`reports/` | 模型、环境信息、配置、脚本、运行记录和阶段报告分别归档，不混入原项目。 |\n\n`R0001` 是正式收录录音编号，`SEP01` 是该录音的一次分离编号，`SEG0001` 是确认边界后的唱段编号。编号一经分配不复用；来源、分离版本或边界变更时建立新记录，不静默覆盖旧产物。候选来源另用 `C001` 等编号，**候选编号不代表已收录、已授权或已分段**。歌词只记录有依据且经过核对的内容；无法辨识处标记“听不清/待核”，不猜填。\n\n## 4. 当前状态与阶段门槛\n\n| 阶段 | 当前状态（2026-10-01） | 进入下一阶段的证据与用户关口 |\n| --- | --- | --- |\n| 小规模音频来源与下载 | **仅下载检查通过**：`R0001–R0003` 已下载，详情见第 5 节及 `recordings.csv`；**全流程尚未跑通** | 三条官方直链、文件格式、大小、时长、完整解码与 SHA-256 已记录；权利状态保持“待核实”，不阻塞本次内部技术试验，也不视为论文/共享授权。 |\n| 小规模完整录音保存 | **仅保存检查通过**：三份完整录音保存在云端 `data/raw/R0001–R0003/` | 原有旧文件未移动或覆盖；`R0001` 与旧示范录音哈希一致；三份录音互不重复。长录音不为分离而预先按固定秒数切段。 |\n| 分离模型小规模比较 | **R0001 两方案比较已完成；R0002/R0003 的 `htdemucs_ft` 完整分离已完成** | R0001 用户认为 Demucs 更好；R0002/R0003 沿用相同模型与参数，保存版本、权重来源、日志和完整双轨；三份 Demucs 双轨均经用户听验通过，作为后续小规模流程验证输入。GPU 任务按本次授权由云端 Codex 执行并通知用户。 |\n| 分离质量与时间对齐 | **三份 Demucs 双轨均经用户听验通过；基础技术检查通过，细部对齐仍待核验** | R0001 已明确报告伪影但唱腔主体完整；R0002/R0003 用户按要求的质量标准答复“都通过”，没有单独的伪影时间点记录。检查起点、采样率、帧数、整体延迟和局部漂移；已有近似检查不等于细部对齐证明。 |\n| 按戏曲结构同步分段 | **三份录音共 13 个片段边界均经用户确认** | R0001 四段、R0002 五段、R0003 四段；片头伴奏、内部过门与尾奏保留。片段未按固定 30 秒上限截断。 |\n| 保存配对唱段 | **三份录音的 13 对 WAV 已保存并登记；实验 FM 主损失输入接口有限验收通过** | 每对同源同样本边界，回溯至原音及分离版本；每份录音的分段连续覆盖完整双轨，重新拼接后逐样本一致。原音和完整分离轨保留。 |\n| 训练样本兼容性 | **有限验收通过：实验 z-score FM 主损失、逐条有效长度提示及七种混合补齐检查；三段声码器时间/长度技术核验与听验通过；完整作者配方、优化器及恢复训练未验证** | 核实实际训练入口、采样率/声道、伴奏目标特征、变长批处理/补齐/有效长度掩码；短、中、长样本及混合长度批次须成功加载并与对应人声对齐。使用真实训练接口核验前向损失和反向传播；必要时仅做一个批次/一步的临时参数更新及检查点重载，验证输入确实可用于训练，产物不作为正式训练模型。不得出现未记录的静默截断。若缺少训练入口或需修改实验代码，先单独说明逻辑、展示核心 diff 并按用户确认流程实施。 |\n| 小规模全流程验收 | **用户已确认有限验收通过；可进入来源与规模规划** | 汇总同一批试验录音的分离听验、时间对齐、结构分段、配对可追溯性和训练输入兼容性证据；由用户确认流程可复用。若正式来源的录音明显长于试验录音，批量处理前还要补验代表性长录音的分离稳定性。任一关键环节未通过，先修正并重验，不直接批量下载或处理。 |\n| 规模化音频收集与处理 | **待执行，属于本数据实验主要工作** | 流程验收后，由用户确认扩大收集的来源清单和规模；批量保存完整录音，并逐批执行已验证的分离、对齐核验、同步分段、配对和训练输入检查。逐件留存来源/哈希/处理版本/时间戳，每批记录通过、局部可用、剔除数量与原因；异常录音不混入训练集。耗时 GPU 批量任务按当次授权由云端 Codex 执行并通知用户。 |\n| 数据划分与交付 | **待执行，属于本数据实验终点** | 对规模化产出的合格配对样本按原始录音/演出等分组准备训练、验证、测试清单，避免同源泄漏；核对样本数、总时长、人声/伴奏文件、时间戳、审核状态和输入规格，交付可复现的数据清单及本进度文档。不能只交付 `R0001–R0003` 的试验结果。**正式微调与效果评价由另一实验承担**。 |\n\n没有真实独立人声/伴奏轨作为参照时，不宣称有可靠的参考型分离质量分数。两轨长度相同也不等于已经证明时间对齐。一个批次的兼容性冒烟成功只证明数据与该训练接口可衔接，不证明模型已学到合适的歌仔戏伴奏。\n\n## 5. 首轮流程验证录音（尚非规模化训练数据）\n\n优先少量、官方、直接提供下载的录音。以下页面和直链于 2026-09-30 核查，并已将三份完整 WAV 小规模下载到云端。基金会虽然公开表示曲调音档可免费下载，但其[著作权声明](https://twoperapf.org.tw/copyright)并未给出本实验所需训练使用范围的明确许可；本轮只把它们作为**权利状态待核实的内部技术试验材料**，不将其称为已授权的正式论文数据。没有进行批量抓取，也未绕过访问限制。\n\n| 候选 | 内容与来源 | 官方页面 / 直接下载 | 核查结果与下一步 |\n| --- | --- | --- | --- |\n| `C001 → R0001` | 七字調示範音檔；旧文件 `data/raw/qizi_demo_21.wav` 仍保留 | [资源页](https://twoperapf.org.tw/resource/demo-audio/21) / [WAV 直链](https://twoperapf.org.tw/resource/download/21) | 新下载的 `data/raw/R0001/2.七字調-示範音檔.wav` 与旧示范录音 SHA-256 相同；92.586667 秒。旧 21 秒裁切不是本路线的正式分段样本。 |\n| `C002 → R0002` | 雜唸調示範音檔；官网列作詞/編腔劉秀庭/周以謙、編曲周以謙、演唱龔俊杰，并提供歌词 | [资源页](https://twoperapf.org.tw/resource/demo-audio/24) / [WAV 直链](https://twoperapf.org.tw/resource/download/24) | 已下载到 `data/raw/R0002/5.雜唸調-示範音檔.wav`；108.837125 秒，完整解码通过；尚未听验。 |\n| `C003 → R0003` | 江湖調示範音檔；官网列編曲周以謙、演唱龔俊杰，并提供歌词 | [资源页](https://twoperapf.org.tw/resource/demo-audio/25) / [WAV 直链](https://twoperapf.org.tw/resource/download/25) | 已下载到 `data/raw/R0003/6.江湖調-示範音檔.wav`；80.804854 秒，完整解码通过；尚未听验。 |\n\n三份音频均经 `ffprobe` 检查为 48 kHz、双声道、24-bit PCM WAV，`ffmpeg` 全文件解码通过；大小与 SHA-256 详见 `data/manifests/recordings.csv`。`R0002/R0003` 来自同一来源与演唱者，适合验证流程，但不能代表歌仔戏风格、演员与录音条件的充分多样性；也不能因为官网另有同曲名伴奏音档，就假定它与示范唱段已严格对齐。**下一步必须用这些录音跑完整条数据链路；通过后才扩大下载和处理，形成训练数据**。\n\n## 6. 分离模型与训练入口：只读核查\n\n- **论文关联事实**：[AnyAccomp 论文](https://arxiv.org/html/2509.14052v1)描述从歌曲构建配对训练数据；其所关联的[SingNet 论文 §3.1.1](https://arxiv.org/html/2505.09325v1#S3.SS1.SSS1)写明使用 Solovyev 等人的开源分离库和引用 Fabbro 等人的 MDX23 预训练模型。[Solovyev 维护的 MVSEP-MDX23 仓库](https://github.com/ZFTurbo/MVSEP-MDX23-music-separation-model)是可核查的实现候选，但**尚未证明 SingNet 使用了该仓库的哪个提交、精确权重和配置**，不能把某个同名检查点冒充作者原版。\n- **比较候选**：[Demucs 官方仓库](https://github.com/facebookresearch/demucs)提供 `htdemucs_ft`；它可接收整段录音并在内部处理窗口，不要求先按戏曲唱句切段。它只是比较对象，最终选择要看同源试听和对齐核验。\n- **云端只读环境快照（2026-09-30）**：服务器有 8 张 RTX 4090（单卡报告 24564 MiB 显存），实验目录位于 `$CLOUD_HOME`，`/data` 当时剩余约 864 GiB、使用率约 97%。当前命令路径未找到 `demucs`，本实验 `models/` 中未见分离模型权重；现有 `qwen_audio` 环境不作为本次分离环境复用。后续应在本实验目录准备隔离环境并先检查模型来源、版本、空间与输出路径，当时计划交由用户启动 GPU 分离；本轮授权已变更，实际由云端 Codex 执行。\n- **训练输入核验的现实条件**：2026-09-30 只读查看 [AnyAccomp 官方仓库](https://github.com/AmphionTeam/AnyAccomp)当前文件树和 README，可见推理脚本、配置和模型定义，但**未见完整公开的训练入口与数据加载器**。推理可运行不等于数据能被训练流程接受。本数据实验必须解决或明确这一接口；若需补建最小训练数据加载/冒烟链路，先解释拟修改的实验逻辑与核心 diff，按用户确认流程实施。正式训练系统和长任务仍属下一实验。\n\n## 7. 本轮完成项、下一步与变更记录\n\n**本轮已完成**：三份完整录音的来源和下载核验；R0001 两方案比较后选择 Demucs；三份 Demucs 完整双轨和全部 13 个片段边界均经用户听音通过。配对 WAV、来源/分离/边界/哈希清单已保存；三份录音各自的分段重拼与完整分离轨逐样本一致。**实验 FM 主损失输入接口及小规模流程有限验收已由用户确认；未启动正式训练，未扩大下载；这 13 对仍是小规模流程验证材料**。\n\n**下一步关口**：用户已确认本文末尾的小规模流程有限验收范围。采用已核验的实验输入规则，CFG 条件丢弃概率保留 0.2；REPA/MERT 辅助损失不纳入本轮，完整作者训练配方、优化器及恢复训练保持未验证。13 对配对清单已登记为 `passed_experimental_fm_main_loss_interface`，不能解释为完整训练器或微调效果通过。下一步提出明确的规模化来源清单、数量或合格配对时长、质量门槛及资源预算；目标明确后开展批量处理。本轮先交付本地记录同步材料，没有扩大下载或启动 GPU。正式微调与生成效果评价另开实验，规模化数据核验、划分和交付完成并验收后结束 929。\n\n| 日期 | 决策/变更 | 证据与状态 |\n| --- | --- | --- |\n| 2026-09-30 | 确认从收集与下载开始、完整录音先分离、用户核验通过后再同步分段；两端同名实验文档；长唱段不预设固定 30 秒上限 | 已确认的路线；后续分离、核验、分段和训练输入兼容性核验仍待执行。 |\n| 2026-09-30 | 用户确认授权问题暂不阻塞当前微调技术试验；论文阶段另行寻求可授权数据源 | 三份录音已小规模下载并登记，权利状态仍为 `unverified`；不据此认定公开使用许可。 |\n| 2026-09-30 | 用户明确本文是数据实验的阶段进度文档；“伴奏能否进入训练流程”仍在本实验，正式模型训练另开实验 | 训练输入兼容性属于本实验的前置验收，不把最小冒烟测试误写为正式训练。 |\n| 2026-09-30 | 用户明确 `R0001–R0003` 仅用于验证完整数据流程；通过后还需扩大下载与处理规模，产出训练数据 | 增加“小规模全流程验收 → 规模化收集与处理 → 数据划分交付”的阶段门槛；当前仅完成三份录音的下载与保存，不能宣称数据实验结束。 |\n| 2026-10-01 | 用户要求限定 929 边界，并重申原计划已包含规模化建集 | 固定终点为达到约定规模的合格配对数据、输入核验、划分和交付；完成并验收后停止。具体规模与来源待确定，正式微调和生成效果评价另开实验。本轮只更新文档，没有启动新任务。 |\n\n### 2026-09-30 云端分离候选准备（尚未执行分离）\n\n- 已在本实验目录建立独立 `environments/separation_929`，未复用 Qwen 环境；Python 3.10、PyTorch/torchaudio `2.3.1+cu121`、Demucs `4.0.1`、ONNX Runtime GPU `1.18.0` CUDA12/cuDNN8 构建。包版本、安装日志、CPU 检查和系统快照在 `runs/separation_prepare/`。\n- MDX23 公开候选固定为 `ZFTurbo/MVSEP-MDX23-music-separation-model@765bd312ff0b4213d4ad48ab554a0fc11389633d`；Demucs 固定为 `facebookresearch/demucs@ef66d254cd6d558e207eeff2c4b8d053db2e77dd`（`v4.0.1`）。**未确定 SingNet 的精确仓库提交、权重或配置，不把本候选称为作者精确版本。**\n- 9 个权重文件已下载并逐个记录来源 URL、大小、完整 SHA-256，Demucs 文件还核对了上游文件名中的哈希前缀；记录见 `configs/separation/weights_verified.csv`。MDX 人声候选采用 `Kim_Vocal_2.onnx`、`Kim_Inst.onnx` 与 Demucs `04573f0d` 融合；初始化还会加载其他 Demucs 模型，均记录在清单。参数见 `configs/separation/mdx23_R0001.json` 与 `provenance.json`。\n- `pip check`、Demucs CPU 权重加载、两个 ONNX schema/CPU 会话加载及 CUDA 动态库依赖解析通过；**没有执行 GPU 推理或任何音频分离**。启动前实际 CUDA provider 加载检查由用户启动块执行。上游源码和已有实验代码未修改；通过 import API 避开 MDX 主入口强制 GPU 0，使用能正确实现 `only_vocals` 的 `large_gpu` 分支。\n- R0001–R0003 原音哈希再次与清单一致，R0001 完整解码通过。为同一 R0001 完整录音准备 `SEP01_mdx23` / `SEP02_htdemucs_ft` 两个全新输出目录与防覆盖命令，见 `runs/separation_prepare/launch_commands.txt`；目录中尚无分离结果，不写造 `separations.csv` 记录。输出预计为 44.1 kHz 双声道 FLOAT，原始 48 kHz 文件保留。Demucs CLI 的伴奏求和及可能的独立防削波缩放与 MDX 残差伴奏有差异，后续核验记录，不假定严格重构或已对齐。\n- 资源仅作预算、未实测：MDX 单卡显存预留 12–20 GiB、主存 6–12 GiB、1–10 分钟；Demucs 4–10 GiB、2–6 GiB、1–5 分钟。双方案输出合计约 125 MiB；缓存/环境/权重准备峰值预留 15 GiB。准备后 `/data` 约剩 850 GiB；GPU 0、1、3 有占用，2、4–7 当时近乎空闲，**启动前重新检查，不视为预留**。\n- 当时下一关口为用户亲自启动分离，再做技术核验与同时间听验；未经用户听验通过不开始分段。本次仅更新云端副本；Windows 本地副本未访问，**两端同步与哈希核对待进行**。\n\n### 2026-09-30 R0001 完整录音双方案试分离（已比较，质量验收待定）\n\n用户本轮明确授权云端 Codex 在 SSH 工作区直接执行，并要求开始、结束时告知；已分别告知启动和阶段结果。此前“用户亲自启动 GPU”的约定由本次授权更新。\n\n- `SEP01`：公开 MDX23 集成候选；GPU 4，退出码 0，耗时 41.84 秒。完整人声/伴奏在 `data/separated/R0001/SEP01_mdx23/`；日志和资源记录在 `runs/separation_R0001_SEP01/`。这不是已证实的 SingNet 精确版本。\n- `SEP02`：Demucs `htdemucs_ft`；同一 GPU，退出码 0，耗时 12.38 秒。完整双轨在 `data/separated/R0001/SEP02_htdemucs_ft/htdemucs_ft/`；日志在 `runs/separation_R0001_SEP02/`。\n- 四轨均全文件解码通过；44.1 kHz、双声道、FLOAT，各 4,083,072 帧、92.586667 秒。输入原音 SHA-256 未改变。产物路径、SHA-256、模型提交与审核状态见 `data/manifests/separations.csv`。近似窗口相关检查未见整体时间偏移，但不能证明细部严格对齐。\n- 与另行重采样原音比较，SEP01 双轨和相对 RMS 误差 -60.86 dB，SEP02 为 -15.35 dB；两方案的伴奏定义及 Demucs CLI 的防削波缩放不同，不能据此直接排序听感质量。统计见 `runs/separation_prepare/R0001_pair_technical_check.json`；GPU 峰值显存未采样。\n- **下一步由用户听验**：检查人声残留、拖腔损伤、弦乐/锣鼓丢失与失真，必要时标记局部可用范围；听验前状态为 `pending_user_listening`，不分段、不宣称可训练配对样本。R0002/R0003 尚未分离。云端文档已更新；Windows 本地副本同步和两端哈希核对待进行。\n\n### 2026-09-30 用户比较意见与下一关口\n\n用户听后反馈“Demucs 给出的结果更好”。据此记录 `htdemucs_ft` 优先于本轮 MDX23 候选；这是一项相对比较，**尚未明确判定 Demucs 是否整体通过质量验收、仅局部可用或不通过**。`separations.csv` 已将两方案更新为已听比较、质量结论待定，未标记合格配对样本。\n\n下一步先由用户给出 Demucs 的质量结论，重点是伴奏残留人声、人声拖腔损伤、弦乐/锣鼓丢失与失真。若 R0001 通过，则云端 Codex 按同一固定模型和配置试分离 R0002/R0003，执行解码与时间初查并供用户逐份听验；这两份通过后才讨论结构分段和配对。若仅局部可用，先记录可用范围并评估是否值得调整分离；不把整个录音标为通过。\n\n### 2026-09-30 人声伪影反馈与临时质量门槛\n\n用户反馈：Demucs 分离的人声仍有可闻伪影，但比本轮 MDX23 候选好。伪影的位置、持续范围与严重程度尚未记录；`separations.csv` 保持质量待定，不能仅因“相对更好”标为通过。本轮没有独立干净轨作为真值，不设置凭空推算的 SDR 合格线。Demucs 官方以听众对自然度/伪影和串音的分别评分评价分离质量；AnyAccomp 论文指出分离伪影可造成训练与推理输入不匹配，并用旋律瓶颈缓解输入侧影响，但并未给出本实验的固定合格阈值。\n\n本实验试用以下**人工审核门槛**，不是论文或模型官方标准：\n\n1. 将原音、人声和伴奏在相同时间位置、相近播放响度下对照。人声应保住唱词/旋律、起音和拖腔主体；偶发轻微金属声或水声可记录，但持续破音、音高断裂或乐器大面积混入属于明显缺陷。\n2. 伴奏应保住主要弦乐、锣鼓、节奏和过门，不出现持续清晰可辨的主唱唱词或大段配器被挖空。由于它是训练目标，明显人声泄漏或主要配器缺损不能仅凭人声轨较好而放行。\n3. 同时查看两轨是否有明显错位、突跳、削波或局部漂移。已有帧数/解码/近似窗口相关通过只是初查，不证明每处听觉对齐。\n4. 若问题轻微且不妨碍上述核心信息，可暂记“试流程可用”，后续仍须通过结构分段、配对和训练输入兼容性检查；若明显缺陷只在少数位置，记“局部可用”并记录时间范围，整段不标通过；若缺陷跨多数唱句或关键乐器/拖腔，记“不通过”，先比较改进分离方案。\n\n用户不必凭“有没有任何伪影”二选一；下一步先定位最让人担心的约一两处时间点，并说明是人声唱腔损伤、伴奏残留人声，还是乐器损失。云端 Codex可据此判断当前是否只是轻微伪影，或先试调整同一模型配置。未经用户确认质量门槛，不开始正式结构分段或把它列为合格训练配对数据。\n\n### 2026-09-30 伴奏听验反馈与 AnyAccomp 旋律瓶颈核查\n\n用户听验 `R0001/SEP02` 伴奏后报告“伴奏很好，一点唱词都没有”；`separations.csv` 已单独记录伴奏侧这一积极判断。人声仍有伪影，整体质量状态继续待定，不把整对直接列为合格训练样本。\n\n附图中的概括方向正确，但技术位置需要说清：AnyAccomp 在**分离得到人声之后、Flow Matching 伴奏生成之前**，先将输入人声提取为 chromagram，再用预训练 VQ-VAE/量化器映射成离散旋律编码。生成模型以这些编码为条件学习/生成伴奏 mel，随后由 vocoder 合成音频。论文使用 24-bin chromagram、50 Hz 编码序列、512 项码本，音频预处理为 24 kHz。这个瓶颈降低条件表示对音色和部分分离伪影的敏感性；它**不修复人声 WAV 本身，也不自动清理伴奏目标轨**，若伪影已破坏旋律或拖腔音高，不能假定编码仍正确。\n\n云端只读核查：`$CLOUD_PROJECT_ROOT/source/AnyAccomp/` 的关键推理、配置、Coco 量化器文件与官方 `AmphionTeam/AnyAccomp@82604b5e3107944ad4c49fc64900b86118ae2c62` 内容一致；已有 VQ、Flow Matching、vocoder 权重与独立 `anyaccomp` 环境。VQ 权重 SHA-256 `9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc`。公开仓库可见推理调用 `chroma_stft → coco_model.quantize → reverse_diffusion → vocoder`，未见完整公开训练入口/数据加载器。因此本实验**可以用现有预训练 VQ 做只读条件编码验证**，但不能据此宣称配对数据已经通过真实训练接口或已可微调；训练输入核验仍需解决入口问题。\n\n可行的后续核验路径：保留 R0001 两条完整分离 WAV；在用户确认唱腔主体可用后，用与模型一致的方式将人声重采样为 24 kHz 单声道，得到离散旋律编码，并核对时间长度及明显拖腔处编码是否稳定；伴奏仍作为对应训练目标，不能只交编码。随后核查实际 Flow Matching 训练接口能否读取成对样本并计算损失。若需要新增/修改实验训练代码，按用户约定先解释逻辑、展示核心 diff，等确认后实施；本轮未改代码、未启动训练。\n\n### 2026-09-30 R0001 听验结论与 R0002/R0003 Demucs 完整分离\n\n- 用户进一步确认 R0001/SEP02 的人声虽有伪影，但**没有损坏主要旋律和拖腔，人声部分完整**；结合先前“伴奏很好，一点唱词都没有”的反馈，标记为**小规模流程验证可用**。此结论不等于无伪影、正式训练数据通过或时间对齐全面证明；若后续局部核验发现问题仍需重新记录。`data/manifests/separations.csv` 已更新。\n- 2026-09-30 18:38–18:39（Asia/Shanghai）在 GPU 4 依次对 R0002、R0003 完整录音运行 Demucs `htdemucs_ft`。与 R0001/SEP02 相同的仓库提交、权重和参数（`--two-stems vocals --segment 7 --shifts 1 --overlap 0.25 --float32 --clip-mode rescale`）；原音及权重 SHA-256 启动前复核通过，独立输出目录，未覆盖原音。任务开始和结束均已告知用户；两项退出码 0，耗时分别 12.36 秒、12.67 秒。\n- R0002 双轨在 `data/separated/R0002/SEP01_htdemucs_ft/htdemucs_ft/`，各 4,799,718 帧、108.837143 秒；R0003 双轨在 `data/separated/R0003/SEP01_htdemucs_ft/htdemucs_ft/`，各 3,563,495 帧、80.804875 秒。均为 44.1 kHz、双声道、FLOAT，完整解码和有限值检查通过，峰值未超 1；原音哈希未变。近似窗口相关检查均未见整体偏移，但细部对齐仍待核验。重采样原音与双轨和的相对 RMS 误差分别为 -19.83 dB、-17.68 dB；因 Demucs 分离轨和 CLI 缩放定义，不能将该数值当作听感或干净程度评分。\n- 产物 SHA-256、模型版本和待听验状态见 `data/manifests/separations.csv`；运行命令、日志、资源和检查结果分别见 `runs/separation_R0002_SEP01/`、`runs/separation_R0003_SEP01/`。**R0002/R0003 均待用户听验；未分段、未训练、未扩大下载。**本次仅更新云端副本，Windows 本地副本和哈希同步仍待进行。\n\n### 2026-09-30 三份分离轨听验通过，进入结构分段边界准备\n\n用户在查看 R0002/R0003 原音与 Demucs 双轨、被明确请按人声旋律/拖腔完整性和伴奏唱词/配器标准判定后，回复“都通过”。结合 R0001 的单独反馈，三份 Demucs 双轨均标为**小规模流程验证可用**；R0002/R0003 没有逐处伪影时间点或细项说明，不能据此宣称“无伪影”。`data/manifests/separations.csv` 已记录用户听验结果。\n\n下一步先提出 R0001 的**候选结构边界**：原音、人声、伴奏同时间对照；声学低人声活动窗口仅用于帮助定位，不自动等同于唱句或过门边界。未经用户听验候选边界，不写入正式 `segments.csv` 或输出配对唱段。原始完整录音与完整分离轨继续保留；正式训练仍未开始。\n\n已生成 R0001 的只用于试听定位的 `runs/segmentation_prepare/R0001/candidate_windows.csv` 和每窗口同时间的原音／人声／伴奏预览（共 6 个窗口、18 个预览 WAV）。方法为人声单声道 10 ms RMS、110 ms 中值平滑，选低于 -40 dBFS 且持续至少 1.5 秒的窗口；该阈值是定位工具，不是戏曲结构判定。窗口为 0.00–2.33、19.09–21.45、33.35–43.54、47.37–50.74、60.79–64.76、83.50–92.58 秒；这些位置的伴奏 RMS 仍为约 -24 至 -17.5 dBFS，不能称为整段静音。预览含前后约 2 秒上下文，**没有生成正式分段、`segments.csv` 或配对样本**。先请用户核对这些位置的实际唱句、拖腔与过门关系，再决定长唱段的结构边界。\n\n### 2026-09-30 伴奏区间反馈与首轮完整候选片段\n\n用户描述 W02、W03 两个预览均为“开始一点人声，中间一直伴奏，末尾又一小段人声”。此反馈确认预览含两次人声之间的伴奏区间，但没有确认其戏曲结构名称或精确切点。已写入 `candidate_windows.csv`；不能将该描述直接记为分段边界通过。W03 曾在客户端显示不可用；文件完整解码正常，另生成 MP3 和 PCM16 WAV 试听副本，原文件保留。\n\n为让下一轮听验覆盖完整唱腔与伴奏过程，建立 `runs/segmentation_prepare/R0001/paired_candidates_v1/`：`CAND01` 为 0.00–21.20 秒（21.20 秒），`CAND02` 为 21.20–43.25 秒（22.05 秒）。暂把每次人声结束后的伴奏区间保留在前一候选片段，切点落在下一次人声活动之前约 0.25–0.29 秒的低人声窗口中；这些切点来自声学定位，尚未证明是自然音乐落点。保留片头伴奏，不设置统一片长上限。\n\n每个候选均有同时间原音、人声和伴奏 WAV，以及仅供播放的 MP3 副本。人声/伴奏按同一 44.1 kHz 样本边界裁切，帧数分别为 934,920、972,405；解码后样本与对应完整分离轨片段逐样本一致，未淡化、归一化或重采样。路径、样本索引、SHA-256 和待审核状态见 `paired_candidates_v1/candidate_pairs.csv`。**仅为候选试听材料，未创建正式 `segments.csv`/`pairs.csv`，未启动训练，未修改实验源代码。**下一关口由用户听验两个候选的起止是否完整、是否切断唱腔/伴奏，以及伴奏区间归属是否合适；必要时调整切点后再复核。\n\n### 2026-09-30 R0001 前两个片段边界确认与配对保存\n\n用户明确反馈首轮两个候选“没有截断、自然、完整”（此前“没有阶段”为随即更正的输入，不作独立判断）。据此将 CAND01/CAND02 边界记为通过，分别保存为 `data/clips/R0001/SEP02/SEG0001_{vocal,accompaniment}.wav` 和 `SEG0002_{vocal,accompaniment}.wav`；范围为 0.00–21.20 秒、21.20–43.25 秒。建立 `data/manifests/segments.csv` 和 `pairs.csv`，记录同源分离版本、同一开始/结束样本索引、SHA-256 与用户审核依据；两对的训练输入状态保持 `pending_compatibility_check`，细部源对齐仍为初查状态，数据划分未分配。\n\n保存文件与已审核候选 WAV 哈希一致；解码后与完整分离轨对应范围逐样本一致，人声与伴奏帧数分别为 934,920 和 972,405。完整原音和完整分离轨保留；未修改实验源代码、未运行训练。本轮仅更新云端记录，Windows 本地同步仍待进行。\n\nR0001 剩余内容在 `runs/segmentation_prepare/R0001/paired_candidates_v2/` 准备为 CAND03（43.25–64.51 秒，21.26 秒）、CAND04（64.51–92.586667 秒，28.076667 秒）。暂切于低人声活动窗口内、下一次人声进入前约 0.25 秒；CAND03 保留内部短伴奏间隔，CAND04 保留完整录音尾部。两者只是候选；当前并未确认 64.51 秒为自然结构边界。双轨样本边界一致，帧数分别为 937,566、1,238,181，候选 WAV 解码后与完整分离轨对应范围逐样本一致，MP3 仅作播放副本。经审核的前两段与这两候选在样本索引上连续覆盖 R0001 全长，没有空隙或重叠；候选尚未写入正式分段和配对清单。\n\n### 2026-09-30 R0001 分段全部确认与 R0002/R0003 候选准备\n\n用户对 R0001 CAND03/CAND04 再次明确反馈“没有截断、自然、完整”；据此保存为 SEG0003/SEG0004，并更新 `segments.csv`、`pairs.csv` 和候选审核记录。R0001 共四对已确认片段，边界为 0、21.20、43.25、64.51、92.586667 秒；同一人声／伴奏轨的四段重新拼接后，分别与完整分离轨逐样本一致。总计 4,083,072 帧，没有遗漏或重叠。训练输入兼容性仍保持待检查，未训练。\n\n使用同样的低人声活动定位办法为后两份准备完整候选，精确音乐边界均待用户审核。R0002 在 `runs/segmentation_prepare/R0002/paired_candidates_v1/` 有五个候选：0–26.80、26.80–49.44、49.44–63.98、63.98–78.73、78.73–108.837143 秒。R0003 在 `runs/segmentation_prepare/R0003/paired_candidates_v1/` 有四个候选：0–13.62、13.62–39.68、39.68–69.73、69.73–80.804875 秒。切点处 ±0.10 秒的人声双声道 RMS 均低于 -35 dBFS，且位于已定位的人声低活动窗口内；这一检查只支持声学定位，不能代替自然音乐边界听验。R0003 的较短唱腔和其后伴奏间隔保留在较长候选内；片头伴奏与尾奏均保留。\n\n各候选具备同时间原音、人声、伴奏 WAV 和独立 MP3 试听副本；按原采样率样本索引裁切，不做淡化、归一化或重采样。各录音的候选人声／伴奏连续拼接后分别与其完整分离轨逐样本一致。范围、索引、哈希、待听验状态与定位依据见各目录 `candidate_pairs.csv` 和 `proposal.json`。R0002 末段约 30.107 秒、R0003 第三段约 30.050 秒，按当前不设统一时长上限的约定保留，没有静默截至 30 秒；实际训练对较长片段的支持仍须核验。R0002/R0003 候选未写入正式配对清单，未修改实验源代码，未启动训练；仅更新云端记录，本地同步仍待进行。\n\n### 2026-10-01 全部候选边界通过与 13 对片段保存\n\n用户对 R0002 和 R0003 全部候选回复“两个全都通过”。据此前提出的“没有截断、起止自然、内容完整”审核要求，将九个候选边界记为通过，R0002 保存为 `data/clips/R0002/SEP01/SEG0001–SEG0005` 的人声／伴奏 WAV，R0003 保存为 `data/clips/R0003/SEP01/SEG0001–SEG0004` 的人声／伴奏 WAV。更新 `segments.csv`、`pairs.csv` 与候选审核记录；源文件和原候选均保留，旧清单备份在 `runs/segmentation_finalize_20261001/`。\n\n合计 R0001 四对、R0002 五对、R0003 四对，共 **13 对、12,446,285 帧、282.228685 秒（4 分 42.23 秒）**，单段 11.074875–30.107143 秒。每对人声／伴奏帧数与样本边界一致，保存文件 SHA-256 与候选一致；各原录音分段在开始/结束样本索引上连续、无遗漏无重叠，分段双轨重拼后分别与完整分离轨逐样本一致。详细核验报告见 `runs/segmentation_finalize_20261001/report.json`。源录音细部对齐仍为初查状态，不能把精确裁切和重拼检查误写为独立分轨真值对齐证明。\n\n全部 `training_input_status` 保持 `pending_compatibility_check`，数据划分保持 `unassigned`。尚未核验实际训练输入、未执行正式或临时训练，也未扩大下载；13 对并非最终规模化训练集。仅更新云端记录，Windows 本地副本及哈希同步仍待进行。\n\n### 2026-10-01 AnyAccomp 特征核验代码提案（未落地、未执行）\n\n读取实际公开实现发现：输入 chroma 调用 `chroma_stft` 的居中窗口，伴奏 `MelSpectrogram` 默认 `center=False` 且反射补齐 `(n_fft-hop_size)/2`；按当前 24 kHz、480 hop 的定义，二者帧数和帧中心可能不一致。配置另列 `mel_mean/mel_var`，但公开训练加载器缺失，不能仅凭字段名选定目标归一化方式。这些问题需要先核验，不能用静默裁切或插值掩盖。\n\n首轮拟新增 `scripts/validate_anyaccomp_features.py`：读取全部已审核 `pairs.csv`，先检查哈希、元信息和全长；按官方推理方式转 24 kHz 单声道、提取 24-bin chroma 并调用冻结的现有 VQ（CUDA 使用 bfloat16 autocast），同时调用公开 `MelSpectrogram` 提取伴奏原始 log-mel。保留全长特征、码本范围、帧数差、帧中心定义与来源/权重/环境记录；不自动统一长度、不选定未经证实的训练归一化、不修改权重、不更新数据合格状态。若提取成功也只称“特征核验完成”，完整训练兼容性仍需解决对齐与归一化后接真实 FM 前向/反向和变长批次；REPA/MERT 的完整训练链路亦尚未实现。\n\n审阅稿在 `runs/training_input_prepare/validate_anyaccomp_features.py.proposed`，完整新增 diff 在 `runs/training_input_prepare/proposed_feature_audit.patch`。已做 AST 语法检查和 `git apply --check`，尚未把 patch 应用到 `scripts/`，未执行 GPU。用户最初明确要求“实验代码如需修改，先解释逻辑、展示核心 diff，等我确认”，因此当前等待本提案确认。确认后在本实验目录建立独立 AnyAccomp 核验环境，现有项目源码/预训练权重只读使用，不复用 Qwen 环境；任务开始与结束通知用户。\n\n### 2026-10-01 特征核验提案确认与环境准备\n\n用户回复“确认”，授权实施上述特征核验提案。已按审阅稿原样新增 `scripts/validate_anyaccomp_features.py`，内容与 `.proposed` 逐字一致，AST 语法检查通过；确认记录写入 `runs/training_input_prepare/review_status.json`。正在以现有独立 AnyAccomp 环境为依赖来源，克隆到本实验的 `environments/anyaccomp_input_929`；不使用 Qwen 环境，原项目源码与权重只读引用。环境与执行日志保存在 `runs/anyaccomp_feature_audit_20261001/`，本阶段只核验特征，不修改模型参数。\n\n### 2026-10-01 13 对 AnyAccomp 特征核验完成\n\n独立环境 `environments/anyaccomp_input_929` 已建立（约 6.3 GB），从现有独立 AnyAccomp 环境克隆，不使用 Qwen。Python 3.9.19、torch 2.3.1+cu121、librosa 0.11.0、accelerate 1.6.0；依赖冻结清单见 `runs/anyaccomp_feature_audit_20261001/pip_freeze.txt`，克隆日志与执行记录在同目录。使用物理 GPU 4（UUID `GPU-f37d634b-c2bd-b66f-44a2-6608ae61b06e`，进程内 `cuda:0`）按已批准脚本执行，退出码为 0，已分别通知用户开始与结束，GPU 已释放。PyTorch 最大已分配显存 240,420,352 字节（约 229.3 MiB）；这不包含全部 CUDA 上下文/驱动占用，也不是后续 FM 训练的显存估计。\n\n全部 13 对通过输入哈希、解码与元信息检查，按完整片段转 24 kHz 单声道并生成 24-bin chroma、冻结 VQ 整数 token 和 128-bin 伴奏原始 log-mel。输出 13 份 `.npz`（合计目录约 7.3 MB），见 `runs/anyaccomp_feature_audit_20261001/features/`。全部 token ID 在 0–511 范围内，特征有限、保存形状与报告一致；没有裁切、插值或长度统一，原音与正式配对 WAV 保留。结果报告 `features/report.json`，逐对执行日志 `feature_audit.log`，保存产物哈希与后验核验 `post_validation.json`。仅构建量化器时，检查点中的解码器和 chroma 重建输出层未使用属于预期；所需张量均存在且形状一致。\n\n**确认的接口问题**：13 对均为 `token_frames = target_mel_frames + 1`。当前 chroma 的窗口中心为 `0 + k*480`，目标 mel 为 `240 + k*480`，两者中心定义相差 240 个样本（24 kHz 下 10 ms）；只删一个 token 能统一数量，不能据此证明时间起点已对齐。这是特征定义差异，不能写成 WAV 分离轨本身错位。目标训练归一化仍未确定，公开完整训练加载器缺失。本轮未调用 FM 前向/反向，未修改权重，REPA/MERT 链路亦未实现；所有配对训练输入状态仍为 `pending_compatibility_check`，报告为 `not_verified`。\n\n下一步先只读核查实际 FM 对条件序列/目标的长度处理和归一化线索，明确可追溯的实验适配方案，再展示核心代码或 diff 并解释输入输出、关键逻辑、用途和必要限制，等待用户确认后实施真实前向/反向及混合长度批次验证。不扩大下载或宣称全流程通过。云端文档已更新，Windows 本地同步仍待进行。\n\n### 2026-10-01 真实 FM 输入适配核查与代码提案（待确认）\n\n用户要求“开始下一步”，并再次明确询问当前是否仍在数据处理部分。此阶段仍属数据处理与训练输入兼容性验证；前向、计算损失、反向仅检查输入能否用于训练，正式微调和效果评价尚未开始。本轮仅只读检查实际源码、官方论文/推理及 CPU 上的检查点参数合同，没有执行 GPU 或模型前向/反向。\n\nFM 源码 `DiffLlamaConcat` 将条件表示与目标 mel 表示按时间索引直接相加，没有自动时间插值；因此长度相同和共同时间网格是适配要求。官方 `infer_from_folder.py` 将 `reverse_diffusion` 输出直接交给 vocoder，Vocos 的公开 forward 只有 backbone/head，没有 `mel_mean/mel_var` 的反归一化。公开 Python 文件未找到该两字段的操作；据此选择原始自然对数 mel 做本实验接口验证，但这是从公开推理作出的推断，不能证明缺失的作者训练加载器使用了什么归一化。原始样本 log-mel 均值约 -4.56 至 -3.03、标准差约 1.43 至 2.54，仅作为诊断记录，不据此判断参数 `mel_var` 的语义。\n\nFM 检查点 SHA-256 `e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129`。完整严格加载发现公开模型没有对应的三个张量：`tag_infilling_emb`、`tag_emb.weight`、`tag_emb.bias`；其来源用途尚不明确，不冒称代码与完整检查点精确匹配。拟只明确排除这三个张量，再对公开模型实际需要的全部参数严格核对键名、形状和加载；不得使用不加约束的 `strict=False` 掩盖额外差异。只读 CPU 核验结果见 `runs/training_input_prepare/fm_adapter_v1/checkpoint_inspection.json`，分析记录见 `inspection.json`。\n\n拟新增 `scripts/validate_fm_inputs.py`：人声 chroma/VQ 编码原样保留；针对完整伴奏 WAV 重提原始 log-mel，显式使用 960 样本两侧反射补齐、非居中 STFT，使帧中心为 `0+k*480`，与官方人声 chroma 网格一致。保留音频全长和末尾帧，不截 token、不插值离散 ID；此前默认目标使用 720 样本补齐、中心为 `240+k*480`。这是本实验选择的目标网格适配，尚未证明作者训练使用了该规则，也未验证此目标网格对预训练 vocoder 的边界/输出时间含义，不能直接当作最终训练配方。\n\n对 13 对完整片段逐对调用现有 220M FM 训练 forward，按论文速度目标 `x-(1-sigma)*noise` 计算有效非 prompt 帧的 MSE，并做反向检查非零、有限梯度；另对最短+最长混合长度批次补齐，核验 attention/loss 有效长度掩码，使用相同随机抽样扰动 padding 内容，确认有效帧预测和损失不受影响。超过 30 秒的完整段也包含在核验中。没有优化器和参数更新。保持公开原生 CFG 掉条件概率 0.2 和随机 prompt 逻辑；其 prompt 随机长度依赖 padded T 而非逐条有效长度，且配置 `prompt_prob=0` 没有阻止该分支，均记录为原训练配方待核验问题。REPA 投影保留但冻结，尚不计算 MERT/REPA 损失；本轮只能验证 FM 主损失接口。\n\n完整审阅稿 `runs/training_input_prepare/fm_adapter_v1/validate_fm_inputs.py.proposed` 和新增 diff `proposed_fm_adapter.patch` 已准备，AST 与 patch 应用预检查通过。脚本未落地到 `scripts/`、未执行；用户确认核心改动后才落地和启动，继续使用本实验独立环境，并通知任务开始和结束。预计单 GPU 4090、数分钟，显存预算约 8–18 GiB，仅为估计；若 OOM 则停止记录，不静默截断或改批次。所有数据合格状态仍待兼容性与配方核验；Windows 同步仍待进行。\n\n### 2026-10-01 用户确认 FM 提案与真实输入核验完成\n\n用户回复“确认当前提案”，并要求之后各步骤均讲解使用的工具/模型是什么、用途、输入输出及验收含义。该表达要求已追加到云端 Codex 全局个性化文件 `$CLOUD_HOME/codex/home/AGENTS.md`，当前会话也已加载；尚未同步到 Windows。批准稿原样新增为 `scripts/validate_fm_inputs.py`（SHA-256 `1ffe3b4ca7c3ffcbdeb5bd1a222cb22a00cc91cc4704e75330ef60f20d5a4d02`），内容与审阅稿一致，语法检查通过。\n\n执行在本实验独立 `environments/anyaccomp_input_929` 中，使用 GPU 4。已向用户通知开始、日志与查询命令，并在任务结束时通知释放 GPU。实际 `/usr/bin/time` 壁钟耗时 **10.86 秒**，退出码 0，最大常驻内存 1,832,292 KiB（约 1.75 GiB）；PyTorch 最大已分配显存 **8,407,889,408 字节（约 7.83 GiB）**，不包含全部驱动/上下文占用。此前“数分钟、8–18 GiB”为执行前预算，实测替代该预算，不将它用于估算正式微调资源。\n\n在批准的实验目标网格下，13 对完整片段均成功提取目标并经过真实预训练 FM forward、有效非 prompt 帧 MSE 和 backward；均得到有限损失与非零有限梯度，没有缺失的应训练 FM 参数梯度。单样本损失约 2.98–9.29，这些数值仅作接口诊断，未作训练收敛、分离质量或生成效果阈值。包含两个超过 30 秒的完整片段，没有缩短。最短 `R0003_SEP01_SEG0004`（554 帧）与最长 `R0002_SEP01_SEG0005`（1,506 帧）组成混合批次，最短补齐 952 帧；反向与掩码检查通过，补齐位置的目标值改为 100、条件 token 改为 511 后，使用相同随机抽样，有效帧预测与损失在规定容差内保持一致。该结果支持当前批次的补齐不会污染有效位置，不能证明任意 prompt/长度组合都安全。\n\n共完成 14 个前向/反向批次（13 个单样本 + 1 个混合长度批次），另有一次无梯度的 padding 扰动前向。没有优化器、没有参数更新或新训练检查点。全部 13 份人声 token 与上一轮核验产物完全一致；目标 mel 在新网格上帧数匹配、数值有限并全长保存。三份原音 SHA-256 与下载记录一致，四份原清单内容不变。源 FM 检查点前后哈希一致。正式 `pairs.csv` 的 `pending_compatibility_check` 保留，细分进展由报告记录为 `fm_forward_backward_status=passed_under_experimental_adapter` 和 `training_input_status=pending_recipe_validation`，不将部分通过写成完整可训练验收。\n\n日志和产物根目录：`runs/anyaccomp_fm_input_smoke_20261001/`。结果 `results/report.json`、13 份 `results/*.npz`、执行配置 `execution.json`、执行日志 `fm_input_smoke.log`、资源记录 `resources.txt` 与后验哈希检查 `post_validation.json` 均保存。批准/完成记录见 `runs/training_input_prepare/fm_adapter_v1/review_status.json`。\n\n待核验限制沿用批准提案：目标时间网格是实验适配；原始 log-mel 的选择依据公开推理作出，原作者训练归一化未确认；三份 tag 张量不在公开模型定义中且明确排除，其余 137 个实际需要的张量按名字/形状严格加载；公开随机 prompt 以补齐后的最大长度取样，配置 `prompt_prob=0` 未控制该分支；公开 CFG 掉条件概率 0.2 与论文 0.1 不同；MERT/REPA 主链路未实现，REPA 投影只保留并冻结。本轮通过不能消除这些配方差异，未完成小规模全流程验收，未扩大收集、未正式微调。仅云端更新，Windows 同步待进行。\n\n### 当前流程中工具与模型的作用（逐步讲解依据）\n\n| 步骤 | 使用的东西与作用 | 输入 → 输出 | 当前结果能证明什么 |\n| --- | --- | --- | --- |\n| 下载和文件检查 | 完整 WAV、SHA-256 哈希、解码检查；哈希是文件内容指纹，解码检查验证音频能完整读取 | 来源文件 → 有记录的完整录音 | 三份录音完整可读、内容可追溯；这些检查不评价音乐质量。 |\n| 分离 | Demucs `htdemucs_ft` 从混合音频中估计人声和其余伴奏；两轨用于建立监督配对 | 完整混合录音 → `vocals.wav` / `no_vocals.wav` | 已由用户听验接受小规模流程使用；有伪影，未取得独立干净真值。 |\n| 分段和配对 | 按用户听验过的边界，用同一采样索引切两轨；CSV 清单记录来源、时间和哈希 | 两条完整分离轨 → 13 对 WAV + 清单 | 边界通过听验、双轨一一对应、拼回完整轨逐样本一致；不等于已证明独立真值对齐。 |\n| 模型输入预处理 | SoundFile 读取，NumPy 合并声道，librosa 重采样；统一为模型所用的 24 kHz 单声道 | 已保存的 44.1 kHz 双声道片段 → 临时 24 kHz 单声道数组 | 模型输入格式统一，原始 WAV 不改写。 |\n| 人声旋律表示 | librosa 24-bin chromagram 表示随时间变化的音级能量，再用冻结预训练 VQ 映射到 512 项码本 ID；离散瓶颈压缩音色/部分伪影信息 | 人声音频 → chroma → 旋律 token 序列 | 编码可提取、范围与长度合同通过；不能保证已受损的旋律被修复，也不清理伴奏目标。 |\n| 伴奏目标表示 | STFT 将波形转成时频表示，128-band mel 滤波与自然对数压缩，得到训练目标；本实验将其帧中心与旋律编码对齐 | 完整伴奏片段 → 原始 log-mel | 13 对目标帧数、定义的时间网格和有限值检查通过；作者原预处理和 vocoder 时间含义仍待核验。 |\n| FM 输入兼容性 | FM（Flow Matching）以旋律 token 为条件预测噪声通向伴奏 mel 的变化方向。训练前向为随机中间状态预测方向，MSE 衡量与目标方向的差异；backward 计算参数梯度，当前没有执行参数更新 | token、目标 mel、有效长度掩码 → 预测、损失、梯度 | 13 对全长及混合长度批次通过主损失接口；有限损失/梯度不证明模型已学会歌仔戏或生成效果好。 |\n| 声音输出检查 | vocoder（声码器）把 FM 生成的 mel 转成可播放的音频；本次先从真实伴奏 mel 重建音频，检查目标表示与声码器衔接 | 伴奏 mel → 合成 WAV | 三段、两种网格的 raw/z-score 对照已执行；z-score 改善幅度尺度，质量听验与时间规则仍待完成。未运行 FM 生成。 |\n| 后续完整训练配方 | MERT 提供预训练音乐表征，REPA 是让 FM 中间表示与该表征对齐的辅助训练损失；CFG 训练时随机丢条件，推理时加强条件约束 | 音乐目标/中间表示 → 辅助损失与条件引导 | 这些配方仍待明确；正式微调和效果评价属于后续模型实验。 |\n\nFM 的作用可串起来理解：人声 WAV → chroma/VQ 旋律 token → **FM 根据旋律从噪声生成伴奏 mel** → vocoder 生成伴奏 WAV。训练时已知对应伴奏 mel，用来教 FM 学习变化方向；推理时只有输入旋律和随机噪声，逐步积分得到新的伴奏。当前数据实验只是验证训练数据能够正确进入这条链路，没有完成模型训练。\n\n### 2026-10-01 声码器目标重建核验提案（具体代码待确认）\n\n用户对“先准备核验核心 diff，讲解后确认运行”的下一步回复“确认”。本轮据此准备代码和核验清单；仍按此前明确约定，在展示具体核心 diff 后取得代码确认，再落地到 `scripts/` 并启动 GPU。未运行声码器 forward 或生成试听音频。\n\n使用既有 Vocos 声码器，作用是把 128-band mel 频谱转换成 24 kHz 单声道波形。公开配置为 30 层、dim 1024、hop 480、ISTFT `padding=same`。只读 CPU 检查确认 255,042,434 个参数、279 个所需张量与下载检查点名称及形状完全一致，严格加载通过，未发现缺失或额外张量。检查点 `pretrained/anyaccomp/pretrained/vocoder/model.safetensors`（位于原项目权重目录，只读使用）SHA-256 `1b7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da`。来源/config 哈希与 CPU 加载记录见 `runs/training_input_prepare/vocoder_audit_v1/inspection.json`；源定义对应此前检查的 AnyAccomp 公共快照，不改源码或权重。\n\n计划选短 `R0003_SEP01_SEG0004`（11.074875 秒）、中 `R0001_SEP02_SEG0001`（21.20 秒）、长 `R0002_SEP01_SEG0005`（30.107143 秒），每段从真实伴奏目标的原网格 mel 和实验对齐网格 mel 各重建一次，共六次推理。不运行 FM 生成、不训练或修改参数。独立环境沿用本实验 `environments/anyaccomp_input_929`，计划用 GPU 4，运行前复查空闲状态并通知开始/结束。声码器使用 float32、eval、inference_mode，保持公开推理传入 float mel 的方式，不加入额外标准化。\n\n每段保存同一 24 kHz 单声道参考 WAV、两种未经裁切/补齐/移位/淡化的原生重建 FLOAT WAV，各附 MP3 试听副本，共九份 WAV 和九份 MP3。试听预览如需避免幅度过载，三份共享同一个只衰减不增益的系数；该系数只用于 MP3，诊断使用原生 FLOAT WAV，不单独均衡响度。源录音、正式配对 WAV 和清单保留。检查输入哈希及来源、输出形状/有限值/峰值/RMS/超过幅度 1 的数量，记录头尾 0.5 秒统计；不把峰值统计或相关性当作自动听觉验收阈值。\n\nISTFT 合成源码给出的原生长度为 `mel_frames * 480`；原网格与实验对齐网格相差一帧，因此两类重建长度预计相差 480 个样本（20 ms）。它们分别相对完整参考的预计长度差：短段 -14.9167 / +5.0833 ms，中段 -0.0417 / +19.9583 ms，长段 -7.1667 / +12.8333 ms。这些是输入帧数和源码公式的推算，尚非 GPU 实测。合成窗口中心为 `240+k*480`，实验对齐目标中心为 `0+k*480`；由此可提出 10 ms 偏移的待验证假设，不能把结构推算冒充实际音频对齐结果。\n\n拟用归一化波形相关搜索 ±50 ms（采样点精度）及 10 ms RMS 平滑包络搜索 ±100 ms（1 ms 精度），另外分别检查开头、中间和末尾的 2 秒窗口。正估计偏移表示重建滞后参考，弱相关或峰值在搜索边界需要进一步审查；不自动移位，也不认为有相关峰就已证明每个乐器/位置对齐。CPU 合成信号验证了 +240/-240 样本偏移、反相与退化输入的算法处理，结果见 `timing_algorithm_checks.json`；这不是声码器实际输出测试。最终仍由用户比较三个完整参考及两种重建，判断配器、节奏、过门、边界和新增失真。\n\n完整审阅稿 `runs/training_input_prepare/vocoder_audit_v1/validate_vocoder_targets.py.proposed`，新增 diff `proposed_vocoder_audit.patch`。AST 语法与 `git apply --check` 通过，未应用到 `scripts/`、未执行 GPU；审核状态见同目录 `review_status.json`。预计单 4090 float32 前向数十秒到数分钟、显存预算约 2–6 GiB，仅是预算，实际运行会记录。输出与监听状态将在执行后记录为技术生成完成、用户听验待定；不提前判定完整训练输入兼容性通过，不开始规模化采集。本地 Windows 同步仍待进行。\n\n### 2026-10-01 声码器核验执行完成，原始 mel 重建存在尺度异常\n\n用户对展示后的具体代码回复“确认”。已按批准稿原样新增 `scripts/validate_vocoder_targets.py`，SHA-256 `70c68b290f1b15608cc4db1591ee05fb6eb7375e90d2cc3266db2866f049fad9`；沿用实验独立环境，在 GPU 4 执行六次 float32 Vocos 重建。开始、监控路径及结束释放 GPU 均已通知用户。退出码 0，实际壁钟耗时 **10.90 秒**，最大常驻内存 1,590,320 KiB（约 1.52 GiB），PyTorch 最大已分配显存约 **1.046 GiB**。无 FM 调用、无参数更新，全部原音与正式清单哈希保持不变。\n\n产物位于 `runs/anyaccomp_vocoder_audit_20261001/results/`：三个片段各有 `reference_24k`、`original_grid`、`aligned_grid` 的 FLOAT WAV 和 MP3，合计九份 WAV、九份 MP3。全部 WAV 有限、24 kHz 单声道、原生帧数符合 `mel_frames*480`；九份 MP3 均通过完整解码，试听共享增益均为 1，没有掩盖输出幅度变化。资源/执行记录、逐段诊断和后验检查分别见同目录上层 `resources.txt`、`execution.json`、`vocoder_audit.log`、`post_validation.json`；结果报告为 `results/report.json`。\n\n**技术生成完成不等于重建质量通过**：六份重建 RMS 比参考低约 37.97–38.81 dB，输出峰值约 0.0083–0.0132，参考峰值约 0.718–0.860。整体波形相关绝对值仅约 0.12–0.21，波形相关的局部峰不稳定，不能用其给出可靠采样点级对齐结论。RMS 包络相关约 0.895–0.963，原网格滞后约 1–2 ms，对齐网格约 9–12 ms；此结果支持网格改变带来约 10 ms 时间差异的线索，不证明所有音符/乐器/边界精确对齐。原生输出长度实测与提案推算一致，均未裁切、补齐或移位。\n\n下表每格顺序均为“原网格 / 对齐网格”。正时间偏移表示重建滞后参考。\n\n| 片段 | 输出相对参考的长度差（ms） | RMS 包络估计滞后（ms） | 输出相对参考 RMS 差（dB） |\n| --- | --- | --- | --- |\n| R0003_SEP01_SEG0004 | -14.9167 / 5.0833 | 1 / 9 | -38.57 / -38.59 |\n| R0001_SEP02_SEG0001 | -0.0417 / 19.9583 | 1 / 11 | -38.80 / -38.81 |\n| R0002_SEP01_SEG0005 | -7.1667 / 12.8333 | 2 / 12 | -38.00 / -37.97 |\n\n当前诊断结论为 `reconstruction_amplitude_anomaly_requires_preprocessing_review`；重建验收与用户听验保持待定，完整训练输入配方仍为 `pending_recipe_validation`。不能只调大播放器音量或在输出端增益后把本轮写成输入兼容性通过；应先核查频谱尺度、标准化和实现合同。ISTFT 的保存窗幅度为正常 Hann（min 0、max 1、mean 0.5、平方和 720），未发现该 buffer 损坏证据；权重张量合同完整不能代替输入尺度核验。\n\n### 2026-10-01 归一化推断修正与 z-score 对照提案（未执行）\n\n进一步查阅上游 [Vevo 官方源码](https://github.com/open-mmlab/Amphion/blob/58d8b48945281efdfe539151d01ee98010acc425/models/vc/vevo/vevo_utils.py)发现：`extract_mel_feature` 明确使用 `(mel - mel_mean) / sqrt(mel_var)`，而预测的 mel 直接送入 vocoder。该文件对应 `open-mmlab/Amphion@58d8b48945281efdfe539151d01ee98010acc425`；证据副本与 SHA-256 `38b7f2a927600b15dc76eea3a07733c1db2d67bd094df9a8a9deacf50389cdd3` 保存在 `runs/training_input_prepare/vocoder_normalization_v1/normalization_evidence.json` 和 `upstream_vevo_utils.reference.py.txt`。这说明“没有反归一化”也可能表示整个生成链在标准化 mel 空间工作；此前以公开 AnyAccomp 直接送入 vocoder 的代码支持原始 log-mel 的推断不充分，必须修正。先前 FM 检查仅证明原始尺度输入可计算有限损失/梯度，不证明尺度符合预训练合同。\n\n这是上游 Vevo 的明确实现线索，**尚不等于证明 AnyAccomp 原训练采用相同处理**；声码器原始尺度幅度异常也不能单独锁定唯一原因。拟增加显式 `--mel-normalization raw|zscore`，默认保留 `raw` 可复现前轮，下一轮选 `zscore`，按本地 vocoder 配置 `mel_mean=-4.92`、`mel_var=8.14` 将两种网格的临时 mel 数组标准化后再输入模型。输入变换改变频谱数值尺度，原音与保存的原始/对齐特征均保留，窗口网格/输出长度不变，诊断仍用原生输出幅度。继续使用同样三段、两种网格作六次重建，写入全新输出目录，与本轮基线比较；如支持候选，后续还需以一致的目标尺度重做 FM 输入核验并保留训练配方来源限制。\n\n提案审阅稿 `runs/training_input_prepare/vocoder_normalization_v1/validate_vocoder_targets.py.proposed`、核心修改 diff `proposed_normalization.patch` 与审核状态 `review_status.json` 已准备，AST 和 `git apply --check` 通过。**尚未修改已批准脚本、未启动标准化候选 GPU**，按用户约定展示并简要讲解核心 diff 后等待确认。当前六份原始尺度重建作为诊断材料，不作最终合格听验结论。云端记录已更新，Windows 同步仍待进行。\n\n本轮原始尺度试听文件（重建音量明显偏低，诊断状态待定）：\n\n**short：R0003_SEP01_SEG0004**\n\n参考伴奏\n\n![R0003_SEP01_SEG0004 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3)\n\n原网格重建\n\n![R0003_SEP01_SEG0004 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/original_grid.mp3)\n\n对齐网格重建\n\n![R0003_SEP01_SEG0004 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0003_SEP01_SEG0004/aligned_grid.mp3)\n\n**middle：R0001_SEP02_SEG0001**\n\n参考伴奏\n\n![R0001_SEP02_SEG0001 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3)\n\n原网格重建\n\n![R0001_SEP02_SEG0001 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/original_grid.mp3)\n\n对齐网格重建\n\n![R0001_SEP02_SEG0001 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0001_SEP02_SEG0001/aligned_grid.mp3)\n\n**long：R0002_SEP01_SEG0005**\n\n参考伴奏\n\n![R0002_SEP01_SEG0005 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3)\n\n原网格重建\n\n![R0002_SEP01_SEG0005 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/original_grid.mp3)\n\n对齐网格重建\n\n![R0002_SEP01_SEG0005 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_audit_20261001/results/R0002_SEP01_SEG0005/aligned_grid.mp3)\n\n\n### 2026-10-01 z-score 声码器对照完成，待用户听验\n\n用户回复“确认”批准具体标准化 diff 后，审阅稿原样应用至 `scripts/validate_vocoder_targets.py`，脚本 SHA-256 为 `1408d8c15072ce27fa41bc7df3539ef673ce84c903a023881d877c56a5d1d599`。执行采用 `--mel-normalization zscore`，默认 `raw` 仍可复现基线。本次用原有独立环境和 GPU 4，对相同短、中、长三段及原/对齐两种网格共执行六次声码器推理；开始、结束已通知用户。北京时间 13:30:44–13:30:55 完成，退出码 0，耗时 11.34 秒，PyTorch 峰值分配显存约 1.046 GiB，最大 CPU RSS 约 1.515 GiB；任务结束后 GPU 4 已释放。\n\n本步骤用 Vocos 声码器把真实伴奏 mel 重建为 WAV，检验频谱目标与预训练声码器的衔接。输入在送入模型前按 `(raw_logmel + 4.92) / sqrt(8.14)` 变换数值尺度，输出为原生长度、原生幅度的 24 kHz 单声道 FLOAT WAV 和播放副本；没有输出端补偿增益，三组 MP3 的共同增益均为 1。此步骤不直接消除分离伪影，不调用 FM，不更新模型参数。上游 Vevo 源码提供标准化候选依据，仍缺少 AnyAccomp 原训练加载器的直接证据。\n\n| 样本 | raw 原/对齐 RMS 差（dB） | z-score 原/对齐 RMS 差（dB） | z-score 原/对齐包络滞后（ms） |\n|---|---:|---:|---:|\n| R0003_SEP01_SEG0004 | -38.57 / -38.59 | -0.17 / -0.23 | 0 / 9 |\n| R0001_SEP02_SEG0001 | -38.80 / -38.81 | -0.23 / -0.27 | 0 / 10 |\n| R0002_SEP01_SEG0005 | -38.00 / -37.97 | -0.52 / -0.49 | 0 / 10 |\n\nRMS 差指重建相对参考的整体幅度差，负值表示较低。z-score 对照把此前约 38 dB 的异常缩小到约 0.17–0.52 dB，六份重建均有限，采样绝对值超过 1 的数量为 0。包络相关约 0.968–0.982；原网格估计为 0 ms，对齐网格约滞后 9–10 ms，支持存在窗口网格差异，但不证明各乐器逐点对齐。波形相关仍较弱，不能作为精确偏移依据；mel 重建的相位变化也会影响波形比较。\n\n输出长度与 raw 基线完全相同：短段原/对齐分别比参考短 14.917 ms / 长 5.083 ms，中段短 0.042 ms / 长 19.958 ms，长段短 7.167 ms / 长 12.833 ms。没有自动裁切、补齐、移位或淡化，边界仍需听验。输入与旋律 token 对齐的实验 mel 网格和声码器本身的合成时间约定不是同一个问题，尚未确定训练/解码的最终时间处理规则。\n\n九份 WAV 的格式、长度、有限值与报告哈希通过，九份 MP3 全文件解码通过。三段参考与 raw 基线的解码采样逐样本一致；FLOAT WAV 容器的 PEAK 元数据时间戳不同，文件哈希因此不同，不能把容器哈希不同误判为音频采样变化。三份原始录音、四份 CSV 清单及 raw 基线报告哈希均保持不变。完整证据见 `runs/anyaccomp_vocoder_zscore_20261001/results/report.json`、`post_validation.json`、`execution.json`、`vocoder_audit.log` 和 `resources.txt`。\n\n**当前结论与下一步**：标准化是得到数值支持的输入尺度候选，声音质量仍为 `pending`。先由用户听验六份重建，比较主要乐器、节奏/过门、头尾完整性与新增失真；通过后提出时间处理规则和统一尺度 FM 核验的核心 diff，解释后再次确认。原始尺度 FM 有限损失/梯度不能替代标准化目标的重新核验；不在本轮自动执行 FM 重测或正式训练。配对清单仍为 `pending_compatibility_check`，完整配方仍为 `pending_recipe_validation`。云端文档已更新，Windows 同步待进行。\n\n以下每组依次为参考伴奏、z-score 原网格重建、z-score 对齐网格重建。原网格沿用公开 mel 窗口约定；对齐网格使目标 mel 帧中心与旋律 token 帧中心一致，两种网格都使用相同的标准化公式。\n\n**short：R0003_SEP01_SEG0004，参考 11.07 秒**\n\n参考伴奏\n\n![R0003_SEP01_SEG0004 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3)\n\nz-score 原网格重建\n\n![R0003_SEP01_SEG0004 z-score 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/original_grid.mp3)\n\nz-score 对齐网格重建\n\n![R0003_SEP01_SEG0004 z-score 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0003_SEP01_SEG0004/aligned_grid.mp3)\n\n**middle：R0001_SEP02_SEG0001，参考 21.20 秒**\n\n参考伴奏\n\n![R0001_SEP02_SEG0001 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3)\n\nz-score 原网格重建\n\n![R0001_SEP02_SEG0001 z-score 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/original_grid.mp3)\n\nz-score 对齐网格重建\n\n![R0001_SEP02_SEG0001 z-score 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0001_SEP02_SEG0001/aligned_grid.mp3)\n\n**long：R0002_SEP01_SEG0005，参考 30.11 秒**\n\n参考伴奏\n\n![R0002_SEP01_SEG0005 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3)\n\nz-score 原网格重建\n\n![R0002_SEP01_SEG0005 z-score 原网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/original_grid.mp3)\n\nz-score 对齐网格重建\n\n![R0002_SEP01_SEG0005 z-score 对齐网格重建]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_zscore_20261001/results/R0002_SEP01_SEG0005/aligned_grid.mp3)\n\n\n### 2026-10-01 标准化重建听验反馈与时间网格说明\n\n用户反馈：“我听起来感觉和原版参照都差不多。”记录为标准化对照的整体听感未发现明显差异，不扩展为用户已逐项确认六份重建的边界或采样级对齐。反馈原文与范围见 `runs/anyaccomp_vocoder_zscore_20261001/user_listening_feedback.json`。完整训练输入兼容性与最终时间规则仍待验证，本轮没有新 GPU 任务或实验代码修改。\n\n时间网格指特征帧在音频上取窗口的时间位置。本实验采样率 24 kHz，hop=480 即每 20 ms 一帧，mel 窗长 1920 即 80 ms，窗口彼此重叠。公开 chroma/VQ 条件中心为 0、20、40…ms；原网格 mel 采用两端反射补齐 720 个样本，中心为 10、30、50…ms；实验对齐网格 mel 补齐 960 个样本，中心为 0、20、40…ms。两者的 mel 定义与标准化相同，但窗口位置不同。对齐网格比原网格多一帧是边界窗口数量变化，不是在原始录音中插入声音，也没有修改已有旋律 token。\n\n对齐网格解决条件与目标特征的帧中心定义差异；声码器原生合成约定仍对应 10、30、50…ms，因此直接解码对齐 mel 时观察到约 9–10 ms 的包络滞后。这两种“对齐”须分开核验，不能只因特征数量相同或听感相近就确定完整训练/解码合同。\n\n\n### 2026-10-01 标准化 FM 输入复核提案（具体 diff 待确认）\n\n用户询问下一步。鉴于标准化声码器重建已得到整体听感接近参考的反馈，拟保留现有实验对齐网格和全部旋律 token，仅将实际送入 FM 的目标改为 `(raw_logmel - mel_mean) / sqrt(mel_var)`。两份本地配置的采样率、FFT/窗长、hop、mel 数量、频率范围、均值与方差逐项一致；新增 z-score 模式时检查一致性以及均值有限、方差有限且为正。默认 raw 用于保留基线模式，并修正旧报告中对原始尺度的过度推断。\n\n拟重新检查 13 对完整片段的原生 FM 前向、有效非 prompt 帧主损失、反向梯度，以及最短/最长混合批次的补齐与补齐扰动不变性。保存同一份原始 mel、实际输入 mel、未改动 token、特征范围和归一化来源；没有优化器步骤，不修改预训练参数。使用相同独立环境，预计 PyTorch 峰值约 8 GiB（前次 7.83 GiB），运行及核对预计几十秒至数分钟，选卡仍须执行前检查。仅 FM 主损失接口范围内验收；REPA/MERT、原生随机 prompt/CFG、检查点额外 tag 张量及缺失公开完整训练加载器的限制沿用，不宣称完整训练配方复现。\n\n本轮不自动修正解码波形或改变时间网格。条件/目标中心仍为 0+k*480，声码器原生合成中心为 240+k*480；约 10 ms 解码偏移及边界长度规则继续显式标为待验证。标准化 FM 复核通过后，还需单独制定并验证解码时间/边界处理，不能把这一轮结果写成整条训练输入链路已通过。\n\n审阅稿为 `runs/training_input_prepare/fm_normalization_v1/validate_fm_inputs.py.proposed`，完整 diff 为 `proposed_fm_normalization.patch`，状态为 `pending_user_confirmation_of_core_diff`。AST 与 `git apply --check` 通过；CPU 检查 13 份既有数组，标准化结果有限、帧数不变，与声码器候选公式一致，反变换误差最大约 9.54e-7，详见 `cpu_normalization_checks.json`。尚未修改 `scripts/validate_fm_inputs.py`，未启动 GPU 或 FM 前向/反向，需按用户约定展示核心 diff 并讲解后确认。当前仅云端保存提案。\n\n\n### 2026-10-01 标准化 FM 输入复核执行完成\n\n用户回复“确认”批准标准化 FM 的具体 diff。审阅稿原样应用到 `scripts/validate_fm_inputs.py`，SHA-256 `5a65d86b39aff24699918f648f574ac98f08e944e73e6a0afdc038452a8e6c2a`。沿用本实验独立环境 `environments/anyaccomp_input_929`；执行前 GPU 4 为 1 MiB / 0% 空闲，磁盘剩余约 817 GiB，三份原音及 13 对双轨片段哈希复查通过。运行以 `--mel-normalization zscore` 开始与结束均已告知用户，退出码 0，结束后 GPU 4 为 1 MiB / 0%，已释放。\n\nFM 的输入是保留的旋律 token、实验对齐网格上的标准化伴奏目标、有效帧掩码和原生随机扩散/提示条件。主损失衡量预测变化方向与目标方向的差异，反向传播检查参数能否获得梯度；本次没有优化器步骤，未更新参数，也没有执行 FM 生成或重新合成音频。先前声码器听验的音频继续有效。\n\n13 对全长片段的前向、有效非 prompt 帧损失及反向全部通过；包含两个超过 30 秒的片段，没有裁短。13 个单样本损失为 0.155664–0.261474，14 个批次的梯度 L2 范数为 0.602593–3.090335，均有限且非零。原始尺度与标准化尺度的目标不同，不能将损失数值下降解释为微调进步或生成效果提升。\n\n最短/最长片段组成的混合批次长度为 554 / 1,506 帧，短样本补齐 952 帧，前向与反向通过；补齐目标改为 100、token 改为 511 后，保持同一随机抽样，有效位置预测和损失的扰动不变性检查通过。结论限于本次抽样与批次，不代表原生随机 prompt 对任意变长批次都安全：公开实现按补齐后的 T 选择左右提示长度，该配方问题仍保留。\n\n实际耗时 13.44 秒，PyTorch 峰值分配显存 8,407,889,408 字节（约 7.83 GiB），最大 CPU RSS 1,832,868 KiB（约 1.75 GiB）。输出位于 `runs/anyaccomp_fm_zscore_smoke_20261001/results/`，每对保存 `tokens`、`target_raw_logmel` 和实际输入 `target_mel`；与 raw 基线逐数组比较，旋律 token 和原始对齐 mel 均完全一致，标准化变换验证通过，帧数与全长合同不变。四份 CSV 清单、三份原始录音、13 对片段、先前特征及相关基线报告保持不变，源文件及 FM 预训练权重哈希亦复核通过。\n\n运行与复核证据：`execution.json`、`fm_smoke.log`、`resources.txt`、`results/report.json`、`post_validation.json`。审核状态见 `runs/training_input_prepare/fm_normalization_v1/review_status.json`，已标记标准化 FM 运行及后核验通过。状态为 `passed_under_experimental_adapter`；配对清单仍保留 `pending_compatibility_check`，完整训练输入配方为 `pending_recipe_validation`。\n\n下一步需提出并核验声码器解码的时间起点和边界长度处理，解释对齐网格与合成中心相差 240 个采样点（10 ms）时如何保留头尾，展示核心 diff 后确认再实施。此轮没有自动移位、裁切或补齐输出声音。完整训练加载器缺失、三个额外 tag 张量、REPA/MERT 未实现、CFG 配方差异等限制继续保留；不得宣称整条训练链路或作者训练配方已经通过。云端记录更新完成，Windows 本地同步仍待进行。\n\n\n### 2026-10-01 声码器时间与边界适配提案（具体核心代码待确认）\n\n用户要求“下一步”。本轮只读复核 Vocos 的 ISTFT 与已通过的 z-score FM/声码器报告，准备新的实验审阅稿；没有修改现有执行脚本或公开源码，没有运行 GPU、神经声码器或训练。\n\n时间问题定位在公开 ISTFT 的最终裁剪约定：1920 点窗、480 hop 的 `padding=same` 对未裁剪 overlap-add（将各窗口波形重叠相加的合成结果）左右各裁 720 点，因此第 0 帧中心在输出第 240 点（10 ms）。实验目标与旋律 token 的第 0 帧中心是 0；对应的合成结果应从完整 overlap-add 第 960 点开始，取参考 24 kHz 音频的 N 个采样点。这个 240 点差来自明确的窗口约定，不按相关峰逐段选择移位。\n\n不直接在已保存的原生 WAV 上删去 240 点后补零：13 个实际长度中有 4 个会出现尾部采样缺口，分别为 R0001_SEG0004 的 161 点、R0002_SEG0004 的 1 点、R0003_SEG0003 的 1 点和 R0003_SEG0004 的 118 点。完整 overlap-add 的长度为 `(T-1)*480+1920`，这些参考长度均可在 `[960:960+N]` 范围内覆盖，无需新增 mel 帧或插入波形零值。该覆盖结论来自数学范围检查，不等于真实模型已经重建出正确的末尾乐器。\n\n拟新增独立的 `scripts/validate_vocoder_timing.py`。每个短/中/长片段只调用一次原生声码器，临时的 forward pre-hook（只读取模块输入的回调）捕获送入 ISTFT 的复数频谱；预测网络和源定义不变。复数频谱包含合成所需的幅度及相位，保存为 NPZ 以支持事后复核。用同一频谱重建完整 overlap-add 与窗口平方和，分别输出原生裁剪与对齐裁剪；只在请求且窗口平方和有效的范围内归一化。检查重新构造的原生输出与原生 ISTFT 一致、与上一轮 z-score 原生基线一致，以及两种裁剪在相同物理位置的重叠采样完全相同。\n\n输入使用 `runs/anyaccomp_fm_zscore_smoke_20261001/results/` 中的实际 `target_mel`，同时验证标准化公式、token/目标帧数、输入哈希、旧基线 WAV 哈希与参考采样。选择与前轮相同三段；每组输出参考、原生对齐网格解码、修正起点且精确参考长度的解码，共九份 WAV 和九份 MP3。预计新运行目录 `runs/anyaccomp_vocoder_timing_20261001/`，使用同一独立环境，GPU 执行前复查空闲卡；预计峰值显存约 1.1 GiB、CPU RSS 约 1.6–2 GiB，运行及核对几十秒至数分钟。没有 FM 调用、参数更新、波形补零、重采样或淡化；原生输出与旧基线保留。\n\n提案检查通过：AST 与 `git apply --check`；CPU 对 13 个实际长度及 hop 余数 0/1/239/240/241/479 的六个边界案例（共 19 个）做已知随机信号及首尾脉冲 STFT/ISTFT 重建。原生重构与公开 ISTFT 逐样本一致，重叠区域逐样本一致，对齐输出首尾与已知信号的最大误差约 1.79e-7，所取范围的窗口平方和最小值约 0.253，未遇到无效归一化。证据见 `cpu_crop_checks.json` 与 `coverage_plan.json`。这些 CPU 检查只证明窗口/长度数学，不证明神经声码器的质量或作者训练配方。\n\n审阅稿 `runs/training_input_prepare/vocoder_timing_v1/validate_vocoder_timing.py.proposed`，SHA-256 `76723c04786c23273d6cf4959acac510610fbb2d0cfe12f86f013b2df3afdeba`；完整新增 diff 为 `proposed_vocoder_timing.patch`，状态为 `pending_user_confirmation_of_core_diff`。待展示核心代码及输入输出、关键逻辑和限制后由用户确认，再落地执行。GPU 后应检查输出长度、同源采样一致性、包络估计偏移是否接近 0，以及头尾是否引入异常，最终由用户听验。此次适配仅是本实验的解码候选，不能称为作者原始实现；完整训练配方及此前 REPA/MERT、prompt/CFG 等限制继续保留。云端记录已更新，本地同步待进行。\n\n\n### 2026-10-01 声码器时间与边界适配执行完成，待修正输出听验\n\n用户回复“确认”批准具体提案。审阅稿原样新增为 `scripts/validate_vocoder_timing.py`，SHA-256 `76723c04786c23273d6cf4959acac510610fbb2d0cfe12f86f013b2df3afdeba`。执行前核查 13 对输入特征/片段、旧基线的 18 份 WAV/MP3 以及三份原音哈希；GPU 4 空闲，磁盘剩余约 817 GiB。任务沿用独立环境 `environments/anyaccomp_input_929`，开始/结束均已通知用户，退出码 0，实际耗时 12.01 秒，PyTorch 峰值分配显存约 1.046 GiB，最大 CPU RSS 约 1.516 GiB。结束后 GPU 4 为 1 MiB / 0%，已释放。\n\n三段各调用一次原生声码器，捕获预测的复数频谱，按公开定义重建完整窗口叠加结果及窗口平方和；保留 `[720:720+T*480]` 原生输出，并输出 `[960:960+N]` 起点修正版。N 为参考 24 kHz 音频采样数；模型参数、标准化频谱目标和旋律 token 均未修改。没有 FM 调用或参数更新。\n\n| 样本 | 参考/修正后采样数 | 原生 → 修正包络估计滞后（ms） | 从原生裁剪范围外取回的尾部采样 |\n|---|---:|---:|---:|\n| R0003_SEP01_SEG0004 | 265798 / 265798 | 9 → -1 | 118 |\n| R0001_SEP02_SEG0001 | 508801 / 508801 | 10 → 0 | 0 |\n| R0002_SEP01_SEG0005 | 722572 / 722572 | 10 → 0 | 0 |\n\n包络估计分辨率为 1 ms；修正后三段约为 −1/0/0 ms，包络相关约 0.968–0.979。三份修正版长度均与参考完全一致，幅度绝对值超过 1 的采样数量均为 0，与参考的 RMS 差约 −0.23/−0.27/−0.49 dB。数学起点修正固定为 240 点，没有按每段相关峰调参。波形相关仍较弱，不能据此宣称每个乐器的采样级精确对齐。\n\n原生神经输出与上一轮 z-score 基线逐样本一致；完整窗口合成的原生裁剪与原生 ISTFT 逐样本一致；修正版和原生输出在同物理时间的重叠区域逐样本一致。短段新增覆盖的 118 个尾部采样来自同一预测频谱的完整合成结果，118 点全部非零，RMS 约 1.136e-4，没有插入波形零值。技术上覆盖完整参考范围，不等于尾部配器已获得人耳验收。\n\n九份 FLOAT WAV 的格式、采样数、有限值及报告哈希通过，九份 MP3 全文件解码通过；三个保存的复数频谱 NPZ 哈希、形状和有限值通过。只用 CPU 从保存频谱及检查点窗口重建两种裁剪，与实际 GPU 保存输出的最大误差约 2.53e-7，支持保存产物可追溯。三组播放副本共同增益均为 1。源文件、预训练声码器权重、三份原音、13 对片段、四份 CSV 清单、先前特征、报告与旧基线音频哈希均保持不变。\n\n结果位于 `runs/anyaccomp_vocoder_timing_20261001/`，证据包括 `execution.json`、`resources.txt`、`vocoder_timing.log`、`results/report.json`、`post_validation.json`；每段目录保存 `predicted_spectrum.npz`、参考/原生/修正版 WAV 和 MP3。审核记录 `runs/training_input_prepare/vocoder_timing_v1/review_status.json` 标记执行及后核验通过、听验待定。\n\n下一步由用户听验三份修正版，重点检查开头声音进入、末尾收音是否自然完整，有无新增噪声或失真；时间偏移的定量诊断由报告承担，不要求用户凭听觉识别 10 ms。`human_listening_status=pending`，完整训练输入配方仍为 `pending_recipe_validation`，配对清单的训练兼容性状态尚未修改。本轮只支持三段神经输出及此前 19 个 CPU 数学案例的时间/长度合同，不代表所有训练配方问题已解决。该解码规则仍是本实验候选，不能声称作者原始实现。云端记录已更新，本地同步待进行。\n\n以下每组依次为参考、原生对齐网格解码、起点/长度修正版。原生解码与上一轮逐样本一致。\n\n**short：R0003_SEP01_SEG0004，参考 11.07 秒**\n\n参考伴奏\n\n![R0003_SEP01_SEG0004 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/reference_24k.mp3)\n\n原生对齐网格解码\n\n![R0003_SEP01_SEG0004 原生对齐网格解码]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_native.mp3)\n\n起点与长度修正版\n\n![R0003_SEP01_SEG0004 起点与长度修正版]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0003_SEP01_SEG0004/aligned_centered.mp3)\n\n**middle：R0001_SEP02_SEG0001，参考 21.20 秒**\n\n参考伴奏\n\n![R0001_SEP02_SEG0001 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/reference_24k.mp3)\n\n原生对齐网格解码\n\n![R0001_SEP02_SEG0001 原生对齐网格解码]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_native.mp3)\n\n起点与长度修正版\n\n![R0001_SEP02_SEG0001 起点与长度修正版]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0001_SEP02_SEG0001/aligned_centered.mp3)\n\n**long：R0002_SEP01_SEG0005，参考 30.11 秒**\n\n参考伴奏\n\n![R0002_SEP01_SEG0005 参考伴奏]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/reference_24k.mp3)\n\n原生对齐网格解码\n\n![R0002_SEP01_SEG0005 原生对齐网格解码]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_native.mp3)\n\n起点与长度修正版\n\n![R0002_SEP01_SEG0005 起点与长度修正版]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/results/R0002_SEP01_SEG0005/aligned_centered.mp3)\n\n\n### 2026-10-01 声码器时间/边界适配听验通过\n\n用户对展示的短、中、长三份修正版明确反馈：“都自然完整，没有新增失真”。据此将三份修正版的头尾完整性、自然程度及新增失真听验记录为通过；与已通过的长度、同源频谱、重叠采样一致性和文件完整性检查共同构成本轮解码适配验收。证据见 `runs/anyaccomp_vocoder_timing_20261001/acceptance.json`；后核验和审核状态已更新为听验通过，`results/report.json` 保留执行时的诊断快照，后续验收以 `acceptance.json` 为准。\n\n已验证的实验输入规则为：24 kHz 单声道音频，冻结 chroma/VQ 旋律条件，目标 mel 与 token 使用 0+k*480 帧中心，目标按配置均值 −4.92、方差 8.14 做 z-score 标准化；解码使用同一预测复数频谱的完整窗口合成结果，从 960 点开始取参考长度。该规则有 13 对 FM 主损失/反向和一次混合补齐抽样检查、三段声码器技术核验及用户听验、19 个 CPU 数学案例支持，范围不扩展为作者完整配方复现或全部 13 段神经解码都已听验。\n\n下一步汇总训练输入规范与剩余问题，先核查并提出变长批次随机 prompt 的逐条有效长度处理方案。prompt 是提供给模型的已知伴奏区域；其选择须遵守每个样本的真实长度并为训练目标保留有效位置，当前公开实现以补齐后 T 取样，单次混合测试通过不能覆盖任意抽样。CFG 是随机丢条件的训练/推理引导机制；本地配置与论文的概率差异需要明确实验选择。REPA/MERT 是音乐表征辅助损失，现有主损失冒烟未实现该链路，须与完整作者配方分开记录。公开完整训练加载器缺失和额外 tag 张量的限制继续保留。任何新增或修改实验代码仍先展示核心 diff、讲解并等待确认。\n\n本轮仅记录听验并更新云端进度，没有新增 GPU 任务、模型参数更新、批量下载或正式训练。CSV 清单保持不变，训练兼容性整体仍待配方收口；Windows 同步待进行。\n\n\n### 2026-10-01 变长 FM 随机提示适配提案（具体核心代码待确认）\n\n用户在前轮文档同步确认后要求“下一步”。本轮只读核对公开 `anyaccomp/fmt_model.py`、条件模型、当前主损失核验及配置，准备实验目录内的独立适配模块与新核验脚本，尚未落地到 `scripts/` 或启动 GPU。\n\nprompt（提示区域）是训练时直接提供给模型的真实伴奏频谱区域，模型学习生成剩余位置。公开实现以补齐后最大 T 选择提示总长度，并用 T 定位右侧提示；同批短样本的右提示可能全部在补齐区，左提示可能遮住其所有有效位置。以有效长度 554/1,506 为例，原始规则允许 600 帧左提示，使短样本的损失帧为零；100 帧右提示位于 1,406–1,505，短样本看不到任何有效右提示。前轮单次混合抽样通过不能排除此类情况。配置 `prompt_prob=0` 不被该原生分支读取，实际仍以每批共享的约 30% 概率启用提示。\n\n拟新增 `scripts/fm_length_aware_prompt.py`，继承同一公开 FM 模型且不新增学习参数；按有效长度 L 选提示总长，左右提示只位于该段有效前缀的两端，满足 `left+right \u003c L`，至少保留一帧损失。正常长度沿用约 40% 的提示长度上界，短到原生 randint 区间失效的案例显式安全处理。损失掩码为有效位置减去提示位置，估计器输入的补齐位置显式归零。保留公开时间采样/调度、噪声插值、旋律条件投影、估计器和返回接口；默认提示出现概率显式设为 0.3，沿用原生每批共享启用门；`--prompt-probability 0` 在本实验中明确禁用提示。CFG 仍为当前配置 0.2（随机关闭旋律条件的训练机制），不在本轮处理与论文概率不同的问题。原项目源文件和预训练权重只读使用。\n\n拟新增 `scripts/validate_fm_prompts.py`，直接读取上一轮已核验且未修改的 z-score `target_mel` 和旋律 token，不重新提取特征。13 对全长单样本真实前向/反向，加最短/最长混合批次的七种检查：无提示、仅左、仅右、左右都有提示、默认概率下三个随机种子，共 20 个损失/反向批次；七个混合批次另做相同随机抽样下的补齐目标/token 扰动前向，核查有效预测、损失和提示计划不被补齐内容影响。保存每批有效长度、左右提示长度、提示总长、实际损失帧数、损失和梯度。没有优化器步骤、参数更新、MERT/REPA 辅助损失或音频生成。\n\n准备检查通过：两个文件的 AST；`git apply --check`；768 个 CPU 提示方案（每案 24 个长度，覆盖 1–100 的短长度及 13 对实际帧数、三种概率、四种位置模式、64 个种子），提示均在有效区，保留损失帧，增加 71 帧补齐不改变提示计划；四个无效掩码/提示案例被拒绝。已知合成 CPU 张量的 FM 插值、提示保留和补齐归零公式通过，没有执行估计器前向/反向。meta 模型状态字典的 137 个参数/缓冲张量名字和形状与公开模型一致，未新增学习参数。CPU 结果不能替代真实预训练模型的 GPU 前向/反向与扰动验证。\n\n提案目录 `runs/training_input_prepare/fm_prompt_v1/` 包含审阅稿、`proposed_fm_prompt.patch`、`cpu_prompt_checks.json`、`inspection.json` 和 `review_status.json`。适配稿 SHA-256 `62baf9dc873aa91dc320ddbab0fd6f2b258baa0183f509e11871c9bcf37aa9f0`，核验稿 SHA-256 `cd7a03414fe760e0fef326b6d0ad09a0c625f160de14064f69c26d2637264963`。状态为 `pending_user_confirmation_of_core_diff`，两份新执行文件尚不存在。预计峰值分配显存约 8 GiB（同结构前轮实测 7.83 GiB），运行及检查几十秒至数分钟，执行前仍复查 GPU；输出使用新目录 `runs/anyaccomp_fm_prompt_smoke_20261001/`。\n\n这些是本实验的提示/变长处理候选，不宣称作者原始训练规则。公开完整训练加载器缺失、额外 tag 张量、CFG 配方差异、REPA/MERT 未实现等限制继续保留，完整配方为 `pending_recipe_validation`。用户此前明确要求实验代码先展示核心 diff 并讲解后确认，故本轮准备到具体可审阅产物后等待确认，不自动执行。\n\n同步状态：用户提供的终端截图已确认前轮记录同步成功，云端与本地哈希均为 `aca3cf454e5bb13cab6f4ad876558b304c4c6e8d60b28368805e6ecda39e63f2`；同步登记见 `runs/record_sync_20261001T070911Z/sync_confirmation.json`。本节属于该同步之后的新云端变更，Windows 本地仍是上一次同步版本，后续阶段同步时需再次传输并核对。\n\n\n### 2026-10-01 变长 FM 提示适配执行与后核验通过\n\n用户回复“确认”批准前节具体核心 diff。两个审阅稿原样落地为 `scripts/fm_length_aware_prompt.py`（SHA-256 `62baf9dc873aa91dc320ddbab0fd6f2b258baa0183f509e11871c9bcf37aa9f0`）和 `scripts/validate_fm_prompts.py`（SHA-256 `cd7a03414fe760e0fef326b6d0ad09a0c625f160de14064f69c26d2637264963`）。沿用独立环境 `environments/anyaccomp_input_929` 和同一预训练 FM，读取上一轮已有 z-score `target_mel` 与旋律 token，没有重新提取或改写输入特征。适配类不新增学习参数，137 个公开模型所需张量加载一致；三个公开定义未包含的检查点 tag 张量继续显式排除。\n\nFM 在本轮的作用是核查“已知旋律条件、部分真实伴奏提示、带噪目标 → 剩余位置的生成训练损失”能否在不同长度输入上计算并反向传播。按每段真实有效长度选择左右提示，损失只计算有效且未被提示的位置，补齐位置在估计器输入中归零。提示默认以每批共享的 0.3 概率启用；强制左/右/双侧与关闭提示仅用作压力核验。CFG 随机关闭旋律条件的概率继续使用本地配置 0.2，REPA/MERT 辅助损失未引入。本轮没有优化器、模型参数更新、音频生成或新增听验。\n\n执行开始与结束均已通知用户；使用空闲 GPU 4（RTX 4090，UUID `GPU-f37d634b-c2bd-b66f-44a2-6608ae61b06e`），退出码 0。实际 GPU 核验进程耗时 10.07 秒，PyTorch 峰值分配显存 8,410,742,272 字节（约 7.83 GiB），最大 CPU RSS 1,694,340 KiB（约 1.62 GiB）；结束后 GPU 4 为 1 MiB / 0%，已释放。\n\n13 个全长单样本与七个混合长度批次全部完成真实前向/反向。混合输入是最短 R0003_SEP01_SEG0004（554 帧）和最长 R0002_SEP01_SEG0005（1,506 帧），短样本补齐 952 帧。下表提示长度与损失帧数按“短 / 长”记录；随机模式同时覆盖提示启用与未启用分支。\n\n| 混合模式 | 左提示帧 | 右提示帧 | 实际损失帧 | 补齐扰动检查 |\n|---|---:|---:|---:|---|\n| 无提示，概率 0，seed 929 | 0 / 0 | 0 / 0 | 554 / 1506 | 通过 |\n| 强制左提示，seed 929 | 138 / 352 | 0 / 0 | 416 / 1154 | 通过 |\n| 强制右提示，seed 929 | 0 / 0 | 138 / 352 | 416 / 1154 | 通过 |\n| 强制双侧提示，seed 929 | 109 / 156 | 29 / 196 | 416 / 1154 | 通过 |\n| 默认概率 0.3，seed 929，未启用 | 0 / 0 | 0 / 0 | 554 / 1506 | 通过 |\n| 默认概率 0.3，seed 930，启用 | 127 / 161 | 12 / 12 | 415 / 1333 | 通过 |\n| 默认概率 0.3，seed 931，未启用 | 0 / 0 | 0 / 0 | 554 / 1506 | 通过 |\n\n所有样本的提示帧与损失帧构成有效长度的完整分区，没有提示落在补齐区，也没有有效位置全部被提示遮住；本轮实际最少保留 415 个损失帧。20 个批次损失均有限，范围约 0.14934–0.30834；梯度有限且非零，L2 范围约 0.16950–2.25612。七次补齐扰动在保持随机状态一致时，将补齐 mel 改为 100、补齐 token 改为 511，有效预测、损失和提示计划均通过一致性检查。损失数值仅作为接口诊断，不能据此评价微调提升或生成质量。\n\n输出目录 `runs/anyaccomp_fm_prompt_smoke_20261001/`，包含 `execution.json`、`fm_prompt.log`、`resources.txt`、`results/report.json`、`post_validation.json`。后核验复查批次数、提示分区、有效损失帧、补齐扰动、代码与审阅稿哈希、输入及源文件完整性，状态为 `passed`。原音、13 对片段、四份 CSV 清单、既有特征和报告、公开源文件、预训练权重及上一轮 `scripts/validate_fm_inputs.py` 均保持不变。提案审核记录 `runs/training_input_prepare/fm_prompt_v1/review_status.json` 已更新为用户确认、执行及后核验通过。\n\n此结果证明当前实验适配在已测输入和提示方案下可以安全计算 FM 主损失及梯度，与此前 CPU 提示检查共同支持逐条有效长度处理；不代表任意批次或完整作者训练配方已验证，也不代表分离伪影已经被清除。配对清单继续保持原兼容性状态，整体训练输入配方为 `pending_recipe_validation`。未解决事项包括公开完整训练加载器缺失、三个额外 tag 张量、CFG 0.2 与论文 0.1 的差异、REPA/MERT 辅助损失未实现，以及实验时间网格、标准化与解码规则不能直接称为作者原始预处理。\n\n下一步整理已通过的输入规范与小规模流程验收清单，明确 CFG 及 REPA/MERT 的实验取舍，再展示可审阅的训练入口方案与核心 diff。是否执行临时参数更新、保存与重载检查点，以及之后的生成对照/正式微调，均属于后续具体提案范围；本轮没有自动推进这些任务。仍需先解释代码并得到确认。云端记录已更新；Windows 本地仍为前轮同步快照，本轮新增记录尚未同步。\n\n\n### 2026-10-01 小规模流程有限验收提案（待用户确认）\n\n用户问“下一步做什么”。按已经重申的 929 范围，下一步先完成当前三份录音的小规模验收，再确定规模化来源和数量/合格时长。本轮只核对已有报告和清单、整理输入规范及提案，没有修改实验代码、清单状态或启动 GPU、优化器更新、批量下载。以下是可审阅的有限验收范围，尚未替用户作整体通过判断。\n\n**验收对象**：R0001–R0003 经用户接受的三份 Demucs 双轨及 13 对结构片段；总长 282.228684807 秒（约 4 分 42 秒）。最长片段约 30.107 秒，R0002_SEG0005 和 R0003_SEG0003 两段超过 30 秒，保留全长并纳入已有特征/FM 核验。\n\n| 固定验收项 | 已有证据 | 建议如何记录 |\n| --- | --- | --- |\n| 原音与分离版本可追溯 | 三份原音下载/哈希/解码；模型提交、权重、参数与日志登记；三份 Demucs 双轨听验通过 | 通过本次流程门槛；保留人声伪影及无独立干净轨的限制 |\n| 结构分段与配对覆盖 | 13 个共同边界经用户确认；片段重拼与各完整分离轨逐样本一致 | 同源裁切和完整覆盖通过；不宣称独立真值下的细部对齐 |\n| 旋律/伴奏特征接口 | 全部 13 对冻结 Chroma/VQ 提取与范围检查；全长 token 与实验目标时间网格/尺度核验 | 按已验证的实验输入规则接受；不称为作者原始预处理 |\n| FM 主损失与变长输入 | 13 个单样本、七个混合提示批次前向/反向；七次补齐扰动通过 | 主损失、梯度、真实长度/提示/损失掩码接口通过；不扩展为完整训练器通过 |\n| 频谱到声音的转换 | 三段声码器技术核验及用户“自然完整、没有新增失真”的听验；19 个 CPU 数学案例 | 接受本实验解码起点/长度规则在已测范围内的证据；不声称全部片段解码已听验 |\n| 输入规范与限制交付 | 本提案及模型与技术说明，相关报告路径见下 | 待用户确认有限验收范围；确认后登记整体结论和后续建集要求 |\n\n**建议固定的实验输入规则**：分离沿用已比较的 Demucs `htdemucs_ft`；保持原音、完整双轨及共同边界的配对 WAV；处理输入转为 24 kHz 单声道。旋律条件使用冻结的 24 通道 Chroma/VQ、每秒约 50 帧、512 条目码本；伴奏目标使用 128 通道 Mel、hop 480、帧中心 `0+k*480`，按均值 −4.92、方差 8.14 做 z-score。变长批次使用真实有效长度掩码及已确认的逐条提示适配，提示概率 0.3；解码从完整合成结果第 960 点取参考长度，不补波形零值。这些是已核验的实验规则，不新增算法。\n\n**CFG 的有限取舍**：CFG 的训练条件丢弃机制让 FM 同时学习“看旋律”和“不看旋律”的预测。建议保留已核验代码中的丢条件概率 0.2，不在 929 为调整成论文的 0.1 再跑一轮主损失核验；该值不是推理时的引导强度，差异写入限制。正式微调采用何值另行设计。\n\n**REPA/MERT 的有限取舍**：MERT 是提取音乐特征的教师模型，REPA 是约束 FM 中间特征接近教师表征的辅助损失。当前没有这项计算，建议本次验收明确仅覆盖 FM 主损失输入，不新增 MERT 下载或 REPA 实现，不把未实现写成通过。完整论文配方不是本次数据实验的默认门槛。\n\n**训练入口的声明范围**：当前有真实预训练模型的前向、主损失和反向证据，但没有优化器步骤、参数更新或训练恢复测试；三个检查点 tag 张量不在公开模型定义中，已明确排除。本次建议以“实验 FM 主损失输入接口已核验”作为可复用范围，完整作者训练器及精确配方保持未验证。无需为了消除这些限制自动追加临时更新；如后续所选实际训练入口提出新的数据接口要求，先说明具体缺口与有限检查，再按代码确认规则处理。\n\n**确认后的固定下一步**：登记有限验收结论并对应更新清单，不覆盖历史执行报告；提出规模化来源清单与可计量的建集目标（录音数量或最终合格配对时长），以及资源预算和质量门槛。达到约定规模、完成配对/输入核验、按原录音或演出分组划分及数据交付后，结束 929。若候选来源明显更长或录音条件不同，只按实际差异提出必要的代表样本检查，不重新比较所有模型或不断追加技术研究。\n\n证据：[分段覆盖报告]($CLOUD_FINETUNE_ROOT/runs/segmentation_finalize_20261001/report.json)、[特征报告]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_feature_audit_20261001/features/report.json)、[z-score FM 报告]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_fm_zscore_smoke_20261001/results/report.json)、[提示/补齐后核验]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json)、[声码器听验记录]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/acceptance.json)。早期报告中的待办状态保留为执行时快照，后续验收须按较新阶段证据解释。\n\n当前整体训练输入状态仍未升级，四份 CSV 清单不变；这是提案，不是整体验收完成记录。云端文档已更新，本地仍待同步。\n\n\n### 2026-10-01 用户确认小规模有限验收，准备本地记录同步\n\n用户答复“可以的”，确认前节具体有限验收范围，并询问是否有音频或文件需下载到本地；随后要求提供提示词，由本地 Codex 对话执行同步。已登记三份录音、13 对片段的有限流程验收，通过范围是当前实验 FM 主损失输入及已测声码器解码规则；CFG 条件丢弃概率保留 0.2，REPA/MERT 辅助损失不纳入本轮，完整作者配方与完整训练器保持未验证。\n\n验收记录：`runs/small_scale_acceptance_20261001T085524Z/acceptance.json`。登记前再次核对三份原音和 26 份配对 WAV 哈希，全都与清单一致。`pairs.csv` 的 13 条 `training_input_status` 从 `pending_compatibility_check` 改为 `passed_experimental_fm_main_loss_interface`；其余列和数据划分不变。变更前清单备份为同目录 `pairs.before_acceptance.csv`，验收 JSON 记录前后哈希与证据哈希。其他三份 CSV、音频、源代码和权重未修改；历史报告及提案段落保留原时点状态，最新结论以本节和验收 JSON 为准。\n\n现有音频已经完成本轮所需听验，没有新试听待办，不要求再次下载。为本地回看和交接，准备同步两份说明/进度文档、README、四份 CSV 清单、验收记录及关键小型 JSON 报告；不包含音频、权重、运行环境或大型 NPZ。云端准备不可变同步包和逐文件 SHA-256 清单，本地 Codex 经 `lab-4090` 下载到临时目录，校验后备份不同的旧版再写入项目路径，并生成本地同步回执。\n\n本轮没有 GPU 任务、参数更新或规模化下载，929 尚未完成，下一步是明确规模化来源及可计量目标。同步包准备完成不等于本地已更新；本地下载与哈希核验成功后才登记同步完成。\n\n\n### 2026-10-01 规模化首批来源只读核查与具体提案（待确认）\n\n用户问“下一步做什么”。已完成小规模有限验收，进入规模化来源与可计量目标规划。本轮核对基金会示范音档目录、九份详情页和现有录音清单，目录列出九项，其中三项已收录，另外六项为新候选。新候选 C004–C009：古早七字仔、都馬調、西樂都馬、崁仔腳調、臺東調（平埔調）、思想起（恆春調）。\n\n六项 HTTP Range 文件头读取均返回 206，每份最多 65,536 字节，没有保存完整音频或执行 GPU。RIFF 文件头声明 48 kHz、双声道、24-bit PCM，新增录音合计约 8 分 21 秒，预计下载约 138 MiB；连同现有三份，目录全部九项合计约 13 分 03 秒。这是原始录音的元数据线索，不是合格配对时长，完整下载、哈希、解码与听验尚未进行。演唱署名中的角色与演员信息完整保存，候选状态不等于正式收录。\n\n具体首批方案：[首批来源与资源提案]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/first_batch_proposal.md)，元数据见同目录 `source_inventory.json`，候选清单见 `source_candidates.csv`。建议确认首批六项后，完整下载并核验，先对最长 C005 都馬調做同参数完整分离并听验，通过后处理其余五项，然后逐份结构分段、配对与输入核验。本批保留原音/完整双轨/片段预计预留 2 GiB，GPU 分离沿用既有预算并记录实测；没有为提案修改实验代码。\n\n最终规模仍待明确。六项候选只是首批，不将约 13 分钟自动作为整个 929 的结束目标；如需要小时级合格数据，必须补充来源。已向用户询问最终合格配对时长或先审阅首批方案的偏好。来源与目标明确前不直接批量执行；不重启完整作者配方研究或正式训练。\n\n本地同步状态未改变。前轮 `record_handoff_20261001T085731Z/929_records.zip` 的固定快照和哈希保持不变，本提案属于它之后的新记录，后续同步另建版本；没有收到本地同步回执，不宣称本地已更新。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>最终验收.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#history">← 返回历史实现</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>最终验收.md</h1><p>Markdown 文档 · 3,912 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#backstage_v111_legato">机器人表演双方案 backstage_v1.1.1_legato 最终验收</a><ul>
+<li><a href="#_1">状态</a></li>
+<li><a href="#agoat">方案 A：GOAT 数据集</a></li>
+<li><a href="#b">方案 B：原创歌词与全新四句旋律</a></li>
+<li><a href="#_2">两方案差异核验</a></li>
+<li><a href="#_3">自动验收结论与边界</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\artifacts\robot_performance_audio\2026-09-20\最终验收.md</p><p>SHA-256：0b04a89bf1105dd4a312a548ac2af195163e03713264dbcdb55413e7de4133c4</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="backstage_v111_legato">机器人表演双方案 backstage_v1.1.1_legato 最终验收</h1>
+<h2 id="_1">状态</h2>
+<ul>
+<li>方案 A（GOAT 数据集唱段）和方案 B（原创歌词、独立四句旋律）均已完成正式生成。</li>
+<li>两套均使用经用户对照试听确认并完成尾奏修复的 <code>backstage_v1.1.1_legato + qizi + intense</code>。</li>
+<li>每套均包含人声、伴奏、MIDI、<code>-12 dB</code> 平衡混音和 <code>-9 dB</code> 突出混音。</li>
+<li>自动验收脚本返回 <code>pass</code>；两套人声复用原正式人声且 SHA-256 不变，只重新生成伴奏、MIDI和混音。</li>
+</ul>
+<h2 id="agoat">方案 A：GOAT 数据集</h2>
+<p>唱词：马童张彪言在耳／西夏埋伏在谷中／奇兵探谷防埋伏／方能取胜帷幄中。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th style="text-align: right;">时长</th>
+<th style="text-align: right;">RMS</th>
+<th style="text-align: right;">峰值</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人声.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.078603</td>
+<td style="text-align: right;">0.475922</td>
+<td><code>883fb740d12d97c908ab106b1e7ee54f75dd6fa1110adbeac12bfcae597a93d8</code></td>
+</tr>
+<tr>
+<td>伴奏.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.023930</td>
+<td style="text-align: right;">0.209229</td>
+<td><code>3090ada763f99ef9493b2c22a27232215e731aaa655e1662a948ad411b37d05c</code></td>
+</tr>
+<tr>
+<td>混音_平衡_-12dB.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.081172</td>
+<td style="text-align: right;">0.493469</td>
+<td><code>dd68482e7050c1a4a00553891aa4d2064bfd74c941704803171230b00a1af13a</code></td>
+</tr>
+<tr>
+<td>混音_突出_-9dB.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.083579</td>
+<td style="text-align: right;">0.516357</td>
+<td><code>1c671cec9c3171cce6c0a3422aa292ccaa82236ecd71ce76f190b96df24a85fc</code></td>
+</tr>
+</tbody>
+</table>
+<p>编配事件：拉弦 35、弹拨 16、打击乐 4、吹管 0。主弦事件覆盖率为 1.0；检测到的三个较长低活动区均对应 GOAT 输入内部明确标注的 <code>sp</code> 休止，不是编曲意外断点。尾奏覆盖 23.608～26.367 秒，最后有效声音约在 26.30 秒。<code>-12 dB</code> 和 <code>-9 dB</code> 混音所需伴奏增益分别为 0.825090 与 1.165471；均未触发峰值限幅。</p>
+<h2 id="b">方案 B：原创歌词与全新四句旋律</h2>
+<p>唱词：银甲登场气自雄／舒臂徐行带晓风／回身振手惊四座／收势昂然谢诸公。</p>
+<p>四句旋律分别采用上行亮相、流动展开、高音高潮、下行收束设计；音高和节奏签名均为 4/4 唯一，最高音 E5，最终落音 D4。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th style="text-align: right;">时长</th>
+<th style="text-align: right;">RMS</th>
+<th style="text-align: right;">峰值</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人声.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.084037</td>
+<td style="text-align: right;">0.600525</td>
+<td><code>67281ab34790ee8ec3e65c3a9e184eaf1b79f001f7c20432b6ab75fe89c743be</code></td>
+</tr>
+<tr>
+<td>伴奏.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.027360</td>
+<td style="text-align: right;">0.227234</td>
+<td><code>f87f83cb7ca732bff71252e437a464fea2d5241e52adc4c7a18debca506eb4f5</code></td>
+</tr>
+<tr>
+<td>混音_平衡_-12dB.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.086610</td>
+<td style="text-align: right;">0.654694</td>
+<td><code>bf459fcd2b03757a87b098d8f572e98e389868074526e722a99c5f2cd6fd8c12</code></td>
+</tr>
+<tr>
+<td>混音_突出_-9dB.wav</td>
+<td style="text-align: right;">26.367 s</td>
+<td style="text-align: right;">0.089118</td>
+<td style="text-align: right;">0.677032</td>
+<td><code>24e9f78656d0df33b763502f2339e079cb7fc3b467e6115f115e1be7a4607bee</code></td>
+</tr>
+</tbody>
+</table>
+<p>编配事件：拉弦 28、弹拨 9、吹管 2、打击乐 6。主弦事件覆盖率为 1.0；实际有音高唱段内，低于 -50 dBFS 的非活动帧占 1.17%，大于等于 120 ms 的意外空白为 0，最大非活动间隔为 0.04 秒。尾奏覆盖 23.608～26.367 秒，最后有效声音约在 26.32 秒。<code>-12 dB</code> 和 <code>-9 dB</code> 混音所需伴奏增益分别为 0.771521 与 1.089802；均未触发峰值限幅。</p>
+<h2 id="_2">两方案差异核验</h2>
+<ul>
+<li>A、B 伴奏 SHA-256 不同。</li>
+<li>伴奏逐采样波形相关系数为 0.019961。</li>
+<li>A 以更密集的拉弦跟随为主；B 增加吹管并提高打击乐事件比例。</li>
+<li>上述指标证明两份文件和编配事件不相同，但不能代替主观听感评价。</li>
+</ul>
+<h2 id="_3">自动验收结论与边界</h2>
+<ul>
+<li>八条 WAV 均为 24 kHz、26.367 秒，采样有限、非空且未超过满幅。</li>
+<li>两套均采用句级锚点持续主弦、65 ms连接尾音、延长前奏/过门、完整尾奏和轻量短空间尾音；42项相关回归测试通过。</li>
+<li>两种混音中的伴奏相对人声分别按实测 RMS 配平到 -12 dB 和 -9 dB，不再使用固定 0.25 系数。</li>
+<li>自动检查不能判断歌词咬字、歌仔戏专业真实性、伴奏审美或机器人动作是否主观同步。</li>
+<li>用户已确认方案 B 的 v1.1_legato 对照听感方向合适；最终仍需在 Shotcut 中选择 A/B 及 <code>-12 dB</code>/<code>-9 dB</code> 档，并确认机器人动作同步。</li>
+</ul></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：artifacts/robot_performance_audio/2026-09-20/最终验收.md（路径已脱敏）","sha256":"0b04a89bf1105dd4a312a548ac2af195163e03713264dbcdb55413e7de4133c4","text":"# 机器人表演双方案 backstage_v1.1.1_legato 最终验收\n\n## 状态\n\n- 方案 A（GOAT 数据集唱段）和方案 B（原创歌词、独立四句旋律）均已完成正式生成。\n- 两套均使用经用户对照试听确认并完成尾奏修复的 `backstage_v1.1.1_legato + qizi + intense`。\n- 每套均包含人声、伴奏、MIDI、`-12 dB` 平衡混音和 `-9 dB` 突出混音。\n- 自动验收脚本返回 `pass`；两套人声复用原正式人声且 SHA-256 不变，只重新生成伴奏、MIDI和混音。\n\n## 方案 A：GOAT 数据集\n\n唱词：马童张彪言在耳／西夏埋伏在谷中／奇兵探谷防埋伏／方能取胜帷幄中。\n\n| 文件 | 时长 | RMS | 峰值 | SHA-256 |\n|---|---:|---:|---:|---|\n| 人声.wav | 26.367 s | 0.078603 | 0.475922 | `883fb740d12d97c908ab106b1e7ee54f75dd6fa1110adbeac12bfcae597a93d8` |\n| 伴奏.wav | 26.367 s | 0.023930 | 0.209229 | `3090ada763f99ef9493b2c22a27232215e731aaa655e1662a948ad411b37d05c` |\n| 混音_平衡_-12dB.wav | 26.367 s | 0.081172 | 0.493469 | `dd68482e7050c1a4a00553891aa4d2064bfd74c941704803171230b00a1af13a` |\n| 混音_突出_-9dB.wav | 26.367 s | 0.083579 | 0.516357 | `1c671cec9c3171cce6c0a3422aa292ccaa82236ecd71ce76f190b96df24a85fc` |\n\n编配事件：拉弦 35、弹拨 16、打击乐 4、吹管 0。主弦事件覆盖率为 1.0；检测到的三个较长低活动区均对应 GOAT 输入内部明确标注的 `sp` 休止，不是编曲意外断点。尾奏覆盖 23.608～26.367 秒，最后有效声音约在 26.30 秒。`-12 dB` 和 `-9 dB` 混音所需伴奏增益分别为 0.825090 与 1.165471；均未触发峰值限幅。\n\n## 方案 B：原创歌词与全新四句旋律\n\n唱词：银甲登场气自雄／舒臂徐行带晓风／回身振手惊四座／收势昂然谢诸公。\n\n四句旋律分别采用上行亮相、流动展开、高音高潮、下行收束设计；音高和节奏签名均为 4/4 唯一，最高音 E5，最终落音 D4。\n\n| 文件 | 时长 | RMS | 峰值 | SHA-256 |\n|---|---:|---:|---:|---|\n| 人声.wav | 26.367 s | 0.084037 | 0.600525 | `67281ab34790ee8ec3e65c3a9e184eaf1b79f001f7c20432b6ab75fe89c743be` |\n| 伴奏.wav | 26.367 s | 0.027360 | 0.227234 | `f87f83cb7ca732bff71252e437a464fea2d5241e52adc4c7a18debca506eb4f5` |\n| 混音_平衡_-12dB.wav | 26.367 s | 0.086610 | 0.654694 | `bf459fcd2b03757a87b098d8f572e98e389868074526e722a99c5f2cd6fd8c12` |\n| 混音_突出_-9dB.wav | 26.367 s | 0.089118 | 0.677032 | `24e9f78656d0df33b763502f2339e079cb7fc3b467e6115f115e1be7a4607bee` |\n\n编配事件：拉弦 28、弹拨 9、吹管 2、打击乐 6。主弦事件覆盖率为 1.0；实际有音高唱段内，低于 -50 dBFS 的非活动帧占 1.17%，大于等于 120 ms 的意外空白为 0，最大非活动间隔为 0.04 秒。尾奏覆盖 23.608～26.367 秒，最后有效声音约在 26.32 秒。`-12 dB` 和 `-9 dB` 混音所需伴奏增益分别为 0.771521 与 1.089802；均未触发峰值限幅。\n\n## 两方案差异核验\n\n- A、B 伴奏 SHA-256 不同。\n- 伴奏逐采样波形相关系数为 0.019961。\n- A 以更密集的拉弦跟随为主；B 增加吹管并提高打击乐事件比例。\n- 上述指标证明两份文件和编配事件不相同，但不能代替主观听感评价。\n\n## 自动验收结论与边界\n\n- 八条 WAV 均为 24 kHz、26.367 秒，采样有限、非空且未超过满幅。\n- 两套均采用句级锚点持续主弦、65 ms连接尾音、延长前奏/过门、完整尾奏和轻量短空间尾音；42项相关回归测试通过。\n- 两种混音中的伴奏相对人声分别按实测 RMS 配平到 -12 dB 和 -9 dB，不再使用固定 0.25 系数。\n- 自动检查不能判断歌词咬字、歌仔戏专业真实性、伴奏审美或机器人动作是否主观同步。\n- 用户已确认方案 B 的 v1.1_legato 对照听感方向合适；最终仍需在 Shotcut 中选择 A/B 及 `-12 dB`/`-9 dB` 档，并确认机器人动作同步。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

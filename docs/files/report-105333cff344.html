@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>report.json · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#file-content">文件内容</a><span>JSON 配置 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>report.json</h1><p>JSON 配置 · 11,254 字节 · 全文快照</p></header>
+<div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\runs\anyaccomp_fm_zscore_smoke_20261001\results\report.json</p><p>SHA-256：eab64f68919a8bd2f0523fe067b1a2e2e4fbb36f307fa06a8515a3b455c88610</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="json"><pre class="file-code" aria-label="完整文件内容"><code><span class="file-line" id="L1">{
+</span><span class="file-line" id="L2">  &quot;stage&quot;: &quot;experimental_fm_input_smoke&quot;,
+</span><span class="file-line" id="L3">  &quot;status&quot;: &quot;completed&quot;,
+</span><span class="file-line" id="L4">  &quot;training_input_status&quot;: &quot;pending_recipe_validation&quot;,
+</span><span class="file-line" id="L5">  &quot;parameters_updated&quot;: false,
+</span><span class="file-line" id="L6">  &quot;optimizer_steps&quot;: 0,
+</span><span class="file-line" id="L7">  &quot;alignment_policy&quot;: &quot;target centers 0+k*480 via 960-sample reflection; official VQ tokens unchanged&quot;,
+</span><span class="file-line" id="L8">  &quot;mel_normalization&quot;: &quot;zscore&quot;,
+</span><span class="file-line" id="L9">  &quot;normalization_policy&quot;: &quot;(raw_logmel - mel_mean) / sqrt(mel_var)&quot;,
+</span><span class="file-line" id="L10">  &quot;normalization_definition&quot;: {
+</span><span class="file-line" id="L11">    &quot;mel_mean&quot;: -4.92,
+</span><span class="file-line" id="L12">    &quot;mel_var&quot;: 8.14
+</span><span class="file-line" id="L13">  },
+</span><span class="file-line" id="L14">  &quot;normalization_provenance&quot;: &quot;Vevo-based candidate supported by the local zscore vocoder audit; original AnyAccomp training loader unverified&quot;,
+</span><span class="file-line" id="L15">  &quot;decode_timing_status&quot;: &quot;not_checked_here; token/target centers 0+k*480, native vocoder centers 240+k*480; boundary policy unresolved&quot;,
+</span><span class="file-line" id="L16">  &quot;recipe_limitations&quot;: [
+</span><span class="file-line" id="L17">    &quot;experimental target grid, not verified original training preprocessing&quot;,
+</span><span class="file-line" id="L18">    &quot;checkpoint contains 3 tag tensors absent from released model; explicitly excluded&quot;,
+</span><span class="file-line" id="L19">    &quot;FM loss only; REPA/MERT loss not implemented&quot;,
+</span><span class="file-line" id="L20">    &quot;native random prompts use padded T rather than individual lengths&quot;,
+</span><span class="file-line" id="L21">    &quot;native CFG dropout 0.2 retained; paper reports 0.1&quot;
+</span><span class="file-line" id="L22">  ],
+</span><span class="file-line" id="L23">  &quot;fm_checkpoint_sha256&quot;: &quot;e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129&quot;,
+</span><span class="file-line" id="L24">  &quot;manifest_sha256&quot;: &quot;1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f&quot;,
+</span><span class="file-line" id="L25">  &quot;source_sha256&quot;: {
+</span><span class="file-line" id="L26">    &quot;config/flow_matching.json&quot;: &quot;b667cce677587db958a2445a13b1b6d1b3b42ac3368d2ed0b2a4eca67ff66db8&quot;,
+</span><span class="file-line" id="L27">    &quot;config/vocoder.json&quot;: &quot;617169cb90eebe66309aa11912330b201026eb6aad52dfb3b5766576f6138148&quot;,
+</span><span class="file-line" id="L28">    &quot;anyaccomp/fmt_model.py&quot;: &quot;490d83561c49d3a83068a72cb406519b62a074f81c4a5a9a1b2d0405ef04e125&quot;,
+</span><span class="file-line" id="L29">    &quot;anyaccomp/llama_nar.py&quot;: &quot;2f3457d6d48d044ada934eba18b456186f8ec4ecd195bf75c965f1c9d686c4df&quot;,
+</span><span class="file-line" id="L30">    &quot;models/codec/melvqgan/melspec.py&quot;: &quot;eeacccf417f1da152a1b36e5ff9672a24b556345061c5c6769cee8caf8a45964&quot;
+</span><span class="file-line" id="L31">  },
+</span><span class="file-line" id="L32">  &quot;script_sha256&quot;: &quot;5a65d86b39aff24699918f648f574ac98f08e944e73e6a0afdc038452a8e6c2a&quot;,
+</span><span class="file-line" id="L33">  &quot;versions&quot;: {
+</span><span class="file-line" id="L34">    &quot;python&quot;: &quot;3.9.19 | packaged by conda-forge | (main, Mar 20 2024, 12:50:21) \n[GCC 12.3.0]&quot;,
+</span><span class="file-line" id="L35">    &quot;torch&quot;: &quot;2.3.1+cu121&quot;,
+</span><span class="file-line" id="L36">    &quot;librosa&quot;: &quot;0.11.0&quot;
+</span><span class="file-line" id="L37">  },
+</span><span class="file-line" id="L38">  &quot;samples&quot;: [
+</span><span class="file-line" id="L39">    {
+</span><span class="file-line" id="L40">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0001&quot;,
+</span><span class="file-line" id="L41">      &quot;frames&quot;: 1061,
+</span><span class="file-line" id="L42">      &quot;samples_24k&quot;: 508801,
+</span><span class="file-line" id="L43">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L44">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L45">        -10.996302604675293,
+</span><span class="file-line" id="L46">        1.7406498193740845
+</span><span class="file-line" id="L47">      ],
+</span><span class="file-line" id="L48">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L49">        -2.1297428607940674,
+</span><span class="file-line" id="L50">        2.3345565795898438
+</span><span class="file-line" id="L51">      ]
+</span><span class="file-line" id="L52">    },
+</span><span class="file-line" id="L53">    {
+</span><span class="file-line" id="L54">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0002&quot;,
+</span><span class="file-line" id="L55">      &quot;frames&quot;: 1103,
+</span><span class="file-line" id="L56">      &quot;samples_24k&quot;: 529200,
+</span><span class="file-line" id="L57">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L58">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L59">        -9.021720886230469,
+</span><span class="file-line" id="L60">        1.8712152242660522
+</span><span class="file-line" id="L61">      ],
+</span><span class="file-line" id="L62">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L63">        -1.437652349472046,
+</span><span class="file-line" id="L64">        2.380319833755493
+</span><span class="file-line" id="L65">      ]
+</span><span class="file-line" id="L66">    },
+</span><span class="file-line" id="L67">    {
+</span><span class="file-line" id="L68">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0003&quot;,
+</span><span class="file-line" id="L69">      &quot;frames&quot;: 1064,
+</span><span class="file-line" id="L70">      &quot;samples_24k&quot;: 510241,
+</span><span class="file-line" id="L71">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L72">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L73">        -10.266804695129395,
+</span><span class="file-line" id="L74">        1.514984369277954
+</span><span class="file-line" id="L75">      ],
+</span><span class="file-line" id="L76">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L77">        -1.874053955078125,
+</span><span class="file-line" id="L78">        2.255460739135742
+</span><span class="file-line" id="L79">      ]
+</span><span class="file-line" id="L80">    },
+</span><span class="file-line" id="L81">    {
+</span><span class="file-line" id="L82">      &quot;pair_id&quot;: &quot;R0001_SEP02_SEG0004&quot;,
+</span><span class="file-line" id="L83">      &quot;frames&quot;: 1404,
+</span><span class="file-line" id="L84">      &quot;samples_24k&quot;: 673841,
+</span><span class="file-line" id="L85">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L86">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L87">        -11.512925148010254,
+</span><span class="file-line" id="L88">        2.051288604736328
+</span><span class="file-line" id="L89">      ],
+</span><span class="file-line" id="L90">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L91">        -2.310818910598755,
+</span><span class="file-line" id="L92">        2.4434354305267334
+</span><span class="file-line" id="L93">      ]
+</span><span class="file-line" id="L94">    },
+</span><span class="file-line" id="L95">    {
+</span><span class="file-line" id="L96">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L97">      &quot;frames&quot;: 1341,
+</span><span class="file-line" id="L98">      &quot;samples_24k&quot;: 643200,
+</span><span class="file-line" id="L99">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L100">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L101">        -11.145750999450684,
+</span><span class="file-line" id="L102">        2.0606749057769775
+</span><span class="file-line" id="L103">      ],
+</span><span class="file-line" id="L104">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L105">        -2.182124614715576,
+</span><span class="file-line" id="L106">        2.4467251300811768
+</span><span class="file-line" id="L107">      ]
+</span><span class="file-line" id="L108">    },
+</span><span class="file-line" id="L109">    {
+</span><span class="file-line" id="L110">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L111">      &quot;frames&quot;: 1133,
+</span><span class="file-line" id="L112">      &quot;samples_24k&quot;: 543360,
+</span><span class="file-line" id="L113">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L114">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L115">        -11.399033546447754,
+</span><span class="file-line" id="L116">        1.798753023147583
+</span><span class="file-line" id="L117">      ],
+</span><span class="file-line" id="L118">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L119">        -2.270900011062622,
+</span><span class="file-line" id="L120">        2.354921579360962
+</span><span class="file-line" id="L121">      ]
+</span><span class="file-line" id="L122">    },
+</span><span class="file-line" id="L123">    {
+</span><span class="file-line" id="L124">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L125">      &quot;frames&quot;: 728,
+</span><span class="file-line" id="L126">      &quot;samples_24k&quot;: 348961,
+</span><span class="file-line" id="L127">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L128">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L129">        -11.217570304870605,
+</span><span class="file-line" id="L130">        2.2401833534240723
+</span><span class="file-line" id="L131">      ],
+</span><span class="file-line" id="L132">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L133">        -2.2072970867156982,
+</span><span class="file-line" id="L134">        2.5096428394317627
+</span><span class="file-line" id="L135">      ]
+</span><span class="file-line" id="L136">    },
+</span><span class="file-line" id="L137">    {
+</span><span class="file-line" id="L138">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L139">      &quot;frames&quot;: 738,
+</span><span class="file-line" id="L140">      &quot;samples_24k&quot;: 354001,
+</span><span class="file-line" id="L141">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L142">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L143">        -10.949943542480469,
+</span><span class="file-line" id="L144">        1.7509820461273193
+</span><span class="file-line" id="L145">      ],
+</span><span class="file-line" id="L146">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L147">        -2.1134941577911377,
+</span><span class="file-line" id="L148">        2.3381781578063965
+</span><span class="file-line" id="L149">      ]
+</span><span class="file-line" id="L150">    },
+</span><span class="file-line" id="L151">    {
+</span><span class="file-line" id="L152">      &quot;pair_id&quot;: &quot;R0002_SEP01_SEG0005&quot;,
+</span><span class="file-line" id="L153">      &quot;frames&quot;: 1506,
+</span><span class="file-line" id="L154">      &quot;samples_24k&quot;: 722572,
+</span><span class="file-line" id="L155">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L156">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L157">        -11.512925148010254,
+</span><span class="file-line" id="L158">        2.055412530899048
+</span><span class="file-line" id="L159">      ],
+</span><span class="file-line" id="L160">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L161">        -2.310818910598755,
+</span><span class="file-line" id="L162">        2.444880723953247
+</span><span class="file-line" id="L163">      ]
+</span><span class="file-line" id="L164">    },
+</span><span class="file-line" id="L165">    {
+</span><span class="file-line" id="L166">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0001&quot;,
+</span><span class="file-line" id="L167">      &quot;frames&quot;: 682,
+</span><span class="file-line" id="L168">      &quot;samples_24k&quot;: 326881,
+</span><span class="file-line" id="L169">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L170">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L171">        -10.901634216308594,
+</span><span class="file-line" id="L172">        1.6650309562683105
+</span><span class="file-line" id="L173">      ],
+</span><span class="file-line" id="L174">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L175">        -2.0965616703033447,
+</span><span class="file-line" id="L176">        2.3080520629882812
+</span><span class="file-line" id="L177">      ]
+</span><span class="file-line" id="L178">    },
+</span><span class="file-line" id="L179">    {
+</span><span class="file-line" id="L180">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0002&quot;,
+</span><span class="file-line" id="L181">      &quot;frames&quot;: 1304,
+</span><span class="file-line" id="L182">      &quot;samples_24k&quot;: 625440,
+</span><span class="file-line" id="L183">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L184">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L185">        -10.264372825622559,
+</span><span class="file-line" id="L186">        1.9747287034988403
+</span><span class="file-line" id="L187">      ],
+</span><span class="file-line" id="L188">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L189">        -1.873201608657837,
+</span><span class="file-line" id="L190">        2.4166011810302734
+</span><span class="file-line" id="L191">      ]
+</span><span class="file-line" id="L192">    },
+</span><span class="file-line" id="L193">    {
+</span><span class="file-line" id="L194">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0003&quot;,
+</span><span class="file-line" id="L195">      &quot;frames&quot;: 1503,
+</span><span class="file-line" id="L196">      &quot;samples_24k&quot;: 721201,
+</span><span class="file-line" id="L197">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L198">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L199">        -10.26585578918457,
+</span><span class="file-line" id="L200">        2.017636299133301
+</span><span class="file-line" id="L201">      ],
+</span><span class="file-line" id="L202">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L203">        -1.8737213611602783,
+</span><span class="file-line" id="L204">        2.431640148162842
+</span><span class="file-line" id="L205">      ]
+</span><span class="file-line" id="L206">    },
+</span><span class="file-line" id="L207">    {
+</span><span class="file-line" id="L208">      &quot;pair_id&quot;: &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L209">      &quot;frames&quot;: 554,
+</span><span class="file-line" id="L210">      &quot;samples_24k&quot;: 265798,
+</span><span class="file-line" id="L211">      &quot;truncated&quot;: false,
+</span><span class="file-line" id="L212">      &quot;raw_mel_range&quot;: [
+</span><span class="file-line" id="L213">        -11.512925148010254,
+</span><span class="file-line" id="L214">        1.8152780532836914
+</span><span class="file-line" id="L215">      ],
+</span><span class="file-line" id="L216">      &quot;fm_target_range&quot;: [
+</span><span class="file-line" id="L217">        -2.310818910598755,
+</span><span class="file-line" id="L218">        2.3607137203216553
+</span><span class="file-line" id="L219">      ]
+</span><span class="file-line" id="L220">    }
+</span><span class="file-line" id="L221">  ],
+</span><span class="file-line" id="L222">  &quot;batches&quot;: [
+</span><span class="file-line" id="L223">    {
+</span><span class="file-line" id="L224">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L225">        &quot;R0001_SEP02_SEG0001&quot;
+</span><span class="file-line" id="L226">      ],
+</span><span class="file-line" id="L227">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L228">        1061
+</span><span class="file-line" id="L229">      ],
+</span><span class="file-line" id="L230">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L231">        0
+</span><span class="file-line" id="L232">      ],
+</span><span class="file-line" id="L233">      &quot;loss&quot;: 0.22288446128368378,
+</span><span class="file-line" id="L234">      &quot;gradient_l2_norm&quot;: 1.6550339161011693,
+</span><span class="file-line" id="L235">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L236">        289.0
+</span><span class="file-line" id="L237">      ],
+</span><span class="file-line" id="L238">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L239">        772.0
+</span><span class="file-line" id="L240">      ]
+</span><span class="file-line" id="L241">    },
+</span><span class="file-line" id="L242">    {
+</span><span class="file-line" id="L243">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L244">        &quot;R0001_SEP02_SEG0002&quot;
+</span><span class="file-line" id="L245">      ],
+</span><span class="file-line" id="L246">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L247">        1103
+</span><span class="file-line" id="L248">      ],
+</span><span class="file-line" id="L249">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L250">        0
+</span><span class="file-line" id="L251">      ],
+</span><span class="file-line" id="L252">      &quot;loss&quot;: 0.1968134641647339,
+</span><span class="file-line" id="L253">      &quot;gradient_l2_norm&quot;: 1.2961107168278057,
+</span><span class="file-line" id="L254">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L255">        106.0
+</span><span class="file-line" id="L256">      ],
+</span><span class="file-line" id="L257">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L258">        997.0
+</span><span class="file-line" id="L259">      ]
+</span><span class="file-line" id="L260">    },
+</span><span class="file-line" id="L261">    {
+</span><span class="file-line" id="L262">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L263">        &quot;R0001_SEP02_SEG0003&quot;
+</span><span class="file-line" id="L264">      ],
+</span><span class="file-line" id="L265">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L266">        1064
+</span><span class="file-line" id="L267">      ],
+</span><span class="file-line" id="L268">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L269">        0
+</span><span class="file-line" id="L270">      ],
+</span><span class="file-line" id="L271">      &quot;loss&quot;: 0.17708082497119904,
+</span><span class="file-line" id="L272">      &quot;gradient_l2_norm&quot;: 0.9793787856599752,
+</span><span class="file-line" id="L273">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L274">        206.0
+</span><span class="file-line" id="L275">      ],
+</span><span class="file-line" id="L276">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L277">        858.0
+</span><span class="file-line" id="L278">      ]
+</span><span class="file-line" id="L279">    },
+</span><span class="file-line" id="L280">    {
+</span><span class="file-line" id="L281">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L282">        &quot;R0001_SEP02_SEG0004&quot;
+</span><span class="file-line" id="L283">      ],
+</span><span class="file-line" id="L284">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L285">        1404
+</span><span class="file-line" id="L286">      ],
+</span><span class="file-line" id="L287">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L288">        0
+</span><span class="file-line" id="L289">      ],
+</span><span class="file-line" id="L290">      &quot;loss&quot;: 0.1768571138381958,
+</span><span class="file-line" id="L291">      &quot;gradient_l2_norm&quot;: 1.2476869073197558,
+</span><span class="file-line" id="L292">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L293">        222.0
+</span><span class="file-line" id="L294">      ],
+</span><span class="file-line" id="L295">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L296">        1182.0
+</span><span class="file-line" id="L297">      ]
+</span><span class="file-line" id="L298">    },
+</span><span class="file-line" id="L299">    {
+</span><span class="file-line" id="L300">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L301">        &quot;R0002_SEP01_SEG0001&quot;
+</span><span class="file-line" id="L302">      ],
+</span><span class="file-line" id="L303">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L304">        1341
+</span><span class="file-line" id="L305">      ],
+</span><span class="file-line" id="L306">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L307">        0
+</span><span class="file-line" id="L308">      ],
+</span><span class="file-line" id="L309">      &quot;loss&quot;: 0.2544359862804413,
+</span><span class="file-line" id="L310">      &quot;gradient_l2_norm&quot;: 1.6093351483681824,
+</span><span class="file-line" id="L311">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L312">        95.0
+</span><span class="file-line" id="L313">      ],
+</span><span class="file-line" id="L314">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L315">        1246.0
+</span><span class="file-line" id="L316">      ]
+</span><span class="file-line" id="L317">    },
+</span><span class="file-line" id="L318">    {
+</span><span class="file-line" id="L319">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L320">        &quot;R0002_SEP01_SEG0002&quot;
+</span><span class="file-line" id="L321">      ],
+</span><span class="file-line" id="L322">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L323">        1133
+</span><span class="file-line" id="L324">      ],
+</span><span class="file-line" id="L325">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L326">        0
+</span><span class="file-line" id="L327">      ],
+</span><span class="file-line" id="L328">      &quot;loss&quot;: 0.20214946568012238,
+</span><span class="file-line" id="L329">      &quot;gradient_l2_norm&quot;: 1.5014459367066746,
+</span><span class="file-line" id="L330">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L331">        318.0
+</span><span class="file-line" id="L332">      ],
+</span><span class="file-line" id="L333">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L334">        815.0
+</span><span class="file-line" id="L335">      ]
+</span><span class="file-line" id="L336">    },
+</span><span class="file-line" id="L337">    {
+</span><span class="file-line" id="L338">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L339">        &quot;R0002_SEP01_SEG0003&quot;
+</span><span class="file-line" id="L340">      ],
+</span><span class="file-line" id="L341">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L342">        728
+</span><span class="file-line" id="L343">      ],
+</span><span class="file-line" id="L344">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L345">        0
+</span><span class="file-line" id="L346">      ],
+</span><span class="file-line" id="L347">      &quot;loss&quot;: 0.2614743709564209,
+</span><span class="file-line" id="L348">      &quot;gradient_l2_norm&quot;: 3.0903353695257,
+</span><span class="file-line" id="L349">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L350">        258.0
+</span><span class="file-line" id="L351">      ],
+</span><span class="file-line" id="L352">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L353">        470.0
+</span><span class="file-line" id="L354">      ]
+</span><span class="file-line" id="L355">    },
+</span><span class="file-line" id="L356">    {
+</span><span class="file-line" id="L357">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L358">        &quot;R0002_SEP01_SEG0004&quot;
+</span><span class="file-line" id="L359">      ],
+</span><span class="file-line" id="L360">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L361">        738
+</span><span class="file-line" id="L362">      ],
+</span><span class="file-line" id="L363">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L364">        0
+</span><span class="file-line" id="L365">      ],
+</span><span class="file-line" id="L366">      &quot;loss&quot;: 0.17153005301952362,
+</span><span class="file-line" id="L367">      &quot;gradient_l2_norm&quot;: 0.9035958920282524,
+</span><span class="file-line" id="L368">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L369">        106.0
+</span><span class="file-line" id="L370">      ],
+</span><span class="file-line" id="L371">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L372">        632.0
+</span><span class="file-line" id="L373">      ]
+</span><span class="file-line" id="L374">    },
+</span><span class="file-line" id="L375">    {
+</span><span class="file-line" id="L376">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L377">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L378">      ],
+</span><span class="file-line" id="L379">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L380">        1506
+</span><span class="file-line" id="L381">      ],
+</span><span class="file-line" id="L382">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L383">        0
+</span><span class="file-line" id="L384">      ],
+</span><span class="file-line" id="L385">      &quot;loss&quot;: 0.22892020642757416,
+</span><span class="file-line" id="L386">      &quot;gradient_l2_norm&quot;: 0.6878253647020661,
+</span><span class="file-line" id="L387">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L388">        428.0
+</span><span class="file-line" id="L389">      ],
+</span><span class="file-line" id="L390">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L391">        1078.0
+</span><span class="file-line" id="L392">      ]
+</span><span class="file-line" id="L393">    },
+</span><span class="file-line" id="L394">    {
+</span><span class="file-line" id="L395">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L396">        &quot;R0003_SEP01_SEG0001&quot;
+</span><span class="file-line" id="L397">      ],
+</span><span class="file-line" id="L398">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L399">        682
+</span><span class="file-line" id="L400">      ],
+</span><span class="file-line" id="L401">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L402">        0
+</span><span class="file-line" id="L403">      ],
+</span><span class="file-line" id="L404">      &quot;loss&quot;: 0.2396100014448166,
+</span><span class="file-line" id="L405">      &quot;gradient_l2_norm&quot;: 2.0550526137400382,
+</span><span class="file-line" id="L406">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L407">        248.0
+</span><span class="file-line" id="L408">      ],
+</span><span class="file-line" id="L409">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L410">        434.0
+</span><span class="file-line" id="L411">      ]
+</span><span class="file-line" id="L412">    },
+</span><span class="file-line" id="L413">    {
+</span><span class="file-line" id="L414">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L415">        &quot;R0003_SEP01_SEG0002&quot;
+</span><span class="file-line" id="L416">      ],
+</span><span class="file-line" id="L417">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L418">        1304
+</span><span class="file-line" id="L419">      ],
+</span><span class="file-line" id="L420">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L421">        0
+</span><span class="file-line" id="L422">      ],
+</span><span class="file-line" id="L423">      &quot;loss&quot;: 0.1841881424188614,
+</span><span class="file-line" id="L424">      &quot;gradient_l2_norm&quot;: 0.994786338273892,
+</span><span class="file-line" id="L425">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L426">        410.0
+</span><span class="file-line" id="L427">      ],
+</span><span class="file-line" id="L428">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L429">        894.0
+</span><span class="file-line" id="L430">      ]
+</span><span class="file-line" id="L431">    },
+</span><span class="file-line" id="L432">    {
+</span><span class="file-line" id="L433">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L434">        &quot;R0003_SEP01_SEG0003&quot;
+</span><span class="file-line" id="L435">      ],
+</span><span class="file-line" id="L436">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L437">        1503
+</span><span class="file-line" id="L438">      ],
+</span><span class="file-line" id="L439">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L440">        0
+</span><span class="file-line" id="L441">      ],
+</span><span class="file-line" id="L442">      &quot;loss&quot;: 0.18219693005084991,
+</span><span class="file-line" id="L443">      &quot;gradient_l2_norm&quot;: 0.8420916878631796,
+</span><span class="file-line" id="L444">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L445">        166.0
+</span><span class="file-line" id="L446">      ],
+</span><span class="file-line" id="L447">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L448">        1337.0
+</span><span class="file-line" id="L449">      ]
+</span><span class="file-line" id="L450">    },
+</span><span class="file-line" id="L451">    {
+</span><span class="file-line" id="L452">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L453">        &quot;R0003_SEP01_SEG0004&quot;
+</span><span class="file-line" id="L454">      ],
+</span><span class="file-line" id="L455">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L456">        554
+</span><span class="file-line" id="L457">      ],
+</span><span class="file-line" id="L458">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L459">        0
+</span><span class="file-line" id="L460">      ],
+</span><span class="file-line" id="L461">      &quot;loss&quot;: 0.15566377341747284,
+</span><span class="file-line" id="L462">      &quot;gradient_l2_norm&quot;: 1.3675466515463732,
+</span><span class="file-line" id="L463">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L464">        86.0
+</span><span class="file-line" id="L465">      ],
+</span><span class="file-line" id="L466">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L467">        468.0
+</span><span class="file-line" id="L468">      ]
+</span><span class="file-line" id="L469">    },
+</span><span class="file-line" id="L470">    {
+</span><span class="file-line" id="L471">      &quot;pair_ids&quot;: [
+</span><span class="file-line" id="L472">        &quot;R0003_SEP01_SEG0004&quot;,
+</span><span class="file-line" id="L473">        &quot;R0002_SEP01_SEG0005&quot;
+</span><span class="file-line" id="L474">      ],
+</span><span class="file-line" id="L475">      &quot;lengths&quot;: [
+</span><span class="file-line" id="L476">        554,
+</span><span class="file-line" id="L477">        1506
+</span><span class="file-line" id="L478">      ],
+</span><span class="file-line" id="L479">      &quot;padded_frames&quot;: [
+</span><span class="file-line" id="L480">        952,
+</span><span class="file-line" id="L481">        0
+</span><span class="file-line" id="L482">      ],
+</span><span class="file-line" id="L483">      &quot;loss&quot;: 0.14241398870944977,
+</span><span class="file-line" id="L484">      &quot;gradient_l2_norm&quot;: 0.6025933585789389,
+</span><span class="file-line" id="L485">      &quot;prompt_lengths&quot;: [
+</span><span class="file-line" id="L486">        428.0,
+</span><span class="file-line" id="L487">        538.0
+</span><span class="file-line" id="L488">      ],
+</span><span class="file-line" id="L489">      &quot;loss_frames&quot;: [
+</span><span class="file-line" id="L490">        289.0,
+</span><span class="file-line" id="L491">        968.0
+</span><span class="file-line" id="L492">      ],
+</span><span class="file-line" id="L493">      &quot;padding_perturbation_check&quot;: &quot;passed&quot;
+</span><span class="file-line" id="L494">    }
+</span><span class="file-line" id="L495">  ],
+</span><span class="file-line" id="L496">  &quot;checkpoint_unused_tensors&quot;: {
+</span><span class="file-line" id="L497">    &quot;tag_emb.bias&quot;: [
+</span><span class="file-line" id="L498">      1024
+</span><span class="file-line" id="L499">    ],
+</span><span class="file-line" id="L500">    &quot;tag_emb.weight&quot;: [
+</span><span class="file-line" id="L501">      1024,
+</span><span class="file-line" id="L502">      768
+</span><span class="file-line" id="L503">    ],
+</span><span class="file-line" id="L504">    &quot;tag_infilling_emb&quot;: [
+</span><span class="file-line" id="L505">      1,
+</span><span class="file-line" id="L506">      1024
+</span><span class="file-line" id="L507">    ]
+</span><span class="file-line" id="L508">  },
+</span><span class="file-line" id="L509">  &quot;checkpoint_required_tensors&quot;: 137,
+</span><span class="file-line" id="L510">  &quot;fm_forward_backward_status&quot;: &quot;passed_under_experimental_adapter&quot;,
+</span><span class="file-line" id="L511">  &quot;peak_gpu_allocated_bytes&quot;: 8407889408
+</span><span class="file-line" id="L512">}
+</span></code></pre></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/runs/anyaccomp_fm_zscore_smoke_20261001/results/report.json（路径已脱敏）","sha256":"eab64f68919a8bd2f0523fe067b1a2e2e4fbb36f307fa06a8515a3b455c88610","text":"{\n  \"stage\": \"experimental_fm_input_smoke\",\n  \"status\": \"completed\",\n  \"training_input_status\": \"pending_recipe_validation\",\n  \"parameters_updated\": false,\n  \"optimizer_steps\": 0,\n  \"alignment_policy\": \"target centers 0+k*480 via 960-sample reflection; official VQ tokens unchanged\",\n  \"mel_normalization\": \"zscore\",\n  \"normalization_policy\": \"(raw_logmel - mel_mean) / sqrt(mel_var)\",\n  \"normalization_definition\": {\n    \"mel_mean\": -4.92,\n    \"mel_var\": 8.14\n  },\n  \"normalization_provenance\": \"Vevo-based candidate supported by the local zscore vocoder audit; original AnyAccomp training loader unverified\",\n  \"decode_timing_status\": \"not_checked_here; token/target centers 0+k*480, native vocoder centers 240+k*480; boundary policy unresolved\",\n  \"recipe_limitations\": [\n    \"experimental target grid, not verified original training preprocessing\",\n    \"checkpoint contains 3 tag tensors absent from released model; explicitly excluded\",\n    \"FM loss only; REPA/MERT loss not implemented\",\n    \"native random prompts use padded T rather than individual lengths\",\n    \"native CFG dropout 0.2 retained; paper reports 0.1\"\n  ],\n  \"fm_checkpoint_sha256\": \"e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129\",\n  \"manifest_sha256\": \"1b36ed3faf711cd8ceb7594d6698cab8a198634ce5569fbe1163619805971d3f\",\n  \"source_sha256\": {\n    \"config/flow_matching.json\": \"b667cce677587db958a2445a13b1b6d1b3b42ac3368d2ed0b2a4eca67ff66db8\",\n    \"config/vocoder.json\": \"617169cb90eebe66309aa11912330b201026eb6aad52dfb3b5766576f6138148\",\n    \"anyaccomp/fmt_model.py\": \"490d83561c49d3a83068a72cb406519b62a074f81c4a5a9a1b2d0405ef04e125\",\n    \"anyaccomp/llama_nar.py\": \"2f3457d6d48d044ada934eba18b456186f8ec4ecd195bf75c965f1c9d686c4df\",\n    \"models/codec/melvqgan/melspec.py\": \"eeacccf417f1da152a1b36e5ff9672a24b556345061c5c6769cee8caf8a45964\"\n  },\n  \"script_sha256\": \"5a65d86b39aff24699918f648f574ac98f08e944e73e6a0afdc038452a8e6c2a\",\n  \"versions\": {\n    \"python\": \"3.9.19 | packaged by conda-forge | (main, Mar 20 2024, 12:50:21) \\n[GCC 12.3.0]\",\n    \"torch\": \"2.3.1+cu121\",\n    \"librosa\": \"0.11.0\"\n  },\n  \"samples\": [\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0001\",\n      \"frames\": 1061,\n      \"samples_24k\": 508801,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.996302604675293,\n        1.7406498193740845\n      ],\n      \"fm_target_range\": [\n        -2.1297428607940674,\n        2.3345565795898438\n      ]\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0002\",\n      \"frames\": 1103,\n      \"samples_24k\": 529200,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -9.021720886230469,\n        1.8712152242660522\n      ],\n      \"fm_target_range\": [\n        -1.437652349472046,\n        2.380319833755493\n      ]\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0003\",\n      \"frames\": 1064,\n      \"samples_24k\": 510241,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.266804695129395,\n        1.514984369277954\n      ],\n      \"fm_target_range\": [\n        -1.874053955078125,\n        2.255460739135742\n      ]\n    },\n    {\n      \"pair_id\": \"R0001_SEP02_SEG0004\",\n      \"frames\": 1404,\n      \"samples_24k\": 673841,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.512925148010254,\n        2.051288604736328\n      ],\n      \"fm_target_range\": [\n        -2.310818910598755,\n        2.4434354305267334\n      ]\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0001\",\n      \"frames\": 1341,\n      \"samples_24k\": 643200,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.145750999450684,\n        2.0606749057769775\n      ],\n      \"fm_target_range\": [\n        -2.182124614715576,\n        2.4467251300811768\n      ]\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0002\",\n      \"frames\": 1133,\n      \"samples_24k\": 543360,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.399033546447754,\n        1.798753023147583\n      ],\n      \"fm_target_range\": [\n        -2.270900011062622,\n        2.354921579360962\n      ]\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0003\",\n      \"frames\": 728,\n      \"samples_24k\": 348961,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.217570304870605,\n        2.2401833534240723\n      ],\n      \"fm_target_range\": [\n        -2.2072970867156982,\n        2.5096428394317627\n      ]\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0004\",\n      \"frames\": 738,\n      \"samples_24k\": 354001,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.949943542480469,\n        1.7509820461273193\n      ],\n      \"fm_target_range\": [\n        -2.1134941577911377,\n        2.3381781578063965\n      ]\n    },\n    {\n      \"pair_id\": \"R0002_SEP01_SEG0005\",\n      \"frames\": 1506,\n      \"samples_24k\": 722572,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.512925148010254,\n        2.055412530899048\n      ],\n      \"fm_target_range\": [\n        -2.310818910598755,\n        2.444880723953247\n      ]\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0001\",\n      \"frames\": 682,\n      \"samples_24k\": 326881,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.901634216308594,\n        1.6650309562683105\n      ],\n      \"fm_target_range\": [\n        -2.0965616703033447,\n        2.3080520629882812\n      ]\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0002\",\n      \"frames\": 1304,\n      \"samples_24k\": 625440,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.264372825622559,\n        1.9747287034988403\n      ],\n      \"fm_target_range\": [\n        -1.873201608657837,\n        2.4166011810302734\n      ]\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0003\",\n      \"frames\": 1503,\n      \"samples_24k\": 721201,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -10.26585578918457,\n        2.017636299133301\n      ],\n      \"fm_target_range\": [\n        -1.8737213611602783,\n        2.431640148162842\n      ]\n    },\n    {\n      \"pair_id\": \"R0003_SEP01_SEG0004\",\n      \"frames\": 554,\n      \"samples_24k\": 265798,\n      \"truncated\": false,\n      \"raw_mel_range\": [\n        -11.512925148010254,\n        1.8152780532836914\n      ],\n      \"fm_target_range\": [\n        -2.310818910598755,\n        2.3607137203216553\n      ]\n    }\n  ],\n  \"batches\": [\n    {\n      \"pair_ids\": [\n        \"R0001_SEP02_SEG0001\"\n      ],\n      \"lengths\": [\n        1061\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.22288446128368378,\n      \"gradient_l2_norm\": 1.6550339161011693,\n      \"prompt_lengths\": [\n        289.0\n      ],\n      \"loss_frames\": [\n        772.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0001_SEP02_SEG0002\"\n      ],\n      \"lengths\": [\n        1103\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.1968134641647339,\n      \"gradient_l2_norm\": 1.2961107168278057,\n      \"prompt_lengths\": [\n        106.0\n      ],\n      \"loss_frames\": [\n        997.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0001_SEP02_SEG0003\"\n      ],\n      \"lengths\": [\n        1064\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.17708082497119904,\n      \"gradient_l2_norm\": 0.9793787856599752,\n      \"prompt_lengths\": [\n        206.0\n      ],\n      \"loss_frames\": [\n        858.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0001_SEP02_SEG0004\"\n      ],\n      \"lengths\": [\n        1404\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.1768571138381958,\n      \"gradient_l2_norm\": 1.2476869073197558,\n      \"prompt_lengths\": [\n        222.0\n      ],\n      \"loss_frames\": [\n        1182.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0002_SEP01_SEG0001\"\n      ],\n      \"lengths\": [\n        1341\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.2544359862804413,\n      \"gradient_l2_norm\": 1.6093351483681824,\n      \"prompt_lengths\": [\n        95.0\n      ],\n      \"loss_frames\": [\n        1246.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0002_SEP01_SEG0002\"\n      ],\n      \"lengths\": [\n        1133\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.20214946568012238,\n      \"gradient_l2_norm\": 1.5014459367066746,\n      \"prompt_lengths\": [\n        318.0\n      ],\n      \"loss_frames\": [\n        815.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0002_SEP01_SEG0003\"\n      ],\n      \"lengths\": [\n        728\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.2614743709564209,\n      \"gradient_l2_norm\": 3.0903353695257,\n      \"prompt_lengths\": [\n        258.0\n      ],\n      \"loss_frames\": [\n        470.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0002_SEP01_SEG0004\"\n      ],\n      \"lengths\": [\n        738\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.17153005301952362,\n      \"gradient_l2_norm\": 0.9035958920282524,\n      \"prompt_lengths\": [\n        106.0\n      ],\n      \"loss_frames\": [\n        632.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        1506\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.22892020642757416,\n      \"gradient_l2_norm\": 0.6878253647020661,\n      \"prompt_lengths\": [\n        428.0\n      ],\n      \"loss_frames\": [\n        1078.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0001\"\n      ],\n      \"lengths\": [\n        682\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.2396100014448166,\n      \"gradient_l2_norm\": 2.0550526137400382,\n      \"prompt_lengths\": [\n        248.0\n      ],\n      \"loss_frames\": [\n        434.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0002\"\n      ],\n      \"lengths\": [\n        1304\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.1841881424188614,\n      \"gradient_l2_norm\": 0.994786338273892,\n      \"prompt_lengths\": [\n        410.0\n      ],\n      \"loss_frames\": [\n        894.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0003\"\n      ],\n      \"lengths\": [\n        1503\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.18219693005084991,\n      \"gradient_l2_norm\": 0.8420916878631796,\n      \"prompt_lengths\": [\n        166.0\n      ],\n      \"loss_frames\": [\n        1337.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\"\n      ],\n      \"lengths\": [\n        554\n      ],\n      \"padded_frames\": [\n        0\n      ],\n      \"loss\": 0.15566377341747284,\n      \"gradient_l2_norm\": 1.3675466515463732,\n      \"prompt_lengths\": [\n        86.0\n      ],\n      \"loss_frames\": [\n        468.0\n      ]\n    },\n    {\n      \"pair_ids\": [\n        \"R0003_SEP01_SEG0004\",\n        \"R0002_SEP01_SEG0005\"\n      ],\n      \"lengths\": [\n        554,\n        1506\n      ],\n      \"padded_frames\": [\n        952,\n        0\n      ],\n      \"loss\": 0.14241398870944977,\n      \"gradient_l2_norm\": 0.6025933585789389,\n      \"prompt_lengths\": [\n        428.0,\n        538.0\n      ],\n      \"loss_frames\": [\n        289.0,\n        968.0\n      ],\n      \"padding_perturbation_check\": \"passed\"\n    }\n  ],\n  \"checkpoint_unused_tensors\": {\n    \"tag_emb.bias\": [\n      1024\n    ],\n    \"tag_emb.weight\": [\n      1024,\n      768\n    ],\n    \"tag_infilling_emb\": [\n      1,\n      1024\n    ]\n  },\n  \"checkpoint_required_tensors\": 137,\n  \"fm_forward_backward_status\": \"passed_under_experimental_adapter\",\n  \"peak_gpu_allocated_bytes\": 8407889408\n}\n"}</script><script src="../../src/data-reader.js"></script></body></html>

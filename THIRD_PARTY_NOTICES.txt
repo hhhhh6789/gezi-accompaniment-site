@@ -1,0 +1,35 @@
+Card interaction adapted from chase2k25 / Cobp on Uiverse:
+https://uiverse.io/chase2k25/witty-squid-83
+
+MIT License
+Copyright - 2026 Cobp (Fabio Cobb)
+Copyright - 2026 chase2k25 (chandu.exe)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Layout references (visual reference only; no source code copied):
+https://www.caverzasio.ch/
+https://littleplains.com/
+Existing site style: https://hilos.sh/
+
+Fonts are local subsets of LXGW WenKai and Source Han Sans SC at weights 400 and 500.
+Their official licenses and source hashes are included under assets/fonts/visual-v2. The Source Han Sans subset is internally renamed Gezi UI Sans.
+Musician SVG is user-provided, copied from the existing dashboard.
+
+Additional user-selected layout reference (no source code copied):
+https://dribbble.com/shots/26340490-Restaurant-Order-Management-Dashboard-Design
+Preview uses the existing project's licensed font files via relative resource paths.
+
+History archive A integration (2026-10-01):
+The compact audio-card hover interaction in src/history-page.css continues the
+above MIT-licensed chase2k25 / Cobp reference. Attribution and the complete MIT
+license above apply; the final compact layout and player are project adaptations.
+Archive layout reference (visual reference only, no source code copied):
+https://dribbble.com/shots/20988393-Changelog-Design
+History fonts: LXGW WenKai and Source Han Sans SC, 400 and 500, independently
+subset under assets/fonts/history-archive. Both OFL licenses and pinned official
+source URLs and SHA-256 hashes are retained in that directory.

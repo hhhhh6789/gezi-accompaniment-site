@@ -1,0 +1,37 @@
+/* Full local-file reading, scoped to generated readers. */
+.file-heading { margin: 0 0 26px; }
+.file-heading h1 { font-size: clamp(26px, 3vw, 36px); margin: 7px 0 12px; }
+.file-heading p { color: #62635e; font-size: 14px; margin: 5px 0; }
+.file-heading .file-kicker { font-size: 12px; letter-spacing: .1em; }
+.file-reader .reader-meta { overflow-wrap: anywhere; }
+.file-reader .reader-content { min-width: 0; }
+.file-reader .reader-content :is(pre, code) { font-family: Consolas, "Courier New", var(--font-ui); }
+.file-reader .reader-content pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 18px 0; padding: 16px 18px; background: #f3f3f0; border: 1px solid #deded8; border-radius: 12px; font-size: 14px; line-height: 1.7; tab-size: 4; }
+.file-reader .reader-content pre code { padding: 0; background: transparent; border-radius: 0; font-size: inherit; }
+.file-reader .reader-content img { max-width: 100%; height: auto; }
+.file-reader .reader-content blockquote { margin: 20px 0; padding: 2px 18px; border-left: 3px solid #141510; background: #f7f7f3; }
+.file-reader .reader-content h3 { font-size: 23px; margin-top: 28px; }
+.file-reader .reader-content h4 { font-size: 20px; }
+.file-reader .reader-index ul { padding-left: 22px; margin: 8px 0; }
+.file-reader .reader-index > .toc > ul { columns: 2; column-gap: 30px; }
+.file-reader .reader-index li { break-inside: avoid; }
+.file-reader .reader-content .file-code { padding: 0; border: 0; border-radius: 0; background: transparent; counter-reset: source-line; }
+.file-reader .file-code code { display: block; }
+.file-line { display: block; position: relative; padding-left: 4.5em; min-height: 1.7em; counter-increment: source-line; }
+.file-line::before { content: counter(source-line); position: absolute; left: 0; width: 3.2em; color: #898a83; text-align: right; user-select: none; border-right: 1px solid #deded8; padding-right: .7em; }
+.file-reader .reader-content .file-table { width: max-content; min-width: 100%; table-layout: auto; }
+.file-reader .reader-content .file-table :is(th,td) { min-width: 120px; max-width: 360px; }
+.file-reader .file-table-scroll { overflow-x: auto; max-width: 100%; }
+.file-reader .reader-content .file-table-note { font-size: 14px; color: #62635e; }
+.file-reader .file-table-scroll:focus-visible { outline: 2px solid #141510; outline-offset: 4px; }
+@media(max-width:700px) {
+  .file-reader .reader-index > .toc > ul { columns: 1; }
+  .file-reader .reader-content .file-code { font-size: 13px; }
+  .file-line { padding-left: 3.5em; }
+  .file-line::before { width: 2.6em; }
+  .file-reader .reader-content .file-table { display: table; width: 100%; min-width: 0; table-layout: fixed; }
+  .file-reader .reader-content .file-table tbody { display: block; }
+  .file-reader .reader-content .file-table tr { display: block; border: 1px solid #bdbeb8; border-radius: 12px; padding: 12px; margin: 14px 0; }
+  .file-reader .reader-content .file-table td { display: block; border: 0; border-bottom: 1px solid #e3e3e0; min-width: 0; max-width: none; padding: 8px 0; }
+  .file-reader .reader-content .file-table td::before { content: attr(data-label) "："; display: block; color: #62635e; font-weight: 500; margin-bottom: 3px; }
+}
