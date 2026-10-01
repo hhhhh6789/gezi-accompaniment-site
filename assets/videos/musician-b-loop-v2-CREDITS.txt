@@ -1,0 +1,5 @@
+角色来源：本项目 assets/opera-musician.svg，经分层与动作改编。
+风格方向参考：Lemo-Opuscar / rubber-hose，https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/rubber-hose/STYLE.md
+美术概念：内置 image_gen，提示词和参考保存在 storyboard-b。成片未使用概念图拼帧。
+动画与渲染：本工程自有 SVG/Canvas、Edge CDP 与 ffmpeg 工作流，未复制第三方样片音频。
+无音轨；原始项目素材的对外授权仍沿用原记录。

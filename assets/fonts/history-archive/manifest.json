@@ -1,0 +1,34 @@
+[
+  {
+    "file": "wenkai-regular.woff2",
+    "characters": 378,
+    "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
+    "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+    "sha256": "7c03975dcd3933028275bae0ba40cef1d762f7967f65be3ac534278614944bb2",
+    "weight": 400
+  },
+  {
+    "file": "wenkai-medium.woff2",
+    "characters": 378,
+    "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
+    "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+    "sha256": "05d73ce91769be0b46021bc11b7032b84e3a13a897b7830970bd7dd0b4f399aa",
+    "weight": 500
+  },
+  {
+    "file": "gezi-ui-sans-regular.woff2",
+    "characters": 378,
+    "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
+    "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
+    "sha256": "950854edfc35cdb7ee129f88ca21fe6be76b49551671e26234a7e144a01962cb",
+    "weight": 400
+  },
+  {
+    "file": "gezi-ui-sans-medium.woff2",
+    "characters": 378,
+    "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
+    "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
+    "sha256": "716d2eeba91dfb5c21ceabc02d01c3b1de0d80ff0f7ee4ccdcb61e884267ec91",
+    "weight": 500
+  }
+]

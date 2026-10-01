@@ -1,0 +1,42 @@
+{
+  "usage": "Local V2 visual areas only",
+  "total_woff2_bytes": 1156480,
+  "fonts": [
+    {
+      "file": "wenkai-regular.woff2",
+      "weight": 400,
+      "bytes": 241108,
+      "characters": 1246,
+      "source_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
+      "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+      "sha256": "901b1780d9d205e22a6ca71e1943ffd6e68cb1c1c3c6a06cf96d6fa60265778b"
+    },
+    {
+      "file": "wenkai-medium.woff2",
+      "weight": 500,
+      "bytes": 239532,
+      "characters": 1246,
+      "source_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
+      "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+      "sha256": "0e76e4bbcda115b95e8feeef387c2bff6f7c595cb86d56c2c0a5d8e53cc60b0d"
+    },
+    {
+      "file": "gezi-ui-sans-regular.woff2",
+      "weight": 400,
+      "bytes": 337836,
+      "characters": 1250,
+      "source_url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
+      "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
+      "sha256": "324fe17d062786edb68e3ad64a859f023f4d6c5efb3ed45d5285559afb60b3f4"
+    },
+    {
+      "file": "gezi-ui-sans-medium.woff2",
+      "weight": 500,
+      "bytes": 338004,
+      "characters": 1250,
+      "source_url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
+      "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
+      "sha256": "b5fc00dfb32fd480e209b9f4ab54ed05bbda6f8cd28ff0febf39fccb2213d5e6"
+    }
+  ]
+}

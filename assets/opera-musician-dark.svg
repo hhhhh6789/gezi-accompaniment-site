@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="45 38 288 288" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">拉壳仔弦的小琴师</title>
+  <desc id="desc">黑白手绘风格的小琴师坐在矮凳上，一手按弦，一手拉弓；壳仔弦有长琴杆、两个弦轴和小巧的椰壳琴筒。</desc>
+  <g stroke="#FFFFFF" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- A low wooden stool, set behind the seated musician. -->
+    <path d="M89 244 83 291 93 291 104 245M134 244 143 287 152 287 146 243" fill="#141510"/>
+    <path d="M79 235Q112 230 151 235L154 245Q117 249 78 246Z" fill="#141510"/>
+    <!-- Two relaxed legs and cloth shoes. -->
+    <path d="M125 226Q158 218 190 229Q199 236 188 250L183 265 177 286 158 286 159 259Q143 259 125 250Z" fill="#141510"/>
+    <path d="M107 229Q123 225 141 237L140 265 132 291 113 288 113 263Q105 250 107 229Z" fill="#141510"/>
+    <path d="M159 281Q168 285 177 282L185 289Q198 291 200 297Q185 302 157 299L155 292Z" fill="#FFFFFF"/>
+    <path d="M114 282 131 287 134 293Q150 294 151 300Q133 305 108 299L109 291Z" fill="#FFFFFF"/>
+    <path d="M164 296 188 296M116 297 141 299" stroke="#141510" stroke-width="2"/>
+    <!-- The far sleeve reaches up towards the instrument neck. -->
+    <path d="M144 142Q164 139 178 142L193 130 205 147Q180 165 162 169L145 165Z" fill="#FFFFFF"/>
+    <path d="M185 136 194 129 205 146 198 152Z" fill="#141510"/>
+    <!-- The black robe creates the main silhouette. -->
+    <path d="M119 133Q98 135 91 159Q85 184 87 212Q82 227 86 237Q102 247 137 247Q156 246 169 236L153 211Q163 186 159 163Q155 142 140 134Z" fill="#FFFFFF"/>
+    <path d="M114 132 125 151 140 134" fill="#141510"/>
+    <path d="M125 151Q126 162 121 176M96 218Q100 226 112 229" stroke="#141510" stroke-width="2.6"/>
+    <!-- Neck, ear and a gently tilted profile. -->
+    <path d="M115 115 114 134Q121 145 133 140L140 120Z" fill="#141510"/>
+    <path d="M102 79Q116 63 139 73Q156 77 159 93L164 105 172 110Q175 115 164 118L164 128Q155 143 136 137Q118 134 108 117L102 103Z" fill="#141510"/>
+    <!-- Hair: an asymmetric, slightly unruly shape rather than a detailed headdress. -->
+    <path d="M104 109Q94 101 97 87Q93 79 99 70Q105 64 113 63L108 56Q122 53 129 64Q142 59 154 69Q162 76 161 87Q145 88 139 77Q136 91 113 96L112 108Z" fill="#FFFFFF"/>
+    <path d="M110 99Q99 97 100 109Q102 121 113 118" fill="#141510"/>
+    <path d="M105 105Q110 105 109 111" stroke-width="2.2"/>
+    <path d="M143 101Q147 104 151 101M152 124Q157 126 161 123" stroke-width="2.8"/>
+    <!-- The huqin neck is long and thin, with two visible tuning pegs. -->
+    <path d="M208 64Q210 58 214 61L216 224 208 231Z" fill="#141510"/>
+    <path d="M206 80 226 77 227 84 207 87Z" fill="#FFFFFF"/>
+    <path d="M197 96 217 93 218 100 198 103Z" fill="#FFFFFF"/>
+    <path d="M221 75Q230 72 231 79Q232 86 224 87ZM197 93Q190 91 190 98Q190 105 198 104Z" fill="#141510"/>
+    <!-- The fretting hand wraps around the neck, rather than floating near it. -->
+    <path d="M197 132Q200 126 207 124L214 125Q222 122 223 127Q222 131 215 132L219 136Q222 139 218 142L213 142Q216 147 212 150L204 149 201 143Z" fill="#141510"/>
+    <path d="M207 134 215 135M207 141 213 142" stroke-width="2"/>
+    <!-- Small coconut-shell resonator on the thigh, with a pale front soundboard. -->
+    <path d="M196 225Q208 217 222 224Q231 230 229 244Q224 257 210 256Q197 254 193 243Q190 232 196 225Z" fill="#FFFFFF"/>
+    <path d="M217 223Q231 224 232 237Q231 250 220 253Q211 249 212 238Q211 229 217 223Z" fill="#141510"/>
+    <path d="M216 89 218 234" stroke-width="1.65"/>
+    <path d="M216 238 224 238" stroke-width="2.5"/>
+    <!-- The near arm and white cuff lead clearly to the bow grip. -->
+    <path d="M107 157Q123 148 133 163L151 187 167 198 156 217Q138 215 119 194Q103 180 104 168Z" fill="#FFFFFF"/>
+    <path d="M158 193 169 199 159 218 149 212Z" fill="#141510"/>
+    <path d="M167 201Q190 206 219 205L245 210 244 224Q225 220 206 221Q178 221 159 214Z" fill="#141510"/>
+    <!-- The curved bow passes through the string plane above the resonator. -->
+    <path d="M169 230Q221 218 278 220Q285 221 287 225" stroke-width="3.2"/>
+    <path d="M172 233 284 228" stroke-width="1.7"/>
+    <path d="M173 230 174 233M282 221 282 228" stroke-width="2"/>
+    <path d="M242 211Q248 209 252 212L259 219Q266 221 264 226Q262 230 258 228L253 224Q256 230 251 232Q247 232 244 225L239 220Z" fill="#141510"/>
+    <path d="M249 218 254 224" stroke-width="2"/>
+    <!-- A tiny pair of gesture marks suggests the movement of the bow. -->
+    <path d="M281 203 287 199M292 211 299 210" stroke-width="2.5"/>
+  </g>
+</svg>
