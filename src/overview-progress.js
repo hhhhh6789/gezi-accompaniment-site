@@ -27,9 +27,9 @@
         '<header class="op-heading"><div><span class="op-kicker">RESEARCH OVERVIEW</span><h2 id="op-progress-title">项目进度</h2><p>每一步，都有可追溯的记录。</p></div><button class="op-light-button" data-goto="data">查看数据准备 <span aria-hidden="true">↗</span></button></header>' +
         '<div class="op-board"><section class="op-stats" aria-label="研究进度摘要">' +
         '<article class="op-stat"><div class="op-stat-label">约定范围检查通过数</div><div class="op-stat-value">' + checked + '<span> / ' + info.total + '</span></div><p>' + esc(checkedNote) + '</p></article>' +
-        '<article class="op-stat"><div class="op-stat-label">' + activeLabel + '</div><div class="op-stat-value">' + active + '<span> 个阶段</span></div><p>规模化来源与目标规划；批量处理未开始</p></article>' +
+        '<article class="op-stat"><div class="op-stat-label">' + activeLabel + '</div><div class="op-stat-value">' + active + '<span> 个阶段</span></div><p>首批六份已收录、分离听验；其余四份待分段</p></article>' +
         '<article class="op-stat op-stat-next"><div class="op-stat-label">下一步</div><div class="op-stat-name">' + esc(nextTitle) + '</div><p>正式微调尚未开始</p></article>' +
-        '<article class="op-stat"><div class="op-stat-label">已收录 / 新增候选</div><div class="op-stat-value">' + info.facts.recording_count + '<span> / ' + info.candidate_count + '</span></div><p>' + info.facts.pair_count + ' 对 · ' + esc(info.facts.paired_seconds) + ' 秒；候选未收录</p></article></section>' +
+        '<article class="op-stat"><div class="op-stat-label">已收录 / 未收录候选</div><div class="op-stat-value">' + info.facts.recording_count + '<span> / ' + info.candidate_count + '</span></div><p>' + info.facts.pair_count + ' 对 · ' + esc(info.facts.paired_seconds) + ' 秒；13 对整段＋6 对窗口有限接口</p></article></section>' +
         '<div class="op-middle"><section class="op-flow-panel"><div class="op-flow-heading"><div><h3>当前数据路线</h3><p>' + info.groups.length + ' 组任务 · ' + info.total + ' 个数据阶段</p></div><img src="assets/opera-musician.svg" width="56" height="56" alt=""></div><ol class="op-flow">' + flow + '</ol>' +
         '<div class="op-flow-next"><span>下一步</span><strong>' + esc(nextTitle) + '</strong><a href="' + reader('next-step') + '">查看安排 ↗</a></div>' +
         '<p class="op-flow-note">由完整录音出发，经过分离、听验与配对，再完成训练输入核验和数据交付。组内数字仅表示阶段检查数量。</p></section>' +
