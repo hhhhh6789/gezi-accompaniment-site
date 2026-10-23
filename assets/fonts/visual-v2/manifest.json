@@ -1,42 +1,42 @@
 {
   "usage": "Local V2 visual areas only",
-  "total_woff2_bytes": 1333640,
+  "total_woff2_bytes": 1333836,
   "fonts": [
     {
       "file": "wenkai-regular.woff2",
       "weight": 400,
-      "bytes": 275768,
-      "characters": 1393,
+      "bytes": 276012,
+      "characters": 1394,
       "source_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
       "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
-      "sha256": "cec92d21acc0666066274aedfb833f1e2d2339907f7ea80195e08f60a00e67cb"
+      "sha256": "c522a312ded34f839c4ffdb98abe3de601827fd0498aab3d63e6e38e5707589c"
     },
     {
       "file": "wenkai-medium.woff2",
       "weight": 500,
-      "bytes": 274344,
-      "characters": 1393,
+      "bytes": 274604,
+      "characters": 1394,
       "source_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
       "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
-      "sha256": "fe9ec81aa8b851753380e72cbd7cf7f9f9937a95da7160cae21e1284784e7674"
+      "sha256": "d52908dd53c17f37ead3a73a43b803b5250d05972bda9f71e8745f25a2092469"
     },
     {
       "file": "gezi-ui-sans-regular.woff2",
       "weight": 400,
-      "bytes": 391048,
-      "characters": 1395,
+      "bytes": 391524,
+      "characters": 1396,
       "source_url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
       "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
-      "sha256": "c92908babf31891188cce8279abd7aaeef406d4a680ff0517c471c960db9b163"
+      "sha256": "d9130da83c13e4095ff6955d88327be1dbb06ba22af6476b7c41c98a6d17429f"
     },
     {
       "file": "gezi-ui-sans-medium.woff2",
       "weight": 500,
-      "bytes": 392480,
-      "characters": 1395,
+      "bytes": 391696,
+      "characters": 1396,
       "source_url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
       "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
-      "sha256": "8f6064479c2525e189866d6790b276ad60272935829a5dced7a1ecea870a08a6"
+      "sha256": "c58113d5dcf33a972882dc48c8d413c0d79023eb04a92385f08f4f891eef7275"
     }
   ]
 }
