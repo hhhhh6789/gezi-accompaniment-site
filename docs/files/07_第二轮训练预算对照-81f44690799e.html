@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07_第二轮训练预算对照.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#experiments">← 返回微调目标与评价</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>07_第二轮训练预算对照.md</h1><p>Markdown 文档 · 19,203 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#第二轮训练预算对照">第二轮训练预算对照</a><ul>
+<li><a href="#material-passport">Material Passport</a></li>
+<li><a href="#1-已完成的诊断第一轮是否已经没有改善空间">1. 已完成的诊断：第一轮是否已经没有改善空间</a></li>
+<li><a href="#2-第二轮要回答什么怎样比较">2. 第二轮要回答什么、怎样比较</a></li>
+<li><a href="#3-参数停止条件与当前实现">3. 参数、停止条件与当前实现</a></li>
+<li><a href="#4-已做的最小试运行">4. 已做的最小试运行</a></li>
+<li><a href="#5-跑完怎样评价什么结果决定下一步">5. 跑完怎样评价、什么结果决定下一步</a></li>
+<li><a href="#6-资源启动入口与分工">6. 资源、启动入口与分工</a></li>
+<li><a href="#7-实际训练结果与计划差异">7. 实际训练结果与计划差异</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\AnyAccomp微调实验\07_第二轮训练预算对照.md</p><p>SHA-256：2044f49f91051564c27d11094f60b8593e034889033cdfdd4a4a40549fca4d42</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="第二轮训练预算对照">第二轮训练预算对照</h1>
+<p>更新：2026-10-23。<strong>第二轮已完成65轮／1820步，08:45按平台规则停止，21项技术后核验通过。长程比504步的4组验证均值低3.94%，已有1组反馈，A连续性差、听感不好，整体质量未通过。</strong> 返回<a href="AnyAccomp%E6%AD%8C%E4%BB%94%E6%88%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E9%AA%8C-a42ad67f0ca3.html">实验总览</a>。</p>
+<h2 id="material-passport">Material Passport</h2>
+<ul>
+<li>Origin Skill: academic-research-suite / experiment-agent</li>
+<li>Origin Mode: plan；按已有授权完成短时实现核验</li>
+<li>Origin Date: 2026-10-22</li>
+<li>Verification Status: UNVERIFIED（方案与技术准备，不是效果验收）</li>
+<li>Version Label: round2_budget_v1</li>
+</ul>
+<p>本轮采用ARS实验计划中的问题、变量、控制、输入输出、分析、资源与停止条件，并保留<span class="reader-missing" title="../../runs/anyaccomp_round2_preparation_20261022_v1/material_passport.md">执行凭据（本轮未发布此证据文件）</span>。准备阶段未把继续意愿当作启动决定；10月23日用户在具体预算方案和启动选项后回复“继续”，现已记录原话及对应预算并启动。</p>
+<h2 id="1-已完成的诊断第一轮是否已经没有改善空间">1. 已完成的诊断：第一轮是否已经没有改善空间</h2>
+<p>FM是根据旋律条件生成伴奏频谱的流匹配模型。它的训练损失会受到抽到的噪声和时间位置影响；本次给各模型使用相同的多组采样，避免只凭一组采样判断平台。没有优化器更新，不使用测试集，约52.20秒完成。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th style="text-align: right;">训练损失，4组采样平均</th>
+<th style="text-align: right;">验证损失，8组采样平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原预训练模型</td>
+<td style="text-align: right;">0.254907</td>
+<td style="text-align: right;">0.270665</td>
+</tr>
+<tr>
+<td>第一轮第392步</td>
+<td style="text-align: right;">0.214554</td>
+<td style="text-align: right;">0.228538</td>
+</tr>
+<tr>
+<td>第一轮第504步</td>
+<td style="text-align: right;">0.213871</td>
+<td style="text-align: right;">0.228363</td>
+</tr>
+</tbody>
+</table>
+<p>每组采样内按有效频谱元素加权，再对采样组等权平均；逐录音明细保留。验证采样种子为20261023至20261030，训练为前4个。这里只重采样噪声／时间，没有增加独立录音；验证仍只有4首，不能把8组采样当成8份独立音乐样本或作显著性结论。</p>
+<p>第392步相对原模型在8组验证平均上约下降15.56%，且各组均低于原模型；原报告24.9%仍是原先单组采样口径，不覆盖改写。第504步均值仅比392步低约0.077%，不足以说它更好，却说明原来的单组排名与平台不等于更长训练已无收益。不同集合的难度不同，不用训练／验证的绝对损失差判断过拟合。</p>
+<p>这一步证明数值改善不完全依赖原先一组采样；尚不能确定更长训练会改善音乐。<span class="reader-missing" title="../../runs/anyaccomp_round1_loss_diagnostic_v1/result.json">诊断结果（本轮未发布此证据文件）</span>保留全部逐输入记录；第一轮检查点及原报告不改。</p>
+<h2 id="2-第二轮要回答什么怎样比较">2. 第二轮要回答什么、怎样比较</h2>
+<p><strong>假设：在相同数据、模块、损失和一条固定学习率轨迹下，增加更新次数能改善验证录音的伴奏风格与配合度。</strong> 相反结果是更长阶段持平、失真或更不贴合人声；此时报告预算增加无收益或退化，不继续机械加轮数。</p>
+<p>从原预训练权重重新开始；不直接沿第一轮接着跑，因为第一轮余弦学习率已经降至很低。学习率是每次更新参数的步幅；第二轮先固定2800步的完整下降轨迹，在同一次训练中保存不同阶段：</p>
+<table>
+<thead>
+<tr>
+<th>比较位置</th>
+<th>轮数／更新</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新短程</td>
+<td>18轮／504步</td>
+<td>第二轮自身的短预算对照</td>
+</tr>
+<tr>
+<td>中程</td>
+<td>50轮／1400步</td>
+<td>第一个较充分曝光的观察点，不承诺已经足够</td>
+</tr>
+<tr>
+<td>长程上限</td>
+<td>100轮／2800步</td>
+<td>如果未触发停止条件，检查继续训练的收益</td>
+</tr>
+</tbody>
+</table>
+<p>同一轨迹使前504步完全共享，比较的是沿该轨迹继续更新的结果。第一轮仅作历史参照：第二轮还改变了学习率下降周期与验证／早停规则，不能把两轮差异全部归因于步数。学习率随训练位置变化也属于这条预算策略，不能据此声称排除了所有学习率因素。</p>
+<p>沿用冻结训练32首／112单元和验证4首／13单元；同一录音的所有窗口不跨集合。训练FM的vocal_mel_proj、diff_estimator，冻结旋律编码器、声码器及repa_proj辅助投影。继续只用有掩码的FM速度均方误差：补齐帧和已给作伴奏提示的帧不计损失。完整支持1506／1503帧输入，不截断交付数组。</p>
+<p>伴奏提示概率0.3、条件丢弃0.2保持：前者让模型训练时偶尔看到一段已有伴奏，后者偶尔隐藏人声旋律条件。验证及生成关闭两者，生成不提供真实伴奏提示。REPA（利用额外表征约束隐藏状态的辅助损失）及其MERT特征仍未加入，不能把本轮称为完整作者训练配方。</p>
+<h2 id="3-参数停止条件与当前实现">3. 参数、停止条件与当前实现</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>第二轮实际采用值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优化器与数值</td>
+<td>AdamW；峰值学习率1e-5，betas 0.9／0.999，权重衰减0.01，梯度裁剪1；FP32参数／BF16前向</td>
+</tr>
+<tr>
+<td>批次与轮数</td>
+<td>每次1单元，累计4次再更新；每轮28步；最多100轮／2800步</td>
+</tr>
+<tr>
+<td>学习率</td>
+<td>28步预热，余弦下降周期固定为2800步；短时试运行不改下降周期</td>
+</tr>
+<tr>
+<td>验证</td>
+<td>每140步（5轮）及504／1400／2800里程碑；固定4组噪声／时间采样20261023至20261026，全部13单元</td>
+</tr>
+<tr>
+<td>平台停止</td>
+<td>1400步前不因小幅平台停止；从1400步起，连续4次验证未累计改善0.2%则停</td>
+</tr>
+<tr>
+<td>退化保护</td>
+<td>验证均值连续2次高于历史最低值10%则停，允许在1400步前触发</td>
+</tr>
+<tr>
+<td>错误与硬预算</td>
+<td>非有限预测／损失／梯度报错退出并说明；进程墙钟上限2小时；不因“还没跑够时间”强行续跑</td>
+</tr>
+<tr>
+<td>保存与恢复</td>
+<td>best／latest／final及达到的三个里程碑；保存模型、优化器、学习率状态、随机数、样本游标和早停状态；恢复核对配置与源码身份</td>
+</tr>
+</tbody>
+</table>
+<p>平台规则使用一个累计改善的参照值；若每次仅改善0.1%，累计超过0.2%后会清空计数，避免每次刷新微小最佳值却永远达不到阈值。最低观察预算、平台及明显退化三个分支已做CPU规则检查。</p>
+<p>新增<span class="reader-missing" title="../../scripts/anyaccomp_finetune_budget_v2.py">训练入口（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../scripts/anyaccomp_loss_panel.py">多采样损失评估（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../scripts/run_anyaccomp_round2.py">受限启动器（本轮未发布此证据文件）</span>及<span class="reader-missing" title="../../configs/anyaccomp_finetune_round2_budget_v1.json">配置（本轮未发布此证据文件）</span>。复用第一轮已经核验的模型、读取、掩码和损失实现；原脚本不修改。关键逻辑为：</p>
+<pre><code class="language-python"># 训练步数上限与学习率完整轨迹分开，短时检查不改变正式轨迹。
+target = config[&quot;smoke_updates&quot;] if smoke else config[&quot;total_updates&quot;]
+panel = loss_panel(model, validation, config[&quot;validation_seeds&quot;])
+improved, stop_reason = advance_early(early, panel[&quot;mean_loss&quot;], update, config)
+</code></pre>
+<p>输入为冻结编号／频谱和配置，输出为多组采样的验证均值、停止状态及完整检查点。loss_panel在评估前后恢复训练模式和随机数状态，避免验证次数改变后续训练采样；正式训练才使用验证集，试运行只用训练集。</p>
+<h2 id="4-已做的最小试运行">4. 已做的最小试运行</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>实际结果</th>
+<th>能证明什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU预检与分支检查</td>
+<td>112个训练输入可读；固定周期、累计改善、最低预算、平台和退化规则通过</td>
+<td>配置及分支符合本轮声明，未证明长程收敛</td>
+</tr>
+<tr>
+<td>连续真实更新</td>
+<td>训练4单元，2步／8次读取；冻结投影不变、可训练权重变化、状态有限</td>
+<td>新入口确实更新主路径</td>
+</tr>
+<tr>
+<td>新进程恢复</td>
+<td>第1步恢复后更新至第2步；与连续结果模型／优化器最大差异均0，完整文件SHA-256相同</td>
+<td>该短路径的保存恢复一致；不是大规模容错保证</td>
+</tr>
+<tr>
+<td>新检查点生成</td>
+<td>训练短段500帧，约10秒；原模型和更新模型频谱、音频及写后读取通过</td>
+<td>新检查点可被现有推理入口读取；没有人工质量验收</td>
+</tr>
+</tbody>
+</table>
+<p>实际优化器调用共3次（连续2次＋重启重复1次），不算3步连续正式训练。峰值已分配6.91GiB；短时试运行预留7.14GiB，不替代全112单元训练时第一轮12.27GiB的预留峰值。检查点与音频约7.29GiB。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_round2_smoke_v1/verification.json">试运行结果（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_round2_smoke_v1/compare/result.json">恢复差异（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_round2_smoke_v1/generation/result.json">生成结果（本轮未发布此证据文件）</span>。最终执行源码副本为该目录的source_snapshot_v2；source_snapshot是保留的执行前草稿，不作为实际执行版本。</p>
+<h2 id="5-跑完怎样评价什么结果决定下一步">5. 跑完怎样评价、什么结果决定下一步</h2>
+<p>训练中只用固定4组采样选数值最佳值；另保留504步短程、1400步及最终检查点。长预算候选从1400步、最终步，以及更新位置不早于1400步的best中，按同一验证均值选择；若退化保护导致未达到1400步，报告未完成长预算比较，不能补写结果。</p>
+<p>先在全部4首验证录音上比较新短程与长预算候选，再与原模型及第一轮392步参照。固定旋律编号、13窗口边界、无伴奏提示、50次采样步、引导3、重缩放0.75；先统一种子1024，保留1025／1026作重复生成。片段沿用预先固定的每首中间20秒，不挑更好听的位置。候选共用每首播放增益；已有原模型／第一轮原始FLOAT音频可复用，但重新统一播放增益，避免音量影响比较。</p>
+<p>记录逐录音损失及参考频谱、色度、能量变化诊断；它们不直接等于配器、和声或节拍正确率。人工随机化A/B顺序，分别判断：戏曲配器风格、与唱腔起伏及句尾的配合、节奏／和声冲突、失真和接缝、整体偏好或无法判断。先听伴奏，再结合原人声；保留全部结果，不只展示改善者。</p>
+<p>实际评价沿用第一轮已核验的evaluate_anyaccomp_validation.py，分别生成504步短程和按规则选出的长程，均为全部4首、13窗口及3种子。短程先在空闲物理GPU1并行生成，避免等训练退出才开始；生成不产生参数更新。随后用build_anyaccomp_budget_listening.py读取两轮原始FLOAT音频及冻结人声，重新统一4个模型、3种子的播放增益，生成短程／长程、原模型／长程、第一轮／长程三类随机A/B包。保留全部36组，初次听验每首先用1024，不要求一次听完。</p>
+<p>长程选择由select_anyaccomp_budget_checkpoints.py执行，输入为真实验证记录及保留的检查点，输出路径、步数、选择依据与SHA-256。已用独立构造记录核对排除1400步前的最佳点、保留后期最佳、同值取较早步数，以及未达最低预算时不伪造长程候选。音频包装输入是已完成的原始音频；检查同一原模型在两次生成中的差异、固定片段坐标、统一增益与写后读取。新脚本不修改训练模型或旧评价源码。</p>
+<p>不要求先听完上一轮12组才准备或启动下一轮；原有CASE01／04反馈原样保留，另外两首尚未听过这一事实不变。4首验证可用于取舍，不宣称统计上的领域泛化结论。测试4首继续保留到方案冻结后，只作最终评价；过去技术排查接触过测试数据，仍不称完全未接触的盲测。</p>
+<p>若长预算有稳定音乐改善，保留该配置再讨论最终评价；若数值改善而音乐没有改善，记录损失与音乐目标不一致，下一小步应检查条件／训练目标或训练范围；若训练下降而验证退化，则先处理过拟合与更新范围。扩充独立数据、引入辅助损失或改核心方法另提具体依据，不因失败就自动重做929或无限延长。</p>
+<h2 id="6-资源启动入口与分工">6. 资源、启动入口与分工</h2>
+<p>准备阶段试运行使用GPU6；正式启动前10月23日重查所有卡，GPU6已有其他任务，选择空闲的物理GPU0／RTX4090，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c，空闲约23.64GiB；单进程只暴露此卡。/data可用约855GB。实际资源快照保存在新control目录resources_before.json。</p>
+<p>第一轮每步约0.318秒，2800步仅更新计算约15分钟；加加载、4组采样验证和多次保存，暂估训练20–40分钟，不是实测保证；生成评价另估5–10分钟。参考第一轮峰值约6.93GiB已分配／12.27GiB预留，启动要求至少18GiB空闲。正式最多约6份完整检查点、约15GiB；连同已留试运行和生成材料，建议预留25–30GiB，不以可用空间多就扩大预算。</p>
+<p>实际新输出为runs/anyaccomp_finetune_round2_budget_v1及其_control目录；08:31启动，训练PID1397119、控制PID1397117。实际命令为：</p>
+<pre><code class="language-bash">cd $CLOUD_FINETUNE_ROOT
+environments/anyaccomp_input_929/bin/python scripts/run_anyaccomp_round2.py \
+  --config configs/anyaccomp_finetune_round2_budget_v1.json \
+  --output runs/anyaccomp_finetune_round2_budget_v1 \
+  --control runs/anyaccomp_finetune_round2_budget_v1_control \
+  --gpu-uuid GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c
+</code></pre>
+<p>运行后查看状态、日志与GPU：</p>
+<pre><code class="language-bash">cat $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1_control/status.json
+tail -n 10 $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1/events.jsonl
+python3 $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1_control/status_summary.py
+nvidia-smi
+</code></pre>
+<p>我负责实现核验、选卡、获准后启动监控、保存证据、生成比较和维护文档；你决定本次增加预算的取舍并参与音乐判断。开始与结束通知，PID与实际GPU写入状态入口。正常现象是逐步增加的更新记录和间隔验证／保存；非有限数值、failure.json、异常退出或长时间无进展需要说明。</p>
+<p>当前阶段停止于：本次有界训练退出、检查点／指标／曲线及验证生成核验完成，等待必要音乐判断；出现异常按约定说明。整体微调实验仍在继续；云端文档已更新，Windows本地未同步，网站未更新。</p>
+<h2 id="7-实际训练结果与计划差异">7. 实际训练结果与计划差异</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>实际证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运行</td>
+<td>10月23日08:31:15—08:45:10，北京时间；835.31秒；退出0</td>
+</tr>
+<tr>
+<td>训练曝光</td>
+<td>65轮／1820步；112个训练单元各读取65次，顺序核对通过</td>
+</tr>
+<tr>
+<td>原模型／504步／1820步</td>
+<td>同4组验证均值0.241777442／0.196940780／0.189188883</td>
+</tr>
+<tr>
+<td>增加预算的数值收益</td>
+<td>1820步比504步低3.94%，比原模型低21.75%；音乐判断待进行</td>
+</tr>
+<tr>
+<td>保存</td>
+<td>best／latest／final均1820步，另保留504与1400步，共5份；2800步未达到，不伪造产物</td>
+</tr>
+<tr>
+<td>核验</td>
+<td>21／21项通过；主路径131个张量均变化，辅助投影6个不变，保存的优化器、游标和配置身份有效</td>
+</tr>
+<tr>
+<td>显存</td>
+<td>已分配6.93GiB／预留12.27GiB峰值；训练GPU0已释放</td>
+</tr>
+</tbody>
+</table>
+<p>实际停止于65轮，原因是最低50轮后4次验证的累计改善未达到0.2%。第1820步虽然刷新绝对最低值，但相对平台参照只改善约0.145%，未重置计数。这符合预先约定规则；100轮是上限，未声称跑满。13分55秒为65轮实测；原20–40分钟是较长预算估计，不改成事后保证。</p>
+<p>长程按保留候选的同口径验证均值选择1820步best.pt，选择发生在试听之前。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/checkpoint_selection.json">选择记录（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/report.md">训练报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/training_curves.png">曲线（本轮未发布此证据文件）</span>及<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/verification.json">核验（本轮未发布此证据文件）</span>可追溯。原预训练权重、929交付及第一轮证据保持。</p>
+<p>两次验证生成均正常退出，短程／长程控制进程墙钟148.61／146.69秒；GPU1已释放。原模型在两次生成中逐样本最大差异为0。重新计算统一增益后，共36组随机A/B、144份20秒试听及4份人声参考，生成包内48条模型×录音×种子诊断记录。初次听验入口见<a href="05_%E9%AA%8C%E8%AF%81%E9%9B%86%E8%AF%95%E5%90%AC%E4%B8%8E%E5%8F%8D%E9%A6%88-e9da4919ec8c.html#6-第二轮训练预算对照入口">05第6节</a>。当前第二轮预算比较已有1组反馈；A更贴合、两者较像戏曲，A碎、不连贯、不好听，整体质量未通过。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th style="text-align: right;">参考频谱MSE</th>
+<th style="text-align: right;">参考色度余弦</th>
+<th style="text-align: right;">参考能量上升余弦</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原预训练</td>
+<td style="text-align: right;">0.899186</td>
+<td style="text-align: right;">0.425870</td>
+<td style="text-align: right;">0.219417</td>
+</tr>
+<tr>
+<td>第一轮392步</td>
+<td style="text-align: right;">0.485184</td>
+<td style="text-align: right;">0.444225</td>
+<td style="text-align: right;">0.296433</td>
+</tr>
+<tr>
+<td>第二轮504步</td>
+<td style="text-align: right;">0.451044</td>
+<td style="text-align: right;">0.461190</td>
+<td style="text-align: right;">0.305598</td>
+</tr>
+<tr>
+<td>第二轮1820步</td>
+<td style="text-align: right;">0.408774</td>
+<td style="text-align: right;">0.488544</td>
+<td style="text-align: right;">0.322531</td>
+</tr>
+</tbody>
+</table>
+<p>三种子先在每首内部平均，再对4首等权平均；参考配器不是唯一正确答案，色度和能量相近不等于和声／节拍正确。这些变化不证明戏曲风格或整体音乐质量提升。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/metrics.json">全部诊断（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/verification.json">材料核验（本轮未发布此证据文件）</span>保留逐项依据。</p>
+<p>当前接续是budget／CASE01的A连续性问题定位；无需再次决定是否启动本轮，已执行授权。若无可听收益，再根据证据讨论训练范围、条件表示或训练目标；本轮不自动新增第三轮、不重制929、不启用测试调参。云端文档已更新，Windows本地未同步，网站未更新。</p>
+<p>已落实后续小步诊断：不读取A/B模型映射，先保留原话、有效补充及撤回的误选记录。依据冻结时间清单确认原片段只有第10.004秒一处生成窗口接缝；从原A取第1—9秒纯伴奏及对应混合，未重新生成、滤波或改增益，结果逐样本一致。这是排查已知技术因素，不是新的效果样本，也不证明接缝就是碎片感的原因。当前不自动启动第三轮或重做分离；<a href="05_%E9%AA%8C%E8%AF%81%E9%9B%86%E8%AF%95%E5%90%AC%E4%B8%8E%E5%8F%8D%E9%A6%88-e9da4919ec8c.html#第二轮第一组反馈与定位">反馈与诊断入口</a>保留接续。</p>
+<p>窗口内部排查已取得人听反馈：用户对同一A、不跨拼接点的8秒纯伴奏仍碎与不连贯回复“对”。这一局部结果使已知拼接成为不充分的单一解释；不新增独立录音、不解开模型映射，也不推出具体模块故障。下一步为现有原预训练模型同一位置、种子、增益的8秒连续性对照；方案和文件均见05。没有新优化器更新或推理，尚不能认定碎片感是微调引入、过拟合、数据量不足或声码器导致。</p>
+<p>原模型同段连续性获用户反馈“好一些了，现在比之前连贯一些”。保存原话后仅解开budget／CASE01：长程1820步为A，短程504步为B。因此目前这段的长程虽更贴合，却比原模型更碎；短程B的纯伴奏连续性未单独评价，不能断言增加轮数导致退化。已准备同位置、同增益的短程8秒精确切片，限定本轮只补该判断后汇总下一步方案；不新增训练或试听材料。该组后续诊断已知模型身份，明确不作盲听结论；其余组随机映射不参与当前判断。</p>
+<p>本轮局部听验已收束：504步短程同段较长程“好一点点”，不写成短程合格；原模型与短程并未直接比较。长程虽更贴合，连续性未随验证损失下降一同改善，仍是单录音、单种子信号。本轮不再追加音频或训练；后续技术归因独立转入<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html">08连续性问题定位方案</a>，仅准备一次真实目标→冻结声码器重建，当前尚未执行，也未据此决定第三轮配方。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/AnyAccomp微调实验/07_第二轮训练预算对照.md（路径已脱敏）","sha256":"2044f49f91051564c27d11094f60b8593e034889033cdfdd4a4a40549fca4d42","text":"# 第二轮训练预算对照\n\n更新：2026-10-23。**第二轮已完成65轮／1820步，08:45按平台规则停止，21项技术后核验通过。长程比504步的4组验证均值低3.94%，已有1组反馈，A连续性差、听感不好，整体质量未通过。** 返回[实验总览](../AnyAccomp歌仔戏微调实验.md)。\n\n## Material Passport\n\n- Origin Skill: academic-research-suite / experiment-agent\n- Origin Mode: plan；按已有授权完成短时实现核验\n- Origin Date: 2026-10-22\n- Verification Status: UNVERIFIED（方案与技术准备，不是效果验收）\n- Version Label: round2_budget_v1\n\n本轮采用ARS实验计划中的问题、变量、控制、输入输出、分析、资源与停止条件，并保留[执行凭据](../../runs/anyaccomp_round2_preparation_20261022_v1/material_passport.md)。准备阶段未把继续意愿当作启动决定；10月23日用户在具体预算方案和启动选项后回复“继续”，现已记录原话及对应预算并启动。\n\n## 1. 已完成的诊断：第一轮是否已经没有改善空间\n\nFM是根据旋律条件生成伴奏频谱的流匹配模型。它的训练损失会受到抽到的噪声和时间位置影响；本次给各模型使用相同的多组采样，避免只凭一组采样判断平台。没有优化器更新，不使用测试集，约52.20秒完成。\n\n| 模型 | 训练损失，4组采样平均 | 验证损失，8组采样平均 |\n| --- | ---: | ---: |\n| 原预训练模型 | 0.254907 | 0.270665 |\n| 第一轮第392步 | 0.214554 | 0.228538 |\n| 第一轮第504步 | 0.213871 | 0.228363 |\n\n每组采样内按有效频谱元素加权，再对采样组等权平均；逐录音明细保留。验证采样种子为20261023至20261030，训练为前4个。这里只重采样噪声／时间，没有增加独立录音；验证仍只有4首，不能把8组采样当成8份独立音乐样本或作显著性结论。\n\n第392步相对原模型在8组验证平均上约下降15.56%，且各组均低于原模型；原报告24.9%仍是原先单组采样口径，不覆盖改写。第504步均值仅比392步低约0.077%，不足以说它更好，却说明原来的单组排名与平台不等于更长训练已无收益。不同集合的难度不同，不用训练／验证的绝对损失差判断过拟合。\n\n这一步证明数值改善不完全依赖原先一组采样；尚不能确定更长训练会改善音乐。[诊断结果](../../runs/anyaccomp_round1_loss_diagnostic_v1/result.json)保留全部逐输入记录；第一轮检查点及原报告不改。\n\n## 2. 第二轮要回答什么、怎样比较\n\n**假设：在相同数据、模块、损失和一条固定学习率轨迹下，增加更新次数能改善验证录音的伴奏风格与配合度。** 相反结果是更长阶段持平、失真或更不贴合人声；此时报告预算增加无收益或退化，不继续机械加轮数。\n\n从原预训练权重重新开始；不直接沿第一轮接着跑，因为第一轮余弦学习率已经降至很低。学习率是每次更新参数的步幅；第二轮先固定2800步的完整下降轨迹，在同一次训练中保存不同阶段：\n\n| 比较位置 | 轮数／更新 | 用途 |\n| --- | --- | --- |\n| 新短程 | 18轮／504步 | 第二轮自身的短预算对照 |\n| 中程 | 50轮／1400步 | 第一个较充分曝光的观察点，不承诺已经足够 |\n| 长程上限 | 100轮／2800步 | 如果未触发停止条件，检查继续训练的收益 |\n\n同一轨迹使前504步完全共享，比较的是沿该轨迹继续更新的结果。第一轮仅作历史参照：第二轮还改变了学习率下降周期与验证／早停规则，不能把两轮差异全部归因于步数。学习率随训练位置变化也属于这条预算策略，不能据此声称排除了所有学习率因素。\n\n沿用冻结训练32首／112单元和验证4首／13单元；同一录音的所有窗口不跨集合。训练FM的vocal_mel_proj、diff_estimator，冻结旋律编码器、声码器及repa_proj辅助投影。继续只用有掩码的FM速度均方误差：补齐帧和已给作伴奏提示的帧不计损失。完整支持1506／1503帧输入，不截断交付数组。\n\n伴奏提示概率0.3、条件丢弃0.2保持：前者让模型训练时偶尔看到一段已有伴奏，后者偶尔隐藏人声旋律条件。验证及生成关闭两者，生成不提供真实伴奏提示。REPA（利用额外表征约束隐藏状态的辅助损失）及其MERT特征仍未加入，不能把本轮称为完整作者训练配方。\n\n## 3. 参数、停止条件与当前实现\n\n| 项目 | 第二轮实际采用值 |\n| --- | --- |\n| 优化器与数值 | AdamW；峰值学习率1e-5，betas 0.9／0.999，权重衰减0.01，梯度裁剪1；FP32参数／BF16前向 |\n| 批次与轮数 | 每次1单元，累计4次再更新；每轮28步；最多100轮／2800步 |\n| 学习率 | 28步预热，余弦下降周期固定为2800步；短时试运行不改下降周期 |\n| 验证 | 每140步（5轮）及504／1400／2800里程碑；固定4组噪声／时间采样20261023至20261026，全部13单元 |\n| 平台停止 | 1400步前不因小幅平台停止；从1400步起，连续4次验证未累计改善0.2%则停 |\n| 退化保护 | 验证均值连续2次高于历史最低值10%则停，允许在1400步前触发 |\n| 错误与硬预算 | 非有限预测／损失／梯度报错退出并说明；进程墙钟上限2小时；不因“还没跑够时间”强行续跑 |\n| 保存与恢复 | best／latest／final及达到的三个里程碑；保存模型、优化器、学习率状态、随机数、样本游标和早停状态；恢复核对配置与源码身份 |\n\n平台规则使用一个累计改善的参照值；若每次仅改善0.1%，累计超过0.2%后会清空计数，避免每次刷新微小最佳值却永远达不到阈值。最低观察预算、平台及明显退化三个分支已做CPU规则检查。\n\n新增[训练入口](../../scripts/anyaccomp_finetune_budget_v2.py)、[多采样损失评估](../../scripts/anyaccomp_loss_panel.py)、[受限启动器](../../scripts/run_anyaccomp_round2.py)及[配置](../../configs/anyaccomp_finetune_round2_budget_v1.json)。复用第一轮已经核验的模型、读取、掩码和损失实现；原脚本不修改。关键逻辑为：\n\n```python\n# 训练步数上限与学习率完整轨迹分开，短时检查不改变正式轨迹。\ntarget = config[\"smoke_updates\"] if smoke else config[\"total_updates\"]\npanel = loss_panel(model, validation, config[\"validation_seeds\"])\nimproved, stop_reason = advance_early(early, panel[\"mean_loss\"], update, config)\n```\n\n输入为冻结编号／频谱和配置，输出为多组采样的验证均值、停止状态及完整检查点。loss_panel在评估前后恢复训练模式和随机数状态，避免验证次数改变后续训练采样；正式训练才使用验证集，试运行只用训练集。\n\n## 4. 已做的最小试运行\n\n| 检查 | 实际结果 | 能证明什么 |\n| --- | --- | --- |\n| CPU预检与分支检查 | 112个训练输入可读；固定周期、累计改善、最低预算、平台和退化规则通过 | 配置及分支符合本轮声明，未证明长程收敛 |\n| 连续真实更新 | 训练4单元，2步／8次读取；冻结投影不变、可训练权重变化、状态有限 | 新入口确实更新主路径 |\n| 新进程恢复 | 第1步恢复后更新至第2步；与连续结果模型／优化器最大差异均0，完整文件SHA-256相同 | 该短路径的保存恢复一致；不是大规模容错保证 |\n| 新检查点生成 | 训练短段500帧，约10秒；原模型和更新模型频谱、音频及写后读取通过 | 新检查点可被现有推理入口读取；没有人工质量验收 |\n\n实际优化器调用共3次（连续2次＋重启重复1次），不算3步连续正式训练。峰值已分配6.91GiB；短时试运行预留7.14GiB，不替代全112单元训练时第一轮12.27GiB的预留峰值。检查点与音频约7.29GiB。\n\n[试运行结果](../../runs/anyaccomp_round2_smoke_v1/verification.json)、[恢复差异](../../runs/anyaccomp_round2_smoke_v1/compare/result.json)、[生成结果](../../runs/anyaccomp_round2_smoke_v1/generation/result.json)。最终执行源码副本为该目录的source_snapshot_v2；source_snapshot是保留的执行前草稿，不作为实际执行版本。\n\n## 5. 跑完怎样评价、什么结果决定下一步\n\n训练中只用固定4组采样选数值最佳值；另保留504步短程、1400步及最终检查点。长预算候选从1400步、最终步，以及更新位置不早于1400步的best中，按同一验证均值选择；若退化保护导致未达到1400步，报告未完成长预算比较，不能补写结果。\n\n先在全部4首验证录音上比较新短程与长预算候选，再与原模型及第一轮392步参照。固定旋律编号、13窗口边界、无伴奏提示、50次采样步、引导3、重缩放0.75；先统一种子1024，保留1025／1026作重复生成。片段沿用预先固定的每首中间20秒，不挑更好听的位置。候选共用每首播放增益；已有原模型／第一轮原始FLOAT音频可复用，但重新统一播放增益，避免音量影响比较。\n\n记录逐录音损失及参考频谱、色度、能量变化诊断；它们不直接等于配器、和声或节拍正确率。人工随机化A/B顺序，分别判断：戏曲配器风格、与唱腔起伏及句尾的配合、节奏／和声冲突、失真和接缝、整体偏好或无法判断。先听伴奏，再结合原人声；保留全部结果，不只展示改善者。\n\n实际评价沿用第一轮已核验的evaluate_anyaccomp_validation.py，分别生成504步短程和按规则选出的长程，均为全部4首、13窗口及3种子。短程先在空闲物理GPU1并行生成，避免等训练退出才开始；生成不产生参数更新。随后用build_anyaccomp_budget_listening.py读取两轮原始FLOAT音频及冻结人声，重新统一4个模型、3种子的播放增益，生成短程／长程、原模型／长程、第一轮／长程三类随机A/B包。保留全部36组，初次听验每首先用1024，不要求一次听完。\n\n长程选择由select_anyaccomp_budget_checkpoints.py执行，输入为真实验证记录及保留的检查点，输出路径、步数、选择依据与SHA-256。已用独立构造记录核对排除1400步前的最佳点、保留后期最佳、同值取较早步数，以及未达最低预算时不伪造长程候选。音频包装输入是已完成的原始音频；检查同一原模型在两次生成中的差异、固定片段坐标、统一增益与写后读取。新脚本不修改训练模型或旧评价源码。\n\n不要求先听完上一轮12组才准备或启动下一轮；原有CASE01／04反馈原样保留，另外两首尚未听过这一事实不变。4首验证可用于取舍，不宣称统计上的领域泛化结论。测试4首继续保留到方案冻结后，只作最终评价；过去技术排查接触过测试数据，仍不称完全未接触的盲测。\n\n若长预算有稳定音乐改善，保留该配置再讨论最终评价；若数值改善而音乐没有改善，记录损失与音乐目标不一致，下一小步应检查条件／训练目标或训练范围；若训练下降而验证退化，则先处理过拟合与更新范围。扩充独立数据、引入辅助损失或改核心方法另提具体依据，不因失败就自动重做929或无限延长。\n\n## 6. 资源、启动入口与分工\n\n准备阶段试运行使用GPU6；正式启动前10月23日重查所有卡，GPU6已有其他任务，选择空闲的物理GPU0／RTX4090，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c，空闲约23.64GiB；单进程只暴露此卡。/data可用约855GB。实际资源快照保存在新control目录resources_before.json。\n\n第一轮每步约0.318秒，2800步仅更新计算约15分钟；加加载、4组采样验证和多次保存，暂估训练20–40分钟，不是实测保证；生成评价另估5–10分钟。参考第一轮峰值约6.93GiB已分配／12.27GiB预留，启动要求至少18GiB空闲。正式最多约6份完整检查点、约15GiB；连同已留试运行和生成材料，建议预留25–30GiB，不以可用空间多就扩大预算。\n\n实际新输出为runs/anyaccomp_finetune_round2_budget_v1及其_control目录；08:31启动，训练PID1397119、控制PID1397117。实际命令为：\n\n```bash\ncd $CLOUD_FINETUNE_ROOT\nenvironments/anyaccomp_input_929/bin/python scripts/run_anyaccomp_round2.py \\\n  --config configs/anyaccomp_finetune_round2_budget_v1.json \\\n  --output runs/anyaccomp_finetune_round2_budget_v1 \\\n  --control runs/anyaccomp_finetune_round2_budget_v1_control \\\n  --gpu-uuid GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c\n```\n\n运行后查看状态、日志与GPU：\n\n```bash\ncat $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1_control/status.json\ntail -n 10 $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1/events.jsonl\npython3 $CLOUD_FINETUNE_ROOT/runs/anyaccomp_finetune_round2_budget_v1_control/status_summary.py\nnvidia-smi\n```\n\n我负责实现核验、选卡、获准后启动监控、保存证据、生成比较和维护文档；你决定本次增加预算的取舍并参与音乐判断。开始与结束通知，PID与实际GPU写入状态入口。正常现象是逐步增加的更新记录和间隔验证／保存；非有限数值、failure.json、异常退出或长时间无进展需要说明。\n\n当前阶段停止于：本次有界训练退出、检查点／指标／曲线及验证生成核验完成，等待必要音乐判断；出现异常按约定说明。整体微调实验仍在继续；云端文档已更新，Windows本地未同步，网站未更新。\n\n\n## 7. 实际训练结果与计划差异\n\n| 项目 | 实际证据 |\n| --- | --- |\n| 运行 | 10月23日08:31:15—08:45:10，北京时间；835.31秒；退出0 |\n| 训练曝光 | 65轮／1820步；112个训练单元各读取65次，顺序核对通过 |\n| 原模型／504步／1820步 | 同4组验证均值0.241777442／0.196940780／0.189188883 |\n| 增加预算的数值收益 | 1820步比504步低3.94%，比原模型低21.75%；音乐判断待进行 |\n| 保存 | best／latest／final均1820步，另保留504与1400步，共5份；2800步未达到，不伪造产物 |\n| 核验 | 21／21项通过；主路径131个张量均变化，辅助投影6个不变，保存的优化器、游标和配置身份有效 |\n| 显存 | 已分配6.93GiB／预留12.27GiB峰值；训练GPU0已释放 |\n\n实际停止于65轮，原因是最低50轮后4次验证的累计改善未达到0.2%。第1820步虽然刷新绝对最低值，但相对平台参照只改善约0.145%，未重置计数。这符合预先约定规则；100轮是上限，未声称跑满。13分55秒为65轮实测；原20–40分钟是较长预算估计，不改成事后保证。\n\n长程按保留候选的同口径验证均值选择1820步best.pt，选择发生在试听之前。[选择记录](../../runs/anyaccomp_finetune_round2_budget_v1_control/checkpoint_selection.json)、[训练报告](../../runs/anyaccomp_finetune_round2_budget_v1_control/report.md)、[曲线](../../runs/anyaccomp_finetune_round2_budget_v1_control/training_curves.png)及[核验](../../runs/anyaccomp_finetune_round2_budget_v1_control/verification.json)可追溯。原预训练权重、929交付及第一轮证据保持。\n\n\n两次验证生成均正常退出，短程／长程控制进程墙钟148.61／146.69秒；GPU1已释放。原模型在两次生成中逐样本最大差异为0。重新计算统一增益后，共36组随机A/B、144份20秒试听及4份人声参考，生成包内48条模型×录音×种子诊断记录。初次听验入口见[05第6节](05_验证集试听与反馈.md#6-第二轮训练预算对照入口)。当前第二轮预算比较已有1组反馈；A更贴合、两者较像戏曲，A碎、不连贯、不好听，整体质量未通过。\n\n| 模型 | 参考频谱MSE | 参考色度余弦 | 参考能量上升余弦 |\n| --- | ---: | ---: | ---: |\n| 原预训练 | 0.899186 | 0.425870 | 0.219417 |\n| 第一轮392步 | 0.485184 | 0.444225 | 0.296433 |\n| 第二轮504步 | 0.451044 | 0.461190 | 0.305598 |\n| 第二轮1820步 | 0.408774 | 0.488544 | 0.322531 |\n\n三种子先在每首内部平均，再对4首等权平均；参考配器不是唯一正确答案，色度和能量相近不等于和声／节拍正确。这些变化不证明戏曲风格或整体音乐质量提升。[全部诊断](../../runs/anyaccomp_finetune_round2_listening_v1/metrics.json)、[材料核验](../../runs/anyaccomp_finetune_round2_listening_v1/verification.json)保留逐项依据。\n\n当前接续是budget／CASE01的A连续性问题定位；无需再次决定是否启动本轮，已执行授权。若无可听收益，再根据证据讨论训练范围、条件表示或训练目标；本轮不自动新增第三轮、不重制929、不启用测试调参。云端文档已更新，Windows本地未同步，网站未更新。\n\n\n已落实后续小步诊断：不读取A/B模型映射，先保留原话、有效补充及撤回的误选记录。依据冻结时间清单确认原片段只有第10.004秒一处生成窗口接缝；从原A取第1—9秒纯伴奏及对应混合，未重新生成、滤波或改增益，结果逐样本一致。这是排查已知技术因素，不是新的效果样本，也不证明接缝就是碎片感的原因。当前不自动启动第三轮或重做分离；[反馈与诊断入口](05_验证集试听与反馈.md#第二轮第一组反馈与定位)保留接续。\n\n\n窗口内部排查已取得人听反馈：用户对同一A、不跨拼接点的8秒纯伴奏仍碎与不连贯回复“对”。这一局部结果使已知拼接成为不充分的单一解释；不新增独立录音、不解开模型映射，也不推出具体模块故障。下一步为现有原预训练模型同一位置、种子、增益的8秒连续性对照；方案和文件均见05。没有新优化器更新或推理，尚不能认定碎片感是微调引入、过拟合、数据量不足或声码器导致。\n\n\n原模型同段连续性获用户反馈“好一些了，现在比之前连贯一些”。保存原话后仅解开budget／CASE01：长程1820步为A，短程504步为B。因此目前这段的长程虽更贴合，却比原模型更碎；短程B的纯伴奏连续性未单独评价，不能断言增加轮数导致退化。已准备同位置、同增益的短程8秒精确切片，限定本轮只补该判断后汇总下一步方案；不新增训练或试听材料。该组后续诊断已知模型身份，明确不作盲听结论；其余组随机映射不参与当前判断。\n\n\n本轮局部听验已收束：504步短程同段较长程“好一点点”，不写成短程合格；原模型与短程并未直接比较。长程虽更贴合，连续性未随验证损失下降一同改善，仍是单录音、单种子信号。本轮不再追加音频或训练；后续技术归因独立转入[08连续性问题定位方案](08_连续性问题定位方案.md)，仅准备一次真实目标→冻结声码器重建，当前尚未执行，也未据此决定第三轮配方。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

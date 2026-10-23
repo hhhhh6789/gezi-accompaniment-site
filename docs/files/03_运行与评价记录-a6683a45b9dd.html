@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03_运行与评价记录.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#experiments">← 返回微调目标与评价</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>03_运行与评价记录.md</h1><p>Markdown 文档 · 22,375 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#运行与评价记录">运行与评价记录</a><ul>
+<li><a href="#1-当前接续记录">1. 当前接续记录</a></li>
+<li><a href="#2-关键决定">2. 关键决定</a></li>
+<li><a href="#3-阶段事件">3. 阶段事件</a></li>
+<li><a href="#4-模型运行登记">4. 模型运行登记</a></li>
+<li><a href="#5-评价与听验结果">5. 评价与听验结果</a></li>
+<li><a href="#6-当前结论与实验结束条件">6. 当前结论与实验结束条件</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\AnyAccomp微调实验\03_运行与评价记录.md</p><p>SHA-256：c64b5b3055346e19ac636b69fde96b6d2cce6ba79240bae01813b166f744abc6</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="运行与评价记录">运行与评价记录</h1>
+<p>更新：2026-10-23。<strong>S6已完成cfg3／0固定位置生成对照，46项脚本检查及36项产物复核通过，等待连贯性与风格反馈。参考重建获用户认可；第二轮训练已结束，整体生成音乐优势仍未确认。</strong> 返回<a href="AnyAccomp%E6%AD%8C%E4%BB%94%E6%88%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E9%AA%8C-a42ad67f0ca3.html">实验总览</a>。</p>
+<h2 id="1-当前接续记录">1. 当前接续记录</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>当前记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前阶段</td>
+<td>S6引导3／0对照技术通过，等待固定8秒的连贯性及戏曲风格反馈；原因未确定</td>
+</tr>
+<tr>
+<td>已获授权</td>
+<td>按阶段执行，新增代码／常规核验无需逐项请示；用户在cfg3／0具体方案后说“下一步”，执行此单窗口推理诊断；各次训练、重建授权分别保留，不扩展第三轮训练</td>
+</tr>
+<tr>
+<td>仍需用户参与</td>
+<td>错误、核心方案／预算变更及音乐听验；测试评价前冻结最终方案</td>
+</tr>
+<tr>
+<td>最近产出</td>
+<td>cfg3／0完整窗口生成Mel与固定音频、实际噪声／条件哈希、历史cfg3精确复现、46＋36项检查、报告与图；约30秒，0更新</td>
+</tr>
+<tr>
+<td>下一项</td>
+<td>用户判断08第7节第二段是否更连贯、戏曲感是否保留；先汇总这一对，不自动搜索参数或启动第三轮训练</td>
+</tr>
+<tr>
+<td>本轮停止条件</td>
+<td>执行至需要用户音乐判断或实质取舍；遇错误停止相关环节并说明，不用测试集调参</td>
+</tr>
+</tbody>
+</table>
+<p>新对话或上下文恢复时先读总览和本节，再读下一步所需子文档。本文记录人的实际行动与证据，不声称自动约束或自动验证执行。</p>
+<h2 id="2-关键决定">2. 关键决定</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>事项</th>
+<th>当前状态／依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D0</td>
+<td>建立持续记录全过程、可看清进度并可用于网站的Markdown文档，使用Skill维护</td>
+<td>用户本轮明确要求，已按该范围执行</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>冻结旋律编码器和声码器，仅微调FM主损失，暂不实现REPA</td>
+<td>用户授权按既有阶段推进后，沿用该建议实现；未另行宣称完整作者配方复现</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>完整保留最长1506帧输入；上限20轮／560次更新／2小时</td>
+<td>试运行实测后，在明确列出该范围的启动问题中，用户回复“现在启动首轮正式微调”</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>新增代码、常规配置与检查不逐项请示</td>
+<td>用户原话：“接下来就是按阶段来执行，新增代码什么的不要和我请示了，碰到需要我决定的或者是出错再和我说”</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>第二轮从原模型开始，固定2800步学习率周期、4组采样验证及新停止规则</td>
+<td>已执行授权；10月23日用户在具体第二轮启动问题后回复“继续”；原话、预算范围与配置保存在新控制目录authorization.json</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>固定一处真实目标频谱经冻结声码器重建，隔离还原链路</td>
+<td>用户在08单次方案后回复“继续”；已执行，绕过FM、无参数更新，不构成第三轮训练授权</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>同一1820步模型、同一窗口／噪声，比较额外引导cfg3与0</td>
+<td>用户在具体两设置方案后说“下一步”；约30秒完成，仅推理诊断，保留原正式生成比较设置</td>
+</tr>
+</tbody>
+</table>
+<p>用户确认时记录日期、原话、对应方案版本及影响。文档创建或普通状态询问不作为D1／D2的同意；改变方案时保留先前决定和变更原因，不覆盖历史。</p>
+<h2 id="3-阶段事件">3. 阶段事件</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>实际行动</th>
+<th>产出／范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-10-22，前轮</td>
+<td>只读盘点数据、源码、权重、输入和资源，提出首轮方案</td>
+<td>详见<a href="02_%E5%87%86%E5%A4%87%E7%9B%98%E7%82%B9%E4%B8%8E%E8%AF%81%E6%8D%AE-8bfda58f5a93.html">证据</a>；无优化器或GPU模型计算</td>
+</tr>
+<tr>
+<td>2026-10-22，本轮</td>
+<td>用ARS实验规划工作流分配文档职责，写入当前事实、方案建议与待决定项，更新入口与维护约定</td>
+<td>文档已落地；维护证据位于runs/anyaccomp_finetune_documentation_20261022_v1/</td>
+</tr>
+<tr>
+<td>2026-10-22，执行阶段</td>
+<td>按新授权实现独立训练器，CPU预检与5环节GPU试运行通过</td>
+<td>试运行约92.74秒，连续8步＋恢复验证4步，正式训练另从原模型开始</td>
+</tr>
+<tr>
+<td>2026-10-22，19:42:24起（北京时间）</td>
+<td>明确授权后启动首轮正式微调</td>
+<td>物理GPU6，PID2257835；实时进度见下表</td>
+</tr>
+<tr>
+<td>2026-10-22，19:50:41（北京时间）</td>
+<td>18轮／504次更新后按约定早停、正常退出</td>
+<td>最佳第392步，固定验证FM损失下降约24.9%；冻结参数不变</td>
+</tr>
+<tr>
+<td>2026-10-22，19:53:40（北京时间）</td>
+<td>验证集两个模型各3种子生成完成</td>
+<td>4首13窗口，78份Mel、24份20秒A/B试听，人工反馈尚无</td>
+</tr>
+<tr>
+<td>2026-10-22，首次听验反馈</td>
+<td>CASE01两者都不理想；A更像戏曲伴奏、B偏流行乐</td>
+<td>原话已保存；只确认局部风格倾向，不确认可用性或模型整体优势</td>
+</tr>
+<tr>
+<td>2026-10-22，第二份录音反馈</td>
+<td>CASE04仍为A较像戏曲、B偏流行乐</td>
+<td>已覆盖2／4首；本次未评价整体质量，不继承CASE01质量判断</td>
+</tr>
+<tr>
+<td>2026-10-22，时长质疑与复核</td>
+<td>用户询问正式微调为何仅数分钟、是否因数据少；CPU核对计时、权重及早停</td>
+<td>44分28秒数据、28更新／轮、20轮预算；跑满约9分钟；不据此认定训练充分</td>
+</tr>
+</tbody>
+</table>
+<p>新增接续：用户明确不希望实验停止后，完成约52.20秒的训练4组／验证8组采样诊断（0次更新），实现第二轮入口并完成连续2步＋恢复重复1步及训练短段生成，均通过；第二轮正式训练未启动。</p>
+<p>2026-10-23：用户回复“继续”后，按已呈现的第二轮方案重查资源，08:31启动新正式训练。物理GPU0空闲，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c；不沿用已有其他任务的GPU6。</p>
+<p>只保留影响阶段、方案、结论或交付的事件；普通读取与已解决的格式问题不逐条记录。</p>
+<h2 id="4-模型运行登记">4. 模型运行登记</h2>
+<table>
+<thead>
+<tr>
+<th>运行</th>
+<th>状态与实际更新</th>
+<th>核验入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_preflight_20261022_v1/result.json">CPU预检（本轮未发布此证据文件）</span></td>
+<td>通过；112训练单元、133,420帧；无模型运行</td>
+<td>读取、哈希、源码、环境检查</td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_smoke_v1/status.json">最小试运行（本轮未发布此证据文件）</span></td>
+<td>全部5环节通过；连续8步＋重启重复4步，实际共12次优化器调用，不是12步连续训练</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_smoke_v1/audit/result.json">掩码（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_smoke_v1/continuous/result.json">更新（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_smoke_v1/compare/result.json">恢复比较（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_smoke_v1/generation/result.json">生成（本轮未发布此证据文件）</span></td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round1_v1_control/status.json">首轮正式微调（本轮未发布此证据文件）</span></td>
+<td>正常退出；18轮、504次更新；训练112个单元各读取18次；约496.97秒</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round1_v1_control/report.md">报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round1_v1_control/verification.json">15项后核验（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round1_v1_control/training_curves.png">曲线（本轮未发布此证据文件）</span></td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/result.json">验证集生成（本轮未发布此证据文件）</span></td>
+<td>正常退出，约152.86秒；78份Mel、24份20秒试听WAV；没有测试输入</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/verification.json">12项后核验（本轮未发布此证据文件）</span>、<a href="05_%E9%AA%8C%E8%AF%81%E9%9B%86%E8%AF%95%E5%90%AC%E4%B8%8E%E5%8F%8D%E9%A6%88-e9da4919ec8c.html">试听入口</a></td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json">参考频谱重建（本轮未发布此证据文件）</span></td>
+<td>2026-10-23 09:42:16—09:42:30；约14.02秒，物理GPU0、PID1513639，已退出；0次更新、不加载FM</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/report.md">报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/verification.json">33项检查（本轮未发布此证据文件）</span>、<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html#6-实际结果与唯一待判断项">固定试听</a></td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/status.json">引导3／0诊断（本轮未发布此证据文件）</span></td>
+<td>2026-10-23 10:50:18—10:50:48；约30.06秒，GPU0、PID1629501，已退出；0次更新</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/report.md">报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/verification.json">46项检查（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/post_run_verification.json">36项产物复核（本轮未发布此证据文件）</span>、<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html#实际结果与试听">固定试听</a></td>
+</tr>
+</tbody>
+</table>
+<p>本次新增<span class="reader-missing" title="../../runs/anyaccomp_round1_loss_diagnostic_v1/result.json">多采样诊断（本轮未发布此证据文件）</span>与<span class="reader-missing" title="../../runs/anyaccomp_round2_smoke_v1/verification.json">第二轮试运行（本轮未发布此证据文件）</span>，后者共3次优化器调用、连续轨迹仅2步，与首轮12次试运行及504次正式更新分开。此前试运行子进程均已退出；第二轮正式训练已于08:45退出，实际命令和后核验见下文。</p>
+<p>第一轮试运行使用物理GPU6，UUID为GPU-506e1173-874d-2d37-80c0-d24f1b2fbde1；控制PID2210630及所有子进程已退出。连续更新峰值已分配6.91GiB，固定训练样本验证自检损失0.169176→0.167998，不是验证集效果。恢复后的模型和优化器最大差异均为0，最终检查点SHA-256也完全相同。两组约10秒训练集生成音频技术通过，人工未听验；使用统一播放增益，原始FLOAT音频保留。</p>
+<p>正式训练控制PID2257831、训练PID2257835及验证生成PID2351271均已退出，物理GPU6／同一UUID。实际命令、时间、配置和源码身份保存在控制状态、训练snapshot及source_snapshot副本，GPU进程内编号为cuda:0。正式训练已分配／预留峰值6.93／12.27GiB，结束后GPU资源释放。</p>
+<p>仅有目录、进程退出0、损失下降或单个WAV，不足以登记“完整实验通过”。模型运行与文档维护分别计数，本文档维护目录不算模型运行。</p>
+<p>第二轮实际命令／状态：<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/status.json">status.json（本轮未发布此证据文件）</span>；<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/train.log">训练日志（本轮未发布此证据文件）</span>；<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1/events.jsonl">逐步事件（本轮未发布此证据文件）</span>。源码、配置、授权及启动前资源均在新control目录保留。</p>
+<p>验证生成分阶段状态：<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/validation_short_status.json">短程状态（本轮未发布此证据文件）</span>，训练期间先在物理GPU1生成504步的全部验证材料；长程已按规则选择1820步；两次生成均正常退出并已统一四模型的播放增益、随机A/B。</p>
+<p>第二轮实际训练结果：约835.31秒，平台规则停止，最佳与最终均为1820步；已分配／预留峰值6.93／12.27GiB。4组固定采样均值为原模型0.241777442、504步0.196940780、1820步0.189188883；长程比本轮短程低3.94%，比原模型低21.75%。这不是音乐评分。21项核验、曲线及5份检查点清单见<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/report.md">正式报告（本轮未发布此证据文件）</span>和<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_budget_v1_control/verification.json">核验（本轮未发布此证据文件）</span>。</p>
+<h2 id="5-评价与听验结果">5. 评价与听验结果</h2>
+<p>已有试运行训练短段与正式验证集对照；人工反馈2／12组，测试集未用于本次更新或生成。最终检查点不是第504步：按最低固定验证FM损失选择第392步，路径runs/anyaccomp_finetune_round1_v1/best.pt。</p>
+<p>验证生成配置已在configs/anyaccomp_validation_generation_v1.json固定：全部4首、13窗口、种子1024／1025／1026、50步、引导3、重缩放0.75、不提供真实伴奏提示；每首中间20秒形成随机A/B试听，三个种子都保留。独立窗口直接衔接，不以额外交叉淡化掩盖接缝。参考距离和色度／能量诊断只作辅助，不代替音乐听验。</p>
+<table>
+<thead>
+<tr>
+<th>量</th>
+<th style="text-align: right;">原模型</th>
+<th style="text-align: right;">最佳微调模型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定验证FM损失</td>
+<td style="text-align: right;">0.196152</td>
+<td style="text-align: right;">0.147304</td>
+<td>训练目标下降约24.9%；不是听感评分</td>
+</tr>
+<tr>
+<td>生成频谱到参考目标MSE</td>
+<td style="text-align: right;">0.899186</td>
+<td style="text-align: right;">0.485184</td>
+<td>标准化频谱参考距离诊断；配器并非唯一</td>
+</tr>
+<tr>
+<td>与参考伴奏色度余弦相似度</td>
+<td style="text-align: right;">0.425870</td>
+<td style="text-align: right;">0.444225</td>
+<td>24维色度、同时间网格；不等于和声正确率</td>
+</tr>
+<tr>
+<td>与参考能量上升包络余弦相似度</td>
+<td style="text-align: right;">0.219417</td>
+<td style="text-align: right;">0.296433</td>
+<td>1920点RMS、480点步长的正差分；不等于节拍准确率</td>
+</tr>
+</tbody>
+</table>
+<p>后三项每首先平均3种子，再对4首等权平均；明细见<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/metrics.json">指标（本轮未发布此证据文件）</span>，定义与聚合见<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/diagnostic_summary.json">汇总（本轮未发布此证据文件）</span>。这里只报告参考接近程度，不据此判定音乐优势。</p>
+<p>CASE01（R0011、种子1024、中间20秒）原话：“虽然两个都不咋样，但A更偏向于戏曲伴奏，B则完全是流行乐风”。登记为两者整体不理想、A的戏曲风格相对更接近；不补写其他维度评分，不登记验收通过。<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/feedback.json">CASE01原始记录（本轮未发布此证据文件）</span>保持不变。</p>
+<p>CASE04（R0021、同一种子）原话：“依旧是A组听起来更接近戏曲伴奏，B组还是流行乐风”。仅登记风格差异，整体质量未在该回复中评价。<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/feedback.json">CASE04原始记录（本轮未发布此证据文件）</span>单独保存；不查阅或揭示模型映射，不能按A/B字母跨组归因于模型。听验接续为CASE07，当前先处理训练时长问题。</p>
+<p>后续记录固定生成条件、种子、片段及其选择时间、检查点选择依据、逐录音指标、A/B顺序与原始听验反馈；区分生成音频本身和与人声混合试听的结果。保留改善、持平、退化及无法判断，不只列最佳样本。</p>
+<p>测试集仅在方案冻结后评价。发现测试结果不佳时照实报告；不能将改动后的再次评价继续称为原冻结方案的一次最终评价。</p>
+<p>第二轮短程／长程生成分别用时148.61／146.69秒（控制进程墙钟），生成PID1410870／1421061已退出，物理GPU1资源释放。最终材料在<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/result.json">听验包（本轮未发布此证据文件）</span>，包含预算比较、原模型参照、第一轮参照各12组；同4首录音的重复比较不增加独立样本量。当前第二轮预算比较已反馈1／12组，覆盖1首／1种子；首轮原始2组反馈保留不变。</p>
+<h2 id="6-当前结论与实验结束条件">6. 当前结论与实验结束条件</h2>
+<p>目前已完成首轮短程微调基线，训练和生成链路通过、数值目标改善；两份录音均取得风格差异观察，但未建立模型整体优势。CASE01两者整体不理想，CASE04质量尚未评价。929验收保持不变；冻结summary中的0次更新是交付快照，本次另有504次正式更新与12次试运行调用，不能混成516步训练。</p>
+<p>用户对训练时长的质疑已做<a href="06_%E9%A6%96%E8%BD%AE%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF%E4%B8%8E%E9%A2%84%E7%AE%97%E5%A4%8D%E6%A0%B8-e99723792527.html">专项复核</a>：首轮数据及20轮预算共同导致短时长。随后完成多采样诊断，392步与504步均值几乎相同，原先单组平台不证明长程无收益。<a href="07_%E7%AC%AC%E4%BA%8C%E8%BD%AE%E8%AE%AD%E7%BB%83%E9%A2%84%E7%AE%97%E5%AF%B9%E7%85%A7-81f44690799e.html">第二轮方案</a>及技术检查已完成，用户已确认接续，第二轮65轮／1820步训练及21项后核验通过；36组A/B已就绪，整体音乐判断仍需听验。</p>
+<p>完成约定训练、保存恢复、指标和必要可视化、生成及听验、报告和产物核验后，提交本次微调实验验收。届时分别说明实际完成项、未完成项、计划差异、结论边界及云端／本地／网站状态。</p>
+<p>当前反馈接续：用户原话为“A更贴合，现在两个都比较像戏曲伴奏了，但是这个伴奏听起来很乱很奇怪”；补充“比如a听起来伴奏很碎的感觉”“不连贯不好听”。记录A相对更贴合、两者风格较像戏曲，以及A碎片感强、连续性差、听感不好；不补写B的详细质量判断，不将A贴合优势作为整体胜出。误点的分类选项已撤回，不作为音乐意见。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/feedback.json">反馈（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/clarification_v1.json">有效补充（本轮未发布此证据文件）</span>与音频哈希分开保存，未查阅模型映射。只读核对确认这20秒内仅第10.004秒有一个生成窗口拼接；<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/plan.json">诊断片段（本轮未发布此证据文件）</span>取原A第1—9秒，逐样本等于源切片，无推理、滤波、增益改变或新增独立样本。下一步只判断无接缝片段中是否仍有碎片感，不能由单一接缝直接推出原因。</p>
+<p>2026-10-23定位结果：针对“这段也一样碎、不连贯吗”，用户回复“对”。确认范围仅为A在48.356—56.356秒的纯伴奏切片，未新增独立案例或严重程度评分。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/no_join_feedback_v1.json">原话与音频身份（本轮未发布此证据文件）</span>保留。已知的单个窗口拼接不是充分的唯一解释；训练、条件表示、生成过程、声码器与源数据的影响仍未区分。</p>
+<p>下一步使用现有原模型输出，按完全相同绝对位置和既定增益准备<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_no_join_accompaniment_01_09s.wav">8秒原模型纯伴奏（本轮未发布此证据文件）</span>。这是明确标注原模型的技术定位比较，不冒充新增盲测或性能样本，不解开其他A/B映射。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_comparison_plan.json">计划（本轮未发布此证据文件）</span>与<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_comparison_verification.json">核验（本轮未发布此证据文件）</span>确认源文件哈希、时长和播放增益，无重采样、滤波、生成或更新；原模型连续性仍待用户判断。</p>
+<p>原模型连续性反馈：用户原话“好一些了，现在比之前连贯一些”，绑定原模型48.356—56.356秒纯伴奏，只确认比之前长程A更连贯一些；不补写风格、整体可用或“完全连贯”。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/pretrained_continuity_feedback_v1.json">原话与身份（本轮未发布此证据文件）</span>先落盘后，仅向当前分析返回budget／CASE01映射：A=1820步长程、B=504步短程。其余案例映射未用于当前判断。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/case01_mapping_reveal_v1.json">揭示范围与时间（本轮未发布此证据文件）</span>保留；后续该组诊断明确为已知模型身份的比较，不追称盲听。</p>
+<p>当前已知长程A更贴合但连续性差，原模型同段更连贯；短程B纯伴奏连续性尚未单独评。已按相同位置、既定增益取<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_504_no_join_accompaniment_01_09s.wav">504步短程8秒（本轮未发布此证据文件）</span>，源PCM切片逐样本一致，无新推理。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_comparison_plan.json">计划（本轮未发布此证据文件）</span>限定本轮只补这一个连续性判断，然后汇总证据，不自动再加训练、试听材料或新数据。尚不能说训练越久越碎，也不根据单段断言数据规模、某个模块或辅助损失是原因。</p>
+<p>局部对照收束：用户对504步短程同位置8秒反馈“好一点点”，仅记相对1820步长程连续性略好，不记短程已经连贯、碎片感消失或质量合格。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/short_continuity_feedback_v1.json">原话与身份（本轮未发布此证据文件）</span>保留。原模型、短程各自相对长程有连续性改善反馈，但二者没有直接比较，不能按用词强弱排序。初始长程更贴合与后续连续性差并列保留，独立案例仍为1，不推广到全部录音。</p>
+<p>此前已按ARS实验plan准备<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html">08连续性问题定位方案</a>，停止继续切同段生成材料。用户在该方案后回复“继续”，现按run流程完成单次参考重建：R0011第二窗1434帧完整解码后取同一8秒，绕过FM，不加载旋律编码器、不更新参数、不使用测试。既有<span class="reader-missing" title="../../runs/anyaccomp_continuity_probe_preparation_20261023_v1/">准备目录（本轮未发布此证据文件）</span>保留原状态；实际证据在<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/">新probe目录（本轮未发布此证据文件）</span>。</p>
+<p>该检查33项技术核验通过，原生解码重叠相加可复现；参数指纹不变，279个权重张量严格加载，原始输入／WAV／权重／解码辅助代码未改。实际峰值已分配／预留显存1.043／1.057GiB，5份WAV含完整窗口FLOAT与固定8秒的参考／重建FLOAT及播放版；两播放版同增益1.0。单次目标重建不计入36组生成对照，不能据谱图或波形距离认定声码器已排除。启动前系统Python3.8兼容问题已通过使用既有独立Python3.9环境解决，发生在模型执行前，见<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/launch_environment_repair.json">修复记录（本轮未发布此证据文件）</span>。</p>
+<p>后续用户反馈：“还原的很好啊”，已绑定同位置的参考／重建音频哈希，见<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json">记录（本轮未发布此证据文件）</span>。只认可该位置重建效果，不补写全局声码器验收或独立连续性评分。该步骤完成，下一重点为生成频谱与微调／推理。</p>
+<p>只读核对reverse_diffusion确认，当前cfg3使用conditional + cfg×(conditional−unconditional)及原重缩放，cfg0保留人声条件、跳过额外引导分支；两设置不能分开识别外推和重缩放的作用。原<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_preparation_20261023_v1/">准备目录（本轮未发布此证据文件）</span>及配置保持准备时状态。</p>
+<p>用户随后说“下一步”，已按该方案执行。实际<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/">新目录（本轮未发布此证据文件）</span>记录命令、授权、快照、日志、资源与结果。46项脚本检查及36项产物复核通过：实际初始噪声／条件哈希相同，cfg3精确复现历史同窗口Mel及固定8秒原始FLOAT波形，FM与声码器参数指纹不变。50步生成本体cfg3／0分别约2.164／0.977秒，总计30.06秒；FM已分配／预留峰值1.165／1.250GiB，声码器1.041／1.061GiB，分阶段测量。</p>
+<p>两段共用播放增益0.868133532，cfg0自身音量较轻，记录这一混杂因素，不把音量下降直接记为连续性改善。音乐反馈尚无，现仅等待两段的连贯性与戏曲风格判断。无训练、更新、测试或正式评价设置变更，不自动搜索更多系数。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/AnyAccomp微调实验/03_运行与评价记录.md（路径已脱敏）","sha256":"c64b5b3055346e19ac636b69fde96b6d2cce6ba79240bae01813b166f744abc6","text":"# 运行与评价记录\n\n更新：2026-10-23。**S6已完成cfg3／0固定位置生成对照，46项脚本检查及36项产物复核通过，等待连贯性与风格反馈。参考重建获用户认可；第二轮训练已结束，整体生成音乐优势仍未确认。** 返回[实验总览](../AnyAccomp歌仔戏微调实验.md)。\n\n## 1. 当前接续记录\n\n| 项目 | 当前记录 |\n| --- | --- |\n| 当前阶段 | S6引导3／0对照技术通过，等待固定8秒的连贯性及戏曲风格反馈；原因未确定 |\n| 已获授权 | 按阶段执行，新增代码／常规核验无需逐项请示；用户在cfg3／0具体方案后说“下一步”，执行此单窗口推理诊断；各次训练、重建授权分别保留，不扩展第三轮训练 |\n| 仍需用户参与 | 错误、核心方案／预算变更及音乐听验；测试评价前冻结最终方案 |\n| 最近产出 | cfg3／0完整窗口生成Mel与固定音频、实际噪声／条件哈希、历史cfg3精确复现、46＋36项检查、报告与图；约30秒，0更新 |\n| 下一项 | 用户判断08第7节第二段是否更连贯、戏曲感是否保留；先汇总这一对，不自动搜索参数或启动第三轮训练 |\n| 本轮停止条件 | 执行至需要用户音乐判断或实质取舍；遇错误停止相关环节并说明，不用测试集调参 |\n\n新对话或上下文恢复时先读总览和本节，再读下一步所需子文档。本文记录人的实际行动与证据，不声称自动约束或自动验证执行。\n\n## 2. 关键决定\n\n| 编号 | 事项 | 当前状态／依据 |\n| --- | --- | --- |\n| D0 | 建立持续记录全过程、可看清进度并可用于网站的Markdown文档，使用Skill维护 | 用户本轮明确要求，已按该范围执行 |\n| D1 | 冻结旋律编码器和声码器，仅微调FM主损失，暂不实现REPA | 用户授权按既有阶段推进后，沿用该建议实现；未另行宣称完整作者配方复现 |\n| D2 | 完整保留最长1506帧输入；上限20轮／560次更新／2小时 | 试运行实测后，在明确列出该范围的启动问题中，用户回复“现在启动首轮正式微调” |\n| D3 | 新增代码、常规配置与检查不逐项请示 | 用户原话：“接下来就是按阶段来执行，新增代码什么的不要和我请示了，碰到需要我决定的或者是出错再和我说” |\n| D4 | 第二轮从原模型开始，固定2800步学习率周期、4组采样验证及新停止规则 | 已执行授权；10月23日用户在具体第二轮启动问题后回复“继续”；原话、预算范围与配置保存在新控制目录authorization.json |\n| D5 | 固定一处真实目标频谱经冻结声码器重建，隔离还原链路 | 用户在08单次方案后回复“继续”；已执行，绕过FM、无参数更新，不构成第三轮训练授权 |\n| D6 | 同一1820步模型、同一窗口／噪声，比较额外引导cfg3与0 | 用户在具体两设置方案后说“下一步”；约30秒完成，仅推理诊断，保留原正式生成比较设置 |\n\n用户确认时记录日期、原话、对应方案版本及影响。文档创建或普通状态询问不作为D1／D2的同意；改变方案时保留先前决定和变更原因，不覆盖历史。\n\n## 3. 阶段事件\n\n| 日期 | 实际行动 | 产出／范围 |\n| --- | --- | --- |\n| 2026-10-22，前轮 | 只读盘点数据、源码、权重、输入和资源，提出首轮方案 | 详见[证据](02_准备盘点与证据.md)；无优化器或GPU模型计算 |\n| 2026-10-22，本轮 | 用ARS实验规划工作流分配文档职责，写入当前事实、方案建议与待决定项，更新入口与维护约定 | 文档已落地；维护证据位于runs/anyaccomp_finetune_documentation_20261022_v1/ |\n| 2026-10-22，执行阶段 | 按新授权实现独立训练器，CPU预检与5环节GPU试运行通过 | 试运行约92.74秒，连续8步＋恢复验证4步，正式训练另从原模型开始 |\n| 2026-10-22，19:42:24起（北京时间） | 明确授权后启动首轮正式微调 | 物理GPU6，PID2257835；实时进度见下表 |\n| 2026-10-22，19:50:41（北京时间） | 18轮／504次更新后按约定早停、正常退出 | 最佳第392步，固定验证FM损失下降约24.9%；冻结参数不变 |\n| 2026-10-22，19:53:40（北京时间） | 验证集两个模型各3种子生成完成 | 4首13窗口，78份Mel、24份20秒A/B试听，人工反馈尚无 |\n| 2026-10-22，首次听验反馈 | CASE01两者都不理想；A更像戏曲伴奏、B偏流行乐 | 原话已保存；只确认局部风格倾向，不确认可用性或模型整体优势 |\n| 2026-10-22，第二份录音反馈 | CASE04仍为A较像戏曲、B偏流行乐 | 已覆盖2／4首；本次未评价整体质量，不继承CASE01质量判断 |\n| 2026-10-22，时长质疑与复核 | 用户询问正式微调为何仅数分钟、是否因数据少；CPU核对计时、权重及早停 | 44分28秒数据、28更新／轮、20轮预算；跑满约9分钟；不据此认定训练充分 |\n\n新增接续：用户明确不希望实验停止后，完成约52.20秒的训练4组／验证8组采样诊断（0次更新），实现第二轮入口并完成连续2步＋恢复重复1步及训练短段生成，均通过；第二轮正式训练未启动。\n\n2026-10-23：用户回复“继续”后，按已呈现的第二轮方案重查资源，08:31启动新正式训练。物理GPU0空闲，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c；不沿用已有其他任务的GPU6。\n\n只保留影响阶段、方案、结论或交付的事件；普通读取与已解决的格式问题不逐条记录。\n\n## 4. 模型运行登记\n\n| 运行 | 状态与实际更新 | 核验入口 |\n| --- | --- | --- |\n| [CPU预检](../../runs/anyaccomp_finetune_preflight_20261022_v1/result.json) | 通过；112训练单元、133,420帧；无模型运行 | 读取、哈希、源码、环境检查 |\n| [最小试运行](../../runs/anyaccomp_finetune_smoke_v1/status.json) | 全部5环节通过；连续8步＋重启重复4步，实际共12次优化器调用，不是12步连续训练 | [掩码](../../runs/anyaccomp_finetune_smoke_v1/audit/result.json)、[更新](../../runs/anyaccomp_finetune_smoke_v1/continuous/result.json)、[恢复比较](../../runs/anyaccomp_finetune_smoke_v1/compare/result.json)、[生成](../../runs/anyaccomp_finetune_smoke_v1/generation/result.json) |\n| [首轮正式微调](../../runs/anyaccomp_finetune_round1_v1_control/status.json) | 正常退出；18轮、504次更新；训练112个单元各读取18次；约496.97秒 | [报告](../../runs/anyaccomp_finetune_round1_v1_control/report.md)、[15项后核验](../../runs/anyaccomp_finetune_round1_v1_control/verification.json)、[曲线](../../runs/anyaccomp_finetune_round1_v1_control/training_curves.png) |\n| [验证集生成](../../runs/anyaccomp_finetune_validation_v1/result.json) | 正常退出，约152.86秒；78份Mel、24份20秒试听WAV；没有测试输入 | [12项后核验](../../runs/anyaccomp_finetune_validation_v1/verification.json)、[试听入口](05_验证集试听与反馈.md) |\n| [参考频谱重建](../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json) | 2026-10-23 09:42:16—09:42:30；约14.02秒，物理GPU0、PID1513639，已退出；0次更新、不加载FM | [报告](../../runs/anyaccomp_continuity_vocoder_probe_v1/report.md)、[33项检查](../../runs/anyaccomp_continuity_vocoder_probe_v1/verification.json)、[固定试听](08_连续性问题定位方案.md#6-实际结果与唯一待判断项) |\n| [引导3／0诊断](../../runs/anyaccomp_continuity_cfg_probe_v1/status.json) | 2026-10-23 10:50:18—10:50:48；约30.06秒，GPU0、PID1629501，已退出；0次更新 | [报告](../../runs/anyaccomp_continuity_cfg_probe_v1/report.md)、[46项检查](../../runs/anyaccomp_continuity_cfg_probe_v1/verification.json)、[36项产物复核](../../runs/anyaccomp_continuity_cfg_probe_v1/post_run_verification.json)、[固定试听](08_连续性问题定位方案.md#实际结果与试听) |\n\n本次新增[多采样诊断](../../runs/anyaccomp_round1_loss_diagnostic_v1/result.json)与[第二轮试运行](../../runs/anyaccomp_round2_smoke_v1/verification.json)，后者共3次优化器调用、连续轨迹仅2步，与首轮12次试运行及504次正式更新分开。此前试运行子进程均已退出；第二轮正式训练已于08:45退出，实际命令和后核验见下文。\n\n第一轮试运行使用物理GPU6，UUID为GPU-506e1173-874d-2d37-80c0-d24f1b2fbde1；控制PID2210630及所有子进程已退出。连续更新峰值已分配6.91GiB，固定训练样本验证自检损失0.169176→0.167998，不是验证集效果。恢复后的模型和优化器最大差异均为0，最终检查点SHA-256也完全相同。两组约10秒训练集生成音频技术通过，人工未听验；使用统一播放增益，原始FLOAT音频保留。\n\n正式训练控制PID2257831、训练PID2257835及验证生成PID2351271均已退出，物理GPU6／同一UUID。实际命令、时间、配置和源码身份保存在控制状态、训练snapshot及source_snapshot副本，GPU进程内编号为cuda:0。正式训练已分配／预留峰值6.93／12.27GiB，结束后GPU资源释放。\n\n仅有目录、进程退出0、损失下降或单个WAV，不足以登记“完整实验通过”。模型运行与文档维护分别计数，本文档维护目录不算模型运行。\n\n第二轮实际命令／状态：[status.json](../../runs/anyaccomp_finetune_round2_budget_v1_control/status.json)；[训练日志](../../runs/anyaccomp_finetune_round2_budget_v1_control/train.log)；[逐步事件](../../runs/anyaccomp_finetune_round2_budget_v1/events.jsonl)。源码、配置、授权及启动前资源均在新control目录保留。\n\n验证生成分阶段状态：[短程状态](../../runs/anyaccomp_finetune_round2_budget_v1_control/validation_short_status.json)，训练期间先在物理GPU1生成504步的全部验证材料；长程已按规则选择1820步；两次生成均正常退出并已统一四模型的播放增益、随机A/B。\n\n第二轮实际训练结果：约835.31秒，平台规则停止，最佳与最终均为1820步；已分配／预留峰值6.93／12.27GiB。4组固定采样均值为原模型0.241777442、504步0.196940780、1820步0.189188883；长程比本轮短程低3.94%，比原模型低21.75%。这不是音乐评分。21项核验、曲线及5份检查点清单见[正式报告](../../runs/anyaccomp_finetune_round2_budget_v1_control/report.md)和[核验](../../runs/anyaccomp_finetune_round2_budget_v1_control/verification.json)。\n\n## 5. 评价与听验结果\n\n已有试运行训练短段与正式验证集对照；人工反馈2／12组，测试集未用于本次更新或生成。最终检查点不是第504步：按最低固定验证FM损失选择第392步，路径runs/anyaccomp_finetune_round1_v1/best.pt。\n\n验证生成配置已在configs/anyaccomp_validation_generation_v1.json固定：全部4首、13窗口、种子1024／1025／1026、50步、引导3、重缩放0.75、不提供真实伴奏提示；每首中间20秒形成随机A/B试听，三个种子都保留。独立窗口直接衔接，不以额外交叉淡化掩盖接缝。参考距离和色度／能量诊断只作辅助，不代替音乐听验。\n\n| 量 | 原模型 | 最佳微调模型 | 含义 |\n| --- | ---: | ---: | --- |\n| 固定验证FM损失 | 0.196152 | 0.147304 | 训练目标下降约24.9%；不是听感评分 |\n| 生成频谱到参考目标MSE | 0.899186 | 0.485184 | 标准化频谱参考距离诊断；配器并非唯一 |\n| 与参考伴奏色度余弦相似度 | 0.425870 | 0.444225 | 24维色度、同时间网格；不等于和声正确率 |\n| 与参考能量上升包络余弦相似度 | 0.219417 | 0.296433 | 1920点RMS、480点步长的正差分；不等于节拍准确率 |\n\n后三项每首先平均3种子，再对4首等权平均；明细见[指标](../../runs/anyaccomp_finetune_validation_v1/metrics.json)，定义与聚合见[汇总](../../runs/anyaccomp_finetune_validation_v1/diagnostic_summary.json)。这里只报告参考接近程度，不据此判定音乐优势。\n\nCASE01（R0011、种子1024、中间20秒）原话：“虽然两个都不咋样，但A更偏向于戏曲伴奏，B则完全是流行乐风”。登记为两者整体不理想、A的戏曲风格相对更接近；不补写其他维度评分，不登记验收通过。[CASE01原始记录](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/feedback.json)保持不变。\n\nCASE04（R0021、同一种子）原话：“依旧是A组听起来更接近戏曲伴奏，B组还是流行乐风”。仅登记风格差异，整体质量未在该回复中评价。[CASE04原始记录](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/feedback.json)单独保存；不查阅或揭示模型映射，不能按A/B字母跨组归因于模型。听验接续为CASE07，当前先处理训练时长问题。\n\n后续记录固定生成条件、种子、片段及其选择时间、检查点选择依据、逐录音指标、A/B顺序与原始听验反馈；区分生成音频本身和与人声混合试听的结果。保留改善、持平、退化及无法判断，不只列最佳样本。\n\n测试集仅在方案冻结后评价。发现测试结果不佳时照实报告；不能将改动后的再次评价继续称为原冻结方案的一次最终评价。\n\n第二轮短程／长程生成分别用时148.61／146.69秒（控制进程墙钟），生成PID1410870／1421061已退出，物理GPU1资源释放。最终材料在[听验包](../../runs/anyaccomp_finetune_round2_listening_v1/result.json)，包含预算比较、原模型参照、第一轮参照各12组；同4首录音的重复比较不增加独立样本量。当前第二轮预算比较已反馈1／12组，覆盖1首／1种子；首轮原始2组反馈保留不变。\n\n## 6. 当前结论与实验结束条件\n\n目前已完成首轮短程微调基线，训练和生成链路通过、数值目标改善；两份录音均取得风格差异观察，但未建立模型整体优势。CASE01两者整体不理想，CASE04质量尚未评价。929验收保持不变；冻结summary中的0次更新是交付快照，本次另有504次正式更新与12次试运行调用，不能混成516步训练。\n\n用户对训练时长的质疑已做[专项复核](06_首轮训练时长与预算复核.md)：首轮数据及20轮预算共同导致短时长。随后完成多采样诊断，392步与504步均值几乎相同，原先单组平台不证明长程无收益。[第二轮方案](07_第二轮训练预算对照.md)及技术检查已完成，用户已确认接续，第二轮65轮／1820步训练及21项后核验通过；36组A/B已就绪，整体音乐判断仍需听验。\n\n完成约定训练、保存恢复、指标和必要可视化、生成及听验、报告和产物核验后，提交本次微调实验验收。届时分别说明实际完成项、未完成项、计划差异、结论边界及云端／本地／网站状态。\n\n\n当前反馈接续：用户原话为“A更贴合，现在两个都比较像戏曲伴奏了，但是这个伴奏听起来很乱很奇怪”；补充“比如a听起来伴奏很碎的感觉”“不连贯不好听”。记录A相对更贴合、两者风格较像戏曲，以及A碎片感强、连续性差、听感不好；不补写B的详细质量判断，不将A贴合优势作为整体胜出。误点的分类选项已撤回，不作为音乐意见。\n\n[反馈](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/feedback.json)、[有效补充](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/clarification_v1.json)与音频哈希分开保存，未查阅模型映射。只读核对确认这20秒内仅第10.004秒有一个生成窗口拼接；[诊断片段](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/plan.json)取原A第1—9秒，逐样本等于源切片，无推理、滤波、增益改变或新增独立样本。下一步只判断无接缝片段中是否仍有碎片感，不能由单一接缝直接推出原因。\n\n\n2026-10-23定位结果：针对“这段也一样碎、不连贯吗”，用户回复“对”。确认范围仅为A在48.356—56.356秒的纯伴奏切片，未新增独立案例或严重程度评分。[原话与音频身份](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/no_join_feedback_v1.json)保留。已知的单个窗口拼接不是充分的唯一解释；训练、条件表示、生成过程、声码器与源数据的影响仍未区分。\n\n下一步使用现有原模型输出，按完全相同绝对位置和既定增益准备[8秒原模型纯伴奏](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_no_join_accompaniment_01_09s.wav)。这是明确标注原模型的技术定位比较，不冒充新增盲测或性能样本，不解开其他A/B映射。[计划](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_comparison_plan.json)与[核验](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_comparison_verification.json)确认源文件哈希、时长和播放增益，无重采样、滤波、生成或更新；原模型连续性仍待用户判断。\n\n\n原模型连续性反馈：用户原话“好一些了，现在比之前连贯一些”，绑定原模型48.356—56.356秒纯伴奏，只确认比之前长程A更连贯一些；不补写风格、整体可用或“完全连贯”。[原话与身份](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/pretrained_continuity_feedback_v1.json)先落盘后，仅向当前分析返回budget／CASE01映射：A=1820步长程、B=504步短程。其余案例映射未用于当前判断。[揭示范围与时间](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/case01_mapping_reveal_v1.json)保留；后续该组诊断明确为已知模型身份的比较，不追称盲听。\n\n当前已知长程A更贴合但连续性差，原模型同段更连贯；短程B纯伴奏连续性尚未单独评。已按相同位置、既定增益取[504步短程8秒](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_504_no_join_accompaniment_01_09s.wav)，源PCM切片逐样本一致，无新推理。[计划](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_comparison_plan.json)限定本轮只补这一个连续性判断，然后汇总证据，不自动再加训练、试听材料或新数据。尚不能说训练越久越碎，也不根据单段断言数据规模、某个模块或辅助损失是原因。\n\n\n局部对照收束：用户对504步短程同位置8秒反馈“好一点点”，仅记相对1820步长程连续性略好，不记短程已经连贯、碎片感消失或质量合格。[原话与身份](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/short_continuity_feedback_v1.json)保留。原模型、短程各自相对长程有连续性改善反馈，但二者没有直接比较，不能按用词强弱排序。初始长程更贴合与后续连续性差并列保留，独立案例仍为1，不推广到全部录音。\n\n此前已按ARS实验plan准备[08连续性问题定位方案](08_连续性问题定位方案.md)，停止继续切同段生成材料。用户在该方案后回复“继续”，现按run流程完成单次参考重建：R0011第二窗1434帧完整解码后取同一8秒，绕过FM，不加载旋律编码器、不更新参数、不使用测试。既有[准备目录](../../runs/anyaccomp_continuity_probe_preparation_20261023_v1/)保留原状态；实际证据在[新probe目录](../../runs/anyaccomp_continuity_vocoder_probe_v1/)。\n\n该检查33项技术核验通过，原生解码重叠相加可复现；参数指纹不变，279个权重张量严格加载，原始输入／WAV／权重／解码辅助代码未改。实际峰值已分配／预留显存1.043／1.057GiB，5份WAV含完整窗口FLOAT与固定8秒的参考／重建FLOAT及播放版；两播放版同增益1.0。单次目标重建不计入36组生成对照，不能据谱图或波形距离认定声码器已排除。启动前系统Python3.8兼容问题已通过使用既有独立Python3.9环境解决，发生在模型执行前，见[修复记录](../../runs/anyaccomp_continuity_vocoder_probe_v1/launch_environment_repair.json)。\n\n后续用户反馈：“还原的很好啊”，已绑定同位置的参考／重建音频哈希，见[记录](../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json)。只认可该位置重建效果，不补写全局声码器验收或独立连续性评分。该步骤完成，下一重点为生成频谱与微调／推理。\n\n只读核对reverse_diffusion确认，当前cfg3使用conditional + cfg×(conditional−unconditional)及原重缩放，cfg0保留人声条件、跳过额外引导分支；两设置不能分开识别外推和重缩放的作用。原[准备目录](../../runs/anyaccomp_continuity_cfg_probe_preparation_20261023_v1/)及配置保持准备时状态。\n\n用户随后说“下一步”，已按该方案执行。实际[新目录](../../runs/anyaccomp_continuity_cfg_probe_v1/)记录命令、授权、快照、日志、资源与结果。46项脚本检查及36项产物复核通过：实际初始噪声／条件哈希相同，cfg3精确复现历史同窗口Mel及固定8秒原始FLOAT波形，FM与声码器参数指纹不变。50步生成本体cfg3／0分别约2.164／0.977秒，总计30.06秒；FM已分配／预留峰值1.165／1.250GiB，声码器1.041／1.061GiB，分阶段测量。\n\n两段共用播放增益0.868133532，cfg0自身音量较轻，记录这一混杂因素，不把音量下降直接记为连续性改善。音乐反馈尚无，现仅等待两段的连贯性与戏曲风格判断。无训练、更新、测试或正式评价设置变更，不自动搜索更多系数。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05_验证集试听与反馈.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#experiments">← 返回微调目标与评价</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>05_验证集试听与反馈.md</h1><p>Markdown 文档 · 18,562 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#验证集试听与反馈">验证集试听与反馈</a><ul>
+<li><a href="#1-这一步判断什么">1. 这一步判断什么</a></li>
+<li><a href="#2-怎样听与反馈">2. 怎样听与反馈</a></li>
+<li><a href="#3-试听入口">3. 试听入口</a></li>
+<li><a href="#4-已取得的反馈">4. 已取得的反馈</a></li>
+<li><a href="#5-材料与结论边界">5. 材料与结论边界</a></li>
+<li><a href="#6-第二轮训练预算对照入口">6. 第二轮训练预算对照入口</a><ul>
+<li><a href="#第二轮第一组反馈与定位">第二轮第一组反馈与定位</a></li>
+<li><a href="#原模型对照结果与该组身份揭示">原模型对照结果与该组身份揭示</a></li>
+<li><a href="#本轮局部对照收束">本轮局部对照收束</a></li>
+</ul>
+</li>
+<li><a href="#7-单位置参考重建诊断">7. 单位置参考重建诊断</a></li>
+<li><a href="#8-单位置额外引导对照">8. 单位置额外引导对照</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\AnyAccomp微调实验\05_验证集试听与反馈.md</p><p>SHA-256：c7570e62be3d5bd639dbbb20bb383b01c7c75c1a12a3b66315e4d1b133877eb8</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="验证集试听与反馈">验证集试听与反馈</h1>
+<p>更新：2026-10-23。<strong>第二轮预算比较已反馈1／12组：A更贴合、两者较像戏曲，但A碎、不连贯、不好听；当前定位连续性问题。首轮2／12组反馈原样保留，见第1–5节；第二轮入口见第6节。</strong> 返回<a href="AnyAccomp%E6%AD%8C%E4%BB%94%E6%88%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E9%AA%8C-a42ad67f0ca3.html">实验总览</a>。</p>
+<h2 id="1-这一步判断什么">1. 这一步判断什么</h2>
+<p>比较原模型与本轮验证损失最佳的第392步模型，判断哪一份伴奏更贴合人声、更符合歌仔戏风格，节奏与收放是否合适，以及音色、伪影和窗口接缝是否影响使用。A／B顺序随机，文件名不标模型；同一组的人声、种子、时长和增益相同。</p>
+<p>这是模型输出听验，不重新验收929源音频或分离质量。四首均为验证录音，测试不参与；本次用户听验不称多听众MOS或独立人员复现。</p>
+<h2 id="2-怎样听与反馈">2. 怎样听与反馈</h2>
+<p><strong>首轮CASE01、CASE04已反馈；若接着首轮听，下一首为CASE07。当前研究优先接续第二轮budget／CASE01，见第6节。</strong> 训练时长与数据规模问题已复核并实施第二轮，不要求无目的地反复听同一段。原有12组全部保留，不因结果删换样本，其他种子仍待检查。</p>
+<p>可直接回复：“CASE07：A较好／B较好／持平／无法判断；原因……”。风格与整体质量分别记录；例如更像戏曲的一份是否仍不理想。没有听出变化就如实记录，不强行解释。</p>
+<p>每首固定取中间20秒，位置在生成前登记；可能跨数字窗口边界。完整生成结果及无增益FLOAT音频另行保留，先不要求全长反复试听。</p>
+<h2 id="3-试听入口">3. 试听入口</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>验证录音／种子</th>
+<th>A</th>
+<th>B</th>
+<th>人工反馈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CASE01</td>
+<td>R0011 五更鼓／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE01_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE01_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>两者整体均不理想；A更接近戏曲伴奏，B完全偏流行乐风；未接受整体质量</td>
+</tr>
+<tr>
+<td>CASE02</td>
+<td>R0011 五更鼓／1025</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE02_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE02_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE03</td>
+<td>R0011 五更鼓／1026</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE03_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE03_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE04</td>
+<td>R0021 南風謠／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE04_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE04_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>A听起来更接近戏曲伴奏，B仍是流行乐风；本次未评价整体质量</td>
+</tr>
+<tr>
+<td>CASE05</td>
+<td>R0021 南風謠／1025</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE05_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE05_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE06</td>
+<td>R0021 南風謠／1026</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE06_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE06_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE07</td>
+<td>R0028 桃花過渡／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE07_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE07_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE08</td>
+<td>R0028 桃花過渡／1025</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE08_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE08_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE09</td>
+<td>R0028 桃花過渡／1026</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE09_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE09_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE10</td>
+<td>R0032 破窯二調／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE10_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE10_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE11</td>
+<td>R0032 破窯二調／1025</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE11_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE11_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>CASE12</td>
+<td>R0032 破窯二調／1026</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE12_A.wav">试听A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening/CASE12_B.wav">试听B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-已取得的反馈">4. 已取得的反馈</h2>
+<p>2026-10-22，用户对CASE01原话：“虽然两个都不咋样，但A更偏向于戏曲伴奏，B则完全是流行乐风”。<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/feedback.json">原话与范围记录（本轮未发布此证据文件）</span>绑定当前20秒材料；<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/metadata.json">音频身份（本轮未发布此证据文件）</span>保留哈希。</p>
+<p>可确认的局部观察是A在戏曲风格上相对接近、B明显偏流行乐，且两者总体质量均未获认可。贴合唱腔、节奏、音色伪影及接缝尚未分别评价，不自动补齐评分；不将A的风格倾向写成整体胜出或可用。</p>
+<p>2026-10-22，用户对CASE04原话：“依旧是A组听起来更接近戏曲伴奏，B组还是流行乐风”。<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/feedback.json">CASE04原始反馈（本轮未发布此证据文件）</span>及<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/metadata.json">音频身份（本轮未发布此证据文件）</span>已保存。本次只明确风格差异，不把CASE01的整体不满意自动继承为CASE04的质量判定。</p>
+<p>两份录音都出现了戏曲风格与流行风格的主观区别，但A/B每组独立随机，尚未查阅或揭示模型映射，不能按字母直接汇总成某个模型胜出。反馈仅覆盖一种子、两段20秒，不代表整首、其他种子或整个验证集。</p>
+<h2 id="5-材料与结论边界">5. 材料与结论边界</h2>
+<p>生成条件：无真实伴奏提示、50步、引导系数3、重缩放0.75；种子1024／1025／1026，每个窗口噪声由种子与输入ID确定，两个模型使用相同噪声。保留独立窗口直接衔接的接缝，不通过额外交叉淡化掩盖差异；每首在两个模型及全部种子之间共用一个安全播放增益，原始输出另存。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/plan.json">生成计划（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/result.json">技术结果（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_validation_v1/verification.json">后核验（本轮未发布此证据文件）</span>确认4首、13窗口、78份Mel及24份20秒试听WAV可读。完整音频在runs/anyaccomp_finetune_validation_v1/audio_raw/。</p>
+<p>数值验证FM损失下降约24.9%，参考频谱距离、色度及能量上升包络诊断也有变化；这些不单独证明听感更好。已反馈2组、其余10组待反馈；CASE01整体质量未获认可，CASE04整体质量未评价。局部反馈不扩展成整首已听验，四首验证录音不足以代表整个歌仔戏领域。</p>
+<h2 id="6-第二轮训练预算对照入口">6. 第二轮训练预算对照入口</h2>
+<p>第二轮65轮／1820步及技术核验完成；现在判断它是否比同一学习率轨迹上的18轮／504步更好。每组随机A/B不标模型身份，与首轮的A/B字母没有固定对应。以下为同人声的混合试听，纯伴奏版本保存在同目录的同编号文件中。</p>
+<table>
+<thead>
+<tr>
+<th>首次顺序</th>
+<th>录音／种子</th>
+<th>混合A</th>
+<th>混合B</th>
+<th>当前反馈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>budget／CASE01</td>
+<td>R0011 五更鼓／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE01_A_mixture.wav">A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE01_B_mixture.wav">B（本轮未发布此证据文件）</span></td>
+<td>A更贴合；两者较像戏曲；A碎、不连贯、不好听，窗口内部纯伴奏也有此感受</td>
+</tr>
+<tr>
+<td>budget／CASE04</td>
+<td>R0021 南風謠／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE04_A_mixture.wav">A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE04_B_mixture.wav">B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>budget／CASE07</td>
+<td>R0028 桃花過渡／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE07_A_mixture.wav">A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE07_B_mixture.wav">B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+<tr>
+<td>budget／CASE10</td>
+<td>R0032 破窯二調／1024</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE10_A_mixture.wav">A（本轮未发布此证据文件）</span></td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE10_B_mixture.wav">B（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+</tbody>
+</table>
+<p>第一组已反馈，以下为后续记录方式：“第二轮budget／CASE01：A／B更像戏曲伴奏；与唱腔配合如何；两者整体可用性如何／没有明显区别”。没有评价的维度留空，不补写评分。A更像戏曲不自动等于整体更好；两者都差也如实记录。</p>
+<p>各首使用生成前已固定的中间20秒；CASE01为R0011的47.356—67.356秒。先听纯伴奏可判断配器、伪影，再听mixture判断与人声配合。四个模型、三个种子在同一录音上共用一个安全播放增益；原始FLOAT全长音频保留，独立窗口接缝不做交叉淡化。</p>
+<p>材料还保留原模型／长程和第一轮／长程参照各12组，加上预算比较共36组。先按全部4首的1024种子顺序小步听验，不要求一次听完36组；种子1025／1026作为重复生成保留。三类比较回答不同问题，不把它们合并成一个胜率，也不将重复录音当作新样本。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_cases.json">公开材料索引（本轮未发布此证据文件）</span>给出录音、种子、片段、文件与增益，不列A/B模型映射；映射另存，反馈前不揭示。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/result.json">材料结果（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/diagnostic_summary.json">参考距离诊断（本轮未发布此证据文件）</span>与<a href="07_%E7%AC%AC%E4%BA%8C%E8%BD%AE%E8%AE%AD%E7%BB%83%E9%A2%84%E7%AE%97%E5%AF%B9%E7%85%A7-81f44690799e.html">第二轮方案及结果</a>可追溯。当前第二轮预算比较反馈1／12组、覆盖1首的一段，整体音乐优势未确认；首轮CASE01／04原话及绑定文件不变。</p>
+<h3 id="第二轮第一组反馈与定位">第二轮第一组反馈与定位</h3>
+<p>原话：“A更贴合，现在两个都比较像戏曲伴奏了，但是这个伴奏听起来很乱很奇怪”。补充：“比如a听起来伴奏很碎的感觉”“不连贯不好听”。这明确了A的碎片感、连续性与负面质量感受，不把B也写成同样的详细评价；较贴合不等于整体质量合格。误选的“说不清，整体就很怪”已由用户撤回，不用于分类。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/feedback.json">原话与音频身份（本轮未发布此证据文件）</span>及<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/clarification_v1.json">有效补充（本轮未发布此证据文件）</span>保留。暂无证据把问题归因于音高、节奏、声码器、训练数据或分离残留。</p>
+<p>原20秒在第10.004秒跨一次生成窗口；为检查单个窗口内部是否已经碎，取同一A的第1—9秒纯伴奏，绝对48.356—56.356秒。切片按冻结时间位置选取，不按听感挑选；逐样本保持，原20秒对照与指标不替换。该诊断不增加独立案例，反馈计数仍为1组。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/A_no_join_accompaniment_01_09s.wav">8秒纯伴奏A（本轮未发布此证据文件）</span>／<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/A_no_join_mixture_01_09s.wav">同段混合版（本轮未发布此证据文件）</span>／<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/verification.json">切片核验（本轮未发布此证据文件）</span>。用户随后回复“对”，确认无接缝的纯伴奏内也有碎片感与不连贯。实际拼接不能独自解释这一现象，也不能只按叠加人声后才出现的问题处理；仍未确定训练、条件、声码器或数据影响。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/no_join_feedback_v1.json">窗口内部确认记录（本轮未发布此证据文件）</span>保存问题、原话“对”与原8秒文件哈希。该确认不增加独立录音或预算比较反馈组数。</p>
+<p>下一小步：<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_no_join_accompaniment_01_09s.wav">原预训练模型同位置8秒纯伴奏（本轮未发布此证据文件）</span>。与之前A保持相同人声条件、窗口、种子、生成配置、绝对48.356—56.356秒及播放增益；原始FLOAT输出不改动，只取固定切片并保存播放版。先只判断“原模型也碎／明显更连贯／无法判断”，暂不比较戏曲风格。若原模型更连贯，提示当前微调输出的连续性需要进一步比较；若原模型也碎，则现象不限于已听微调输出。单位置结果不能独自证明某个技术原因，后续再据证据缩小范围。</p>
+<h3 id="原模型对照结果与该组身份揭示">原模型对照结果与该组身份揭示</h3>
+<p>用户对原模型同位置8秒反馈：“好一些了，现在比之前连贯一些”。只记局部连续性相对改善，不记整体质量通过或“原模型完全连贯”。该反馈先保存到<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/pretrained_continuity_feedback_v1.json">原话记录（本轮未发布此证据文件）</span>，随后仅解开已完成初始反馈的budget／CASE01：<strong>A为1820步长程，B为504步短程</strong>。其余组的随机顺序不用于本次判断；从此该组补充诊断均明确为已知身份的比较，不能追称盲听。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>目前这段的听验结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原预训练</td>
+<td>同位置8秒比长程A更连贯一些；本次风格、整体质量未单独评价</td>
+</tr>
+<tr>
+<td>504步短程，原B</td>
+<td>初始20秒风格较像戏曲、贴合度相对不及A；同位置8秒反馈比长程“好一点点”，未判定已连贯或可用</td>
+</tr>
+<tr>
+<td>1820步长程，原A</td>
+<td>初始20秒更贴合；窗口内部纯伴奏仍有碎片感、不连贯、听感不好</td>
+</tr>
+</tbody>
+</table>
+<p>下一步只补<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_504_no_join_accompaniment_01_09s.wav">504步短程同位置8秒纯伴奏（本轮未发布此证据文件）</span>，先判断它比长程A更连贯还是也同样碎。片段为完全相同绝对48.356—56.356秒，既定播放增益不变；这是现有原B的PCM精确切片，没有新生成、重采样或处理。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_comparison_verification.json">切片核验（本轮未发布此证据文件）</span>保留。当前只出现“贴合度与连续性未同时改善”的局部信号；尚不足以断言训练越久越碎或确定原因。本轮收到这一判断后先汇总方案，不继续增加试听材料；原固定20秒性能对照不替换，独立案例计数仍为1。</p>
+<h3 id="本轮局部对照收束">本轮局部对照收束</h3>
+<p>用户对短程8秒原话：“好一点点”，按前一问题记为504步相对1820步长程的连续性略好；不推断短程已达标、完全连贯或碎片感消失。<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/short_continuity_feedback_v1.json">原话记录（本轮未发布此证据文件）</span>绑定原文件哈希。原模型与短程均曾相对长程得到改善反馈，但未直接比较二者，不能从“好一些”与“好一点点”建立排序。</p>
+<p>此前停止追加生成音频切片，固定这一处证据后先汇总方案。结论是局部出现贴合度与连续性未同步改善的信号，不是整体模型排名或过拟合定论。下一步技术方案见<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html">08</a>；随后用户回复“继续”，已执行其中一次参考频谱重建，区别于原模型生成A/B。</p>
+<h2 id="7-单位置参考重建诊断">7. 单位置参考重建诊断</h2>
+<p>2026-10-23完成一次真实目标频谱→冻结声码器检查：同一R0011绝对48.356—56.356秒，完整窗口解码后取8秒。不是根据人声生成，也不是新增独立案例；不替换原36组，不计入预算比较反馈组数。33项技术检查通过，0次更新；后续用户反馈“还原的很好啊”。</p>
+<p>先听<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reference_8s_playback.wav">参考伴奏（本轮未发布此证据文件）</span>，再听<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reconstruction_8s_playback.wav">参考频谱重建（本轮未发布此证据文件）</span>。两段均24kHz、8秒、共用增益1.0；这里只比较两者是否有新增碎片感，不与此前不同增益的生成片段按响度打分。参考原生44.1kHz，沿用原librosa加载约定转24kHz，原WAV保持。</p>
+<p>原问题：“与参考相比，重建有没有明显变碎、变得不连贯？” 用户原话：<strong>“还原的很好啊”</strong>。按该片段重建效果获认可记录，不另造连续性评分，不推广到全部录音或生成频谱。<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json">原话、范围及两音频哈希（本轮未发布此证据文件）</span>齐全，本步骤完成。本诊断明确展示身份，不称盲测；原执行报告保留当时待反馈状态，后续以本节与反馈记录为准。</p>
+<p>据此优先检查生成频谱和微调／推理，尚不能完全排除声码器对异常生成频谱的反应。随后用户说“下一步”，已执行<a href="08_%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%A1%88-b5771d2e20c0.html#7-下一项小实验只改变额外条件引导">08第7节</a>的cfg3／0诊断，不更改原36组正式生成条件。</p>
+<h2 id="8-单位置额外引导对照">8. 单位置额外引导对照</h2>
+<p>固定1820步模型、人声旋律编号、初始噪声和50步采样，比较cfg3与cfg0；cfg0仍有人声条件，只跳过额外引导和关联重缩放。完整窗口生成后取同一绝对48.356—56.356秒纯伴奏，24kHz、8秒。46项脚本检查及36项产物复核通过；重算cfg3的频谱和8秒原始波形均与旧长程结果完全相同，不是换了控制材料。</p>
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>音频</th>
+<th>待判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一段：原额外引导3</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg3_8s_playback.wav">播放（本轮未发布此证据文件）</span></td>
+<td>作为本次对照</td>
+</tr>
+<tr>
+<td>第二段：关闭额外引导0</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg0_8s_playback.wav">播放（本轮未发布此证据文件）</span></td>
+<td>是否更连贯，戏曲伴奏感觉是否保留</td>
+</tr>
+</tbody>
+</table>
+<p>两段共用增益0.868133532，第二段自身音量较轻，未分别匹配响度；请将音量差与连续性分开判断。无盲听声明、无新增独立案例、不增加原预算比较的反馈组数。当前尚无成对反馈，不宣布引导是原因或cfg0已修复问题；不自动追加系数搜索。<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/report.md">实际报告（本轮未发布此证据文件）</span>保留来源、指标、图及局限。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/AnyAccomp微调实验/05_验证集试听与反馈.md（路径已脱敏）","sha256":"c7570e62be3d5bd639dbbb20bb383b01c7c75c1a12a3b66315e4d1b133877eb8","text":"# 验证集试听与反馈\n\n更新：2026-10-23。**第二轮预算比较已反馈1／12组：A更贴合、两者较像戏曲，但A碎、不连贯、不好听；当前定位连续性问题。首轮2／12组反馈原样保留，见第1–5节；第二轮入口见第6节。** 返回[实验总览](../AnyAccomp歌仔戏微调实验.md)。\n\n## 1. 这一步判断什么\n\n比较原模型与本轮验证损失最佳的第392步模型，判断哪一份伴奏更贴合人声、更符合歌仔戏风格，节奏与收放是否合适，以及音色、伪影和窗口接缝是否影响使用。A／B顺序随机，文件名不标模型；同一组的人声、种子、时长和增益相同。\n\n这是模型输出听验，不重新验收929源音频或分离质量。四首均为验证录音，测试不参与；本次用户听验不称多听众MOS或独立人员复现。\n\n## 2. 怎样听与反馈\n\n**首轮CASE01、CASE04已反馈；若接着首轮听，下一首为CASE07。当前研究优先接续第二轮budget／CASE01，见第6节。** 训练时长与数据规模问题已复核并实施第二轮，不要求无目的地反复听同一段。原有12组全部保留，不因结果删换样本，其他种子仍待检查。\n\n可直接回复：“CASE07：A较好／B较好／持平／无法判断；原因……”。风格与整体质量分别记录；例如更像戏曲的一份是否仍不理想。没有听出变化就如实记录，不强行解释。\n\n每首固定取中间20秒，位置在生成前登记；可能跨数字窗口边界。完整生成结果及无增益FLOAT音频另行保留，先不要求全长反复试听。\n\n## 3. 试听入口\n\n| 编号 | 验证录音／种子 | A | B | 人工反馈 |\n| --- | --- | --- | --- | --- |\n| CASE01 | R0011 五更鼓／1024 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE01_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE01_B.wav) | 两者整体均不理想；A更接近戏曲伴奏，B完全偏流行乐风；未接受整体质量 |\n| CASE02 | R0011 五更鼓／1025 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE02_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE02_B.wav) | 待反馈 |\n| CASE03 | R0011 五更鼓／1026 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE03_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE03_B.wav) | 待反馈 |\n| CASE04 | R0021 南風謠／1024 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE04_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE04_B.wav) | A听起来更接近戏曲伴奏，B仍是流行乐风；本次未评价整体质量 |\n| CASE05 | R0021 南風謠／1025 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE05_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE05_B.wav) | 待反馈 |\n| CASE06 | R0021 南風謠／1026 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE06_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE06_B.wav) | 待反馈 |\n| CASE07 | R0028 桃花過渡／1024 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE07_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE07_B.wav) | 待反馈 |\n| CASE08 | R0028 桃花過渡／1025 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE08_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE08_B.wav) | 待反馈 |\n| CASE09 | R0028 桃花過渡／1026 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE09_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE09_B.wav) | 待反馈 |\n| CASE10 | R0032 破窯二調／1024 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE10_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE10_B.wav) | 待反馈 |\n| CASE11 | R0032 破窯二調／1025 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE11_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE11_B.wav) | 待反馈 |\n| CASE12 | R0032 破窯二調／1026 | [试听A](../../runs/anyaccomp_finetune_validation_v1/listening/CASE12_A.wav) | [试听B](../../runs/anyaccomp_finetune_validation_v1/listening/CASE12_B.wav) | 待反馈 |\n\n## 4. 已取得的反馈\n\n2026-10-22，用户对CASE01原话：“虽然两个都不咋样，但A更偏向于戏曲伴奏，B则完全是流行乐风”。[原话与范围记录](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/feedback.json)绑定当前20秒材料；[音频身份](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE01_20261022_v1/metadata.json)保留哈希。\n\n可确认的局部观察是A在戏曲风格上相对接近、B明显偏流行乐，且两者总体质量均未获认可。贴合唱腔、节奏、音色伪影及接缝尚未分别评价，不自动补齐评分；不将A的风格倾向写成整体胜出或可用。\n\n2026-10-22，用户对CASE04原话：“依旧是A组听起来更接近戏曲伴奏，B组还是流行乐风”。[CASE04原始反馈](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/feedback.json)及[音频身份](../../runs/anyaccomp_finetune_validation_v1/listening_feedback/CASE04_20261022_v1/metadata.json)已保存。本次只明确风格差异，不把CASE01的整体不满意自动继承为CASE04的质量判定。\n\n两份录音都出现了戏曲风格与流行风格的主观区别，但A/B每组独立随机，尚未查阅或揭示模型映射，不能按字母直接汇总成某个模型胜出。反馈仅覆盖一种子、两段20秒，不代表整首、其他种子或整个验证集。\n\n## 5. 材料与结论边界\n\n生成条件：无真实伴奏提示、50步、引导系数3、重缩放0.75；种子1024／1025／1026，每个窗口噪声由种子与输入ID确定，两个模型使用相同噪声。保留独立窗口直接衔接的接缝，不通过额外交叉淡化掩盖差异；每首在两个模型及全部种子之间共用一个安全播放增益，原始输出另存。\n\n[生成计划](../../runs/anyaccomp_finetune_validation_v1/plan.json)、[技术结果](../../runs/anyaccomp_finetune_validation_v1/result.json)、[后核验](../../runs/anyaccomp_finetune_validation_v1/verification.json)确认4首、13窗口、78份Mel及24份20秒试听WAV可读。完整音频在runs/anyaccomp_finetune_validation_v1/audio_raw/。\n\n数值验证FM损失下降约24.9%，参考频谱距离、色度及能量上升包络诊断也有变化；这些不单独证明听感更好。已反馈2组、其余10组待反馈；CASE01整体质量未获认可，CASE04整体质量未评价。局部反馈不扩展成整首已听验，四首验证录音不足以代表整个歌仔戏领域。\n\n\n## 6. 第二轮训练预算对照入口\n\n第二轮65轮／1820步及技术核验完成；现在判断它是否比同一学习率轨迹上的18轮／504步更好。每组随机A/B不标模型身份，与首轮的A/B字母没有固定对应。以下为同人声的混合试听，纯伴奏版本保存在同目录的同编号文件中。\n\n| 首次顺序 | 录音／种子 | 混合A | 混合B | 当前反馈 |\n| --- | --- | --- | --- | --- |\n| budget／CASE01 | R0011 五更鼓／1024 | [A](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE01_A_mixture.wav) | [B](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE01_B_mixture.wav) | A更贴合；两者较像戏曲；A碎、不连贯、不好听，窗口内部纯伴奏也有此感受 |\n| budget／CASE04 | R0021 南風謠／1024 | [A](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE04_A_mixture.wav) | [B](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE04_B_mixture.wav) | 待反馈 |\n| budget／CASE07 | R0028 桃花過渡／1024 | [A](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE07_A_mixture.wav) | [B](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE07_B_mixture.wav) | 待反馈 |\n| budget／CASE10 | R0032 破窯二調／1024 | [A](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE10_A_mixture.wav) | [B](../../runs/anyaccomp_finetune_round2_listening_v1/listening/budget/CASE10_B_mixture.wav) | 待反馈 |\n\n第一组已反馈，以下为后续记录方式：“第二轮budget／CASE01：A／B更像戏曲伴奏；与唱腔配合如何；两者整体可用性如何／没有明显区别”。没有评价的维度留空，不补写评分。A更像戏曲不自动等于整体更好；两者都差也如实记录。\n\n各首使用生成前已固定的中间20秒；CASE01为R0011的47.356—67.356秒。先听纯伴奏可判断配器、伪影，再听mixture判断与人声配合。四个模型、三个种子在同一录音上共用一个安全播放增益；原始FLOAT全长音频保留，独立窗口接缝不做交叉淡化。\n\n材料还保留原模型／长程和第一轮／长程参照各12组，加上预算比较共36组。先按全部4首的1024种子顺序小步听验，不要求一次听完36组；种子1025／1026作为重复生成保留。三类比较回答不同问题，不把它们合并成一个胜率，也不将重复录音当作新样本。\n\n[公开材料索引](../../runs/anyaccomp_finetune_round2_listening_v1/listening_cases.json)给出录音、种子、片段、文件与增益，不列A/B模型映射；映射另存，反馈前不揭示。[材料结果](../../runs/anyaccomp_finetune_round2_listening_v1/result.json)、[参考距离诊断](../../runs/anyaccomp_finetune_round2_listening_v1/diagnostic_summary.json)与[第二轮方案及结果](07_第二轮训练预算对照.md)可追溯。当前第二轮预算比较反馈1／12组、覆盖1首的一段，整体音乐优势未确认；首轮CASE01／04原话及绑定文件不变。\n\n\n### 第二轮第一组反馈与定位\n\n原话：“A更贴合，现在两个都比较像戏曲伴奏了，但是这个伴奏听起来很乱很奇怪”。补充：“比如a听起来伴奏很碎的感觉”“不连贯不好听”。这明确了A的碎片感、连续性与负面质量感受，不把B也写成同样的详细评价；较贴合不等于整体质量合格。误选的“说不清，整体就很怪”已由用户撤回，不用于分类。\n\n[原话与音频身份](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/feedback.json)及[有效补充](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/clarification_v1.json)保留。暂无证据把问题归因于音高、节奏、声码器、训练数据或分离残留。\n\n原20秒在第10.004秒跨一次生成窗口；为检查单个窗口内部是否已经碎，取同一A的第1—9秒纯伴奏，绝对48.356—56.356秒。切片按冻结时间位置选取，不按听感挑选；逐样本保持，原20秒对照与指标不替换。该诊断不增加独立案例，反馈计数仍为1组。\n\n[8秒纯伴奏A](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/A_no_join_accompaniment_01_09s.wav)／[同段混合版](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/A_no_join_mixture_01_09s.wav)／[切片核验](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/verification.json)。用户随后回复“对”，确认无接缝的纯伴奏内也有碎片感与不连贯。实际拼接不能独自解释这一现象，也不能只按叠加人声后才出现的问题处理；仍未确定训练、条件、声码器或数据影响。\n\n\n[窗口内部确认记录](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/no_join_feedback_v1.json)保存问题、原话“对”与原8秒文件哈希。该确认不增加独立录音或预算比较反馈组数。\n\n下一小步：[原预训练模型同位置8秒纯伴奏](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/pretrained_no_join_accompaniment_01_09s.wav)。与之前A保持相同人声条件、窗口、种子、生成配置、绝对48.356—56.356秒及播放增益；原始FLOAT输出不改动，只取固定切片并保存播放版。先只判断“原模型也碎／明显更连贯／无法判断”，暂不比较戏曲风格。若原模型更连贯，提示当前微调输出的连续性需要进一步比较；若原模型也碎，则现象不限于已听微调输出。单位置结果不能独自证明某个技术原因，后续再据证据缩小范围。\n\n\n### 原模型对照结果与该组身份揭示\n\n用户对原模型同位置8秒反馈：“好一些了，现在比之前连贯一些”。只记局部连续性相对改善，不记整体质量通过或“原模型完全连贯”。该反馈先保存到[原话记录](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/pretrained_continuity_feedback_v1.json)，随后仅解开已完成初始反馈的budget／CASE01：**A为1820步长程，B为504步短程**。其余组的随机顺序不用于本次判断；从此该组补充诊断均明确为已知身份的比较，不能追称盲听。\n\n| 模型 | 目前这段的听验结果 |\n| --- | --- |\n| 原预训练 | 同位置8秒比长程A更连贯一些；本次风格、整体质量未单独评价 |\n| 504步短程，原B | 初始20秒风格较像戏曲、贴合度相对不及A；同位置8秒反馈比长程“好一点点”，未判定已连贯或可用 |\n| 1820步长程，原A | 初始20秒更贴合；窗口内部纯伴奏仍有碎片感、不连贯、听感不好 |\n\n下一步只补[504步短程同位置8秒纯伴奏](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_504_no_join_accompaniment_01_09s.wav)，先判断它比长程A更连贯还是也同样碎。片段为完全相同绝对48.356—56.356秒，既定播放增益不变；这是现有原B的PCM精确切片，没有新生成、重采样或处理。[切片核验](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/diagnostics/short_comparison_verification.json)保留。当前只出现“贴合度与连续性未同时改善”的局部信号；尚不足以断言训练越久越碎或确定原因。本轮收到这一判断后先汇总方案，不继续增加试听材料；原固定20秒性能对照不替换，独立案例计数仍为1。\n\n\n### 本轮局部对照收束\n\n用户对短程8秒原话：“好一点点”，按前一问题记为504步相对1820步长程的连续性略好；不推断短程已达标、完全连贯或碎片感消失。[原话记录](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/short_continuity_feedback_v1.json)绑定原文件哈希。原模型与短程均曾相对长程得到改善反馈，但未直接比较二者，不能从“好一些”与“好一点点”建立排序。\n\n此前停止追加生成音频切片，固定这一处证据后先汇总方案。结论是局部出现贴合度与连续性未同步改善的信号，不是整体模型排名或过拟合定论。下一步技术方案见[08](08_连续性问题定位方案.md)；随后用户回复“继续”，已执行其中一次参考频谱重建，区别于原模型生成A/B。\n\n## 7. 单位置参考重建诊断\n\n2026-10-23完成一次真实目标频谱→冻结声码器检查：同一R0011绝对48.356—56.356秒，完整窗口解码后取8秒。不是根据人声生成，也不是新增独立案例；不替换原36组，不计入预算比较反馈组数。33项技术检查通过，0次更新；后续用户反馈“还原的很好啊”。\n\n先听[参考伴奏](../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reference_8s_playback.wav)，再听[参考频谱重建](../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reconstruction_8s_playback.wav)。两段均24kHz、8秒、共用增益1.0；这里只比较两者是否有新增碎片感，不与此前不同增益的生成片段按响度打分。参考原生44.1kHz，沿用原librosa加载约定转24kHz，原WAV保持。\n\n原问题：“与参考相比，重建有没有明显变碎、变得不连贯？” 用户原话：**“还原的很好啊”**。按该片段重建效果获认可记录，不另造连续性评分，不推广到全部录音或生成频谱。[原话、范围及两音频哈希](../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json)齐全，本步骤完成。本诊断明确展示身份，不称盲测；原执行报告保留当时待反馈状态，后续以本节与反馈记录为准。\n\n据此优先检查生成频谱和微调／推理，尚不能完全排除声码器对异常生成频谱的反应。随后用户说“下一步”，已执行[08第7节](08_连续性问题定位方案.md#7-下一项小实验只改变额外条件引导)的cfg3／0诊断，不更改原36组正式生成条件。\n\n## 8. 单位置额外引导对照\n\n固定1820步模型、人声旋律编号、初始噪声和50步采样，比较cfg3与cfg0；cfg0仍有人声条件，只跳过额外引导和关联重缩放。完整窗口生成后取同一绝对48.356—56.356秒纯伴奏，24kHz、8秒。46项脚本检查及36项产物复核通过；重算cfg3的频谱和8秒原始波形均与旧长程结果完全相同，不是换了控制材料。\n\n| 顺序 | 音频 | 待判断 |\n| --- | --- | --- |\n| 第一段：原额外引导3 | [播放](../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg3_8s_playback.wav) | 作为本次对照 |\n| 第二段：关闭额外引导0 | [播放](../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg0_8s_playback.wav) | 是否更连贯，戏曲伴奏感觉是否保留 |\n\n两段共用增益0.868133532，第二段自身音量较轻，未分别匹配响度；请将音量差与连续性分开判断。无盲听声明、无新增独立案例、不增加原预算比较的反馈组数。当前尚无成对反馈，不宣布引导是原因或cfg0已修复问题；不自动追加系数搜索。[实际报告](../../runs/anyaccomp_continuity_cfg_probe_v1/report.md)保留来源、指标、图及局限。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

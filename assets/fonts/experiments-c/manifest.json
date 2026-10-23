@@ -1,34 +1,34 @@
 [
   {
     "file": "wenkai-regular.woff2",
-    "characters": 392,
+    "characters": 543,
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
     "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
-    "sha256": "1fcd6bac5cf4d7ab01d364b3f14d8d94a9c4a1f7e532fea72d6b316eae8aba0e",
+    "sha256": "e83d8fb01d838532e4e843900bace8e1024465eea39dd076588b92e145e42702",
     "weight": 400
   },
   {
     "file": "wenkai-medium.woff2",
-    "characters": 392,
+    "characters": 543,
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
     "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
-    "sha256": "79023c3a516d58e310aeec543134bd3d2a45393f787de4f3a9442fba13cd201b",
+    "sha256": "9ba9271199f087aaca3c2dcc4e40a63e7bcdc0c9b61d9df203c2bae0a5554fbf",
     "weight": 500
   },
   {
     "file": "gezi-ui-sans-regular.woff2",
-    "characters": 392,
+    "characters": 543,
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
     "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
-    "sha256": "b544636772850f37a414f454e1ad033c94e838c7551c06e68267182b02f94380",
+    "sha256": "16312b9241e061446779f0143de7548c3442cf320e2ef7c1c65c8076f2c1a66e",
     "weight": 400
   },
   {
     "file": "gezi-ui-sans-medium.woff2",
-    "characters": 392,
+    "characters": 543,
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
     "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
-    "sha256": "f6196f3b0343bcc012e8f775e6054879ccb20dead809241c4ae9c6236027e82c",
+    "sha256": "4f8cffce61e5353facfb2fc85f7f3d5c066054d4d3b955f75bae4437dd862af1",
     "weight": 500
   }
 ]

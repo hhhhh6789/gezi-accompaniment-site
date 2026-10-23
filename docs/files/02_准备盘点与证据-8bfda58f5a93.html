@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02_准备盘点与证据.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#experiments">← 返回微调目标与评价</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>02_准备盘点与证据.md</h1><p>Markdown 文档 · 7,712 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#准备盘点与证据">准备盘点与证据</a><ul>
+<li><a href="#1-证据如何阅读">1. 证据如何阅读</a></li>
+<li><a href="#2-已验收数据与读取入口">2. 已验收数据与读取入口</a></li>
+<li><a href="#3-模型配置与权重">3. 模型、配置与权重</a></li>
+<li><a href="#4-现有接口与缺口">4. 现有接口与缺口</a></li>
+<li><a href="#5-环境与资源快照">5. 环境与资源快照</a></li>
+<li><a href="#6-首次文档建立核验">6. 首次文档建立核验</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\AnyAccomp微调实验\02_准备盘点与证据.md</p><p>SHA-256：f2dc72bf813c04aab1a6491027479d0c08813b820be14cee7a61b86f76529945</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="准备盘点与证据">准备盘点与证据</h1>
+<p>更新：2026-10-22。<strong>本页保存准备阶段证据；训练器与最小试运行后来已通过，最新运行见<a href="03_%E8%BF%90%E8%A1%8C%E4%B8%8E%E8%AF%84%E4%BB%B7%E8%AE%B0%E5%BD%95-a6683a45b9dd.html">运行记录</a>。</strong> 返回<a href="AnyAccomp%E6%AD%8C%E4%BB%94%E6%88%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E9%AA%8C-a42ad67f0ca3.html">实验总览</a>。</p>
+<h2 id="1-证据如何阅读">1. 证据如何阅读</h2>
+<p>本页区分“验收文件确认”“本对话前轮实测”“本轮文档检查”和“待验证”。前轮交互式CPU检查的原始输出保留在本对话工具记录，未另存为独立运行日志；下表是该结果的整理，不冒充独立复现。已有929模型检查报告则保留原路径及历史口径。</p>
+<p>首次文档建立时只重读验收状态、统计各集合CSV并保存具名元数据／源码哈希，未启动GPU。该次维护依据见<span class="reader-missing" title="../../runs/anyaccomp_finetune_documentation_20261022_v1/protected_before.json">文件快照（本轮未发布此证据文件）</span>；之后的模型更新与生成单独登记，不改写数据交付证据。</p>
+<h2 id="2-已验收数据与读取入口">2. 已验收数据与读取入口</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>已确认值</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>929状态</td>
+<td>accepted_complete；最终验收accepted；正式训练false、优化器更新0次</td>
+<td><span class="reader-missing" title="../../deliverables/929_dataset_v1/summary.json">summary（本轮未发布此证据文件）</span>、<a href="acceptance-786e933ce507.html">验收</a></td>
+</tr>
+<tr>
+<td>规模</td>
+<td>40首60对，3316.363242633秒</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>训练</td>
+<td>32首51对；112单元，133,420帧；13整段＋99窗口</td>
+<td><span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/train_pairs.csv">配对（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/train_inputs.csv">输入（本轮未发布此证据文件）</span></td>
+</tr>
+<tr>
+<td>验证</td>
+<td>4首4对；13窗口，16,774帧</td>
+<td><span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/validation_pairs.csv">配对（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/validation_inputs.csv">输入（本轮未发布此证据文件）</span></td>
+</tr>
+<tr>
+<td>测试</td>
+<td>4首5对；14窗口，15,662帧</td>
+<td><span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/test_pairs.csv">配对（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../deliverables/929_dataset_v1/splits/test_inputs.csv">输入（本轮未发布此证据文件）</span></td>
+</tr>
+<tr>
+<td>长度</td>
+<td>训练526—1506帧；验证1071—1497；测试788—1320</td>
+<td>前轮139份输入实测；早期1506／1503帧例外保留</td>
+</tr>
+<tr>
+<td>输入合同</td>
+<td>tokens、target_raw_logmel、target_mel；同网格；139份哈希／形状／编号／标准化检查通过</td>
+<td><span class="reader-missing" title="../../deliverables/929_dataset_v1/README.md">交付入口（本轮未发布此证据文件）</span>、<a href="929%E8%AE%AD%E7%BB%83%E8%BE%93%E5%85%A5%E8%A7%84%E6%A0%BC-c6fa0d135619.html">输入规格</a>、本对话前轮工具输出</td>
+</tr>
+</tbody>
+</table>
+<p>各CSV的workspace_relative_path等字段相对$CLOUD_FINETUNE_ROOT解析。交付目录只保存清单、索引和说明，复制该目录不带走音频与特征。完整父数组入口为<span class="reader-missing" title="../../deliverables/929_dataset_v1/indexes/pair_inputs.csv">pair_inputs.csv（本轮未发布此证据文件）</span>。</p>
+<p>冻结清单的本轮哈希：</p>
+<table>
+<thead>
+<tr>
+<th>清单</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>train_inputs.csv</td>
+<td>7c3618c7cb2ef85bf09d782f018a9eadb8b5cd603a3850080767a69a768bb260</td>
+</tr>
+<tr>
+<td>validation_inputs.csv</td>
+<td>ad6e1f9c4a2724f246c684acce0fd88a0c8d971f0a531ea4bc8027f07c999889</td>
+</tr>
+<tr>
+<td>test_inputs.csv</td>
+<td>e4b25766a77db59669234364b30cc697c7c80aba368a09048f5007ca716adb5d</td>
+</tr>
+</tbody>
+</table>
+<p>完整录音隔离、演唱者可重叠；36首完整双轨听验，R0020／R0032／R0034／R0040按批次规则采用。残留、伪影、场次未知、声学近重复未系统排查、来源权利未核实、小样本与非盲测限制保留。</p>
+<h2 id="3-模型配置与权重">3. 模型、配置与权重</h2>
+<p>源码根目录：$CLOUD_PROJECT_ROOT/source/AnyAccomp/。</p>
+<p>权重根目录：$CLOUD_PROJECT_ROOT/pretrained/anyaccomp/pretrained/。</p>
+<p>本地不是可用Git检出，不能以本地HEAD标记版本。前轮通过官方GitHub接口得到提交82604b5e3107944ad4c49fc64900b86118ae2c62，并确认以下4份本地文件与其对应文件逐字节相同：anyaccomp/fmt_model.py、anyaccomp/llama_nar.py、anyaccomp/inference_utils.py、config/flow_matching.json。该结论仅覆盖这4份文件，非整个目录认证。</p>
+<table>
+<thead>
+<tr>
+<th>权重相对路径</th>
+<th style="text-align: right;">字节数</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flow_matching/pytorch_model.bin</td>
+<td style="text-align: right;">880,790,586</td>
+<td>e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129</td>
+</tr>
+<tr>
+<td>vq/pytorch_model.bin</td>
+<td style="text-align: right;">177,202,134</td>
+<td>9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc</td>
+</tr>
+<tr>
+<td>vocoder/model.safetensors</td>
+<td style="text-align: right;">1,020,206,416</td>
+<td>1b7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>加载范围</th>
+<th>前轮CPU实测</th>
+<th>不能据此推断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FM</td>
+<td>所需137个张量无缺失／形状不匹配；明确排除3项tag后严格加载通过；219,394,176参数</td>
+<td>完整训练器或作者配方已通过</td>
+</tr>
+<tr>
+<td>VQ推理构造</td>
+<td>所需125个张量匹配并加载；完整权重有118个当前构造未使用张量；22,151,056参数</td>
+<td>完整VQ训练结构全部加载</td>
+</tr>
+<tr>
+<td>声码器</td>
+<td>279个张量全匹配、无额外项；255,042,434参数</td>
+<td>本次微调生成音频已通过</td>
+</tr>
+</tbody>
+</table>
+<p>FM额外项：tag_infilling_emb形状[1,1024]、tag_emb.weight形状[1024,768]、tag_emb.bias形状[1024]。不默默忽略未知张量。</p>
+<h2 id="4-现有接口与缺口">4. 现有接口与缺口</h2>
+<table>
+<thead>
+<tr>
+<th>入口／材料</th>
+<th>已有能力</th>
+<th>缺口或使用限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="reader-missing" title="../../scripts/fm_length_aware_prompt.py">长度感知适配器（本轮未发布此证据文件）</span></td>
+<td>按每条有效前缀安排左右提示，清零补齐区，保留条件丢弃；无新学习参数</td>
+<td>不是训练器；需核验训练／验证的明确控制</td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../scripts/validate_fm_prompts.py">有限FM检查（本轮未发布此证据文件）</span></td>
+<td>主损失、反向传播、混合补齐等局部检查</td>
+<td>无优化器；REPA未实现；脚本绑定历史输入，不能直接覆盖重跑</td>
+</tr>
+<tr>
+<td>infer_from_folder.py</td>
+<td>读取音频、提取旋律编号、调用FM和声码器；模块导入通过</td>
+<td>默认相对路径需配置；未建立本实验窗口生成与评价入口</td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/R0035_R0040_windowed_fm_v1/fm/report.json">B4模型报告（本轮未发布此证据文件）</span></td>
+<td>既有窗口前向／反向及掩码证据</td>
+<td>历史运行时清单状态不覆盖最新交付</td>
+</tr>
+<tr>
+<td><span class="reader-missing" title="../../runs/anyaccomp_vocoder_timing_20261001/results/report.json">声码器时间检查（本轮未发布此证据文件）</span></td>
+<td>保留目标帧中心与原生输出的时间定义检查</td>
+<td>新生成链路仍需明确裁切和时间坐标</td>
+</tr>
+</tbody>
+</table>
+<p>准备阶段确认公开本地目录没有完整训练器、数据加载器或优化器入口。此后已新增项目独立训练器scripts/anyaccomp_finetune.py及配置，最小试运行保存恢复通过；REPA仍不实施，正式效果仍需评价。公开源码、旧适配器和历史检查脚本没有改写。</p>
+<h2 id="5-环境与资源快照">5. 环境与资源快照</h2>
+<p>环境：$CLOUD_FINETUNE_ROOT/environments/anyaccomp_input_929/。前轮实测Python3.9.19，torch2.3.1／CUDA12.1，torchaudio2.3.1，torchvision0.18.1，transformers4.47.1，accelerate1.6.0，librosa0.11.0，numpy1.26.4，safetensors0.6.2。导入通过；没有为本文安装或更换依赖。</p>
+<p>前轮2026-10-22快照：GPU均为RTX4090、总显存24564MiB；0／3／6号约4MiB占用，其他卡有进程。仅作资源线索，非预留。启动前重查全部卡，记录实际编号与UUID，单卡进程只暴露所选卡。</p>
+<p>前轮磁盘/data可用约898GB、使用率97%，内存可用约441GiB。B4有限检查峰值已分配约6.87GiB、预留约7.28GiB，总耗时约10.84秒；这是无优化器的有限检查，不能作为完整训练耗时和显存承诺。预算估算见<a href="01_%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%A1%88-701112049a7a.html">实验方案</a>。</p>
+<h2 id="6-首次文档建立核验">6. 首次文档建立核验</h2>
+<p>首次建立文档时仅新增微调文档、更新README导航和AGENTS规则，并保存文档核验材料。旧入口副本保存在<span class="reader-missing" title="../../runs/anyaccomp_finetune_documentation_20261022_v1/before">before目录（本轮未发布此证据文件）</span>。后续代码与运行另有快照，详见03。</p>
+<p>检查范围为新增文档的本地链接、主文档结构、关键数量／状态、具名冻结元数据与源码保持，以及入口更新；不重新执行已通过的模型检查。核验记录保存至runs/anyaccomp_finetune_documentation_20261022_v1/；本次文档完成不推动模型实验阶段完成。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/AnyAccomp微调实验/02_准备盘点与证据.md（路径已脱敏）","sha256":"f2dc72bf813c04aab1a6491027479d0c08813b820be14cee7a61b86f76529945","text":"# 准备盘点与证据\n\n更新：2026-10-22。**本页保存准备阶段证据；训练器与最小试运行后来已通过，最新运行见[运行记录](03_运行与评价记录.md)。** 返回[实验总览](../AnyAccomp歌仔戏微调实验.md)。\n\n## 1. 证据如何阅读\n\n本页区分“验收文件确认”“本对话前轮实测”“本轮文档检查”和“待验证”。前轮交互式CPU检查的原始输出保留在本对话工具记录，未另存为独立运行日志；下表是该结果的整理，不冒充独立复现。已有929模型检查报告则保留原路径及历史口径。\n\n首次文档建立时只重读验收状态、统计各集合CSV并保存具名元数据／源码哈希，未启动GPU。该次维护依据见[文件快照](../../runs/anyaccomp_finetune_documentation_20261022_v1/protected_before.json)；之后的模型更新与生成单独登记，不改写数据交付证据。\n\n## 2. 已验收数据与读取入口\n\n| 项目 | 已确认值 | 依据 |\n| --- | --- | --- |\n| 929状态 | accepted_complete；最终验收accepted；正式训练false、优化器更新0次 | [summary](../../deliverables/929_dataset_v1/summary.json)、[验收](../../runs/929_final_acceptance_20261022/acceptance.json) |\n| 规模 | 40首60对，3316.363242633秒 | 同上 |\n| 训练 | 32首51对；112单元，133,420帧；13整段＋99窗口 | [配对](../../deliverables/929_dataset_v1/splits/train_pairs.csv)、[输入](../../deliverables/929_dataset_v1/splits/train_inputs.csv) |\n| 验证 | 4首4对；13窗口，16,774帧 | [配对](../../deliverables/929_dataset_v1/splits/validation_pairs.csv)、[输入](../../deliverables/929_dataset_v1/splits/validation_inputs.csv) |\n| 测试 | 4首5对；14窗口，15,662帧 | [配对](../../deliverables/929_dataset_v1/splits/test_pairs.csv)、[输入](../../deliverables/929_dataset_v1/splits/test_inputs.csv) |\n| 长度 | 训练526—1506帧；验证1071—1497；测试788—1320 | 前轮139份输入实测；早期1506／1503帧例外保留 |\n| 输入合同 | tokens、target_raw_logmel、target_mel；同网格；139份哈希／形状／编号／标准化检查通过 | [交付入口](../../deliverables/929_dataset_v1/README.md)、[输入规格](../929训练输入规格.md)、本对话前轮工具输出 |\n\n各CSV的workspace_relative_path等字段相对$CLOUD_FINETUNE_ROOT解析。交付目录只保存清单、索引和说明，复制该目录不带走音频与特征。完整父数组入口为[pair_inputs.csv](../../deliverables/929_dataset_v1/indexes/pair_inputs.csv)。\n\n冻结清单的本轮哈希：\n\n| 清单 | SHA-256 |\n| --- | --- |\n| train_inputs.csv | 7c3618c7cb2ef85bf09d782f018a9eadb8b5cd603a3850080767a69a768bb260 |\n| validation_inputs.csv | ad6e1f9c4a2724f246c684acce0fd88a0c8d971f0a531ea4bc8027f07c999889 |\n| test_inputs.csv | e4b25766a77db59669234364b30cc697c7c80aba368a09048f5007ca716adb5d |\n\n完整录音隔离、演唱者可重叠；36首完整双轨听验，R0020／R0032／R0034／R0040按批次规则采用。残留、伪影、场次未知、声学近重复未系统排查、来源权利未核实、小样本与非盲测限制保留。\n\n## 3. 模型、配置与权重\n\n源码根目录：$CLOUD_PROJECT_ROOT/source/AnyAccomp/。\n\n权重根目录：$CLOUD_PROJECT_ROOT/pretrained/anyaccomp/pretrained/。\n\n本地不是可用Git检出，不能以本地HEAD标记版本。前轮通过官方GitHub接口得到提交82604b5e3107944ad4c49fc64900b86118ae2c62，并确认以下4份本地文件与其对应文件逐字节相同：anyaccomp/fmt_model.py、anyaccomp/llama_nar.py、anyaccomp/inference_utils.py、config/flow_matching.json。该结论仅覆盖这4份文件，非整个目录认证。\n\n| 权重相对路径 | 字节数 | SHA-256 |\n| --- | ---: | --- |\n| flow_matching/pytorch_model.bin | 880,790,586 | e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129 |\n| vq/pytorch_model.bin | 177,202,134 | 9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc |\n| vocoder/model.safetensors | 1,020,206,416 | 1b7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da |\n\n| 加载范围 | 前轮CPU实测 | 不能据此推断 |\n| --- | --- | --- |\n| FM | 所需137个张量无缺失／形状不匹配；明确排除3项tag后严格加载通过；219,394,176参数 | 完整训练器或作者配方已通过 |\n| VQ推理构造 | 所需125个张量匹配并加载；完整权重有118个当前构造未使用张量；22,151,056参数 | 完整VQ训练结构全部加载 |\n| 声码器 | 279个张量全匹配、无额外项；255,042,434参数 | 本次微调生成音频已通过 |\n\nFM额外项：tag_infilling_emb形状[1,1024]、tag_emb.weight形状[1024,768]、tag_emb.bias形状[1024]。不默默忽略未知张量。\n\n## 4. 现有接口与缺口\n\n| 入口／材料 | 已有能力 | 缺口或使用限制 |\n| --- | --- | --- |\n| [长度感知适配器](../../scripts/fm_length_aware_prompt.py) | 按每条有效前缀安排左右提示，清零补齐区，保留条件丢弃；无新学习参数 | 不是训练器；需核验训练／验证的明确控制 |\n| [有限FM检查](../../scripts/validate_fm_prompts.py) | 主损失、反向传播、混合补齐等局部检查 | 无优化器；REPA未实现；脚本绑定历史输入，不能直接覆盖重跑 |\n| infer_from_folder.py | 读取音频、提取旋律编号、调用FM和声码器；模块导入通过 | 默认相对路径需配置；未建立本实验窗口生成与评价入口 |\n| [B4模型报告](../../runs/R0035_R0040_windowed_fm_v1/fm/report.json) | 既有窗口前向／反向及掩码证据 | 历史运行时清单状态不覆盖最新交付 |\n| [声码器时间检查](../../runs/anyaccomp_vocoder_timing_20261001/results/report.json) | 保留目标帧中心与原生输出的时间定义检查 | 新生成链路仍需明确裁切和时间坐标 |\n\n准备阶段确认公开本地目录没有完整训练器、数据加载器或优化器入口。此后已新增项目独立训练器scripts/anyaccomp_finetune.py及配置，最小试运行保存恢复通过；REPA仍不实施，正式效果仍需评价。公开源码、旧适配器和历史检查脚本没有改写。\n\n## 5. 环境与资源快照\n\n环境：$CLOUD_FINETUNE_ROOT/environments/anyaccomp_input_929/。前轮实测Python3.9.19，torch2.3.1／CUDA12.1，torchaudio2.3.1，torchvision0.18.1，transformers4.47.1，accelerate1.6.0，librosa0.11.0，numpy1.26.4，safetensors0.6.2。导入通过；没有为本文安装或更换依赖。\n\n前轮2026-10-22快照：GPU均为RTX4090、总显存24564MiB；0／3／6号约4MiB占用，其他卡有进程。仅作资源线索，非预留。启动前重查全部卡，记录实际编号与UUID，单卡进程只暴露所选卡。\n\n前轮磁盘/data可用约898GB、使用率97%，内存可用约441GiB。B4有限检查峰值已分配约6.87GiB、预留约7.28GiB，总耗时约10.84秒；这是无优化器的有限检查，不能作为完整训练耗时和显存承诺。预算估算见[实验方案](01_实验方案.md)。\n\n## 6. 首次文档建立核验\n\n首次建立文档时仅新增微调文档、更新README导航和AGENTS规则，并保存文档核验材料。旧入口副本保存在[before目录](../../runs/anyaccomp_finetune_documentation_20261022_v1/before)。后续代码与运行另有快照，详见03。\n\n检查范围为新增文档的本地链接、主文档结构、关键数量／状态、具名冻结元数据与源码保持，以及入口更新；不重新执行已通过的模型检查。核验记录保存至runs/anyaccomp_finetune_documentation_20261022_v1/；本次文档完成不推动模型实验阶段完成。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>08_连续性问题定位方案.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#experiments">← 返回微调目标与评价</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>08_连续性问题定位方案.md</h1><p>Markdown 文档 · 16,353 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#连续性问题定位方案">连续性问题定位方案</a><ul>
+<li><a href="#material-passport">Material Passport</a></li>
+<li><a href="#1-目前能确认什么">1. 目前能确认什么</a></li>
+<li><a href="#2-下一步为什么检查声码器">2. 下一步为什么检查声码器</a></li>
+<li><a href="#3-固定输入处理与产物">3. 固定输入、处理与产物</a></li>
+<li><a href="#4-检查与结果分支">4. 检查与结果分支</a></li>
+<li><a href="#5-资源分工与停止条件">5. 资源、分工与停止条件</a></li>
+<li><a href="#6-实际结果与唯一待判断项">6. 实际结果与唯一待判断项</a></li>
+<li><a href="#7-下一项小实验只改变额外条件引导">7. 下一项小实验：只改变额外条件引导</a><ul>
+<li><a href="#实际结果与试听">实际结果与试听</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\AnyAccomp微调实验\08_连续性问题定位方案.md</p><p>SHA-256：bd0dce5f89adb784418b9beaf75ab635cb3df4430e447975deaf62596181354b</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="连续性问题定位方案">连续性问题定位方案</h1>
+<p>更新：2026-10-23。<strong>固定位置CFG引导对照已完成：约30秒，46项脚本检查及36项产物复核通过，等待连贯性与戏曲风格反馈。参考重建已获认可；本次参数更新0，第三轮训练未启动。</strong> 返回<a href="AnyAccomp%E6%AD%8C%E4%BB%94%E6%88%8F%E5%BE%AE%E8%B0%83%E5%AE%9E%E9%AA%8C-a42ad67f0ca3.html">实验总览</a>。</p>
+<h2 id="material-passport">Material Passport</h2>
+<ul>
+<li>Origin Skill: academic-research-suite / experiment-agent</li>
+<li>Origin Mode: run（承接已准备的单次检查方案）</li>
+<li>Origin Date: 2026-10-23</li>
+<li>Verification Status: ANALYZED（参考重建获局部正面反馈；CFG成对运行与技术复核通过，cfg3复现旧输出，CFG音乐反馈待定）</li>
+<li>Version Label: continuity_vocoder_probe_v1</li>
+</ul>
+<h2 id="1-目前能确认什么">1. 目前能确认什么</h2>
+<p>对象为R0011《五更鼓》、种子1024；初始对照取47.356—67.356秒，连续性诊断取其中48.356—56.356秒的8秒纯伴奏。三者使用同一人声条件、数字窗口、生成配置及播放增益；8秒内不跨生成窗口。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>实际反馈</th>
+<th>尚不能据此写什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原预训练</td>
+<td>用户：“好一些了，现在比之前连贯一些”，相对长程A</td>
+<td>原模型整体合格、原模型优于短程，或本次原模型的戏曲风格评分</td>
+</tr>
+<tr>
+<td>504步短程，原B</td>
+<td>初始两者均较像戏曲；短程8秒“好一点点”，相对长程A</td>
+<td>短程已经连贯、碎片感消失、整体好听</td>
+</tr>
+<tr>
+<td>1820步长程，原A</td>
+<td>初始更贴合；后续明确碎、不连贯、不好听；不跨窗口的纯伴奏内也有此感受</td>
+<td>长程整体胜出、所有录音都退化或训练越久必然越碎</td>
+</tr>
+</tbody>
+</table>
+<p>原模型与短程没有直接排序，不能依据“好一些”与“好一点点”的措辞比较二者。贴合度来自初始20秒混合试听，连续性来自后续8秒纯伴奏诊断，不将不同维度和范围混成一个总分。初始反馈保存后，仅揭示这组映射；后续该组诊断已知模型身份，不追称盲听。</p>
+<p>已知唯一接缝在原20秒第10.004秒，而不跨接缝的纯伴奏也被听出碎片感，因此该拼接不能独自解释现象。现有反馈不能确定声码器、训练目标、输入表示或数据的具体作用，也不能仅归因于数据少。</p>
+<p>这一轮局部对照到此收住：仍只有1首、1种子、1个原始对照案例，不继续切更多段或要求反复试听。全部原话与音频身份见<a href="05_%E9%AA%8C%E8%AF%81%E9%9B%86%E8%AF%95%E5%90%AC%E4%B8%8E%E5%8F%8D%E9%A6%88-e9da4919ec8c.html">05听验记录</a>和<span class="reader-missing" title="../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/">反馈目录（本轮未发布此证据文件）</span>。</p>
+<h2 id="2-下一步为什么检查声码器">2. 下一步为什么检查声码器</h2>
+<p>现有生成路径是“人声旋律编号 → FM → 生成频谱 → 声码器 → 伴奏声音”。FM是根据旋律条件生成伴奏频谱的流匹配模型；声码器负责把频谱还原为声音。</p>
+<p>用户在该方案后回复“继续”，现已完成一次“真实伴奏的交付频谱 → 同一冻结声码器 → 重建声音”，暂时绕过FM。这样可判断声码器与当前目标表示能否在这个位置保留参考伴奏的连续性，然后再决定应优先检查还原链路，还是生成与微调策略。</p>
+<p>这是使用已知参考目标的技术检查，<strong>不是根据人声生成的效果样本</strong>，不能把重建音频混入主模型成绩。929保持已验收，不重做分离或安排逐首原音复验；本次仅因生成质量问题拟定一个固定位置的模块检查。</p>
+<h2 id="3-固定输入处理与产物">3. 固定输入、处理与产物</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>实际采用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集合与输入</td>
+<td>验证集R0011_SEP01_SEG0001_WIN0002，1434帧；按冻结清单核对NPZ哈希</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>target_mel，float32、1434×128；沿用(raw+4.92)/sqrt(8.14)，不静默改标准化</td>
+</tr>
+<tr>
+<td>参考音频</td>
+<td>交付的R0011_SEP01_SEG0001伴奏WAV，原生44.1kHz；沿用现有librosa.load(sr=24000, mono=True)转换至比较网格，仅用于同位置重建对照，原WAV不覆盖</td>
+</tr>
+<tr>
+<td>模型</td>
+<td>原冻结vocoder/model.safetensors及原配置，不加载FM、不更新参数</td>
+</tr>
+<tr>
+<td>解码</td>
+<td>复用已核验centered_decode；完整解码1434帧以保留相同上下文，再取固定8秒</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>整段绝对48.356—56.356秒；窗口内样本472224—664224，24kHz，192000点</td>
+</tr>
+<tr>
+<td>比较条件</td>
+<td>原参考与重建采用同一播放增益；原始FLOAT保留，不滤波、不交叉淡化、不按听感换位置</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>新目录runs/anyaccomp_continuity_vocoder_probe_v1；配置、来源哈希、原始输出、固定片段、指标及报告</td>
+</tr>
+</tbody>
+</table>
+<p>配置见<span class="reader-missing" title="../../configs/anyaccomp_continuity_vocoder_probe_v1.json">continuity_vocoder_probe_v1.json（本轮未发布此证据文件）</span>，保留其中执行前prepared_not_executed／executed=false的计划状态，不覆盖历史。实际执行以新<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json">运行状态（本轮未发布此证据文件）</span>与<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/result.json">result.json（本轮未发布此证据文件）</span>为准。原计划在<span class="reader-missing" title="../../runs/anyaccomp_continuity_probe_preparation_20261023_v1/">准备目录（本轮未发布此证据文件）</span>及新运行source_snapshot中保留。</p>
+<h2 id="4-检查与结果分支">4. 检查与结果分支</h2>
+<p>先核对输入／权重／代码身份、形状、标准化与坐标；再核对输出有限、时长正确、非静音及写后读取。保留参考距离、波形／频谱诊断与局限，不把逐样本相等或单一距离当作声码器的音乐验收标准。已有R0001／R0002／R0003时间裁切证据继续保留，不重复作为本次R0011质量已通过的依据。</p>
+<table>
+<thead>
+<tr>
+<th>实际结果</th>
+<th>下一步取舍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一声码器对真实目标能保留参考连续性</td>
+<td>该位置不支持“真实目标本身无法还原”的解释；重点再看生成频谱与微调策略。仍不排除声码器对异常生成频谱的反应</td>
+</tr>
+<tr>
+<td>参考较连贯，而重建明显损害连续性</td>
+<td>优先查目标表示、标准化、时间／解码与声码器适配；先不扩大FM训练预算</td>
+</tr>
+<tr>
+<td>参考本身也呈现用户不希望的碎片感</td>
+<td>明确所需伴奏组织与当前目标之间的区别；不直接推翻929技术／听验收录结论</td>
+</tr>
+<tr>
+<td>技术失败或听感无法判断</td>
+<td>如实保留未确定结果，先解释具体证据，不自动遍历参数或继续追加试听</td>
+</tr>
+</tbody>
+</table>
+<p>该小任务限一个固定参考位置，现已收齐技术与音乐判断。先依据实际推理代码准备第7节的单次引导对照，再判断是否需要训练改动；不预定第三轮学习率、训练模块或辅助损失，不把降低学习率、缩小更新范围或加REPA写成已获证据支持的修复。</p>
+<h2 id="5-资源分工与停止条件">5. 资源、分工与停止条件</h2>
+<p>实际仅运行冻结声码器；物理GPU0，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c，启动前空闲24208MiB，磁盘约842GiB可用。09:42:16—09:42:30（北京时间）完成，控制PID1513635、模型PID1513639均已退出；约14.02秒，解码本体约0.282秒，峰值已分配／预留显存1.043／1.057GiB。保留300秒硬上限与进程存活监控，未触及；没有新检查点。</p>
+<p>系统Python3.8在创建输出或加载模型前因Path.is_relative_to不可用而退出；随后使用既有Python3.9.19独立环境运行同一脚本，模型仅执行一次。此启动环境修复及实际命令见<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/launch_environment_repair.json">记录（本轮未发布此证据文件）</span>，没有改配方或静默重复模型运行。</p>
+<p>助手负责输入／路径与实现核验、运行和证据；用户仅在技术结果齐全后判断这一个固定位置的参考与重建差异。核心训练配方或新增长训练仍另行给出具体方案供用户决定。</p>
+<p><strong>单位置参考重建步骤已完成；后续引导对照也已完成技术核验，等待这一对材料的音乐判断，不启动第三轮长训练。</strong> 云端文档已更新，Windows本地未同步，网站未更新。</p>
+<h2 id="6-实际结果与唯一待判断项">6. 实际结果与唯一待判断项</h2>
+<p><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/verification.json">33项检查（本轮未发布此证据文件）</span>通过：来源／权重／辅助代码身份、验证集归属、1434×128目标与原标准化、279个张量严格加载、完整688320点解码后固定取192000点、原生重叠相加复现、参数指纹不变、无梯度、有限非静音及FLOAT／播放版写后读取。两段均24kHz、8秒，同一播放增益1.0；不单独补偿响度，不滤波或淡化。该增益仅用于本对诊断，不能与此前生成试听直接据响度打分。</p>
+<table>
+<thead>
+<tr>
+<th>材料</th>
+<th>入口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参考伴奏</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reference_8s_playback.wav">8秒播放（本轮未发布此证据文件）</span></td>
+<td>交付参考WAV转24kHz后取同一位置</td>
+</tr>
+<tr>
+<td>参考频谱重建</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reconstruction_8s_playback.wav">8秒播放（本轮未发布此证据文件）</span></td>
+<td>完整窗口真实目标频谱经冻结声码器还原，再取同一位置</td>
+</tr>
+<tr>
+<td>波形／频谱与距离</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/waveform_spectrogram.png">图（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/metrics.json">原始指标（本轮未发布此证据文件）</span></td>
+<td>同时间与频率网格诊断，不能据图或距离认定音乐连贯</td>
+</tr>
+<tr>
+<td>实际运行证据</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/report.md">报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/run.log">日志（本轮未发布此证据文件）</span>、<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json">状态／命令（本轮未发布此证据文件）</span></td>
+<td>资源、配置、来源、进程和产物身份</td>
+</tr>
+</tbody>
+</table>
+<p>STFT（短时傅里叶变换，把波形分成短帧观察频率能量）幅度相对L2距离为0.2982；未优化时间偏移的波形SNR为−3.332dB，余弦−0.1595。这些逐样本量对相位敏感，负值不能单独判为音乐失败，频谱距离也不是连续性分数；未设听感通过阈值。完整输出和原始FLOAT片段保留，不据指标挑新位置。</p>
+<p>原问题为“与参考相比，重建有没有明显变碎、变得不连贯？” 用户回复：<strong>“还原的很好啊”</strong>。<span class="reader-missing" title="../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json">原话及两份音频哈希（本轮未发布此证据文件）</span>已保存。按该位置重建效果获认可记录，不补写逐样本一致、单独连续性评分或全部录音通过。</p>
+<p>本位置不支持“当前真实目标频谱经该声码器无法还原好”的解释；下一步优先查生成频谱及微调／推理路径。仍不能完全排除声码器对异常生成频谱的反应，也不能仅据这一段确定训练、数据量或条件表示的具体责任。两段都利用真实参考，是模块诊断，不计入原36组模型生成A/B或独立案例数，不形成正式模型胜率。原result.json／report.md保留执行当时的待反馈状态，后续反馈以新记录及本文为准。</p>
+<h2 id="7-下一项小实验只改变额外条件引导">7. 下一项小实验：只改变额外条件引导</h2>
+<p><strong>状态：technical_passed_listening_pending，已执行，音乐判断待反馈。</strong> 用户在准备好的两设置方案后回复“下一步”，现已执行。输入为同一长程1820步检查点、同一人声旋律编号与初始噪声；输出为两份完整窗口生成频谱及同位置8秒音频。目的为检查额外引导是否与碎片感有关，不能预先写成修复已生效。</p>
+<p>CFG（无分类器条件引导）用有人声条件、无条件两种预测的差异调整生成。本项目实际<span class="reader-missing" title="$CLOUD_PROJECT_ROOT/source/AnyAccomp/anyaccomp/fmt_model.py:341">reverse_diffusion源码（本地未同步，保留云端记录位置）</span>采用以下逻辑，正系数后还会做原实现的幅度重缩放：</p>
+<pre><code class="language-python">flow_cond = diff_estimator(..., cond)  # 含人声旋律条件
+flow_guided = flow_cond + cfg * (flow_cond - flow_uncond)  # cfg &gt; 0时执行
+</code></pre>
+<p>这不是直接替换源码的diff，而是现有逻辑的简写。输入为当前频谱状态、时间、掩码和人声条件，输出是下一步的频谱变化方向。<strong>本实现cfg=0仍保留人声条件；cfg=1仍有额外引导，不能误称为关闭。</strong> cfg=0还会跳过关联的重缩放分支；因此实验检验整个额外引导分支，不能把差异进一步归到“外推”或“重缩放”其中一项。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>固定方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯一调用参数变化</td>
+<td>cfg=3与cfg=0，仅两个设置，不做搜索；rescale_cfg参数仍为0.75</td>
+</tr>
+<tr>
+<td>模型与数据</td>
+<td>原1820步best.pt、验证集R0011第二窗1434帧；不重新选点或检查点</td>
+</tr>
+<tr>
+<td>噪声与采样</td>
+<td>原种子1024及原input_id哈希派生方式；各条件重置同一噪声，50步，BF16主计算</td>
+</tr>
+<tr>
+<td>真实目标与提示</td>
+<td>只用人声旋律编号；不把真实伴奏频谱作为生成条件，不提供左右伴奏提示</td>
+</tr>
+<tr>
+<td>对照与音频</td>
+<td>重新计算同一窗口的cfg3作当次对照，另算cfg0；同一冻结声码器、同一居中解码、同一固定8秒；共同安全播放增益，保留原始频谱和FLOAT</td>
+</tr>
+<tr>
+<td>判断内容</td>
+<td>连贯性、碎片感及戏曲风格是否一同保留；目标距离和谱图只作诊断，不设音乐分数阈值</td>
+</tr>
+<tr>
+<td>预期与相反结果</td>
+<td>cfg0更连贯则支持该位置受引导分支影响；无改善则不支持这一简单解释。更连贯但风格变弱，按取舍记录，不能算整体通过</td>
+</tr>
+<tr>
+<td>资源与停止</td>
+<td>300秒硬上限；实际约30.06秒，物理GPU0，FM已分配／预留峰值1.165／1.250GiB、声码器1.041／1.061GiB；分阶段记录，无新权重</td>
+</tr>
+</tbody>
+</table>
+<p>方案配置为<span class="reader-missing" title="../../configs/anyaccomp_continuity_cfg_probe_v1.json">continuity_cfg_probe_v1.json（本轮未发布此证据文件）</span>，保留prepared_not_executed的历史计划状态；源码只读分析与计划快照在<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_preparation_20261023_v1/">准备目录（本轮未发布此证据文件）</span>。实际运行单列<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/">新目录（本轮未发布此证据文件）</span>，以<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/result.json">result.json（本轮未发布此证据文件）</span>和<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/status.json">status.json（本轮未发布此证据文件）</span>为准，不回写原计划为执行结果。</p>
+<p>这一处是已知问题的局部诊断，不增加独立案例、不替换原固定条件的正式生成比较，更不把验证位置当测试集。助手负责实现与核验，用户在两份材料齐全后判断听感。只比较这一对，之后汇总一次再决定下一步，不自动遍历系数、增加采样步数或延长训练。正式生成设置如需改变，须另外确定并对所有对照统一应用；第三轮训练仍需另定具体方案与启动授权。</p>
+<h3 id="实际结果与试听">实际结果与试听</h3>
+<p>2026-10-23 10:50:18—10:50:48（北京时间），控制PID1629496、模型PID1629501在物理GPU0／UUID GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c运行后退出，资源释放。启动前该卡24208MiB空闲，磁盘约842GiB可用；没有额外资源预算或参数搜索。</p>
+<p><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/verification.json">46项脚本检查（本轮未发布此证据文件）</span>与<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/post_run_verification.json">36项产物复核（本轮未发布此证据文件）</span>通过。实际首步噪声与人声条件哈希完全相同，两设置都保留非零人声条件；cfg3／0分别调用频谱变化估计器100／50次，符合各自分支。FM与声码器前后参数指纹不变，无梯度、无更新；只加载该验证窗口的旋律编号，没有把真实伴奏作为生成条件。</p>
+<p>重算的cfg3与历史长程同窗口Mel逐元素完全相同，固定8秒原始FLOAT波形也完全相同。这能确认本次对照与已听问题对应；不能据此判断cfg0音乐更好。两份Mel、6份WAV及<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/waveform_spectrogram.png">波形／频谱图（本轮未发布此证据文件）</span>保留，详细资源、来源、命令和局限见<span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/report.md">报告（本轮未发布此证据文件）</span>。</p>
+<table>
+<thead>
+<tr>
+<th>设置</th>
+<th>固定8秒播放</th>
+<th>当前反馈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原额外引导cfg3</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg3_8s_playback.wav">第一段（本轮未发布此证据文件）</span></td>
+<td>待本次成对反馈；原始波形复现旧长程</td>
+</tr>
+<tr>
+<td>关闭额外引导cfg0，保留人声条件</td>
+<td><span class="reader-missing" title="../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg0_8s_playback.wav">第二段（本轮未发布此证据文件）</span></td>
+<td>待反馈</td>
+</tr>
+</tbody>
+</table>
+<p>两段均24kHz、8秒，使用同一播放增益0.868133532。原始RMS分别0.19535／0.07508，第二段自身音量更轻，未单独补偿；听验时把音量差与连贯性分开，不将更轻直接当改善。生成Mel之间MSE为0.14123，只说明频谱改变，不是连续性分数。</p>
+<p><strong>当前待反馈：第二段相比第一段是否更连贯？戏曲伴奏感觉是否保留？</strong> 若更连贯但风格弱，分别记录；无改善或无法判断也如实保留。尚无此对反馈，不作因果归因或宣布修复；本次停在这一判断，不启动第三轮训练。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/AnyAccomp微调实验/08_连续性问题定位方案.md（路径已脱敏）","sha256":"bd0dce5f89adb784418b9beaf75ab635cb3df4430e447975deaf62596181354b","text":"# 连续性问题定位方案\n\n更新：2026-10-23。**固定位置CFG引导对照已完成：约30秒，46项脚本检查及36项产物复核通过，等待连贯性与戏曲风格反馈。参考重建已获认可；本次参数更新0，第三轮训练未启动。** 返回[实验总览](../AnyAccomp歌仔戏微调实验.md)。\n\n## Material Passport\n\n- Origin Skill: academic-research-suite / experiment-agent\n- Origin Mode: run（承接已准备的单次检查方案）\n- Origin Date: 2026-10-23\n- Verification Status: ANALYZED（参考重建获局部正面反馈；CFG成对运行与技术复核通过，cfg3复现旧输出，CFG音乐反馈待定）\n- Version Label: continuity_vocoder_probe_v1\n\n## 1. 目前能确认什么\n\n对象为R0011《五更鼓》、种子1024；初始对照取47.356—67.356秒，连续性诊断取其中48.356—56.356秒的8秒纯伴奏。三者使用同一人声条件、数字窗口、生成配置及播放增益；8秒内不跨生成窗口。\n\n| 模型 | 实际反馈 | 尚不能据此写什么 |\n| --- | --- | --- |\n| 原预训练 | 用户：“好一些了，现在比之前连贯一些”，相对长程A | 原模型整体合格、原模型优于短程，或本次原模型的戏曲风格评分 |\n| 504步短程，原B | 初始两者均较像戏曲；短程8秒“好一点点”，相对长程A | 短程已经连贯、碎片感消失、整体好听 |\n| 1820步长程，原A | 初始更贴合；后续明确碎、不连贯、不好听；不跨窗口的纯伴奏内也有此感受 | 长程整体胜出、所有录音都退化或训练越久必然越碎 |\n\n原模型与短程没有直接排序，不能依据“好一些”与“好一点点”的措辞比较二者。贴合度来自初始20秒混合试听，连续性来自后续8秒纯伴奏诊断，不将不同维度和范围混成一个总分。初始反馈保存后，仅揭示这组映射；后续该组诊断已知模型身份，不追称盲听。\n\n已知唯一接缝在原20秒第10.004秒，而不跨接缝的纯伴奏也被听出碎片感，因此该拼接不能独自解释现象。现有反馈不能确定声码器、训练目标、输入表示或数据的具体作用，也不能仅归因于数据少。\n\n这一轮局部对照到此收住：仍只有1首、1种子、1个原始对照案例，不继续切更多段或要求反复试听。全部原话与音频身份见[05听验记录](05_验证集试听与反馈.md)和[反馈目录](../../runs/anyaccomp_finetune_round2_listening_v1/listening_feedback/budget_CASE01_20261023_v1/)。\n\n## 2. 下一步为什么检查声码器\n\n现有生成路径是“人声旋律编号 → FM → 生成频谱 → 声码器 → 伴奏声音”。FM是根据旋律条件生成伴奏频谱的流匹配模型；声码器负责把频谱还原为声音。\n\n用户在该方案后回复“继续”，现已完成一次“真实伴奏的交付频谱 → 同一冻结声码器 → 重建声音”，暂时绕过FM。这样可判断声码器与当前目标表示能否在这个位置保留参考伴奏的连续性，然后再决定应优先检查还原链路，还是生成与微调策略。\n\n这是使用已知参考目标的技术检查，**不是根据人声生成的效果样本**，不能把重建音频混入主模型成绩。929保持已验收，不重做分离或安排逐首原音复验；本次仅因生成质量问题拟定一个固定位置的模块检查。\n\n## 3. 固定输入、处理与产物\n\n| 项目 | 实际采用范围 |\n| --- | --- |\n| 集合与输入 | 验证集R0011_SEP01_SEG0001_WIN0002，1434帧；按冻结清单核对NPZ哈希 |\n| 目标 | target_mel，float32、1434×128；沿用(raw+4.92)/sqrt(8.14)，不静默改标准化 |\n| 参考音频 | 交付的R0011_SEP01_SEG0001伴奏WAV，原生44.1kHz；沿用现有librosa.load(sr=24000, mono=True)转换至比较网格，仅用于同位置重建对照，原WAV不覆盖 |\n| 模型 | 原冻结vocoder/model.safetensors及原配置，不加载FM、不更新参数 |\n| 解码 | 复用已核验centered_decode；完整解码1434帧以保留相同上下文，再取固定8秒 |\n| 时间 | 整段绝对48.356—56.356秒；窗口内样本472224—664224，24kHz，192000点 |\n| 比较条件 | 原参考与重建采用同一播放增益；原始FLOAT保留，不滤波、不交叉淡化、不按听感换位置 |\n| 输出 | 新目录runs/anyaccomp_continuity_vocoder_probe_v1；配置、来源哈希、原始输出、固定片段、指标及报告 |\n\n配置见[continuity_vocoder_probe_v1.json](../../configs/anyaccomp_continuity_vocoder_probe_v1.json)，保留其中执行前prepared_not_executed／executed=false的计划状态，不覆盖历史。实际执行以新[运行状态](../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json)与[result.json](../../runs/anyaccomp_continuity_vocoder_probe_v1/result.json)为准。原计划在[准备目录](../../runs/anyaccomp_continuity_probe_preparation_20261023_v1/)及新运行source_snapshot中保留。\n\n## 4. 检查与结果分支\n\n先核对输入／权重／代码身份、形状、标准化与坐标；再核对输出有限、时长正确、非静音及写后读取。保留参考距离、波形／频谱诊断与局限，不把逐样本相等或单一距离当作声码器的音乐验收标准。已有R0001／R0002／R0003时间裁切证据继续保留，不重复作为本次R0011质量已通过的依据。\n\n| 实际结果 | 下一步取舍 |\n| --- | --- |\n| 同一声码器对真实目标能保留参考连续性 | 该位置不支持“真实目标本身无法还原”的解释；重点再看生成频谱与微调策略。仍不排除声码器对异常生成频谱的反应 |\n| 参考较连贯，而重建明显损害连续性 | 优先查目标表示、标准化、时间／解码与声码器适配；先不扩大FM训练预算 |\n| 参考本身也呈现用户不希望的碎片感 | 明确所需伴奏组织与当前目标之间的区别；不直接推翻929技术／听验收录结论 |\n| 技术失败或听感无法判断 | 如实保留未确定结果，先解释具体证据，不自动遍历参数或继续追加试听 |\n\n该小任务限一个固定参考位置，现已收齐技术与音乐判断。先依据实际推理代码准备第7节的单次引导对照，再判断是否需要训练改动；不预定第三轮学习率、训练模块或辅助损失，不把降低学习率、缩小更新范围或加REPA写成已获证据支持的修复。\n\n## 5. 资源、分工与停止条件\n\n实际仅运行冻结声码器；物理GPU0，UUID为GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c，启动前空闲24208MiB，磁盘约842GiB可用。09:42:16—09:42:30（北京时间）完成，控制PID1513635、模型PID1513639均已退出；约14.02秒，解码本体约0.282秒，峰值已分配／预留显存1.043／1.057GiB。保留300秒硬上限与进程存活监控，未触及；没有新检查点。\n\n系统Python3.8在创建输出或加载模型前因Path.is_relative_to不可用而退出；随后使用既有Python3.9.19独立环境运行同一脚本，模型仅执行一次。此启动环境修复及实际命令见[记录](../../runs/anyaccomp_continuity_vocoder_probe_v1/launch_environment_repair.json)，没有改配方或静默重复模型运行。\n\n助手负责输入／路径与实现核验、运行和证据；用户仅在技术结果齐全后判断这一个固定位置的参考与重建差异。核心训练配方或新增长训练仍另行给出具体方案供用户决定。\n\n**单位置参考重建步骤已完成；后续引导对照也已完成技术核验，等待这一对材料的音乐判断，不启动第三轮长训练。** 云端文档已更新，Windows本地未同步，网站未更新。\n\n## 6. 实际结果与唯一待判断项\n\n[33项检查](../../runs/anyaccomp_continuity_vocoder_probe_v1/verification.json)通过：来源／权重／辅助代码身份、验证集归属、1434×128目标与原标准化、279个张量严格加载、完整688320点解码后固定取192000点、原生重叠相加复现、参数指纹不变、无梯度、有限非静音及FLOAT／播放版写后读取。两段均24kHz、8秒，同一播放增益1.0；不单独补偿响度，不滤波或淡化。该增益仅用于本对诊断，不能与此前生成试听直接据响度打分。\n\n| 材料 | 入口 | 用途 |\n| --- | --- | --- |\n| 参考伴奏 | [8秒播放](../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reference_8s_playback.wav) | 交付参考WAV转24kHz后取同一位置 |\n| 参考频谱重建 | [8秒播放](../../runs/anyaccomp_continuity_vocoder_probe_v1/audio/reconstruction_8s_playback.wav) | 完整窗口真实目标频谱经冻结声码器还原，再取同一位置 |\n| 波形／频谱与距离 | [图](../../runs/anyaccomp_continuity_vocoder_probe_v1/waveform_spectrogram.png)、[原始指标](../../runs/anyaccomp_continuity_vocoder_probe_v1/metrics.json) | 同时间与频率网格诊断，不能据图或距离认定音乐连贯 |\n| 实际运行证据 | [报告](../../runs/anyaccomp_continuity_vocoder_probe_v1/report.md)、[日志](../../runs/anyaccomp_continuity_vocoder_probe_v1/run.log)、[状态／命令](../../runs/anyaccomp_continuity_vocoder_probe_v1/status.json) | 资源、配置、来源、进程和产物身份 |\n\nSTFT（短时傅里叶变换，把波形分成短帧观察频率能量）幅度相对L2距离为0.2982；未优化时间偏移的波形SNR为−3.332dB，余弦−0.1595。这些逐样本量对相位敏感，负值不能单独判为音乐失败，频谱距离也不是连续性分数；未设听感通过阈值。完整输出和原始FLOAT片段保留，不据指标挑新位置。\n\n原问题为“与参考相比，重建有没有明显变碎、变得不连贯？” 用户回复：**“还原的很好啊”**。[原话及两份音频哈希](../../runs/anyaccomp_continuity_vocoder_probe_v1/listening_feedback/reconstruction_feedback_20261023_v1.json)已保存。按该位置重建效果获认可记录，不补写逐样本一致、单独连续性评分或全部录音通过。\n\n本位置不支持“当前真实目标频谱经该声码器无法还原好”的解释；下一步优先查生成频谱及微调／推理路径。仍不能完全排除声码器对异常生成频谱的反应，也不能仅据这一段确定训练、数据量或条件表示的具体责任。两段都利用真实参考，是模块诊断，不计入原36组模型生成A/B或独立案例数，不形成正式模型胜率。原result.json／report.md保留执行当时的待反馈状态，后续反馈以新记录及本文为准。\n\n## 7. 下一项小实验：只改变额外条件引导\n\n**状态：technical_passed_listening_pending，已执行，音乐判断待反馈。** 用户在准备好的两设置方案后回复“下一步”，现已执行。输入为同一长程1820步检查点、同一人声旋律编号与初始噪声；输出为两份完整窗口生成频谱及同位置8秒音频。目的为检查额外引导是否与碎片感有关，不能预先写成修复已生效。\n\nCFG（无分类器条件引导）用有人声条件、无条件两种预测的差异调整生成。本项目实际[reverse_diffusion源码]($CLOUD_PROJECT_ROOT/source/AnyAccomp/anyaccomp/fmt_model.py:341)采用以下逻辑，正系数后还会做原实现的幅度重缩放：\n\n```python\nflow_cond = diff_estimator(..., cond)  # 含人声旋律条件\nflow_guided = flow_cond + cfg * (flow_cond - flow_uncond)  # cfg \u003e 0时执行\n```\n\n这不是直接替换源码的diff，而是现有逻辑的简写。输入为当前频谱状态、时间、掩码和人声条件，输出是下一步的频谱变化方向。**本实现cfg=0仍保留人声条件；cfg=1仍有额外引导，不能误称为关闭。** cfg=0还会跳过关联的重缩放分支；因此实验检验整个额外引导分支，不能把差异进一步归到“外推”或“重缩放”其中一项。\n\n| 项目 | 固定方案 |\n| --- | --- |\n| 唯一调用参数变化 | cfg=3与cfg=0，仅两个设置，不做搜索；rescale_cfg参数仍为0.75 |\n| 模型与数据 | 原1820步best.pt、验证集R0011第二窗1434帧；不重新选点或检查点 |\n| 噪声与采样 | 原种子1024及原input_id哈希派生方式；各条件重置同一噪声，50步，BF16主计算 |\n| 真实目标与提示 | 只用人声旋律编号；不把真实伴奏频谱作为生成条件，不提供左右伴奏提示 |\n| 对照与音频 | 重新计算同一窗口的cfg3作当次对照，另算cfg0；同一冻结声码器、同一居中解码、同一固定8秒；共同安全播放增益，保留原始频谱和FLOAT |\n| 判断内容 | 连贯性、碎片感及戏曲风格是否一同保留；目标距离和谱图只作诊断，不设音乐分数阈值 |\n| 预期与相反结果 | cfg0更连贯则支持该位置受引导分支影响；无改善则不支持这一简单解释。更连贯但风格变弱，按取舍记录，不能算整体通过 |\n| 资源与停止 | 300秒硬上限；实际约30.06秒，物理GPU0，FM已分配／预留峰值1.165／1.250GiB、声码器1.041／1.061GiB；分阶段记录，无新权重 |\n\n方案配置为[continuity_cfg_probe_v1.json](../../configs/anyaccomp_continuity_cfg_probe_v1.json)，保留prepared_not_executed的历史计划状态；源码只读分析与计划快照在[准备目录](../../runs/anyaccomp_continuity_cfg_probe_preparation_20261023_v1/)。实际运行单列[新目录](../../runs/anyaccomp_continuity_cfg_probe_v1/)，以[result.json](../../runs/anyaccomp_continuity_cfg_probe_v1/result.json)和[status.json](../../runs/anyaccomp_continuity_cfg_probe_v1/status.json)为准，不回写原计划为执行结果。\n\n这一处是已知问题的局部诊断，不增加独立案例、不替换原固定条件的正式生成比较，更不把验证位置当测试集。助手负责实现与核验，用户在两份材料齐全后判断听感。只比较这一对，之后汇总一次再决定下一步，不自动遍历系数、增加采样步数或延长训练。正式生成设置如需改变，须另外确定并对所有对照统一应用；第三轮训练仍需另定具体方案与启动授权。\n\n### 实际结果与试听\n\n2026-10-23 10:50:18—10:50:48（北京时间），控制PID1629496、模型PID1629501在物理GPU0／UUID GPU-d9ba5f0b-fd38-214e-1e77-ea87fcabe54c运行后退出，资源释放。启动前该卡24208MiB空闲，磁盘约842GiB可用；没有额外资源预算或参数搜索。\n\n[46项脚本检查](../../runs/anyaccomp_continuity_cfg_probe_v1/verification.json)与[36项产物复核](../../runs/anyaccomp_continuity_cfg_probe_v1/post_run_verification.json)通过。实际首步噪声与人声条件哈希完全相同，两设置都保留非零人声条件；cfg3／0分别调用频谱变化估计器100／50次，符合各自分支。FM与声码器前后参数指纹不变，无梯度、无更新；只加载该验证窗口的旋律编号，没有把真实伴奏作为生成条件。\n\n重算的cfg3与历史长程同窗口Mel逐元素完全相同，固定8秒原始FLOAT波形也完全相同。这能确认本次对照与已听问题对应；不能据此判断cfg0音乐更好。两份Mel、6份WAV及[波形／频谱图](../../runs/anyaccomp_continuity_cfg_probe_v1/waveform_spectrogram.png)保留，详细资源、来源、命令和局限见[报告](../../runs/anyaccomp_continuity_cfg_probe_v1/report.md)。\n\n| 设置 | 固定8秒播放 | 当前反馈 |\n| --- | --- | --- |\n| 原额外引导cfg3 | [第一段](../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg3_8s_playback.wav) | 待本次成对反馈；原始波形复现旧长程 |\n| 关闭额外引导cfg0，保留人声条件 | [第二段](../../runs/anyaccomp_continuity_cfg_probe_v1/audio/cfg0_8s_playback.wav) | 待反馈 |\n\n两段均24kHz、8秒，使用同一播放增益0.868133532。原始RMS分别0.19535／0.07508，第二段自身音量更轻，未单独补偿；听验时把音量差与连贯性分开，不将更轻直接当改善。生成Mel之间MSE为0.14123，只说明频谱改变，不是连续性分数。\n\n**当前待反馈：第二段相比第一段是否更连贯？戏曲伴奏感觉是否保留？** 若更连贯但风格弱，分别记录；无改善或无法判断也如实保留。尚无此对反馈，不作因果归因或宣布修复；本次停在这一判断，不启动第三轮训练。\n"}</script><script src="../../src/data-reader.js"></script></body></html>

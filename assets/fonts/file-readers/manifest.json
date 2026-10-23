@@ -3,32 +3,32 @@
     "file": "wenkai-regular.woff2",
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
     "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
-    "sha256": "8065c0d9b9b5319078fcbe35e6fbd38c00788fc93627e82417f2c4fdc15f2c0b",
+    "sha256": "b2cd255c650a0808155175448cd82a83c0a4c2781c44205c08412bae8476d50c",
     "weight": 400,
-    "characters": 1174
+    "characters": 1233
   },
   {
     "file": "wenkai-medium.woff2",
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
     "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
-    "sha256": "dd0bd974c645a8fd5748a207eb852d29f0300a34292a01b7d716350ca57deaa6",
+    "sha256": "0c9e85f77c17f46d018fa5c623678b21a66bbfd4ecfb07797480d8f7c19f62b9",
     "weight": 500,
-    "characters": 1174
+    "characters": 1233
   },
   {
     "file": "gezi-ui-sans-regular.woff2",
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
     "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
-    "sha256": "75186e9716cf44439c19998884f0eac393537ec28850c2bbd0c31a7eb5b8ae94",
+    "sha256": "e0097e1dc7f4fa53fc95f9dfe86b225170fe569b8b132e1f70f0740499639e47",
     "weight": 400,
-    "characters": 1172
+    "characters": 1231
   },
   {
     "file": "gezi-ui-sans-medium.woff2",
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
     "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
-    "sha256": "09bfc96967cfafe8dfe107e1fd69a4d8b829274273c7401841a8944d77ef79e0",
+    "sha256": "0f86b5228ed947c32b24deddcf77a3cb92c78b95324e5253458009047c3515fb",
     "weight": 500,
-    "characters": 1172
+    "characters": 1231
   }
 ]
