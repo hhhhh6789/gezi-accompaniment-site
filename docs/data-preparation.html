@@ -4,721 +4,235 @@
 <title>数据准备完整记录 · 歌仔戏伴奏研究</title>
 <link rel="stylesheet" href="../src/typography.css"><link rel="stylesheet" href="../src/data-fonts.css">
 <link rel="stylesheet" href="../src/data-reader.css"><link rel="stylesheet" href="../src/file-reader-fonts.css"></head><body class="data-reader full-record-reader">
-<header class="reader-bar"><span class="reader-missing" title="../index.html#data">← 返回数据准备（本轮未发布此证据文件）</span><a href="#reader-directory">文档目录</a><span>完整记录 · 更新 2026-10-08</span></header>
+<header class="reader-bar"><span class="reader-missing" title="../index.html#data">← 返回数据准备（本轮未发布此证据文件）</span><a href="#reader-directory">文档目录</a><span>完整记录 · 更新 2026-10-22</span></header>
 <main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
-<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>数据准备完整记录</h2><ol><li><a href="#scope">1. 实验目标与边界</a></li><li><a href="#progress">2. 当前进度</a></li><li><a href="#validation">3. 小规模验证已完成什么</a></li><li><a href="#recordings">3.1 保存录音、比较分离并完成听验</a></li><li><a href="#validation-segmentation">3.2 结构分段与配对完整性通过</a></li><li><a href="#validation-input">3.3 训练输入与频谱解码的有限验收通过</a></li><li><a href="#models">4. 本次采用的模型与输入规则</a></li><li><a href="#scale">5. 规模化建集：首批收录、分离与听验</a></li><li><a href="#limits">6. 已接受的限制与待验证范围</a></li><li><a href="#delivery">7. 数据交付与结束条件</a></li><li><a href="#evidence">8. 文档、证据与同步状态</a></li></ol></nav>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>数据准备完整记录</h2><ol><li><a href="#scope">1. 项目目标</a></li><li><a href="#progress">2. 本周工作成果</a></li><li><a href="#validation">3. 核验成果与当前阶段</a></li><li><a href="#recordings">4. 各录音进度</a></li><li><a href="#delivery">5. 下一步与结束条件</a></li><li><a href="#evidence">6. 配套文档</a></li></ol></nav>
 <div class="reader-meta"><p>此页保留《929训练数据采集》全文，并在每条录音下附上清单中的完整文件记录。</p>
 <p>原始来源：<a href="data-preparation.html#complete">929训练数据采集.md</a> · <a href="files/recordings-9a6ade03529f.html">recordings.csv</a>。此页为生成时的静态快照，源文件更新后需重新生成。</p></div>
-<p class="reader-meta">本页已从本地新版来源生成；原文末尾的同步描述是云端打包时记录，不代表当前网页仍未更新。未同步的云端材料会明确提示，不假装可在本地打开。</p>
-<div class="reader-content"><h1 id="complete">929训练数据采集：歌仔戏配对数据与训练输入核验</h1>
-<p>更新日期：2026-10-08。本文是<strong>929 实验的当前进度与数据交付主文档，也是更新网页的内容来源</strong>。正文展示最新状态、已确认结论和下一步；详细模型说明、运行报告与完整历史通过末尾链接查阅。</p>
-<p><strong>当前结论：正式音频仍19对、514.121秒，现已登记13对整段有限FM接口通过＋6对窗口有限接口通过（R0005、R0004各3对），无pending，全部尚未划分。R0004已完成听验、收录、特征/目标及四窗有限核验，本次只采用已有证据并登记三条状态，没有处理音频、运行模型或更新参数。下一步可提出R0006结构分段与听验安排；其余四份、最终规模、划分及交付仍待完成，929未结束，正式微调未开始。</strong></p>
-<h2 id="scope">1. 实验目标与边界</h2>
-<p>构建来源可追溯、质量经过审核、时间关系明确，并经约定训练输入接口核验的歌仔戏人声—伴奏配对数据集。人声提供旋律条件，伴奏提供对应的学习目标。</p>
-<p>929 包含完整的数据准备流程：<strong>小规模验证 → 规模化收集与处理 → 质量及训练输入核验 → 数据划分与交付</strong>。规模化建集原本就在本实验范围内，不以当前三份试验录音作为最终数据规模。</p>
-<p>正式微调、长期训练、生成效果评价和完整论文训练配方复现另开实验。达到约定数据规模、完成固定交付项并经用户验收后结束 929，不自动增加规模或延伸新研究。</p>
-<h2 id="progress">2. 当前进度</h2>
+<p class="reader-meta">本页是当前文档的网页阅读副本。资料同步与网站发布分别记录；未准备的云端附件会明确提示。</p>
+<div class="reader-content"><h1 id="complete">929 歌仔戏配对数据准备</h1>
+<p>更新日期：2026-10-22。本文是网页展示的唯一正文内容源，可独立使用；技术细节和证据按需查阅配套文档。</p>
+<p><strong>当前结论：929已验收完成。40首、60对、3316.363242633秒（约55分16秒）；训练／验证／测试32／4／4首、51／4／5对；正式微调尚未开始，参数更新0次</strong>。</p>
+<h2 id="scope">1. 项目目标<span id="stage-download"></span></h2>
+<p>将歌仔戏录音整理成来源可追溯、具有质量审核和训练输入核验证据的人声—伴奏配对数据，为后续伴奏生成模型微调做准备。逐首人工听验与按批次规则采用分别标注，未抽中者不记为逐首人工通过。原始录音、配对音频及来源/听验记录可供后续其他方法复用；模型专用特征按所用方法适配。</p>
+<p><strong>流程：完整录音 → 人声/伴奏分离 → 整首或自然段落配对 → 质量与输入核验 → 数据划分与交付</strong>。</p>
+<h2 id="progress">2. 本周工作成果<span id="stage-scale-up"></span></h2>
+<p><strong>统计口径：截至2026-10-22的已验收累计成果；本次没有另行核定当周新增量</strong>。 原10月3日至10日周报保留为历史快照，查阅入口见<a href="files/929%E8%AF%81%E6%8D%AE%E7%B4%A2%E5%BC%95-1f6c7da19c35.html">证据索引</a>，不再与当前累计成果并列展示。</p>
 <table>
 <thead>
 <tr>
-<th>项目</th>
-<th>最新状态</th>
+<th>工作</th>
+<th>本期已验收成果</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td data-label="项目">已保存完整录音</td>
-<td data-label="最新状态">9 份：R0001–R0009，来源、哈希、格式及完整解码已核验；原音总长约 13 分 03 秒</td>
+<td data-label="工作">采集与分离</td>
+<td data-label="本期已验收成果">40首完整录音已收录，完整原音和分离双轨保留</td>
 </tr>
 <tr>
-<td data-label="项目">分离版本与听验</td>
-<td data-label="最新状态">已保存 10 个分离版本，含 R0001 历史 MDX 候选；九份 Demucs 完整双轨均按本轮门槛采用，新增六份保留人声轨伴奏残留及其分离伪影限制</td>
+<td data-label="工作">质量采用</td>
+<td data-label="本期已验收成果">36首有完整双轨听验记录，R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验</td>
 </tr>
 <tr>
-<td data-label="项目">已保存配对片段</td>
-<td data-label="最新状态">19 对，总长 514.121 秒，约 8 分 34 秒；此前收录的 R0004 三对共 66.899501 秒，6 WAV 与已听验候选逐字节一致，前奏、过门和尾奏完整保留</td>
+<td data-label="工作">正式配对</td>
+<td data-label="本期已验收成果">前9首29对自然段落、后31首31对整首，共60对、约55分16秒</td>
 </tr>
 <tr>
-<td data-label="项目">训练输入核验</td>
-<td data-label="最新状态">已登记13对、282.229秒整段有限接口通过＋6对、231.892秒窗口有限接口通过（R0005/R0004各3对），0 pending；这是已测有限输入路径，不等于19对整段、完整训练器或生成音质全部通过</td>
+<td data-label="工作">有限输入核验</td>
+<td data-label="本期已验收成果">13对整段＋47对窗口接口通过，0待核验；139个读取单元已有索引</td>
 </tr>
 <tr>
-<td data-label="项目">R0004 本轮输入准备</td>
-<td data-label="最新状态">旋律条件与CPU同网格目标已独立核验通过，三份目标形状[1776,128] / [526,128] / [1045,128]，完整WAV和编号保持；转换结果不等于FM接口通过</td>
-</tr>
-<tr>
-<td data-label="项目">R0004 四窗FM结果</td>
-<td data-label="最新状态">888 / 888 / 526 / 1045帧四窗、固定双样本及补齐扰动通过，6次前向/5次反向完成，119项独立后审通过；本次已沿用现有规则登记三条窗口有限接口通过，模型不重跑、参数未更新</td>
-</tr>
-<tr>
-<td data-label="项目">小规模流程验收</td>
-<td data-label="最新状态">用户已确认有限验收通过：实验 FM 主损失输入接口及已测声码器解码规则</td>
-</tr>
-<tr>
-<td data-label="项目">首批新增录音</td>
-<td data-label="最新状态">R0004–R0009完整收录、分离及听验通过；R0005、R0004各三对已分段、配对并登记窗口有限输入接口通过；R0004旧RMS切点不采用；R0006–R0009仍未结构分段或配对</td>
-</tr>
-<tr>
-<td data-label="项目">最终建集数量/时长</td>
-<td data-label="最新状态">待确定，按合格配对数据计量，不重复计算人声与伴奏两轨</td>
-</tr>
-<tr>
-<td data-label="项目">R0005 阶段 A</td>
-<td data-label="最新状态">用户已确认四文件补丁与阶段 A，补丁原样应用；三对 CPU 位置部件、原生特征技术检查及独立后审通过，进程与显存已释放，报告后停止；该阶段未执行完整 FM、声码器或参数更新</td>
-</tr>
-<tr>
-<td data-label="项目">R0005 CPU 伴奏目标准备</td>
-<td data-label="最新状态">用户已明确确认，新增脚本原样应用；三对同网格原始及标准化目标已生成，技术检查与独立后核验通过，报告后停止；未用 GPU、加载模型或更新参数</td>
-</tr>
-<tr>
-<td data-label="项目">R0005 最长单样本 FM 结果</td>
-<td data-label="最新状态">用户已确认，补丁原样应用；只尝试 SEG0002 完整 94.77 秒、4,739 帧一次前向，注意力计算显存不足后停止；无预测/损失/梯度结果、反向 0 次，无重试；其余两段和混合批次未运行</td>
-</tr>
-<tr>
-<td data-label="项目">R0005 短窗口 FM 与规格采用</td>
-<td data-label="最新状态">7 个窗口恰好覆盖 8,251 帧，最长 1,296 帧；七个单窗、一个混合批次及补齐扰动检查通过，9 次前向/8 次反向均完成，参数未更新；此前 R0005 采用登记已更新其三条输入状态并新增输入规格，不新增音频量、改写全长 OOM 或重跑模型</td>
-</tr>
-<tr>
-<td data-label="项目">训练/验证/测试划分</td>
-<td data-label="最新状态">尚未执行，现有配对仍为未划分状态</td>
-</tr>
-<tr>
-<td data-label="项目">模型参数更新</td>
-<td data-label="最新状态">0 次，尚未正式微调</td>
+<td data-label="工作">划分与交付</td>
+<td data-label="本期已验收成果">训练／验证／测试32／4／4首、51／4／5对；交付与用户最终验收完成</td>
 </tr>
 </tbody>
 </table>
-<p>用户已明确采用九份Demucs完整双轨，新增六份保留人声轨伴奏残留及其分离伪影限制。R0004四窗有限核验支持所测数字输入进入当前主损失和梯度计算，本次已登记对应三条状态；这不证明旋律准确、残留影响消除、跨窗口连贯性或生成音质。正式音频仍19对，登记为13对整段＋6对窗口有限接口通过，最终合格数量/时长仍待明确。</p>
-<h2 id="validation">3. 小规模验证已完成什么</h2>
-<h3 id="recordings">3.1 保存录音、比较分离并完成听验<span id="validation-separation"><span id="stage-separation"></span></span><span id="stage-download"></span><span id="stage-preserve"></span></h3>
+<p>前奏、过门、尾奏和完整唱句保留；模型数字窗口和双轨不增加正式音频数量或时长。正式微调与生成效果评价另开实验。</p>
+<h2 id="validation">3. 核验成果与当前阶段<span id="stage-alignment"></span><span id="stage-input-check"></span><span id="stage-pilot-review"></span><span id="rights"></span><span id="limits"></span><span id="validation-input"></span></h2>
+<p>截至2026-10-22，<strong>40份录音正式收录60对，合计3316.363242633秒（约55分16秒）</strong>。前9首自然段落29对，后31首各保留一对整首。36首有实际完整双轨听验记录；R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验。</p>
+<p><strong>采集、分离、采用、有限输入核验、划分与交付均已完成；用户于2026-10-22接受最终交付，929已验收完成</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>集合</th>
+<th style="text-align: right;">录音数</th>
+<th style="text-align: right;">配对数</th>
+<th>音频时长</th>
+<th style="text-align: right;">时长比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="集合">训练</td>
+<td style="text-align: right;" data-label="录音数">32</td>
+<td style="text-align: right;" data-label="配对数">51</td>
+<td data-label="音频时长">44分28秒</td>
+<td style="text-align: right;" data-label="时长比例">80.44%</td>
+</tr>
+<tr>
+<td data-label="集合">验证</td>
+<td style="text-align: right;" data-label="录音数">4</td>
+<td style="text-align: right;" data-label="配对数">4</td>
+<td data-label="音频时长">5分35秒</td>
+<td style="text-align: right;" data-label="时长比例">10.11%</td>
+</tr>
+<tr>
+<td data-label="集合">测试</td>
+<td style="text-align: right;" data-label="录音数">4</td>
+<td style="text-align: right;" data-label="配对数">5</td>
+<td data-label="音频时长">5分13秒</td>
+<td style="text-align: right;" data-label="时长比例">9.44%</td>
+</tr>
+</tbody>
+</table>
+<p>评测目标是面对同类歌仔戏的新录音。完整录音不跨集合，演唱者可以重叠；各录音的片段与数字窗口继承相同归属。验证集涵盖5位、测试集6位演唱者，均在训练中出现。</p>
+<p>60对有限输入检查全部登记：13整段＋47窗口，0待核验。486份音频与特征资产、139个模型读取单元及来源/核验证据已有统一索引；划分登记与交付检查通过。见<a href="files/929%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BB%98%E8%AF%B4%E6%98%8E-a449710c5b2b.html">929数据交付说明</a>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md">数据交付入口（本轮未发布此证据文件）</span>。</p>
+<p><strong>正式微调未开始，参数更新0次</strong>。 输入检查证明已有数据能按对应实验路径计算误差和梯度，不证明旋律准确性、残留影响、完整作者训练配方或生成效果。人声轨伴奏残留、小样本、录制场次未知及测试数据曾用于技术排查的限制均保留；原音与历史失败证据不改写。</p>
+<h2 id="recordings">4. 各录音进度<span id="stage-preserve"></span><span id="stage-separation"></span><span id="stage-segmentation"></span><span id="stage-pairs"></span><span id="scale"></span><span id="validation-separation"></span><span id="validation-segmentation"></span></h2>
+<p>40份录音已收录60对：36首有完整双轨听验记录，4首按批次规则采用；前9首自然段落29对，后31首整首31对。</p>
 <table class="record-details">
 <thead>
 <tr>
 <th>录音</th>
-<th>内容</th>
-<th>完整时长</th>
-<th>采用结果</th>
-<th>配对片段数</th>
-</tr>
-</thead>
-<tbody>
-<tr id="record-r0001">
-<td data-label="录音">R0001</td>
-<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/21" target="_blank" rel="noopener">七字調</a></td>
-<td data-label="完整时长">92.587 秒</td>
-<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP02</td>
-<td data-label="配对片段数">4<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0001</dd><dt>候选编号（candidate_id）</dt><dd>C001</dd><dt>名称（title）</dt><dd>七字調示範音檔</dd><dt>演唱者（performer）</dt><dd>待核对</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/21</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/21</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0001/2.七字調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>e086584357c4c97d915a64b393b312e250a4ce038975320979943d584815fb91</dd><dt>文件字节数（bytes）</dt><dd>26807946</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>92.586667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>data/raw/qizi_demo_21.wav</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0002">
-<td data-label="录音">R0002</td>
-<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/24" target="_blank" rel="noopener">雜唸調</a></td>
-<td data-label="完整时长">108.837 秒</td>
-<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP01</td>
-<td data-label="配对片段数">5<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0002</dd><dt>候选编号（candidate_id）</dt><dd>C002</dd><dt>名称（title）</dt><dd>雜唸調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/24</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/24</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0002/5.雜唸調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>8fdfb567b55662a8a599434da34e35155730a6c03bb0df7b1b51fcee66e7f80c</dd><dt>文件字节数（bytes）</dt><dd>31512830</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>108.837125</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0003">
-<td data-label="录音">R0003</td>
-<td data-label="内容"><a href="https://twoperapf.org.tw/resource/demo-audio/25" target="_blank" rel="noopener">江湖調</a></td>
-<td data-label="完整时长">80.805 秒</td>
-<td data-label="采用结果">Demucs <code>htdemucs_ft</code>，SEP01</td>
-<td data-label="配对片段数">4<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0003</dd><dt>候选编号（candidate_id）</dt><dd>C003</dd><dt>名称（title）</dt><dd>江湖調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/25</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/25</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0003/6.江湖調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>245759823c70b115c09f977c1b3f730df15d34004f9f805f75d134d4e48cf6e8</dd><dt>文件字节数（bytes）</dt><dd>23396832</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>80.804854</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-</tbody>
-</table>
-<p>三份原音均为 48 kHz、双声道、24-bit PCM WAV，完整文件保留。R0001 比较公开 MDX23 候选与 Demucs 后，用户认为 Demucs 更好，后两份沿用相同分离方案。公开 MDX23 候选的仓库、提交、权重和配置已留存，但未证明它是 SingNet 的精确版本。</p>
-<p>用户确认三份 Demucs 双轨符合本轮听验门槛。人声仍有分离伪影，但唱腔主体完整；保留这一限制，不将听验通过解释为获得了完全干净的独立轨。</p>
-<h3 id="validation-segmentation">3.2 结构分段与配对完整性通过<span id="stage-alignment"></span><span id="stage-segmentation"></span><span id="stage-pairs"></span></h3>
-<p>13 个片段的共同边界均经用户确认，保留片头伴奏、过门和尾奏。每对来自同一次分离、同一采样边界；各录音的片段重新拼接后与完整分离轨逐样本一致，说明分段没有遗漏内容。</p>
-<p>两段超过 30 秒的片段完整保留，没有按固定时长截断。同源裁切和完整覆盖已验证，但缺少独立干净双轨，不能宣称所有分离细节都达到真值意义上的精确对齐。</p>
-<h3 id="validation-input">3.3 训练输入与频谱解码的有限验收通过<span id="stage-input-check"></span><span id="stage-pilot-review"></span></h3>
-<ul>
-<li><strong>旋律与目标特征</strong>：13 对片段完成冻结 Chroma/VQ 特征核验，以及实验伴奏目标的尺度、时间网格和全长检查。</li>
-<li><strong>FM 主损失接口</strong>：13 个全长单样本、7 个混合长度批次的前向与反向检查通过；损失和梯度有限，梯度非零。前向是计算预测，反向是计算参数变化方向，本轮没有真正更新参数。</li>
-<li><strong>变长提示与补齐</strong>：按每段真实长度选取已知伴奏提示，保留学习位置；7 次补齐内容扰动检查通过，有效预测和损失不受补齐内容影响。</li>
-<li><strong>声码器解码</strong>：短、中、长三段完成频谱到声音的转换及时间/长度核验，用户反馈“都自然完整，没有新增失真”；19 个 CPU 窗口/长度数学案例也通过。</li>
-</ul>
-<p>这证明已测数据可以进入当前实验的 FM 主损失接口，且三段参考伴奏频谱可以按实验规则重建成声音。声码器重建使用真实伴奏目标频谱，不是 FM 生成的新伴奏，不作为微调效果证据。</p>
-<h2 id="models">4. 本次采用的模型与输入规则</h2>
-<table>
-<thead>
-<tr>
-<th>部件或机制</th>
-<th>具体作用</th>
-<th>本次采用方式</th>
+<th>曲调</th>
+<th>正式配对</th>
+<th>输入状态</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td data-label="部件或机制">Demucs <code>htdemucs_ft</code></td>
-<td data-label="具体作用">将完整录音拆成人声和伴奏，准备配对材料</td>
-<td data-label="本次采用方式">沿用已比较并听验的模型、权重和参数</td>
+<td data-label="录音">R0001<span id="record-r0001"></span><span id="candidate-c001"></span></td>
+<td data-label="曲调">七字調</td>
+<td data-label="正式配对">4 对</td>
+<td data-label="输入状态">整段有限接口通过<details><summary>R0001 · 七字調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0001</dd><dt>候选编号（candidate_id）</dt><dd>C001</dd><dt>名称（title）</dt><dd>七字調示範音檔</dd><dt>演唱者（performer）</dt><dd>生/張閔鈞 旦/陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/21</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/21</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0001/2.七字調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>e086584357c4c97d915a64b393b312e250a4ce038975320979943d584815fb91</dd><dt>文件字节数（bytes）</dt><dd>26807946</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>92.586667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>data/raw/qizi_demo_21.wav</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">Chroma + 冻结 VQ</td>
-<td data-label="具体作用">将人声中的音级信息转换为旋律编号，减少直接传入音色与分离细节</td>
-<td data-label="本次采用方式">24 通道 Chroma、约每秒 50 帧、512 条目码本；不更新 VQ 参数</td>
+<td data-label="录音">R0002<span id="record-r0002"></span><span id="candidate-c002"></span></td>
+<td data-label="曲调">雜唸調</td>
+<td data-label="正式配对">5 对</td>
+<td data-label="输入状态">整段有限接口通过<details><summary>R0002 · 雜唸調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0002</dd><dt>候选编号（candidate_id）</dt><dd>C002</dd><dt>名称（title）</dt><dd>雜唸調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/24</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/24</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0002/5.雜唸調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>8fdfb567b55662a8a599434da34e35155730a6c03bb0df7b1b51fcee66e7f80c</dd><dt>文件字节数（bytes）</dt><dd>31512830</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>108.837125</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">Mel 伴奏目标</td>
-<td data-label="具体作用">将伴奏波形转换为 FM 学习的频谱矩阵</td>
-<td data-label="本次采用方式">24 kHz 单声道输入、128 通道 Mel；按均值 −4.92、方差 8.14 做 z-score 标准化</td>
+<td data-label="录音">R0003<span id="record-r0003"></span><span id="candidate-c003"></span></td>
+<td data-label="曲调">江湖調</td>
+<td data-label="正式配对">4 对</td>
+<td data-label="输入状态">整段有限接口通过<details><summary>R0003 · 江湖調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0003</dd><dt>候选编号（candidate_id）</dt><dd>C003</dd><dt>名称（title）</dt><dd>江湖調示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/25</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/25</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0003/6.江湖調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>245759823c70b115c09f977c1b3f730df15d34004f9f805f75d134d4e48cf6e8</dd><dt>文件字节数（bytes）</dt><dd>23396832</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>80.804854</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_finetune_experiment</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">时间网格与解码</td>
-<td data-label="具体作用">让旋律和目标帧对应同一时间中心，并保持输出头尾长度</td>
-<td data-label="本次采用方式">使用已核验的共同帧中心及解码起点/长度适配，保留参考长度，不补波形零值</td>
+<td data-label="录音">R0004<span id="record-r0004"></span><span id="candidate-c004"></span></td>
+<td data-label="曲调">古早七字仔</td>
+<td data-label="正式配对">3 对</td>
+<td data-label="输入状态">窗口有限接口通过<details><summary>R0004 · 古早七字仔示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0004</dd><dt>候选编号（candidate_id）</dt><dd>C004</dd><dt>名称（title）</dt><dd>古早七字仔示範音檔</dd><dt>演唱者（performer）</dt><dd>鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/20</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/20</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0004/1.古早七字仔-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>b5892349b00935b4e4ca89d0b684c270f102cb5ab711d3e19bbe47afe73649a9</dd><dt>文件字节数（bytes）</dt><dd>19370900</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>66.899479167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">FM（流匹配生成模型）</td>
-<td data-label="具体作用">学习如何根据旋律条件，从噪声逐步生成伴奏频谱</td>
-<td data-label="本次采用方式">本轮核验主损失和梯度，没有优化器更新</td>
+<td data-label="录音">R0005<span id="record-r0005"></span><span id="candidate-c005"></span></td>
+<td data-label="曲调">都馬調</td>
+<td data-label="正式配对">3 对</td>
+<td data-label="输入状态">窗口有限接口通过<details><summary>R0005 · 都馬調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0005</dd><dt>候选编号（candidate_id）</dt><dd>C005</dd><dt>名称（title）</dt><dd>都馬調示範音檔</dd><dt>演唱者（performer）</dt><dd>生（薛丁山）/林祉淩、旦（樊梨花）/陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/22</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/22</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0005/3.都馬調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>54c3654e5c54caf7328213339ea3a3536225abdaff663c7e76a90a7c247c8139</dd><dt>文件字节数（bytes）</dt><dd>47771186</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>164.992666667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">Prompt（伴奏提示）</td>
-<td data-label="具体作用">给模型部分真实伴奏，让它学习剩余位置</td>
-<td data-label="本次采用方式">按真实有效长度选左右提示，默认启用概率 0.3</td>
+<td data-label="录音">R0006<span id="record-r0006"></span><span id="candidate-c006"></span></td>
+<td data-label="曲调">西樂都馬</td>
+<td data-label="正式配对">4 对</td>
+<td data-label="输入状态">窗口有限接口通过<details><summary>R0006 · 西樂都馬示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0006</dd><dt>候选编号（candidate_id）</dt><dd>C006</dd><dt>名称（title）</dt><dd>西樂都馬示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/23</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/23</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0006/4.西樂都馬-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>5ebf1e663c04a7c48dc2d3420ba7268ec62781aa7833da3f0680fc9477b78f33</dd><dt>文件字节数（bytes）</dt><dd>21552798</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>74.435625000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">CFG（条件丢弃与生成引导机制）</td>
-<td data-label="具体作用">训练时让模型学习有旋律/无旋律两种预测</td>
-<td data-label="本次采用方式">本轮保留训练条件丢弃概率 0.2；它不是生成时的引导强度</td>
+<td data-label="录音">R0007<span id="record-r0007"></span><span id="candidate-c007"></span></td>
+<td data-label="曲调">崁仔腳調</td>
+<td data-label="正式配对">2 对</td>
+<td data-label="输入状态">自身有限模型接口已独立核验通过并登记采用<details><summary>R0007 · 崁仔腳調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0007</dd><dt>候选编号（candidate_id）</dt><dd>C007</dd><dt>名称（title）</dt><dd>崁仔腳調示範音檔</dd><dt>演唱者（performer）</dt><dd>林俊辰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/26</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/26</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0007/7.崁仔腳調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>73b0523494137d7e42dfd4bbf0273e49c2b653fe35b2d8411590961d21b45037</dd><dt>文件字节数（bytes）</dt><dd>14879748</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>51.387229167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">Vocos（声码器）</td>
-<td data-label="具体作用">将伴奏频谱转换为可播放波形</td>
-<td data-label="本次采用方式">使用已有权重；已完成三段重建与用户听验</td>
+<td data-label="录音">R0008<span id="record-r0008"></span><span id="candidate-c008"></span></td>
+<td data-label="曲调">臺東調（平埔調）</td>
+<td data-label="正式配对">2 对</td>
+<td data-label="输入状态">自身四窗有限模型接口独立核验通过，已登记采用<details><summary>R0008 · 臺東調（平埔調）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0008</dd><dt>候选编号（candidate_id）</dt><dd>C008</dd><dt>名称（title）</dt><dd>臺東調（平埔調）示範音檔</dd><dt>演唱者（performer）</dt><dd>張閔鈞</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/27</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/27</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0008/8.臺東調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>c4ff335b869c79ac74677e878667296997dc355f1050d089a07cf4e11115b1a1</dd><dt>文件字节数（bytes）</dt><dd>21441158</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>74.050041667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
 </tr>
 <tr>
-<td data-label="部件或机制">REPA/MERT</td>
-<td data-label="具体作用">用预训练音乐特征约束 FM 中间表示的辅助训练链路</td>
-<td data-label="本次采用方式">本轮未实现辅助损失，用户已接受将其列为限制，不追加实现任务</td>
+<td data-label="录音">R0009<span id="record-r0009"></span><span id="candidate-c009"></span></td>
+<td data-label="曲调">思想起（恆春調）</td>
+<td data-label="正式配对">2 对</td>
+<td data-label="输入状态">四窗有限模型技术检查及独立核验通过，已登记窗口接口状态<details><summary>R0009 · 思想起（恆春調)示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0009</dd><dt>候选编号（candidate_id）</dt><dd>C009</dd><dt>名称（title）</dt><dd>思想起（恆春調)示範音檔</dd><dt>演唱者（performer）</dt><dd>林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/28</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/28</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0009/9.思想起-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>9a5ed1fee6351ff1b0a47f7b59d7bbbe17c72fcdcd74cb824a3b313e34d54bc4</dd><dt>文件字节数（bytes）</dt><dd>20065050</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>69.297000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0010–R0014<span id="record-r0010"></span><span id="candidate-c010"></span><span id="record-r0011"></span><span id="candidate-c011"></span><span id="record-r0012"></span><span id="candidate-c012"></span><span id="record-r0013"></span><span id="candidate-c013"></span><span id="record-r0014"></span><span id="candidate-c014"></span></td>
+<td data-label="曲调">病囝歌、五更鼓、雪梅思君、萬枝調、百家春</td>
+<td data-label="正式配对">各1对，共5对整首</td>
+<td data-label="输入状态">17窗有限FM技术检查和独立后审通过；五条窗口接口状态已登记<details><summary>R0010 · 病囝歌示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0010</dd><dt>候选编号（candidate_id）</dt><dd>C010</dd><dt>名称（title）</dt><dd>病囝歌示範音檔</dd><dt>演唱者（performer）</dt><dd>鄭力榮、陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/29</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/29</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0010/10.病囝歌-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>655d0f2862ff5ed8f1dd6cbbb4675d284eefc66b9eeab2168f7227fe635a435a</dd><dt>文件字节数（bytes）</dt><dd>18948408</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>65.440187500</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0011 · 五更鼓示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0011</dd><dt>候选编号（candidate_id）</dt><dd>C011</dd><dt>名称（title）</dt><dd>五更鼓示範音檔</dd><dt>演唱者（performer）</dt><dd>陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/30</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/30</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0011/11.五更鼓-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>836bf861c52e56457924f4bfa9291e2ff0c822aa7c909838e99d1cb9927005ce</dd><dt>文件字节数（bytes）</dt><dd>33213754</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>114.712000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0012 · 雪梅思君示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0012</dd><dt>候选编号（candidate_id）</dt><dd>C012</dd><dt>名称（title）</dt><dd>雪梅思君示範音檔</dd><dt>演唱者（performer）</dt><dd>陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/31</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/31</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0012/12.雪梅思君-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>d1b6084b6eaad49b274d9dafa9190d7f03b92971c8b8c61f65098c5658806e9a</dd><dt>文件字节数（bytes）</dt><dd>19328202</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>66.752000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0013 · 萬枝調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0013</dd><dt>候选编号（candidate_id）</dt><dd>C013</dd><dt>名称（title）</dt><dd>萬枝調示範音檔</dd><dt>演唱者（performer）</dt><dd>鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/32</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/32</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0013/13.萬枝調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>f8fb90ba1dcb15fa1d9e542ddeae5f4ff1f7221a8018f19837718686b6a7e62a</dd><dt>文件字节数（bytes）</dt><dd>14641992</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>50.566020833</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0014 · 百家春示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0014</dd><dt>候选编号（candidate_id）</dt><dd>C014</dd><dt>名称（title）</dt><dd>百家春示範音檔</dd><dt>演唱者（performer）</dt><dd>陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/33</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/33</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0014/14.百家春-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>624fcd7d41b457db73d1e876013fa0bd2d0bef5f303d80dd0d55c59dba92a892</dd><dt>文件字节数（bytes）</dt><dd>39566282</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>136.653333333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0015–R0019<span id="record-r0015"></span><span id="candidate-c015"></span><span id="record-r0016"></span><span id="candidate-c016"></span><span id="record-r0017"></span><span id="candidate-c017"></span><span id="record-r0018"></span><span id="candidate-c018"></span><span id="record-r0019"></span><span id="candidate-c019"></span></td>
+<td data-label="曲调">人道、相思引、牛犁歌、安安趕雞、更鼓反</td>
+<td data-label="正式配对">各1对，共5对整首</td>
+<td data-label="输入状态">完整双轨听验、整首收录、同网格目标与18窗有限接口核验通过；五条状态已登记<details><summary>R0015 · 人道示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0015</dd><dt>候选编号（candidate_id）</dt><dd>C015</dd><dt>名称（title）</dt><dd>人道示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/34</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/34</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0015/15.人道-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>8afd5fad4cff65cba13e5b8f8b201081aba0d0fd57cdf53dd26379e1f591f090</dd><dt>文件字节数（bytes）</dt><dd>17428132</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>60.189229167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0016 · 相思引示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0016</dd><dt>候选编号（candidate_id）</dt><dd>C016</dd><dt>名称（title）</dt><dd>相思引示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/42</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/42</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0016/23.相思引-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>c7b534324972aabd884083500319486a7c1041577ce91d62e47784c95c6586ae</dd><dt>文件字节数（bytes）</dt><dd>38248930</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>132.103250000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0017 · 牛犁歌（送哥調）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0017</dd><dt>候选编号（candidate_id）</dt><dd>C017</dd><dt>名称（title）</dt><dd>牛犁歌（送哥調）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜生（梁山伯） / 林祉淩、旦（祝英台） / 陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/44</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/44</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0017/25.牛犁歌（送哥調）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>2e12b579ef7b3ec2a95a7defafb104c920ffa2afd6b5fd53c2bfc76e1ccd6557</dd><dt>文件字节数（bytes）</dt><dd>30569434</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>105.578666667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0018 · 安安趕雞示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0018</dd><dt>候选编号（candidate_id）</dt><dd>C018</dd><dt>名称（title）</dt><dd>安安趕雞示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳依秀、鄭 云喜</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/55</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/55</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0018/36.安安趕雞-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>2d251e31ef47b1971dd9651ebe6aab9e6169bc0bfa32a01d755e23e88988db16</dd><dt>文件字节数（bytes）</dt><dd>21026366</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>72.617375000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0019 · 更鼓反（明青櫻）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0019</dd><dt>候选编号（candidate_id）</dt><dd>C019</dd><dt>名称（title）</dt><dd>更鼓反（明青櫻）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜張閔鈞</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/59</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/59</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0019/40.更鼓反（明青櫻）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>e1c662bed29d8757a376d0cd7cd55a04e2e252cb0fd6a75b8deeb847fc9d5318</dd><dt>文件字节数（bytes）</dt><dd>24322964</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>84.003645833</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0020–R0024<span id="record-r0020"></span><span id="candidate-c020"></span><span id="record-r0021"></span><span id="candidate-c021"></span><span id="record-r0022"></span><span id="candidate-c022"></span><span id="record-r0023"></span><span id="candidate-c023"></span><span id="record-r0024"></span><span id="candidate-c024"></span></td>
+<td data-label="曲调">春宵吟、南風謠、秋夜曲、望鄉調、運河二調</td>
+<td data-label="正式配对">各1对，共5对整首</td>
+<td data-label="输入状态">四首完整双轨听验＋R0020按批次规则采用；15窗有限接口核验通过并登记<details><summary>R0020 · 春宵吟示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0020</dd><dt>候选编号（candidate_id）</dt><dd>C020</dd><dt>名称（title）</dt><dd>春宵吟示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/35</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/35</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0020/16.春宵吟-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>34e1a02d297981161280c61565cecbaced3dffddf54d002cb506d4c8d7580300</dd><dt>文件字节数（bytes）</dt><dd>21032758</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>72.639458333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>batch_rule_accepted_not_individually_listened</dd></dl></details><details><summary>R0021 · 南風謠示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0021</dd><dt>候选编号（candidate_id）</dt><dd>C021</dd><dt>名称（title）</dt><dd>南風謠示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜張閔鈞</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/36</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/36</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0021/17.南風謠-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>18f438c08fd682532b8ea7a6ee94e215cbc1208f1f3114485a5fb61beb84f133</dd><dt>文件字节数（bytes）</dt><dd>18600922</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>64.240000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0022 · 秋夜曲示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0022</dd><dt>候选编号（candidate_id）</dt><dd>C022</dd><dt>名称（title）</dt><dd>秋夜曲示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/37</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/37</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0022/18.秋夜曲-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>4d157704255256ff40745331175c66f11acfa9a4fd303822836f8fa47cce0514</dd><dt>文件字节数（bytes）</dt><dd>21829682</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>75.392000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0023 · 望鄉調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0023</dd><dt>候选编号（candidate_id）</dt><dd>C023</dd><dt>名称（title）</dt><dd>望鄉調示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/38</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/38</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0023/19.望鄉調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>e3cb512d848a1dd654d2cb917b7014338319ca01bbc33976c57a36ef9e12d2eb</dd><dt>文件字节数（bytes）</dt><dd>31195914</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>107.742500000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0024 · 運河二調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0024</dd><dt>候选编号（candidate_id）</dt><dd>C024</dd><dt>名称（title）</dt><dd>運河二調示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳依秀、鄭云喜</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/39</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/39</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0024/20.運河二調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>37c1349f0961bfa73bb281b441c430c04e31344bdf29c5b853fe76e72b659493</dd><dt>文件字节数（bytes）</dt><dd>17186498</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>59.354666667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0025–R0029<span id="record-r0025"></span><span id="candidate-c025"></span><span id="record-r0026"></span><span id="candidate-c026"></span><span id="record-r0027"></span><span id="candidate-c027"></span><span id="record-r0028"></span><span id="candidate-c028"></span><span id="record-r0029"></span><span id="candidate-c029"></span></td>
+<td data-label="曲调">梆子腔、十二丈、緊疊仔、桃花過渡、點燈籠（點燈紅）</td>
+<td data-label="正式配对">各1对，共5对整首</td>
+<td data-label="输入状态">五首完整双轨听验通过；同网格目标与15窗有限接口核验通过并登记<details><summary>R0025 · 梆子腔示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0025</dd><dt>候选编号（candidate_id）</dt><dd>C025</dd><dt>名称（title）</dt><dd>梆子腔示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/40</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/40</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0025/21.梆子腔-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>f3c098bbd8d19d572534b02e09293b9caf130aa5740ef713c0dae849d8dc269c</dd><dt>文件字节数（bytes）</dt><dd>18477152</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>63.812520833</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0026 · 十二丈示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0026</dd><dt>候选编号（candidate_id）</dt><dd>C026</dd><dt>名称（title）</dt><dd>十二丈示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜旦 / 陳韡慈、生 / 林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/41</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/41</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0026/22.十二丈-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>19b07e438a5a83480b0f920281c36e6118aea42764b3d1e097c66fb1d38732a8</dd><dt>文件字节数（bytes）</dt><dd>23837050</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>82.325333333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0027 · 緊疊仔示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0027</dd><dt>候选编号（candidate_id）</dt><dd>C027</dd><dt>名称（title）</dt><dd>緊疊仔示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜張閔鈞</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/43</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/43</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0027/24.緊疊仔-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>f824c6a89728baa1e7c5d230b4a7e10ed3243511146f93b02e845859c056ae51</dd><dt>文件字节数（bytes）</dt><dd>19119254</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>66.030291667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0028 · 桃花過渡示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0028</dd><dt>候选编号（candidate_id）</dt><dd>C028</dd><dt>名称（title）</dt><dd>桃花過渡示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜三花 / 鄭力榮、旦 / 陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/45</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/45</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0028/26.桃花過渡-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>78abadb06276dc51a1c7220cc65581683166fcaa49d67c604b5430edea0c0ea9</dd><dt>文件字节数（bytes）</dt><dd>19311316</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>66.693645833</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0029 · 點燈籠（點燈紅）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0029</dd><dt>候选编号（candidate_id）</dt><dd>C029</dd><dt>名称（title）</dt><dd>點燈籠（點燈紅）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/46</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/46</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0029/27.點燈籠（點燈紅）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>2927bacde7e0adbc16c4dd10075a3c4fd2c9acaa3135c59b9a8537c6af7aa049</dd><dt>文件字节数（bytes）</dt><dd>20554362</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>70.987083333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0030–R0034<span id="record-r0030"></span><span id="candidate-c030"></span><span id="record-r0031"></span><span id="candidate-c031"></span><span id="record-r0032"></span><span id="candidate-c032"></span><span id="record-r0033"></span><span id="candidate-c033"></span><span id="record-r0034"></span><span id="candidate-c034"></span></td>
+<td data-label="曲调">都馬哭、破窯一調、破窯二調、破窯三調、南光調</td>
+<td data-label="正式配对">各1对，共5对整首</td>
+<td data-label="输入状态">三首完整听验＋R0032/R0034按规则采用；同网格目标与16窗有限接口通过并登记<details><summary>R0030 · 都馬哭示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0030</dd><dt>候选编号（candidate_id）</dt><dd>C030</dd><dt>名称（title）</dt><dd>都馬哭示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/47</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/47</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0030/28.都馬哭-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>f0022336b414c05417e65ab0f4a3a2a4d8f00498a0d85f9eecd4741bf78f9c6f</dd><dt>文件字节数（bytes）</dt><dd>25017046</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>86.400958333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0031 · 破窯一調（月清思愛）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0031</dd><dt>候选编号（candidate_id）</dt><dd>C031</dd><dt>名称（title）</dt><dd>破窯一調（月清思愛）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/48</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/48</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0031/29.破窯一調（月清思愛）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>d031f9497e66db459e43ca1cb5147a4a58491e224307824614dc4c6f25df0b48</dd><dt>文件字节数（bytes）</dt><dd>25500202</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>88.069750000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0032 · 破窯二調（小春景）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0032</dd><dt>候选编号（candidate_id）</dt><dd>C032</dd><dt>名称（title）</dt><dd>破窯二調（小春景）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/49</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/49</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0032/30.破窯二調（小春景）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>91cc1e9d79bbf07bc3d3939f3968b5a6aaecdd1ff2426ae9f63285c8689c4275</dd><dt>文件字节数（bytes）</dt><dd>25995908</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>89.781895833</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>batch_rule_accepted_not_individually_listened</dd></dl></details><details><summary>R0033 · 破窯三調（文明調）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0033</dd><dt>候选编号（candidate_id）</dt><dd>C033</dd><dt>名称（title）</dt><dd>破窯三調（文明調）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜生（梁山伯） / 林祉淩、旦（祝英台） / 陳琬儒</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/50</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/50</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0033/31.破窯三調（文明調）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>7090233c20a3e6fc44942f4e375b8471d61ee0e4ccb82d86e07285e5c1e815fa</dd><dt>文件字节数（bytes）</dt><dd>26514562</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>91.573333333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0034 · 南光調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0034</dd><dt>候选编号（candidate_id）</dt><dd>C034</dd><dt>名称（title）</dt><dd>南光調示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/51</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/51</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0034/32.南光調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>28250f1dfc730f8b0760bb06fa9043a9006cc2438ae30fb52d934f37f998148c</dd><dt>文件字节数（bytes）</dt><dd>20797280</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>71.826104167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>batch_rule_accepted_not_individually_listened</dd></dl></details></td>
+</tr>
+<tr>
+<td data-label="录音">R0035–R0040<span id="record-r0035"></span><span id="candidate-c035"></span><span id="record-r0036"></span><span id="candidate-c036"></span><span id="record-r0037"></span><span id="candidate-c037"></span><span id="record-r0038"></span><span id="candidate-c038"></span><span id="record-r0039"></span><span id="candidate-c039"></span><span id="record-r0040"></span><span id="candidate-c040"></span></td>
+<td data-label="曲调">寶島調、寶島二調、河洛一調、清風調、三盆水仙、六角美人</td>
+<td data-label="正式配对">各1对，共6对整首</td>
+<td data-label="输入状态">五首完整听验＋R0040按规则采用；同网格目标与20窗有限接口通过并登记<details><summary>R0035 · 寶島調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0035</dd><dt>候选编号（candidate_id）</dt><dd>C035</dd><dt>名称（title）</dt><dd>寶島調示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林俊辰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/52</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/52</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0035/33.寶島調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>160b1f35e71475c665cc7231dc19ff7187220dd03c03993fc48ce97b6c482881</dd><dt>文件字节数（bytes）</dt><dd>19720496</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>68.106937500</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0036 · 寶島二調示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0036</dd><dt>候选编号（candidate_id）</dt><dd>C036</dd><dt>名称（title）</dt><dd>寶島二調示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/53</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/53</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0036/34.寶島二調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>7bfe0e227bdb3f51708b1535e0ba385f7fd7b792e4aed897d1a567efe5d98e9c</dd><dt>文件字节数（bytes）</dt><dd>27915714</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>96.412833333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0037 · 河洛一調（神仙五調）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0037</dd><dt>候选编号（candidate_id）</dt><dd>C037</dd><dt>名称（title）</dt><dd>河洛一調（神仙五調）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/54</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/54</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0037/35.河洛一調（神仙五調）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>8ca972fbb86896d4ce028fc1017f90fbf26e9ca1df03ec6db27585f4ac46b08b</dd><dt>文件字节数（bytes）</dt><dd>19840514</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>68.521500000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0038 · 清風調（瓊花反）示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0038</dd><dt>候选编号（candidate_id）</dt><dd>C038</dd><dt>名称（title）</dt><dd>清風調（瓊花反）示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/56</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/56</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0038/37.清風調（瓊花反）-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>08de3534e83fdc560cfafab8a1966e5a34706d63af1c8ac7111672e03e821c7f</dd><dt>文件字节数（bytes）</dt><dd>27231606</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>94.049958333</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0039 · 三盆水仙示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0039</dd><dt>候选编号（candidate_id）</dt><dd>C039</dd><dt>名称（title）</dt><dd>三盆水仙示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林俊辰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/57</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/57</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0039/38.三盆水仙-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>725bdf51e0eb4c97083ad72fd2af417925a7972e05dc6afc53c97ee5640ec651</dd><dt>文件字节数（bytes）</dt><dd>23835500</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>82.319979167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details><details><summary>R0040 · 六角美人示範音檔：完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0040</dd><dt>候选编号（candidate_id）</dt><dd>C040</dd><dt>名称（title）</dt><dd>六角美人示範音檔</dd><dt>演唱者（performer）</dt><dd>演唱｜林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/58</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/58</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0040/39.六角美人-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>ec6dc18d14ee943bc624e97ac29174953d9190038f5283fc419331b2623d474c</dd><dt>文件字节数（bytes）</dt><dd>22635626</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>78.175666667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>batch_rule_accepted_not_individually_listened</dd></dl></details></td>
 </tr>
 </tbody>
 </table>
-<p>这些输入规则已按有限范围验收，是本实验的处理合同，不宣称作者完整预处理已精确复现。模型职责、输入输出与必要限制详见<a href="files/929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">项目模型与技术说明</a>。</p>
-<p>配对清单旧 13 条状态保持 <code>passed_experimental_fm_main_loss_interface</code>；R0005 三条已从 pending 改为 <code>passed_experimental_windowed_fm_main_loss_interface</code>。前者是已测整段有限接口，后者是已采用短窗路径的有限主损失、梯度与补齐接口，均不是完整训练器或生成效果验收。处理约定见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md">训练输入规格（本轮未发布此证据文件）</span>：正式自然段 WAV 保留，编号与原始/标准化目标共用帧区间，窗口上限 1,500 帧，R0005 实测 1,108–1,296 帧；新数据必须各自核验。阶段 A 原生 raw log-mel 的 10 ms 原点差与少一帧结果保留，同网格及 z-score 目标另行计算；旧产物、权重和原音未覆盖。实验使用独立环境，不复用 Qwen；早期 Qwen 听音结果不作为训练标注。</p>
-<h2 id="scale">5. 规模化建集：首批收录、分离与听验<span id="stage-scale-up"></span><span id="next-step"></span></h2>
-<p>用户已确认按原提案的六份录音作为首批推进。2026-10-02 完成全部完整下载并登记 R0004–R0009，保留服务端提供的原始文件名；六份均为 48 kHz、双声道、24-bit PCM WAV，全文件解码通过。</p>
+<p>R0010–R0040均从第0帧到末帧保留整首，见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/B4_adoption_input_20261022/report.md">B4收录与输入核验报告（本轮未发布此证据文件）</span>及各批次证据。完整WAV与模型每窗最多1500帧的数字窗口分别记录；窗口不增加配对数量或时长。</p>
+<h2 id="delivery">5. 下一步与结束条件<span id="stage-delivery"></span><span id="next-step"></span></h2>
+<p><strong>929已验收完成并按约定收尾</strong>。 用户于2026-10-22回复“接受”，确认本次40首60对、训练/验证/测试32/4/4首的划分、交付索引及已说明的限制。见<a href="files/acceptance-786e933ce507.html">最终验收记录</a>与<a href="files/929%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BB%98%E8%AF%B4%E6%98%8E-a449710c5b2b.html">929数据交付说明</a>。</p>
+<p>本次范围为官方第四届40首常规示范音档，40首采用、0首剔除。约定的数据准备、核验、划分和交付均已完成，停止继续扩充或重复逐首听验。正式微调、长期训练和新伴奏生成评价另开实验。</p>
+<p>数据按云端实际文件与冻结索引就地交付，音频及模型特征保留原路径；已完成本地文档同步；音频及模型特征继续保留在云端，网站尚未更新。实际同步状态见<a href="files/929%E6%96%87%E6%A1%A3%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95-984b24975095.html">文档同步记录</a>。来源权利仍未核实，当前按内部技术试验记录。</p>
+<h2 id="evidence">6. 配套文档<span id="models"></span></h2>
+<p>网页概览、进度表和本周成果只需本文。扩展技术详情或提供报告下载时，再按需使用下列资料；不要将所有配套文档拼接到网页正文。</p>
 <table>
 <thead>
 <tr>
-<th>候选 → 正式录音</th>
-<th>内容与来源</th>
-<th>完整时长</th>
-<th>最新状态</th>
-</tr>
-</thead>
-<tbody>
-<tr id="record-r0004">
-<td data-label="候选 → 正式录音">C004 → R0004<span id="candidate-c004"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/20" target="_blank" rel="noopener">古早七字仔</a></td>
-<td data-label="完整时长">1:06.90</td>
-<td data-label="最新状态">完整双轨与三段听验通过，收录3对；特征/目标及四窗有限FM核验通过，本次已登记窗口输入接口通过；旧切点不采用<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0004</dd><dt>候选编号（candidate_id）</dt><dd>C004</dd><dt>名称（title）</dt><dd>古早七字仔示範音檔</dd><dt>演唱者（performer）</dt><dd>鄭力榮</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/20</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/20</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0004/1.古早七字仔-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>b5892349b00935b4e4ca89d0b684c270f102cb5ab711d3e19bbe47afe73649a9</dd><dt>文件字节数（bytes）</dt><dd>19370900</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>66.899479167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0005">
-<td data-label="候选 → 正式录音">C005 → R0005<span id="candidate-c005"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/22" target="_blank" rel="noopener">都馬調</a></td>
-<td data-label="完整时长">2:44.99</td>
-<td data-label="最新状态">完整双轨及三段听验通过，正式收录 3 对；已采用短窗路径并登记有限输入接口通过，保留残留与全长运行限制<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0005</dd><dt>候选编号（candidate_id）</dt><dd>C005</dd><dt>名称（title）</dt><dd>都馬調示範音檔</dd><dt>演唱者（performer）</dt><dd>生（薛丁山）/林祉淩、旦（樊梨花）/陳韡慈</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/22</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/22</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0005/3.都馬調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>54c3654e5c54caf7328213339ea3a3536225abdaff663c7e76a90a7c247c8139</dd><dt>文件字节数（bytes）</dt><dd>47771186</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>164.992666667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0006">
-<td data-label="候选 → 正式录音">C006 → R0006<span id="candidate-c006"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/23" target="_blank" rel="noopener">西樂都馬</a></td>
-<td data-label="完整时长">1:14.44</td>
-<td data-label="最新状态">技术与本轮听验通过，保留人声轨伴奏残留限制<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0006</dd><dt>候选编号（candidate_id）</dt><dd>C006</dd><dt>名称（title）</dt><dd>西樂都馬示範音檔</dd><dt>演唱者（performer）</dt><dd>龔俊杰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/23</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/23</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0006/4.西樂都馬-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>5ebf1e663c04a7c48dc2d3420ba7268ec62781aa7833da3f0680fc9477b78f33</dd><dt>文件字节数（bytes）</dt><dd>21552798</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>74.435625000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0007">
-<td data-label="候选 → 正式录音">C007 → R0007<span id="candidate-c007"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/26" target="_blank" rel="noopener">崁仔腳調</a></td>
-<td data-label="完整时长">0:51.39</td>
-<td data-label="最新状态">技术与本轮听验通过，保留人声轨伴奏残留限制<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0007</dd><dt>候选编号（candidate_id）</dt><dd>C007</dd><dt>名称（title）</dt><dd>崁仔腳調示範音檔</dd><dt>演唱者（performer）</dt><dd>林俊辰</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/26</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/26</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0007/7.崁仔腳調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>73b0523494137d7e42dfd4bbf0273e49c2b653fe35b2d8411590961d21b45037</dd><dt>文件字节数（bytes）</dt><dd>14879748</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>51.387229167</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0008">
-<td data-label="候选 → 正式录音">C008 → R0008<span id="candidate-c008"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/27" target="_blank" rel="noopener">臺東調（平埔調）</a></td>
-<td data-label="完整时长">1:14.05</td>
-<td data-label="最新状态">技术与本轮听验通过，保留人声轨伴奏残留限制<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0008</dd><dt>候选编号（candidate_id）</dt><dd>C008</dd><dt>名称（title）</dt><dd>臺東調（平埔調）示範音檔</dd><dt>演唱者（performer）</dt><dd>張閔鈞</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/27</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/27</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0008/8.臺東調-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>c4ff335b869c79ac74677e878667296997dc355f1050d089a07cf4e11115b1a1</dd><dt>文件字节数（bytes）</dt><dd>21441158</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>74.050041667</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-<tr id="record-r0009">
-<td data-label="候选 → 正式录音">C009 → R0009<span id="candidate-c009"></span></td>
-<td data-label="内容与来源"><a href="https://twoperapf.org.tw/resource/demo-audio/28" target="_blank" rel="noopener">思想起（恆春調)</a></td>
-<td data-label="完整时长">1:09.30</td>
-<td data-label="最新状态">技术与本轮听验通过，保留人声轨伴奏残留限制<details><summary>展开 recordings.csv 完整文件记录</summary><dl class="record-fields"><dt>录音编号（recording_id）</dt><dd>R0009</dd><dt>候选编号（candidate_id）</dt><dd>C009</dd><dt>名称（title）</dt><dd>思想起（恆春調)示範音檔</dd><dt>演唱者（performer）</dt><dd>林祉淩</dd><dt>来源页面（source_page）</dt><dd>https://twoperapf.org.tw/resource/demo-audio/28</dd><dt>原始下载地址（download_url）</dt><dd>https://twoperapf.org.tw/resource/download/28</dd><dt>文件相对路径（relative_path）</dt><dd>data/raw/R0009/9.思想起-示範音檔.wav</dd><dt>SHA-256（sha256）</dt><dd>9a5ed1fee6351ff1b0a47f7b59d7bbbe17c72fcdcd74cb824a3b313e34d54bc4</dd><dt>文件字节数（bytes）</dt><dd>20065050</dd><dt>时长（秒，原始精度）（duration_s）</dt><dd>69.297000000</dd><dt>采样率（Hz）（sample_rate_hz）</dt><dd>48000</dd><dt>声道数（channels）</dt><dd>2</dd><dt>编码（codec）</dt><dd>pcm_s24le</dd><dt>解码状态（decode_status）</dt><dd>passed</dd><dt>权利状态（rights_status）</dt><dd>unverified</dd><dt>试验用途（experiment_use）</dt><dd>internal_929_dataset_collection</dd><dt>重复来源（duplicate_of）</dt><dd>（空值）</dd><dt>听验状态（review_status）</dt><dd>separation_user_accepted_for_929_with_recorded_limits</dd></dl></details></td>
-</tr>
-</tbody>
-</table>
-<h3>5.1 收录与下载检查</h3>
-<p>首批新增原音合计 <strong>501.062 秒，约 8 分 21 秒</strong>，共 <strong>145,080,840 字节，约 138 MiB</strong>。九份已收录录音的文件哈希各不相同，原有三份原音保持不变；这是文件级去重，不单独证明内容层面没有相似唱段。</p>
-<p>全部九份原音总长约 <strong>13分03秒</strong>，正式配对仍 <strong>19对、514.121秒</strong>。已登记旧13对、282.229秒整段有限接口通过；R0005三对、164.993秒与R0004三对、66.899501秒共6对窗口有限接口通过，0 pending。原音、窗口数量和双轨不重复计作新增数据量，最终合格数量/时长尚未确定。</p>
-<h3>5.2 R0005「都馬調」分离结果</h3>
-<p>先对本批最长录音 R0005（约 2 分 45 秒，页面含生/旦角色署名）执行代表性完整分离。沿用 Demucs <code>htdemucs_ft</code>、原独立环境和相同参数，没有新增或修改实验处理代码，也未覆盖原音。</p>
-<table>
-<thead>
-<tr>
-<th>检查项</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="检查项">执行</td>
-<td data-label="结果">GPU 3，退出码 0，耗时 18.47 秒；开始与结束已告知用户</td>
-</tr>
-<tr>
-<td data-label="检查项">双轨格式与长度</td>
-<td data-label="结果">44.1 kHz、双声道 FLOAT，两轨均 7,276,176 帧、约 164.993 秒</td>
-</tr>
-<tr>
-<td data-label="检查项">完整性</td>
-<td data-label="结果">两轨全文件解码、有限值及哈希检查通过；绝对值大于 1 的采样数均为 0</td>
-</tr>
-<tr>
-<td data-label="检查项">资源</td>
-<td data-label="结果">CPU 最大 RSS 约 2.75 GiB；2 秒间隔观测到的本进程显存峰值约 1.21 GiB，不代表精确瞬时峰值</td>
-</tr>
-<tr>
-<td data-label="检查项">GPU 结束状态</td>
-<td data-label="结果">本次 Python 进程及显存已释放；同卡原有其他任务继续运行</td>
-</tr>
-<tr>
-<td data-label="检查项">试听材料</td>
-<td data-label="结果">原音参照、人声、伴奏三份完整 MP3 已生成并全文件解码通过；没有裁段或额外增益处理</td>
-</tr>
-<tr>
-<td data-label="检查项">用户听验</td>
-<td data-label="结果">2026-10-03 明确按本轮门槛采用：人声完整、伴奏中没有歌词、乐器还可以；保留人声轨中的伴奏残留及其分离伪影较多的限制，唱前、唱后及演唱中可闻，并非到处都有。采用后续 Chroma/VQ 方向，实际影响待验证；当时未开始分段</td>
-</tr>
-</tbody>
-</table>
-<p>Demucs 的双轨可能分别缩放，双轨之和不保证严格等于原音；文件正常、长度接近和峰值检查不等于音质合格或细部对齐真值。由用户对照完整参照检查人声唱腔/拖腔、伴奏人声残留与配器完整性。</p>
-<p><strong>人声轨中的伴奏残留如何影响后续</strong>：AnyAccomp 在分离之后、进入 FM 生成模型之前，用 Chroma（音级特征）和 VQ（把特征压缩成离散旋律编号）形成量化旋律瓶颈，减少模型对输入音色和分离细节的依赖。<a href="https://arxiv.org/html/2509.14052v1#S2.SS1" target="_blank" rel="noopener">论文 §2.1</a> 本项目首轮 13 对及 R0005 新三对已使用冻结的预训练 VQ 提取条件。这项技术改变训练输入，不输出修复后的人声 WAV。按特征原理推断，唱前、唱后无唱声位置的残留乐器也可能形成音级特征，演唱中的残留则可能与唱腔音级信息混合；编号合法、数值正常不证明旋律条件准确或不受残留影响，实际影响仍未验证。未根据本次澄清新增静音、裁剪或过滤处理。原话与当前解释分别见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_feedback_20261003.json">初次听验反馈（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_clarification_20261003T061006Z.json">最新澄清（本轮未发布此证据文件）</span>。</p>
-<h3>5.3 R0005 三段正式收录与阶段 A</h3>
-<p>2026-10-06，用户对三组完整候选确认“都通过”。这次确认适用于完整唱句/拖腔、自然完整的段首段尾和未新增断裂或失真的整体听验；不是训练输入验收，也不是重新接受未采用的低能量切点。人声轨中的伴奏残留及其分离伪影限制继续保留，不把通过写成残留已消除。依据见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/listening_acceptance.json">完整候选听验记录（本轮未发布此证据文件）</span>。</p>
-<p>正式分段只沿用已确认的 LE02（44.31 秒）、LE05（139.08 秒），保留前奏、过门及 2:37 短停后的续唱至实际结尾。LE04 不采用，LE01、LE03、LE06 未选用，不自动改为切点通过；早期反馈和完整复听保留在对应运行报告。</p>
-<table>
-<thead>
-<tr>
-<th>已收录段（原候选）</th>
-<th>双轨范围</th>
-<th>时长</th>
-<th>当前状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="已收录段（原候选）">R0005_SEP01_SEG0001（CAND01）</td>
-<td data-label="双轨范围">0–44.31 秒</td>
-<td data-label="时长">44.31 秒</td>
-<td data-label="当前状态">听验、阶段 A 与两个窗口通过；已登记窗口有限接口通过</td>
-</tr>
-<tr>
-<td data-label="已收录段（原候选）">R0005_SEP01_SEG0002（CAND02）</td>
-<td data-label="双轨范围">44.31–139.08 秒</td>
-<td data-label="时长">94.77 秒</td>
-<td data-label="当前状态">听验、阶段 A 与四个窗口通过；已登记窗口有限接口通过，完整最长段 OOM 与超范围限制保留</td>
-</tr>
-<tr>
-<td data-label="已收录段（原候选）">R0005_SEP01_SEG0003（CAND03）</td>
-<td data-label="双轨范围">139.08–164.992653 秒（实际结尾）</td>
-<td data-label="时长">25.912653 秒</td>
-<td data-label="当前状态">听验、阶段 A 与覆盖完整 1,296 帧的窗口通过；已登记窗口有限接口通过</td>
-</tr>
-</tbody>
-</table>
-<p>已将听验通过候选中的 <strong>6 个双轨 WAV 原样复制</strong>到 <code>data/clips/R0005/SEP01/</code>，并在 <code>segments.csv</code>、<code>pairs.csv</code> 各追加 3 行。复制文件与候选逐字节一致，共同采样边界连续覆盖完整双轨，共新增 <strong>164.992653 秒</strong>。原音与分离清单未改，旧 13 条边界与配对行原样保留；该次收录后清单为 9 份原音、10 个分离版本、16 段和 16 对；这是 2026-10-06 的阶段快照。报告及独立后审见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/report.json">正式收录报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/independent_audit.json">收录独立后审（本轮未发布此证据文件）</span>。这次收录操作没有重新裁切、变换波形或运行模型；后续阶段 A 的模型计算单独记录如下。</p>
-<p>此前 CPU 候选生成约 15.82 秒，9 WAV、9 MP3 的共同边界、逐样本重拼与解码技术检查通过。其<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_candidates_v1/report.json">生成报告（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.json">执行记录（本轮未发布此证据文件）</span>中的“四份清单不变、13 对、未写入正式片段”是 <strong>2026-10-04 生成时快照</strong>；最新听验及收录状态以上述 2026-10-06 记录为准。<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/listening_previews.md">完整试听入口（本轮未发布此证据文件）</span>继续用于回听。实际结尾按 WAV 末帧保留，没有补零凑整 165 秒。</p>
-<p><strong>阶段 A 的代码与范围</strong>：用户在四文件核心 diff 展示与解释后确认继续，已原样应用三份核验脚本的子集适配及新增 CPU 位置前检。显式 ID 选择将输入限定为 R0005 三对；质量状态兼容保留已接受的残留限制，仍拒绝未听验数据；后续 FM 脚本可读取对应子集报告，但阶段 A 没有运行。确认、补丁一致性及执行记录见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/acceptance.json">确认记录（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/patch_application.json">补丁应用检查（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/execution.json">阶段 A 执行记录（本轮未发布此证据文件）</span>。</p>
-<p>CPU 前检只调用模型的旋转位置编码部件：输入每段从 0 到末帧的完整位置编号，输出模型用于表示时间位置的数值；检查三段全位置在 FP32、BF16 两种数值精度下的形状与有限值。它约 6.90 秒完成、退出码 0，不加载检查点或完整 FM。结果证明位置计算部件能处理本次长度，不能证明完整 FM 的注意力、损失、反向计算或显存可行，也不能证明超出配置范围的模型效果。详见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/position_preflight/report.json">CPU 位置报告（本轮未发布此证据文件）</span>。</p>
-<p>GPU 0 的冻结特征提取以完整双轨片段为输入：人声转换为 Chroma 与 VQ 旋律编号，伴奏转换为原生 raw log-mel，输出三个 NPZ 和新报告。没有截短、裁齐、插值或额外去伪影；VQ 权重保持冻结。实际旋律帧数与前检估算一致：</p>
-<table>
-<thead>
-<tr>
-<th>已收录段</th>
-<th>Chroma / 旋律编号帧数</th>
-<th>原生 Mel 帧数</th>
-<th>阶段 A 原生产物说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="已收录段">SEG0001，44.31 秒</td>
-<td data-label="Chroma / 旋律编号帧数">2,216</td>
-<td data-label="原生 Mel 帧数">2,215</td>
-<td data-label="阶段 A 原生产物说明">原生差 1 帧；新同网格目标见 5.4</td>
-</tr>
-<tr>
-<td data-label="已收录段">SEG0002，94.77 秒</td>
-<td data-label="Chroma / 旋律编号帧数">4,739</td>
-<td data-label="原生 Mel 帧数">4,738</td>
-<td data-label="阶段 A 原生产物说明">原生差 1 帧；完整 FM 超过 4,096 配置范围的限制保留</td>
-</tr>
-<tr>
-<td data-label="已收录段">SEG0003，25.912653 秒</td>
-<td data-label="Chroma / 旋律编号帧数">1,296</td>
-<td data-label="原生 Mel 帧数">1,295</td>
-<td data-label="阶段 A 原生产物说明">原生差 1 帧；新同网格目标见 5.4</td>
-</tr>
-</tbody>
-</table>
-<p>三份 NPZ 的文件集合、字段、形状、类型及有限值检查通过，旋律编号均在 0–511 范围内，实际帧数与报告一致；独立后审通过。Chroma 的帧中心为 <code>0 + k×480</code>，原生 Mel 为 <code>240 + k×480</code>，在 24 kHz 下相差 10 ms；阶段 A 保留这一原生差异，不把合法编号写成训练对齐通过。原生特征报告仍为 <code>training_input_status=not_verified</code>；该阶段四份清单不变，<code>pairs.csv</code> 三条状态当时为 pending；最新窗口采用登记另见 5.4。六个输入 WAV、模型源定义/配置/权重及旧 39 份特征/FM NPZ 的哈希保持。详见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/post_validation.json">特征后核验（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span>。</p>
-<p>特征进程退出码 0、耗时约 9.06 秒，最大 RSS 约 1.44 GiB；PyTorch 峰值已分配显存约 235.2 MiB，2 秒采样本进程显存峰值 796 MiB，采样不代表精确瞬时峰值，也不能推断完整 FM 资源。执行观察窗、原始资源与后核验统一见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/report.json">阶段 A 汇总报告（本轮未发布此证据文件）</span>。本次进程已结束、GPU 0 无本次计算进程；<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/resource_release.json">资源释放检查（本轮未发布此证据文件）</span>通过。</p>
-<p><strong>长段仍待验证</strong>：实测 94.77 秒中段有 4,739 个旋律帧，超过未改动的 <code>max_position_embeddings=4096</code>；位置部件已通过，后续完整 FM 前向因显存不足未完成（见 5.4），超范围行为仍未验证。现用 eager attention 的注意力矩阵随帧数平方增长，最长段矩阵量约为首轮最长 1,506 帧的 <strong>9.9 倍</strong>，该比值不能预测总显存。阶段 A 按确认结束点报告后停止，未运行完整 FM、声码器或优化器，参数更新 0 次；也未追加人声质量验收。后续保持已接受的完整边界，不擅自裁短或修改位置配置。</p>
-<p>原<a href="files/first_batch_proposal-8f4e785e90cc.html">首批建集提案</a>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/code_proposal.md">三段代码提案（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/proposal.md">输入核验提案（本轮未发布此证据文件）</span>保留为对应阶段静态快照；其中“未应用、未执行”不代表当前状态。阶段 A 之前的三份原文保存在<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/docs_before/">阶段 A 文档备份（本轮未发布此证据文件）</span>。</p>
-<h3>5.4 CPU 伴奏目标准备、FM 结果与下一步</h3>
-<p>用户已明确确认<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/acceptance.json">代码与有限执行范围（本轮未发布此证据文件）</span>，新增 CPU 目标脚本按已审阅补丁原样应用。输入是三对完整伴奏和阶段 A 已检查的旋律编号；从完整波形重算中心为 <code>0 + k×480</code> 的目标，并按均值 −4.92、方差 8.14 做 z-score 标准化。已输出三份独立 NPZ，保留原有编号、同网格原始目标和标准化目标。两种目标均为 float32，实际形状为 <strong>[2216,128] / [4739,128] / [1296,128]</strong>；完整波形、阶段 A 原生频谱与旧 13 对产物保留，没有裁齐、插值或补一行频谱。</p>
-<p>执行退出码 0、约 4.23 秒，最大 RSS 约 706.4 MiB，CPU 4 线程，未用 GPU。三对全长、形状、类型、有限值、编号保持与存盘一致性检查及独立后核验通过；标准化反变换最大绝对误差均约 <code>9.54e-7</code>，小于 <code>5e-6</code> 门槛。输入 WAV、四份清单、阶段 A 与旧产物、公开源定义/配置及已确认脚本哈希保持。汇总与实际证据见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/report.json">CPU 目标准备报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/post_validation.json">后核验（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span>。</p>
-<p>这只证明目标预处理的数值与保存合同；<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/targets/report.json">计算结束时的原始报告（本轮未发布此证据文件）</span>为 <code>completed_cpu_targets_only</code>、<code>FM_interface_status=not_run</code>、<code>training_input_status=not_verified</code>。其中独立后核验 pending 是脚本结束时快照，最终独立结果以上述后核验为准；该 CPU 阶段结束时新三条正式输入仍为 pending，后续采用登记另行记录。</p>
-<p>CPU 目标准备阶段未加载 FM、VQ、声码器或检查点，未计算梯度或更新参数，按约定报告后停止。随后用户确认最长单样本 FM 代码和一次有限范围，补丁原样应用；2026-10-06 从已准备目标读取 SEG0002 的旋律编号与标准化目标，沿用已接受的按真实长度选择伴奏提示机制，只在 GPU 0 尝试完整 94.77 秒、4,739 帧一次前向。现用 eager attention 将各时间帧之间的关系归一化时，额外申请约 1.34 GiB 显存失败，前向未完成；没有完整预测、主损失或梯度结果，反向次数为 0，优化器步骤为 0，模型参数前后哈希一致。</p>
-<p>任务约 10.88 秒结束，CPU 最大 RSS 约 1.56 GiB，PyTorch 已分配/预留显存峰值约 21.86/22.03 GiB；2 秒采样的本进程显存峰值 23,018 MiB 不是精确瞬时峰值。失败阶段、原始资源及范围见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/report.json">最长段 FM 汇总（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span>。43 项<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span>通过，核对的是失败记录、参数前后哈希记录、保护文件保持与资源释放；<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/post_validation.json">后核验（本轮未发布此证据文件）</span>为 <code>failure_evidence_validated</code>，不代表 FM 通过。原始模型报告中的独立后审 pending 是脚本结束时快照。本次已保存报告并停止，没有裁短、重试、改位置配置或运行其余两段及混合批次。三对 CPU 文件核查不等于该次 GPU 上运行三对；全长尝试结束时三条正式输入为 pending，后续窗口采用不改写该次失败。</p>
-<p>本次失败证明现用计算方式在该 24 GB GPU 上未完成完整可求梯度前向，不证明所有省显存方式均不可行，也不证明是位置范围导致的错误；4,739 帧超出未改动的 4,096 配置的模型行为仍待验证。此前音频听验、阶段 A 与 CPU 目标结论保持，不重做完整分离与唱声/伴奏歌词听验。</p>
-<p>用户已确认短窗口代码与一次有限范围，新增脚本原样应用，2026-10-07 在 GPU 0 完成约定流程（<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/report.json">执行汇总（本轮未发布此证据文件）</span>）。直接读取三份已准备 NPZ，同步划分旋律编号、原始目标与标准化目标；三段分别形成 2、4、1 个连续、不重叠候选窗口，全部 8,251 帧恰好覆盖一次。每窗上限 1,500 帧，实际最长 1,296 帧；模型局部位置从各窗口 0 开始，保留父配对、原起止帧与哈希用于追溯。该次运行保持当时的完整 WAV、原三份 NPZ、16 对正式配对及 447.221 秒统计，窗口不计作新增正式分段，也不把帧数折算为新增音频时长。</p>
-<p>先检查 SEG0002 第 1 窗，再依次完成其余六个单窗；全部通过后完成一个混合长度批次与一次不计算梯度的补齐扰动。共尝试并完成 <strong>9 次前向、8 次反向</strong>，预测、主损失和梯度有限，梯度非零，改变补齐区内容不影响有效预测和损失。SEG0003 的唯一窗口覆盖该父段全部 1,296 帧并通过；另两段只核验局部窗口，未把原 4,739 帧全长结果改为通过。本轮八个批次的随机伴奏提示门均未启用，所以不声称新增启用提示分支覆盖；按已确认有限范围结束，没有为补齐覆盖而额外重跑。该检查不更新参数、不生成音频，也不能证明跨窗口连贯性、伴奏残留影响已消除或作者完整训练配方已复现。</p>
-<p>任务退出码 0、约 11.52 秒，CPU 最大 RSS 约 1.59 GiB；PyTorch 已分配/预留显存峰值约 <strong>6.36/7.62 GiB</strong>。2 秒采样的本进程显存峰值 8,272 MiB 不是精确瞬时峰值。参数内容前后哈希一致，四份清单、输入 WAV、原目标与旧产物及模型源定义/配置/权重保持，窗口与有限 FM 结果<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/post_validation.json">后核验（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/resource_release.json">资源释放检查（本轮未发布此证据文件）</span>通过，报告后停止。<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span>为 <code>completed_windowed_checks_only</code>、<code>training_input_status=not_verified</code>，其中独立后审 pending 是脚本结束时快照，最新结果以上述后核验为准。</p>
-<p>2026-10-07，用户继续推进后已审阅并正式采用本项目短窗输入规则，新增<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md">训练输入规格（本轮未发布此证据文件）</span>与机器可读规格，并只将 R0005 三条输入状态登记为窗口有限接口通过。旧 13 行逐字节保留，其他三份清单、各音频/特征、实验代码及原运行报告均不变；该次登记保持当时的 16 对和 447.221 秒统计。登记与独立后核验见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/report.json">采用报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/post_validation.json">后核验（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/independent_audit.json">独立后审（本轮未发布此证据文件）</span>。这次只采用规则和登记事实，未处理音频、执行模型或更新参数；旧报告中的 pending、<code>not_verified</code> 和旧清单哈希仍保留为对应阶段快照，不能把本次采用写成那些阶段已登记通过。</p>
-<h3>5.5 R0004 三组完整听验通过并正式收录</h3>
-<p>此前 RMS（短时平均能量）形成的 LE01、LE02、LE03 分别位于 23.79、38.41、47.14 秒，用户明确“都不合适”，三个旧切点仍全部不采用。完整双轨的人声完整、伴奏无清晰唱词听验事实与人声轨伴奏残留限制保持；旧<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/feedback.json">不采用反馈（本轮未发布此证据文件）</span>、原始准备与技术报告均保留，不将新边界通过改写成旧切点通过。</p>
-<p>用户完整复听后报告主要唱段约为 <strong>16–22、22–34、37–45、47–62 秒</strong>，明确“主要唱段范围，前奏、过门和尾奏继续保留”。整数秒范围是近似观察，不据此删去伴奏上下文或将 22 秒作为精确分界。前两组唱段相接，放在同组；按报告间隙形成 35.5、46 秒候选边界，用户确认方案和代码后原样应用并执行，三组完整材料已保存。2026-10-08 用户在完整试听请求后答复“都可以”，记录为三组完整听验通过，本次 35.5/46 秒边界采用；不是无残留或模型输入验收。依据见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/observations.json">唱段观察与上下文澄清（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json">本次完整听验接受记录（本轮未发布此证据文件）</span>。</p>
-<table>
-<thead>
-<tr>
-<th>已接受候选 → 正式片段</th>
-<th>保存双轨范围</th>
-<th style="text-align: right;">时长</th>
-<th>当前状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="已接受候选 → 正式片段">CAND01 → SEG0001</td>
-<td data-label="保存双轨范围">0–35.5 秒</td>
-<td style="text-align: right;" data-label="时长">35.5 秒</td>
-<td data-label="当前状态">听验/收录/条件/目标通过；已登记窗口有限输入接口通过</td>
-</tr>
-<tr>
-<td data-label="已接受候选 → 正式片段">CAND02 → SEG0002</td>
-<td data-label="保存双轨范围">35.5–46 秒</td>
-<td style="text-align: right;" data-label="时长">10.5 秒</td>
-<td data-label="当前状态">听验/收录/条件/目标通过；已登记窗口有限输入接口通过</td>
-</tr>
-<tr>
-<td data-label="已接受候选 → 正式片段">CAND03 → SEG0003</td>
-<td data-label="保存双轨范围">46–实际结尾 66.899501 秒</td>
-<td style="text-align: right;" data-label="时长">20.899501 秒</td>
-<td data-label="当前状态">听验/收录/条件/目标通过；已登记窗口有限输入接口通过</td>
-</tr>
-</tbody>
-</table>
-<p>候选制作于北京时间 2026-10-07 21:39:29–21:39:38 完成，CPU 实测约 8.46 秒、最大 RSS 约 51.9 MiB、9 WAV/9 MP3 约 73.72 MiB；逐样本完整覆盖、完整解码及 133 项独立技术后审通过。每个 WAV 等于对应源区间，三段重拼等于完整源，前奏、过门与尾奏没有删去；双轨采用共同采样边界，原音按同一时间换算，各路保留真实末帧，没有补零、调整音量、淡入淡出或归一化。候选生成阶段四份清单未改、正式数据仍为 16 对，是当时快照；原<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/report.json">生成报告（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/independent_audio_audit.json">独立音频后审（本轮未发布此证据文件）</span>保持。</p>
-<p>本次沿用已有正式收录方法，将三组已听验双轨中的 <strong>6 WAV 逐字节原样复制</strong>到 <code>data/clips/R0004/SEP01/</code>，配对 ID 为 <code>R0004_SEP01_SEG0001–SEG0003</code>；<code>segments.csv</code>、<code>pairs.csv</code> 各追加 3 行，旧 16 行及表头/换行保持。新增 <strong>66.899501 秒</strong>，复制音频约 <strong>45.02 MiB</strong>；完整原音、分离轨、候选、原录音与分离清单、旧输入数据和实验代码保持。收录及 247 项独立后审通过，正式清单为 9 份原音、10 个分离版本、19 段和 <strong>19 对、514.120839 秒</strong>。见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json">收录报告（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json">收录独立后审（本轮未发布此证据文件）</span>。本次复制登记于北京时间 2026-10-08 14:09:14–14:09:16 完成，约 2.08 秒。这次未重新裁切或处理波形，没有提取特征、执行模型、使用 GPU、更新参数或处理 R0006–R0009。</p>
-<p><strong>R0004 旋律条件与 CPU 同网格伴奏目标已准备并独立核验通过。</strong> 这一步把已听验的完整伴奏转换为模型能读取的频谱数据，并让它与人声旋律编号对应同一时刻，给后续模型接口核验准备材料。旋律条件复用上轮冻结 Chroma/VQ 产物，实测 <strong>1,776 / 526 / 1,045 帧</strong>；完整 WAV 和编号保持，没有重跑 GPU。Chroma 表示随时间变化的音级能量，冻结 VQ 将其压缩成 0–511 的编号；合法编号不单独证明旋律准确。</p>
-<p>此前前两段重采样采样数各比提案整数预测多 1，原门禁因此失败并停止；当前 librosa 的浮点比值相乘再向上取整机制已只读诊断。用户授权<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/code_proposal.md">两常量修正提案（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/independent_review.json">130 项独立静态复核（本轮未发布此证据文件）</span>对应的两处常量修改，预期采样数改为实际 <strong>852001 / 252001 / 501589</strong>，旋律帧数和其他代码不变。新独立 CPU 特征核验 <strong>287 项通过</strong>，原三份 NPZ 未变；<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/post_validation_prediction_mismatch_20261008T065950Z.json">原长度门禁失败快照（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/resample_length_diagnosis.json">长度诊断（本轮未发布此证据文件）</span>原样保留，不改写为通过。</p>
-<p>2026-10-08 北京时间 <strong>15:21:07–15:21:11</strong>，修正后目标脚本只执行一次 CPU 计算，退出码 0。输入完整伴奏及已核验旋律编号，按已采用的 <code>0 + k×480</code>、每步 20 ms 时间网格重算原始 Mel，再按均值 −4.92、方差 8.14 标准化。输出 3 NPZ，原始/标准化目标均为 float32，形状 <strong>[1776,128] / [526,128] / [1045,128]</strong>，编号逐数组保持。原生 Mel 的晚 10 ms、少一帧差异继续保留作追溯；本轮从完整波形重算同网格目标，没有裁齐、插值或补造频谱帧，也没有修改 WAV。</p>
-<p>目标独立核验 <strong>512 项全部通过</strong>，包括来源、全长、网格、类型、有限值、编号保持、存盘一致性及标准化关系；反标准化最大绝对误差约 <strong>9.54×10⁻⁷</strong>，低于 <strong>5×10⁻⁶</strong> 门槛。CPU 实测 GNU time <strong>3.91 秒</strong>、控制器 <strong>3.914 秒</strong>，最大 RSS <strong>598.5 MiB</strong>，4 线程、GPU 隐藏；三份新目标共 <strong>2.930 MiB</strong>。本次 CPU 进程已退出，资源释放核验通过。证据：<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/report.json">当前执行汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/report.json">CPU 续行汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets/report.json">CPU 原始目标报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets_post_validation.json">目标独立核验（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/resource_release.json">资源释放（本轮未发布此证据文件）</span>；旋律来源见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/features/report.json">原生特征报告（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/feature_post_validation.json">修正合同后的独立特征核验（本轮未发布此证据文件）</span>。上轮 GPU 提取 29.36 秒、采样观测进程显存 740 MiB 的历史资源记录保留，不计作本次 CPU 占用。</p>
-<p><strong>R0004四窗有限FM技术核验通过，本次已采用登记三条窗口接口状态。</strong> 用户确认一次有限范围后，<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/acceptance.json">用户授权（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/patch_application.json">补丁应用核对（本轮未发布此证据文件）</span>证明新脚本按冻结代码原样应用。输入三份已准备旋律编号和伴奏目标，检查FM能否计算预测、预测误差（主损失）及参数调整方向（梯度）；优化器没有执行，参数内容前后哈希一致。先通过1045帧窗口，再完成其余三窗、固定双样本与一次不求梯度的补齐扰动；6次前向、5次反向全部完成，预测/损失/梯度有限且梯度非零，补齐改变不影响有效位置结果。独立后审119项全部通过。</p>
-<p>四窗为 <strong>888 / 888 / 526 / 1045帧</strong>，对编号、原始目标和标准化目标读取同一帧范围，全部3347帧连续、不重叠、恰好覆盖一次。SEG0002/3单窗覆盖各自完整父输入；SEG0001核验的是两个888帧局部窗口，未把1776帧父段全长送入模型。526/1045双样本批次给短样本右侧补519帧，补齐内容不进入有效结果。5个批次的伴奏提示随机开关均未启用，不宣称新增启用提示分支覆盖，也未追加测试。</p>
-<p>2026-10-08北京时间 <strong>16:44:28–16:44:51</strong> 单次执行退出码0，GNU time实测 <strong>20.72秒</strong>，控制器 <strong>22.868秒</strong>；CPU最大RSS约 <strong>1.59GiB</strong>，PyTorch已分配/预留显存峰值约 <strong>4.82 / 5.07GiB</strong>，2秒采样观测本进程显存最高 <strong>5666MiB</strong>（不是精确瞬时峰值）。进程与本次显存已释放。证据：<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/report.json">当前汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/post_validation.json">后核验（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/independent_audit.json">119项独立后审（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/execution_metrics.json">实测资源（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/resource_release.json">资源释放（本轮未发布此证据文件）</span>。模型原始报告中的独立后审pending是计算结束时快照，本次后审已通过；原报告不改写。</p>
-<p>2026-10-08北京时间 <strong>17:05:47</strong>，本次只将 <code>pairs.csv</code> 的三个R0004 <code>training_input_status</code> 从pending改为 <code>passed_experimental_windowed_fm_main_loss_interface</code>；旧16行、表头/换行及其他字段保持，另外三份清单未改。正式19对、514.120839秒不变，登记为13对整段＋6对窗口有限接口通过，0 pending、全部unassigned。证据：<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/report.json">R0004采用登记报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/transaction.json">三条状态事务记录（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/adoption_review.md">采用说明（本轮未发布此证据文件）</span>。这次没有处理音频、运行模型、改实验代码或更新参数，只把已有核验结果写入正式清单。四个数字窗口不新增音频。原FM运行报告中的pending及旧清单/规范哈希是当时快照，原文件保持；最新登记以本次记录为准。</p>
-<p>下一步可提出R0006结构分段与听验安排：先找自然间隙候选，保留完整唱句、拖腔及前后乐器，再由完整试听确认边界；不按固定秒数硬切。本轮未准备或执行新实验代码、新试听材料、模型或R0006–R0009处理。SEG0001仅两个888帧窗口通过、1776帧父输入全长未运行，5个批次未启用伴奏提示；残留、旋律准确性、跨窗口连贯性、完整作者配方及生成质量仍未证明。</p>
-<p>回听与证据：<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/listening_previews.md">三组完整回听页（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/current_report.json">当前汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json">听验记录（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json">收录报告（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json">独立后审（本轮未发布此证据文件）</span>。原<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/code_proposal.md">代码提案（本轮未发布此证据文件）</span>保留确认前快照，不作为当前待办。更新前原文见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/docs_before/">本轮文档备份（本轮未发布此证据文件）</span>。</p>
-<h2 id="limits">6. 已接受的限制与待验证范围<span id="rights"></span></h2>
-<ul>
-<li>分离人声仍可能有伪影；Chroma/VQ 改变模型接收旋律信息的方式，不会直接修复已有 WAV，也不能消除伴奏目标中的缺陷。</li>
-<li>没有独立干净双轨真值；共同边界、完整覆盖和特征中心检查不能替代所有细部对齐证明。</li>
-<li>公开完整训练加载器缺失，源码与检查点存在已记录差异；当前只验证实验主损失接口，没有验证优化器更新、恢复训练或完整作者配方。</li>
-<li>CFG 训练丢条件概率与论文不同，REPA/MERT 辅助损失未实现；用户已接受按本轮有限范围验收，不为消除这些差异自动追加研究。</li>
-<li>声码器听验覆盖三段代表样本，不能写成全部 13 段神经解码或新生成伴奏均已验收。</li>
-<li>R0005 三对已采用短窗路径并登记有限接口通过；实际验证 1,108–1,296 帧，1,500 帧是规格上限，不代表任意该长度或新录音已经通过。完整 4,739 帧前向仍为显存不足，超出原 4,096 位置配置的行为未验证；局部窗口不证明跨窗口连贯性或作者完整训练配方，本次未新增伴奏提示启用分支覆盖。</li>
-<li>来源与权利状态仍为待核实；当前按内部技术试验记录，不将文件标为已授权发表或共享。</li>
-</ul>
-<p>以上限制随数据交付保留。新来源出现具体质量或接口问题时，先说明实际缺口和有限检查方案；新增或修改实验代码仍先展示核心 diff、解释输入输出及逻辑，再等待确认。</p>
-<h2 id="delivery">7. 数据交付与结束条件<span id="stage-delivery"></span></h2>
-<p>929 的最终交付包括：</p>
-<table>
-<thead>
-<tr>
-<th>交付项</th>
-<th>完成要求</th>
-<th>当前状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="交付项">固定数据规模</td>
-<td data-label="完成要求">达到用户确定的录音数量或合格配对总时长，避免重复计时</td>
-<td data-label="当前状态">目标待确定</td>
-</tr>
-<tr>
-<td data-label="交付项">合格配对音频</td>
-<td data-label="完成要求">原音与分离轨保留，结构片段成对、边界一致，异常数据不混入合格集</td>
-<td data-label="当前状态">19对保持，13对整段＋6对窗口有限输入接口已登记通过；R0006–R0009四份待结构分段及各自核验，最终规模未定</td>
-</tr>
-<tr>
-<td data-label="交付项">来源与审核清单</td>
-<td data-label="完成要求">每对可回溯来源、原录音、分离版本、边界、哈希和审核结果</td>
-<td data-label="当前状态">九份原音、10个分离版本、19条边界/配对；本次仅更新R0004三条输入状态，旧16行保持，0 pending，残留限制保留</td>
-</tr>
-<tr>
-<td data-label="交付项">输入规格与核验证据</td>
-<td data-label="完成要求">明确已采用的特征、尺度、网格、提示及有效长度规则，附范围与限制</td>
-<td data-label="当前状态"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md">输入规格（本轮未发布此证据文件）</span>本轮仅更新进度、R0004范围与登记证据，数值规则/机器规格不变；完整长段及作者配方限制保留</td>
-</tr>
-<tr>
-<td data-label="交付项">训练/验证/测试划分</td>
-<td data-label="完成要求">按原始录音或演出分组，避免同源片段跨集合泄漏</td>
-<td data-label="当前状态">尚未执行</td>
-</tr>
-<tr>
-<td data-label="交付项">统计、文档与最终验收</td>
-<td data-label="完成要求">交付数量/时长、通过/剔除统计、处理记录及结论，由用户验收</td>
-<td data-label="当前状态">未完成</td>
-</tr>
-</tbody>
-</table>
-<p>以上固定交付项完成并验收后结束929。当前已登记13对整段＋6对窗口有限接口通过、0 pending，全部尚未划分，正式仍19对；参数更新0次。本次R0004三条状态采用登记后停止，不自动推进模型或R0006。下一步可提出R0006结构分段与听验安排；其余四份、最终规模、分组划分及交付仍待完成。正式微调与生成效果评价另开实验，R0005完整最长段显存不足记录保持。</p>
-<h2 id="evidence">8. 文档、证据与同步状态</h2>
-<table>
-<thead>
-<tr>
-<th>记录</th>
+<th>文档</th>
 <th>用途</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td data-label="记录"><a href="files/929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">项目模型与技术说明</a></td>
-<td data-label="用途">回看各模型和技术负责什么、输入输出及验证范围</td>
+<td data-label="文档"><a href="files/929%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BB%98%E8%AF%B4%E6%98%8E-a449710c5b2b.html">数据交付说明</a></td>
+<td data-label="用途">划分、交付索引、使用方法与最终验收范围</td>
 </tr>
 <tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md">训练输入规格（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/report.json">窗口采用登记（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/post_validation.json">登记后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/independent_audit.json">独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">已采用窗口规则及当前13对整段＋6对窗口接口状态；链接的R0005采用阶段只登记其三条，本次R0004登记另列；窗口算法和机器规格保持，旧报告阶段计数作历史快照</td>
+<td data-label="文档"><a href="files/929%E9%A1%B9%E7%9B%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E-528d3187045a.html">项目模型与技术说明</a></td>
+<td data-label="用途">模型职责、输入输出及技术限制</td>
 </tr>
 <tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/proposal.md">R0004 输入准备提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/code_proposal.md">核心代码及解释（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/independent_static_review.json">独立静态审查（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/commands_after_confirmation.md">原确认后命令（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确认前提案和静态快照；用户已确认、脚本原样应用、GPU 特征执行后曾因长度门禁失败停止，后续授权修正并完成CPU目标；旧未应用/未执行/待确认不是当前状态</td>
+<td data-label="文档"><a href="files/929%E8%AE%AD%E7%BB%83%E8%BE%93%E5%85%A5%E8%A7%84%E6%A0%BC-c6fa0d135619.html">训练输入规格</a></td>
+<td data-label="用途">采样、频谱尺度、时间网格和窗口规则</td>
 </tr>
 <tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/proposal.md">原四窗提案（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/code_proposal.md">核心代码说明（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/independent_review.md">原静态审查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确认前提案与静态依据保持；用户已授权、脚本原样应用并完成本次有限运行，旧待确认/未应用文字不是当前状态</td>
+<td data-label="文档"><a href="files/929%E5%A4%84%E7%90%86%E4%B8%8E%E6%A0%B8%E9%AA%8C%E8%AE%B0%E5%BD%95-bd05bfbc4a15.html">处理与核验记录</a></td>
+<td data-label="用途">各录音处理细节、有限核验范围及交付明细</td>
 </tr>
 <tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/report.json">R0004采用登记报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/transaction.json">三条状态事务记录（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/adoption_review.md">采用说明（本轮未发布此证据文件）</span></td>
-<td data-label="用途">本次仅登记R0004三个窗口有限接口状态，旧16行及其余三清单保持；正式19对、13整段＋6窗口通过、0 pending，未新增模型/音频处理</td>
+<td data-label="文档"><a href="files/929%E8%AF%81%E6%8D%AE%E7%B4%A2%E5%BC%95-1f6c7da19c35.html">证据索引</a></td>
+<td data-label="用途">运行报告、听验及审核证据入口</td>
 </tr>
 <tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/report.json">当前汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/post_validation.json">后核验（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/independent_audit.json">119项独立后审（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/execution_metrics.json">实测资源（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/resource_release.json">资源释放（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/acceptance.json">用户授权（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/patch_application.json">补丁应用核对（本轮未发布此证据文件）</span></td>
-<td data-label="用途">四窗、6次前向/5次反向、混合补齐及119项后审通过，资源已释放，参数0更新；运行时CSV pending是结束快照，本次已另行采用登记</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/report.json">当前执行汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/report.json">CPU 续行汇总（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets/report.json">CPU 原始目标报告（本轮未发布此证据文件）</span>、<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets_post_validation.json">目标独立核验（本轮未发布此证据文件）</span>和<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/resource_release.json">资源释放（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/features/report.json">原生特征报告（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/feature_post_validation.json">修正合同后的独立特征核验（本轮未发布此证据文件）</span></td>
-<td data-label="用途">修正合同后的现有特征287项、新CPU目标512项独立核验通过；三份同网格/标准化目标完成，该CPU阶段未运行FM、清单pending是当时快照；后续四窗检查及本次采用登记另列</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/post_validation_prediction_mismatch_20261008T065950Z.json">原长度门禁失败快照（本轮未发布此证据文件）</span>与<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/resample_length_diagnosis.json">长度诊断（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/code_proposal.md">两常量修正提案（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/independent_review.json">130 项独立静态复核（本轮未发布此证据文件）</span></td>
-<td data-label="用途">原205项中2个长度预测失败的快照保持；用户之后授权两常量修正并完成CPU后续，旧待确认/未应用文字不代表当前状态</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/listening_previews.md">R0004 完整回听（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/current_report.json">当前汇总（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/independent_audio_audit.json">生成独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">三组完整候选保存与 133 项技术检查通过，完整听验已通过并正式收录；原生成报告边界待验是制作结束时快照，不代表当前状态</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json">R0004 完整听验记录（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json">正式收录报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json">收录独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认“都可以”，本次 35.5/46 秒边界采用；6 WAV 原样复制、两清单各追加 3 行、旧 16 行保持，19 对共 514.120839 秒；复制收录时尚未运行FM、清单pending是当时状态；后续条件/目标、窗口检查和本次采用登记分别记录</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/observations.json">R0004 主要唱段观察（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/proposal.md">三组完整候选提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/code_proposal.md">核心 diff 与说明（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/independent_static_review.json">独立静审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">近似唱段及上下文保留依据、确认前代码与静态审查快照；方案已确认、应用并执行，三组完整听验随后通过；旧待确认/未应用文字不代表当前状态</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/full_recording_review.md">R0004 完整复听（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/feedback.json">旧三切点不采用反馈（本轮未发布此证据文件）</span></td>
-<td data-label="用途">现成完整 MP3 继续用于参照，原 LE01–LE03 拒绝不变；新唱段观察不自动接受这些旧切点或任何新边界</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_previews.md">R0004 三处历史试听（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/report.json">CPU 汇总（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/post_validation.json">技术后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">旧三处材料技术准备通过事实保留，旧 LE01–LE03 人工全部不采用；该阶段没有新增正式段或配对。后来的新边界接受与三对收录另行记录，不改写旧证据</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_proposal_20261007T121100Z/proposal.md">R0004 原代码提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_proposal_20261007T121100Z/code_proposal.md">核心 diff 与说明（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确认前静态快照；已确认、应用并执行，其中未应用/待确认文字不代表当前状态</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/recordings-9a6ade03529f.html">recordings.csv</a> / <a href="files/separations-c506d4db6e28.html">separations.csv</a></td>
-<td data-label="用途">原录音来源、哈希和分离版本</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/segments-fcfa406e05e7.html">segments.csv</a> / <a href="files/pairs-897b3663ec38.html">pairs.csv</a></td>
-<td data-label="用途">结构边界、配对文件及最新输入接口状态</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/listening_acceptance.json">R0005 三组完整候选听验（本轮未发布此证据文件）</span></td>
-<td data-label="用途">2026-10-06 用户确认“都通过”；完整候选听验通过，保留残留限制，不是训练输入验收</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/report.json">R0005 正式收录报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/independent_audit.json">独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">6 WAV 原样复制、3 对追加、旧 13 行保留、16 对音频总时长与输入待核验状态；记录的是收录时快照</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/report.json">候选短窗口 FM 汇总（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/post_validation.json">后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/resource_release.json">资源释放（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认后原样应用，7 单窗、1 混合批次及补齐扰动有限检查通过，9 次前向、8 次反向均完成；该次运行参数和四份清单保持，三条输入当时为 pending；最新采用登记另行记录；未随机启用提示、不增加该分支覆盖，不替代完整长段或生成质量核验</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_proposal_20261007T073646Z/proposal.md">短窗口原提案（本轮未发布此证据文件）</span></td>
-<td data-label="用途">候选窗口、代码与静态资源审查、有限顺序及结束条件的确认前快照；已确认、应用并执行，其中未应用/待确认文字不代表当前状态，不新增正式配对或改写全长 OOM</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/report.json">最长单样本 FM 汇总（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/fm/report.json">模型原始报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/post_validation.json">失败证据后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/resource_release.json">资源释放（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认后原样应用，仅最长段完整前向一次尝试；显存不足后停止，无预测、损失、梯度或反向结果，未更新参数或重试；43 项后审通过仅核对失败证据与保护状态，FM 仍失败，原始报告的独立后审 pending 是脚本结束时快照</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_proposal_20261006T152229Z/proposal.md">最长单样本原提案（本轮未发布此证据文件）</span></td>
-<td data-label="用途">代码、静态资源审查和结束条件的确认前快照；已确认、应用并执行，其中待确认/未应用文字不代表当前状态</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/report.json">CPU 目标执行汇总（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/post_validation.json">后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认后新增脚本原样应用，三对同网格原始及标准化目标检查、独立后核验通过，报告后停止；该 CPU 阶段未运行 FM，输入 pending 是当时快照，最新登记见窗口采用记录</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/targets/report.json">CPU 目标原始计算报告（本轮未发布此证据文件）</span></td>
-<td data-label="用途">实际目标形状、编号保持与尺度检查；其中独立后核验 pending 是脚本结束时快照，最终结果以后核验为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/code_proposal.md">CPU 目标代码提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/plan.json">计划（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/independent_review.json">独立静态审查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确认前代码与静态检查快照；其中未应用/执行、待确认是旧状态，实际结果见执行报告</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/acceptance.json">阶段 A 确认与执行（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/execution.json">执行记录（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/patch_application.json">补丁应用检查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">展示与解释后用户确认继续，四文件补丁原样应用；仅限定三对 CPU 位置部件与冻结特征，报告后停止</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/position_preflight/report.json">阶段 A CPU 位置报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/features/report.json">三对原生特征报告（本轮未发布此证据文件）</span></td>
-<td data-label="用途">全位置 FP32/BF16 部件检查，三对实际帧数与合法编号；局部通过不替代原生特征适配、完整 FM 或残留影响验证</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/report.json">阶段 A 汇总报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/post_validation.json">特征后核验（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/independent_audit.json">独立后审（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/resource_release.json">资源释放（本轮未发布此证据文件）</span></td>
-<td data-label="用途">三份 NPZ 形状、类型、有限值与编号通过，输入/清单/权重/旧证据保持；该阶段进程与显存已释放，未运行完整 FM，输入 pending 是该阶段快照，最新登记见窗口采用记录</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/proposal.md">三对输入核验代码提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/independent_review.json">独立静态审查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确切补丁、核心逻辑与阶段 A 计划的确认前快照；其中未应用/待确认是旧状态，实际执行见阶段 A 记录</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/next_input_readonly_review.json">R0005 执行前输入只读审查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">三对范围、旧脚本兼容问题、帧数估算与位置/资源限制的执行前快照；当时未改代码、提取特征或运行模型，实际帧数以阶段 A 报告为准</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/report-1f253104ba23.html">分段覆盖报告</a></td>
-<td data-label="用途">13 对片段完整覆盖与逐样本重拼证据</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/post_validation-f02c7a8be6b7.html">FM 提示/补齐后核验</a></td>
-<td data-label="用途">前向、反向、有效学习位置及补齐扰动证据</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/acceptance-0560a658edc2.html">声码器听验记录</a></td>
-<td data-label="用途">三段时间/长度修正版的用户验收</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/acceptance-0959b36ebe7a.html">小规模有限验收记录</a></td>
-<td data-label="用途">用户确认范围、清单状态与明确限制</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/source_candidates-67059f0998e1.html">首批来源清单</a> / <a href="files/source_inventory-35a8bef6a81a.html">元数据记录</a></td>
-<td data-label="用途">收录前的页面及文件头核查快照，正式编号以录音清单为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/collection_batch01_20261002T035130Z/collection_report.json">首批收录报告（本轮未发布此证据文件）</span></td>
-<td data-label="用途">六份完整下载、哈希去重、解码与正式登记</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/technical_check.json">R0005 分离技术检查（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/post_validation.json">后核验（本轮未发布此证据文件）</span></td>
-<td data-label="用途">执行当时的双轨、资源与完整性快照；其中听验待定是旧状态，当前以听验记录为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_feedback_20261003.json">R0005 初次听验反馈（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_clarification_20261003T061006Z.json">最新澄清（本轮未发布此证据文件）</span></td>
-<td data-label="用途">保留原话；当前问题是人声轨伴奏残留及其伪影，唱前、唱后及演唱中可闻，并非遍布全曲；不据此推断唱声受损</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_acceptance_20261003T061710Z.json">R0005 采用记录（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户明确接受伴奏残留限制并采用本轮分离结果，后续条件和生成效果待验证</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/preflight.json">其余五份分离前核查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">当前批次输入、环境、权重、GPU、磁盘与输出路径依据；不作为完成或听验通过证据</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/batch_report.json">其余五份分离批次报告（本轮未发布此证据文件）</span></td>
-<td data-label="用途">五份技术检查通过、资源实测与完整试听清单入口；听验待定是执行当时快照，当前以最新反馈和清单为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_previews.md">其余五份完整试听（本轮未发布此证据文件）</span></td>
-<td data-label="用途">逐份原音参照、人声、伴奏的完整 MP3；用户听验入口</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/recording_review_refresh.json">录音审核状态刷新（本轮未发布此证据文件）</span></td>
-<td data-label="用途">分离完成时刷新录音审核状态的快照，原音元数据和哈希保持；后续反馈状态以最新清单为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_feedback_20261003T082548Z/feedback.json">其余五份共性听验反馈（本轮未发布此证据文件）</span></td>
-<td data-label="用途">保留人声轨伴奏残留伪影较多、伴奏效果还不错的原话；其中核心事实待补齐是先前阶段快照</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_acceptance_20261003T083058Z/acceptance.json">其余五份听验采用记录（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认“五份都完整，伴奏无清晰唱词”，沿用已接受残留原则，本轮门槛通过；不代表最终配对交付或后续效果已验证</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_proposal_20261003/proposal.md">R0005 定位与切点试听提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_proposal_20261003/proposal_validation.json">静态核查（本轮未发布此证据文件）</span></td>
-<td data-label="用途">确认前的代码及静态检查快照；用户确认后已原样应用，实际执行结果见本次报告</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/materials/review_report.json">R0005 候选准备报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/execution.log">执行日志（本轮未发布此证据文件）</span></td>
-<td data-label="用途">CPU 执行、输入哈希、同步上下文、解码及正式清单保持不变的生成时快照；结构状态以最新反馈为准</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/independent_audit.json">R0005 候选材料独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">生成时 63 项技术检查通过，涵盖输入与清单保留、三路同时间及试听文件索引/哈希；不替代结构听验</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/materials/low_energy_candidates.csv">低能量候选清单（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_previews.md">六处同步试听（本轮未发布此证据文件）</span></td>
-<td data-label="用途">原六处候选与上下文保留；正式分段只用 LE02、LE05，不自动采用其他切点</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/feedback.json">R0005 逐项结构反馈（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/clarification.json">试听结束澄清（本轮未发布此证据文件）</span></td>
-<td data-label="用途">接受两处候选位置、待复核三处、拒绝一处；截断主要在试听结束，不据此判定原切点或源音频受损</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/relocation_review.md">三处完整复听（本轮未发布此证据文件）</span></td>
-<td data-label="用途">引用现成完整 MP3 核对完整唱句与候选位置，无新增音频处理或正式配对</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/observations.json">R0005 完整复听与三段提案（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/candidate_plan.csv">分段表（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/code_proposal.md">候选试听代码提案（本轮未发布此证据文件）</span></td>
-<td data-label="用途">保留确认前快照；其中“未应用、未执行”不代表当前状态，最新确认与执行见下列记录</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/acceptance.json">R0005 三段方案与代码确认（本轮未发布此证据文件）</span></td>
-<td data-label="用途">用户确认原样应用并仅 CPU 准备候选；不是生成后完整候选的人工验收</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_candidates_v1/report.json">R0005 三组候选生成报告（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.json">执行记录（本轮未发布此证据文件）</span> / <span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.log">执行日志（本轮未发布此证据文件）</span></td>
-<td data-label="用途">2026-10-04 生成时的 9 WAV/9 MP3、共同边界、逐样本完整覆盖、解码与裁切资源证据；清单不变及听验待定是历史状态，最新收录见 2026-10-06 报告</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/independent_audit.json">R0005 三组候选独立后审（本轮未发布此证据文件）</span></td>
-<td data-label="用途">生成时源文件、四份清单、9 WAV/9 MP3 及试听索引的技术检查；其中人工验收待定是历史快照</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/listening_previews.md">R0005 三组完整候选试听（本轮未发布此证据文件）</span></td>
-<td data-label="用途">CAND01–03 各含完整原音参照、人声和伴奏，三组现已听验通过并正式收录双轨；用于回听</td>
-</tr>
-<tr>
-<td data-label="记录"><span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/preview_manifest.json">R0005 试听清单（本轮未发布此证据文件）</span></td>
-<td data-label="用途">三份完整 MP3 的路径与哈希</td>
-</tr>
-<tr>
-<td data-label="记录"><a href="files/929%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86_%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95_20261001T093748Z-7d851c444da6.html">完整历史归档</a></td>
-<td data-label="用途">重整前的原文完整副本，保存每轮提案、执行、旧状态与详细证据</td>
+<td data-label="文档"><a href="files/929%E6%96%87%E6%A1%A3%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95-984b24975095.html">文档同步记录</a></td>
+<td data-label="用途">云端、本地及网页的实际同步状态</td>
 </tr>
 </tbody>
 </table>
-<p>主工作区在云端 <code>$CLOUD_FINETUNE_ROOT</code>；Windows 本地目录为 <code>$PROJECT_ROOT\anyaccomp_gezi_finetune</code>。两端不自动同步，传输需备份旧版并核对 SHA-256。</p>
-<p>此前已提供文档同步包和本地执行提示词，但尚未收到成功回执，旧包不包含最新R0004采用登记。此次更新云端README、主文档、技术说明和输入规格的当前事实，原文保存在<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/docs_before/">本轮文档备份（本轮未发布此证据文件）</span>；数值输入规则、机器规格及所有历史运行文件保持。Windows本地尚未确认同步，本轮未更新网页；后续传输最新快照、备份旧版并核对哈希，云端更新不代表本地或网页更新。</p>
-<p>后续每完成一个阶段，更新对应的状态、数量、结论与下一步，保持本文为当前摘要。完整运行日志和连续对话记录保存在历史归档或 <code>runs/</code>，不再逐轮追加到主文档末尾；不把旧报告中的待办状态当作最新结论。</p></div>
-<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p><p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/929训练数据采集.md（路径已脱敏）","sha256":"d9590752262578fb4937e45a3ef405a7170583bbf18009615ab27f225feb3404","text":"# 929训练数据采集：歌仔戏配对数据与训练输入核验\n\n更新日期：2026-10-08。本文是**929 实验的当前进度与数据交付主文档，也是更新网页的内容来源**。正文展示最新状态、已确认结论和下一步；详细模型说明、运行报告与完整历史通过末尾链接查阅。\n\n**当前结论：正式音频仍19对、514.121秒，现已登记13对整段有限FM接口通过＋6对窗口有限接口通过（R0005、R0004各3对），无pending，全部尚未划分。R0004已完成听验、收录、特征/目标及四窗有限核验，本次只采用已有证据并登记三条状态，没有处理音频、运行模型或更新参数。下一步可提出R0006结构分段与听验安排；其余四份、最终规模、划分及交付仍待完成，929未结束，正式微调未开始。**\n\n## 1. 实验目标与边界\n\n构建来源可追溯、质量经过审核、时间关系明确，并经约定训练输入接口核验的歌仔戏人声—伴奏配对数据集。人声提供旋律条件，伴奏提供对应的学习目标。\n\n929 包含完整的数据准备流程：**小规模验证 → 规模化收集与处理 → 质量及训练输入核验 → 数据划分与交付**。规模化建集原本就在本实验范围内，不以当前三份试验录音作为最终数据规模。\n\n正式微调、长期训练、生成效果评价和完整论文训练配方复现另开实验。达到约定数据规模、完成固定交付项并经用户验收后结束 929，不自动增加规模或延伸新研究。\n\n## 2. 当前进度\n\n| 项目 | 最新状态 |\n| --- | --- |\n| 已保存完整录音 | 9 份：R0001–R0009，来源、哈希、格式及完整解码已核验；原音总长约 13 分 03 秒 |\n| 分离版本与听验 | 已保存 10 个分离版本，含 R0001 历史 MDX 候选；九份 Demucs 完整双轨均按本轮门槛采用，新增六份保留人声轨伴奏残留及其分离伪影限制 |\n| 已保存配对片段 | 19 对，总长 514.121 秒，约 8 分 34 秒；此前收录的 R0004 三对共 66.899501 秒，6 WAV 与已听验候选逐字节一致，前奏、过门和尾奏完整保留 |\n| 训练输入核验 | 已登记13对、282.229秒整段有限接口通过＋6对、231.892秒窗口有限接口通过（R0005/R0004各3对），0 pending；这是已测有限输入路径，不等于19对整段、完整训练器或生成音质全部通过 |\n| R0004 本轮输入准备 | 旋律条件与CPU同网格目标已独立核验通过，三份目标形状[1776,128] / [526,128] / [1045,128]，完整WAV和编号保持；转换结果不等于FM接口通过 |\n| R0004 四窗FM结果 | 888 / 888 / 526 / 1045帧四窗、固定双样本及补齐扰动通过，6次前向/5次反向完成，119项独立后审通过；本次已沿用现有规则登记三条窗口有限接口通过，模型不重跑、参数未更新 |\n| 小规模流程验收 | 用户已确认有限验收通过：实验 FM 主损失输入接口及已测声码器解码规则 |\n| 首批新增录音 | R0004–R0009完整收录、分离及听验通过；R0005、R0004各三对已分段、配对并登记窗口有限输入接口通过；R0004旧RMS切点不采用；R0006–R0009仍未结构分段或配对 |\n| 最终建集数量/时长 | 待确定，按合格配对数据计量，不重复计算人声与伴奏两轨 |\n| R0005 阶段 A | 用户已确认四文件补丁与阶段 A，补丁原样应用；三对 CPU 位置部件、原生特征技术检查及独立后审通过，进程与显存已释放，报告后停止；该阶段未执行完整 FM、声码器或参数更新 |\n| R0005 CPU 伴奏目标准备 | 用户已明确确认，新增脚本原样应用；三对同网格原始及标准化目标已生成，技术检查与独立后核验通过，报告后停止；未用 GPU、加载模型或更新参数 |\n| R0005 最长单样本 FM 结果 | 用户已确认，补丁原样应用；只尝试 SEG0002 完整 94.77 秒、4,739 帧一次前向，注意力计算显存不足后停止；无预测/损失/梯度结果、反向 0 次，无重试；其余两段和混合批次未运行 |\n| R0005 短窗口 FM 与规格采用 | 7 个窗口恰好覆盖 8,251 帧，最长 1,296 帧；七个单窗、一个混合批次及补齐扰动检查通过，9 次前向/8 次反向均完成，参数未更新；此前 R0005 采用登记已更新其三条输入状态并新增输入规格，不新增音频量、改写全长 OOM 或重跑模型 |\n| 训练/验证/测试划分 | 尚未执行，现有配对仍为未划分状态 |\n| 模型参数更新 | 0 次，尚未正式微调 |\n\n用户已明确采用九份Demucs完整双轨，新增六份保留人声轨伴奏残留及其分离伪影限制。R0004四窗有限核验支持所测数字输入进入当前主损失和梯度计算，本次已登记对应三条状态；这不证明旋律准确、残留影响消除、跨窗口连贯性或生成音质。正式音频仍19对，登记为13对整段＋6对窗口有限接口通过，最终合格数量/时长仍待明确。\n\n## 3. 小规模验证已完成什么\n\n### 3.1 保存录音、比较分离并完成听验\n\n| 录音 | 内容 | 完整时长 | 采用结果 | 配对片段数 |\n| --- | --- | --- | --- | --- |\n| R0001 | [七字調](https://twoperapf.org.tw/resource/demo-audio/21) | 92.587 秒 | Demucs `htdemucs_ft`，SEP02 | 4 |\n| R0002 | [雜唸調](https://twoperapf.org.tw/resource/demo-audio/24) | 108.837 秒 | Demucs `htdemucs_ft`，SEP01 | 5 |\n| R0003 | [江湖調](https://twoperapf.org.tw/resource/demo-audio/25) | 80.805 秒 | Demucs `htdemucs_ft`，SEP01 | 4 |\n\n三份原音均为 48 kHz、双声道、24-bit PCM WAV，完整文件保留。R0001 比较公开 MDX23 候选与 Demucs 后，用户认为 Demucs 更好，后两份沿用相同分离方案。公开 MDX23 候选的仓库、提交、权重和配置已留存，但未证明它是 SingNet 的精确版本。\n\n用户确认三份 Demucs 双轨符合本轮听验门槛。人声仍有分离伪影，但唱腔主体完整；保留这一限制，不将听验通过解释为获得了完全干净的独立轨。\n\n### 3.2 结构分段与配对完整性通过\n\n13 个片段的共同边界均经用户确认，保留片头伴奏、过门和尾奏。每对来自同一次分离、同一采样边界；各录音的片段重新拼接后与完整分离轨逐样本一致，说明分段没有遗漏内容。\n\n两段超过 30 秒的片段完整保留，没有按固定时长截断。同源裁切和完整覆盖已验证，但缺少独立干净双轨，不能宣称所有分离细节都达到真值意义上的精确对齐。\n\n### 3.3 训练输入与频谱解码的有限验收通过\n\n- **旋律与目标特征**：13 对片段完成冻结 Chroma/VQ 特征核验，以及实验伴奏目标的尺度、时间网格和全长检查。\n- **FM 主损失接口**：13 个全长单样本、7 个混合长度批次的前向与反向检查通过；损失和梯度有限，梯度非零。前向是计算预测，反向是计算参数变化方向，本轮没有真正更新参数。\n- **变长提示与补齐**：按每段真实长度选取已知伴奏提示，保留学习位置；7 次补齐内容扰动检查通过，有效预测和损失不受补齐内容影响。\n- **声码器解码**：短、中、长三段完成频谱到声音的转换及时间/长度核验，用户反馈“都自然完整，没有新增失真”；19 个 CPU 窗口/长度数学案例也通过。\n\n这证明已测数据可以进入当前实验的 FM 主损失接口，且三段参考伴奏频谱可以按实验规则重建成声音。声码器重建使用真实伴奏目标频谱，不是 FM 生成的新伴奏，不作为微调效果证据。\n\n## 4. 本次采用的模型与输入规则\n\n| 部件或机制 | 具体作用 | 本次采用方式 |\n| --- | --- | --- |\n| Demucs `htdemucs_ft` | 将完整录音拆成人声和伴奏，准备配对材料 | 沿用已比较并听验的模型、权重和参数 |\n| Chroma + 冻结 VQ | 将人声中的音级信息转换为旋律编号，减少直接传入音色与分离细节 | 24 通道 Chroma、约每秒 50 帧、512 条目码本；不更新 VQ 参数 |\n| Mel 伴奏目标 | 将伴奏波形转换为 FM 学习的频谱矩阵 | 24 kHz 单声道输入、128 通道 Mel；按均值 −4.92、方差 8.14 做 z-score 标准化 |\n| 时间网格与解码 | 让旋律和目标帧对应同一时间中心，并保持输出头尾长度 | 使用已核验的共同帧中心及解码起点/长度适配，保留参考长度，不补波形零值 |\n| FM（流匹配生成模型） | 学习如何根据旋律条件，从噪声逐步生成伴奏频谱 | 本轮核验主损失和梯度，没有优化器更新 |\n| Prompt（伴奏提示） | 给模型部分真实伴奏，让它学习剩余位置 | 按真实有效长度选左右提示，默认启用概率 0.3 |\n| CFG（条件丢弃与生成引导机制） | 训练时让模型学习有旋律/无旋律两种预测 | 本轮保留训练条件丢弃概率 0.2；它不是生成时的引导强度 |\n| Vocos（声码器） | 将伴奏频谱转换为可播放波形 | 使用已有权重；已完成三段重建与用户听验 |\n| REPA/MERT | 用预训练音乐特征约束 FM 中间表示的辅助训练链路 | 本轮未实现辅助损失，用户已接受将其列为限制，不追加实现任务 |\n\n这些输入规则已按有限范围验收，是本实验的处理合同，不宣称作者完整预处理已精确复现。模型职责、输入输出与必要限制详见[项目模型与技术说明]($CLOUD_FINETUNE_ROOT/docs/929项目模型与技术说明.md)。\n\n配对清单旧 13 条状态保持 `passed_experimental_fm_main_loss_interface`；R0005 三条已从 pending 改为 `passed_experimental_windowed_fm_main_loss_interface`。前者是已测整段有限接口，后者是已采用短窗路径的有限主损失、梯度与补齐接口，均不是完整训练器或生成效果验收。处理约定见[训练输入规格]($CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md)：正式自然段 WAV 保留，编号与原始/标准化目标共用帧区间，窗口上限 1,500 帧，R0005 实测 1,108–1,296 帧；新数据必须各自核验。阶段 A 原生 raw log-mel 的 10 ms 原点差与少一帧结果保留，同网格及 z-score 目标另行计算；旧产物、权重和原音未覆盖。实验使用独立环境，不复用 Qwen；早期 Qwen 听音结果不作为训练标注。\n\n## 5. 规模化建集：首批收录、分离与听验\n\n用户已确认按原提案的六份录音作为首批推进。2026-10-02 完成全部完整下载并登记 R0004–R0009，保留服务端提供的原始文件名；六份均为 48 kHz、双声道、24-bit PCM WAV，全文件解码通过。\n\n| 候选 → 正式录音 | 内容与来源 | 完整时长 | 最新状态 |\n| --- | --- | --- | --- |\n| C004 → R0004 | [古早七字仔](https://twoperapf.org.tw/resource/demo-audio/20) | 1:06.90 | 完整双轨与三段听验通过，收录3对；特征/目标及四窗有限FM核验通过，本次已登记窗口输入接口通过；旧切点不采用 |\n| C005 → R0005 | [都馬調](https://twoperapf.org.tw/resource/demo-audio/22) | 2:44.99 | 完整双轨及三段听验通过，正式收录 3 对；已采用短窗路径并登记有限输入接口通过，保留残留与全长运行限制 |\n| C006 → R0006 | [西樂都馬](https://twoperapf.org.tw/resource/demo-audio/23) | 1:14.44 | 技术与本轮听验通过，保留人声轨伴奏残留限制 |\n| C007 → R0007 | [崁仔腳調](https://twoperapf.org.tw/resource/demo-audio/26) | 0:51.39 | 技术与本轮听验通过，保留人声轨伴奏残留限制 |\n| C008 → R0008 | [臺東調（平埔調）](https://twoperapf.org.tw/resource/demo-audio/27) | 1:14.05 | 技术与本轮听验通过，保留人声轨伴奏残留限制 |\n| C009 → R0009 | [思想起（恆春調)](https://twoperapf.org.tw/resource/demo-audio/28) | 1:09.30 | 技术与本轮听验通过，保留人声轨伴奏残留限制 |\n\n### 5.1 收录与下载检查\n\n首批新增原音合计 **501.062 秒，约 8 分 21 秒**，共 **145,080,840 字节，约 138 MiB**。九份已收录录音的文件哈希各不相同，原有三份原音保持不变；这是文件级去重，不单独证明内容层面没有相似唱段。\n\n全部九份原音总长约 **13分03秒**，正式配对仍 **19对、514.121秒**。已登记旧13对、282.229秒整段有限接口通过；R0005三对、164.993秒与R0004三对、66.899501秒共6对窗口有限接口通过，0 pending。原音、窗口数量和双轨不重复计作新增数据量，最终合格数量/时长尚未确定。\n\n### 5.2 R0005「都馬調」分离结果\n\n先对本批最长录音 R0005（约 2 分 45 秒，页面含生/旦角色署名）执行代表性完整分离。沿用 Demucs `htdemucs_ft`、原独立环境和相同参数，没有新增或修改实验处理代码，也未覆盖原音。\n\n| 检查项 | 结果 |\n| --- | --- |\n| 执行 | GPU 3，退出码 0，耗时 18.47 秒；开始与结束已告知用户 |\n| 双轨格式与长度 | 44.1 kHz、双声道 FLOAT，两轨均 7,276,176 帧、约 164.993 秒 |\n| 完整性 | 两轨全文件解码、有限值及哈希检查通过；绝对值大于 1 的采样数均为 0 |\n| 资源 | CPU 最大 RSS 约 2.75 GiB；2 秒间隔观测到的本进程显存峰值约 1.21 GiB，不代表精确瞬时峰值 |\n| GPU 结束状态 | 本次 Python 进程及显存已释放；同卡原有其他任务继续运行 |\n| 试听材料 | 原音参照、人声、伴奏三份完整 MP3 已生成并全文件解码通过；没有裁段或额外增益处理 |\n| 用户听验 | 2026-10-03 明确按本轮门槛采用：人声完整、伴奏中没有歌词、乐器还可以；保留人声轨中的伴奏残留及其分离伪影较多的限制，唱前、唱后及演唱中可闻，并非到处都有。采用后续 Chroma/VQ 方向，实际影响待验证；当时未开始分段 |\n\nDemucs 的双轨可能分别缩放，双轨之和不保证严格等于原音；文件正常、长度接近和峰值检查不等于音质合格或细部对齐真值。由用户对照完整参照检查人声唱腔/拖腔、伴奏人声残留与配器完整性。\n\n**人声轨中的伴奏残留如何影响后续**：AnyAccomp 在分离之后、进入 FM 生成模型之前，用 Chroma（音级特征）和 VQ（把特征压缩成离散旋律编号）形成量化旋律瓶颈，减少模型对输入音色和分离细节的依赖。[论文 §2.1](https://arxiv.org/html/2509.14052v1#S2.SS1) 本项目首轮 13 对及 R0005 新三对已使用冻结的预训练 VQ 提取条件。这项技术改变训练输入，不输出修复后的人声 WAV。按特征原理推断，唱前、唱后无唱声位置的残留乐器也可能形成音级特征，演唱中的残留则可能与唱腔音级信息混合；编号合法、数值正常不证明旋律条件准确或不受残留影响，实际影响仍未验证。未根据本次澄清新增静音、裁剪或过滤处理。原话与当前解释分别见[初次听验反馈]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_feedback_20261003.json)和[最新澄清]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_clarification_20261003T061006Z.json)。\n\n### 5.3 R0005 三段正式收录与阶段 A\n\n2026-10-06，用户对三组完整候选确认“都通过”。这次确认适用于完整唱句/拖腔、自然完整的段首段尾和未新增断裂或失真的整体听验；不是训练输入验收，也不是重新接受未采用的低能量切点。人声轨中的伴奏残留及其分离伪影限制继续保留，不把通过写成残留已消除。依据见[完整候选听验记录]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/listening_acceptance.json)。\n\n正式分段只沿用已确认的 LE02（44.31 秒）、LE05（139.08 秒），保留前奏、过门及 2:37 短停后的续唱至实际结尾。LE04 不采用，LE01、LE03、LE06 未选用，不自动改为切点通过；早期反馈和完整复听保留在对应运行报告。\n\n| 已收录段（原候选） | 双轨范围 | 时长 | 当前状态 |\n| --- | --- | --- | --- |\n| R0005_SEP01_SEG0001（CAND01） | 0–44.31 秒 | 44.31 秒 | 听验、阶段 A 与两个窗口通过；已登记窗口有限接口通过 |\n| R0005_SEP01_SEG0002（CAND02） | 44.31–139.08 秒 | 94.77 秒 | 听验、阶段 A 与四个窗口通过；已登记窗口有限接口通过，完整最长段 OOM 与超范围限制保留 |\n| R0005_SEP01_SEG0003（CAND03） | 139.08–164.992653 秒（实际结尾） | 25.912653 秒 | 听验、阶段 A 与覆盖完整 1,296 帧的窗口通过；已登记窗口有限接口通过 |\n\n已将听验通过候选中的 **6 个双轨 WAV 原样复制**到 `data/clips/R0005/SEP01/`，并在 `segments.csv`、`pairs.csv` 各追加 3 行。复制文件与候选逐字节一致，共同采样边界连续覆盖完整双轨，共新增 **164.992653 秒**。原音与分离清单未改，旧 13 条边界与配对行原样保留；该次收录后清单为 9 份原音、10 个分离版本、16 段和 16 对；这是 2026-10-06 的阶段快照。报告及独立后审见[正式收录报告]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/report.json)、[收录独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/independent_audit.json)。这次收录操作没有重新裁切、变换波形或运行模型；后续阶段 A 的模型计算单独记录如下。\n\n此前 CPU 候选生成约 15.82 秒，9 WAV、9 MP3 的共同边界、逐样本重拼与解码技术检查通过。其[生成报告]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_candidates_v1/report.json)和[执行记录]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.json)中的“四份清单不变、13 对、未写入正式片段”是 **2026-10-04 生成时快照**；最新听验及收录状态以上述 2026-10-06 记录为准。[完整试听入口]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/listening_previews.md)继续用于回听。实际结尾按 WAV 末帧保留，没有补零凑整 165 秒。\n\n**阶段 A 的代码与范围**：用户在四文件核心 diff 展示与解释后确认继续，已原样应用三份核验脚本的子集适配及新增 CPU 位置前检。显式 ID 选择将输入限定为 R0005 三对；质量状态兼容保留已接受的残留限制，仍拒绝未听验数据；后续 FM 脚本可读取对应子集报告，但阶段 A 没有运行。确认、补丁一致性及执行记录见[确认记录]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/acceptance.json)、[补丁应用检查]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/patch_application.json)、[阶段 A 执行记录]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/execution.json)。\n\nCPU 前检只调用模型的旋转位置编码部件：输入每段从 0 到末帧的完整位置编号，输出模型用于表示时间位置的数值；检查三段全位置在 FP32、BF16 两种数值精度下的形状与有限值。它约 6.90 秒完成、退出码 0，不加载检查点或完整 FM。结果证明位置计算部件能处理本次长度，不能证明完整 FM 的注意力、损失、反向计算或显存可行，也不能证明超出配置范围的模型效果。详见[CPU 位置报告]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/position_preflight/report.json)。\n\nGPU 0 的冻结特征提取以完整双轨片段为输入：人声转换为 Chroma 与 VQ 旋律编号，伴奏转换为原生 raw log-mel，输出三个 NPZ 和新报告。没有截短、裁齐、插值或额外去伪影；VQ 权重保持冻结。实际旋律帧数与前检估算一致：\n\n| 已收录段 | Chroma / 旋律编号帧数 | 原生 Mel 帧数 | 阶段 A 原生产物说明 |\n| --- | --- | --- | --- |\n| SEG0001，44.31 秒 | 2,216 | 2,215 | 原生差 1 帧；新同网格目标见 5.4 |\n| SEG0002，94.77 秒 | 4,739 | 4,738 | 原生差 1 帧；完整 FM 超过 4,096 配置范围的限制保留 |\n| SEG0003，25.912653 秒 | 1,296 | 1,295 | 原生差 1 帧；新同网格目标见 5.4 |\n\n三份 NPZ 的文件集合、字段、形状、类型及有限值检查通过，旋律编号均在 0–511 范围内，实际帧数与报告一致；独立后审通过。Chroma 的帧中心为 `0 + k×480`，原生 Mel 为 `240 + k×480`，在 24 kHz 下相差 10 ms；阶段 A 保留这一原生差异，不把合法编号写成训练对齐通过。原生特征报告仍为 `training_input_status=not_verified`；该阶段四份清单不变，`pairs.csv` 三条状态当时为 pending；最新窗口采用登记另见 5.4。六个输入 WAV、模型源定义/配置/权重及旧 39 份特征/FM NPZ 的哈希保持。详见[特征后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/post_validation.json)与[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/independent_audit.json)。\n\n特征进程退出码 0、耗时约 9.06 秒，最大 RSS 约 1.44 GiB；PyTorch 峰值已分配显存约 235.2 MiB，2 秒采样本进程显存峰值 796 MiB，采样不代表精确瞬时峰值，也不能推断完整 FM 资源。执行观察窗、原始资源与后核验统一见[阶段 A 汇总报告]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/report.json)。本次进程已结束、GPU 0 无本次计算进程；[资源释放检查]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/resource_release.json)通过。\n\n**长段仍待验证**：实测 94.77 秒中段有 4,739 个旋律帧，超过未改动的 `max_position_embeddings=4096`；位置部件已通过，后续完整 FM 前向因显存不足未完成（见 5.4），超范围行为仍未验证。现用 eager attention 的注意力矩阵随帧数平方增长，最长段矩阵量约为首轮最长 1,506 帧的 **9.9 倍**，该比值不能预测总显存。阶段 A 按确认结束点报告后停止，未运行完整 FM、声码器或优化器，参数更新 0 次；也未追加人声质量验收。后续保持已接受的完整边界，不擅自裁短或修改位置配置。\n\n原[首批建集提案]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/first_batch_proposal.md)、[三段代码提案]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/code_proposal.md)与[输入核验提案]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/proposal.md)保留为对应阶段静态快照；其中“未应用、未执行”不代表当前状态。阶段 A 之前的三份原文保存在[阶段 A 文档备份]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/docs_before/)。\n\n### 5.4 CPU 伴奏目标准备、FM 结果与下一步\n\n用户已明确确认[代码与有限执行范围]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/acceptance.json)，新增 CPU 目标脚本按已审阅补丁原样应用。输入是三对完整伴奏和阶段 A 已检查的旋律编号；从完整波形重算中心为 `0 + k×480` 的目标，并按均值 −4.92、方差 8.14 做 z-score 标准化。已输出三份独立 NPZ，保留原有编号、同网格原始目标和标准化目标。两种目标均为 float32，实际形状为 **[2216,128] / [4739,128] / [1296,128]**；完整波形、阶段 A 原生频谱与旧 13 对产物保留，没有裁齐、插值或补一行频谱。\n\n执行退出码 0、约 4.23 秒，最大 RSS 约 706.4 MiB，CPU 4 线程，未用 GPU。三对全长、形状、类型、有限值、编号保持与存盘一致性检查及独立后核验通过；标准化反变换最大绝对误差均约 `9.54e-7`，小于 `5e-6` 门槛。输入 WAV、四份清单、阶段 A 与旧产物、公开源定义/配置及已确认脚本哈希保持。汇总与实际证据见[CPU 目标准备报告]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/report.json)、[后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/post_validation.json)及[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/independent_audit.json)。\n\n这只证明目标预处理的数值与保存合同；[计算结束时的原始报告]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/targets/report.json)为 `completed_cpu_targets_only`、`FM_interface_status=not_run`、`training_input_status=not_verified`。其中独立后核验 pending 是脚本结束时快照，最终独立结果以上述后核验为准；该 CPU 阶段结束时新三条正式输入仍为 pending，后续采用登记另行记录。\n\nCPU 目标准备阶段未加载 FM、VQ、声码器或检查点，未计算梯度或更新参数，按约定报告后停止。随后用户确认最长单样本 FM 代码和一次有限范围，补丁原样应用；2026-10-06 从已准备目标读取 SEG0002 的旋律编号与标准化目标，沿用已接受的按真实长度选择伴奏提示机制，只在 GPU 0 尝试完整 94.77 秒、4,739 帧一次前向。现用 eager attention 将各时间帧之间的关系归一化时，额外申请约 1.34 GiB 显存失败，前向未完成；没有完整预测、主损失或梯度结果，反向次数为 0，优化器步骤为 0，模型参数前后哈希一致。\n\n任务约 10.88 秒结束，CPU 最大 RSS 约 1.56 GiB，PyTorch 已分配/预留显存峰值约 21.86/22.03 GiB；2 秒采样的本进程显存峰值 23,018 MiB 不是精确瞬时峰值。失败阶段、原始资源及范围见[最长段 FM 汇总]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/report.json)和[模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/fm/report.json)。43 项[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/independent_audit.json)通过，核对的是失败记录、参数前后哈希记录、保护文件保持与资源释放；[后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/post_validation.json)为 `failure_evidence_validated`，不代表 FM 通过。原始模型报告中的独立后审 pending 是脚本结束时快照。本次已保存报告并停止，没有裁短、重试、改位置配置或运行其余两段及混合批次。三对 CPU 文件核查不等于该次 GPU 上运行三对；全长尝试结束时三条正式输入为 pending，后续窗口采用不改写该次失败。\n\n本次失败证明现用计算方式在该 24 GB GPU 上未完成完整可求梯度前向，不证明所有省显存方式均不可行，也不证明是位置范围导致的错误；4,739 帧超出未改动的 4,096 配置的模型行为仍待验证。此前音频听验、阶段 A 与 CPU 目标结论保持，不重做完整分离与唱声/伴奏歌词听验。\n\n用户已确认短窗口代码与一次有限范围，新增脚本原样应用，2026-10-07 在 GPU 0 完成约定流程（[执行汇总]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/report.json)）。直接读取三份已准备 NPZ，同步划分旋律编号、原始目标与标准化目标；三段分别形成 2、4、1 个连续、不重叠候选窗口，全部 8,251 帧恰好覆盖一次。每窗上限 1,500 帧，实际最长 1,296 帧；模型局部位置从各窗口 0 开始，保留父配对、原起止帧与哈希用于追溯。该次运行保持当时的完整 WAV、原三份 NPZ、16 对正式配对及 447.221 秒统计，窗口不计作新增正式分段，也不把帧数折算为新增音频时长。\n\n先检查 SEG0002 第 1 窗，再依次完成其余六个单窗；全部通过后完成一个混合长度批次与一次不计算梯度的补齐扰动。共尝试并完成 **9 次前向、8 次反向**，预测、主损失和梯度有限，梯度非零，改变补齐区内容不影响有效预测和损失。SEG0003 的唯一窗口覆盖该父段全部 1,296 帧并通过；另两段只核验局部窗口，未把原 4,739 帧全长结果改为通过。本轮八个批次的随机伴奏提示门均未启用，所以不声称新增启用提示分支覆盖；按已确认有限范围结束，没有为补齐覆盖而额外重跑。该检查不更新参数、不生成音频，也不能证明跨窗口连贯性、伴奏残留影响已消除或作者完整训练配方已复现。\n\n任务退出码 0、约 11.52 秒，CPU 最大 RSS 约 1.59 GiB；PyTorch 已分配/预留显存峰值约 **6.36/7.62 GiB**。2 秒采样的本进程显存峰值 8,272 MiB 不是精确瞬时峰值。参数内容前后哈希一致，四份清单、输入 WAV、原目标与旧产物及模型源定义/配置/权重保持，窗口与有限 FM 结果[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/independent_audit.json)、[后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/post_validation.json)及[资源释放检查]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/resource_release.json)通过，报告后停止。[模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/fm/report.json)为 `completed_windowed_checks_only`、`training_input_status=not_verified`，其中独立后审 pending 是脚本结束时快照，最新结果以上述后核验为准。\n\n2026-10-07，用户继续推进后已审阅并正式采用本项目短窗输入规则，新增[训练输入规格]($CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md)与机器可读规格，并只将 R0005 三条输入状态登记为窗口有限接口通过。旧 13 行逐字节保留，其他三份清单、各音频/特征、实验代码及原运行报告均不变；该次登记保持当时的 16 对和 447.221 秒统计。登记与独立后核验见[采用报告]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/report.json)、[后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/post_validation.json)及[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/independent_audit.json)。这次只采用规则和登记事实，未处理音频、执行模型或更新参数；旧报告中的 pending、`not_verified` 和旧清单哈希仍保留为对应阶段快照，不能把本次采用写成那些阶段已登记通过。\n\n### 5.5 R0004 三组完整听验通过并正式收录\n\n此前 RMS（短时平均能量）形成的 LE01、LE02、LE03 分别位于 23.79、38.41、47.14 秒，用户明确“都不合适”，三个旧切点仍全部不采用。完整双轨的人声完整、伴奏无清晰唱词听验事实与人声轨伴奏残留限制保持；旧[不采用反馈]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/feedback.json)、原始准备与技术报告均保留，不将新边界通过改写成旧切点通过。\n\n用户完整复听后报告主要唱段约为 **16–22、22–34、37–45、47–62 秒**，明确“主要唱段范围，前奏、过门和尾奏继续保留”。整数秒范围是近似观察，不据此删去伴奏上下文或将 22 秒作为精确分界。前两组唱段相接，放在同组；按报告间隙形成 35.5、46 秒候选边界，用户确认方案和代码后原样应用并执行，三组完整材料已保存。2026-10-08 用户在完整试听请求后答复“都可以”，记录为三组完整听验通过，本次 35.5/46 秒边界采用；不是无残留或模型输入验收。依据见[唱段观察与上下文澄清]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/observations.json)和[本次完整听验接受记录]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json)。\n\n| 已接受候选 → 正式片段 | 保存双轨范围 | 时长 | 当前状态 |\n| --- | --- | ---: | --- |\n| CAND01 → SEG0001 | 0–35.5 秒 | 35.5 秒 | 听验/收录/条件/目标通过；已登记窗口有限输入接口通过 |\n| CAND02 → SEG0002 | 35.5–46 秒 | 10.5 秒 | 听验/收录/条件/目标通过；已登记窗口有限输入接口通过 |\n| CAND03 → SEG0003 | 46–实际结尾 66.899501 秒 | 20.899501 秒 | 听验/收录/条件/目标通过；已登记窗口有限输入接口通过 |\n\n候选制作于北京时间 2026-10-07 21:39:29–21:39:38 完成，CPU 实测约 8.46 秒、最大 RSS 约 51.9 MiB、9 WAV/9 MP3 约 73.72 MiB；逐样本完整覆盖、完整解码及 133 项独立技术后审通过。每个 WAV 等于对应源区间，三段重拼等于完整源，前奏、过门与尾奏没有删去；双轨采用共同采样边界，原音按同一时间换算，各路保留真实末帧，没有补零、调整音量、淡入淡出或归一化。候选生成阶段四份清单未改、正式数据仍为 16 对，是当时快照；原[生成报告]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/report.json)与[独立音频后审]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/independent_audio_audit.json)保持。\n\n本次沿用已有正式收录方法，将三组已听验双轨中的 **6 WAV 逐字节原样复制**到 `data/clips/R0004/SEP01/`，配对 ID 为 `R0004_SEP01_SEG0001–SEG0003`；`segments.csv`、`pairs.csv` 各追加 3 行，旧 16 行及表头/换行保持。新增 **66.899501 秒**，复制音频约 **45.02 MiB**；完整原音、分离轨、候选、原录音与分离清单、旧输入数据和实验代码保持。收录及 247 项独立后审通过，正式清单为 9 份原音、10 个分离版本、19 段和 **19 对、514.120839 秒**。见[收录报告]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json)和[收录独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json)。本次复制登记于北京时间 2026-10-08 14:09:14–14:09:16 完成，约 2.08 秒。这次未重新裁切或处理波形，没有提取特征、执行模型、使用 GPU、更新参数或处理 R0006–R0009。\n\n**R0004 旋律条件与 CPU 同网格伴奏目标已准备并独立核验通过。** 这一步把已听验的完整伴奏转换为模型能读取的频谱数据，并让它与人声旋律编号对应同一时刻，给后续模型接口核验准备材料。旋律条件复用上轮冻结 Chroma/VQ 产物，实测 **1,776 / 526 / 1,045 帧**；完整 WAV 和编号保持，没有重跑 GPU。Chroma 表示随时间变化的音级能量，冻结 VQ 将其压缩成 0–511 的编号；合法编号不单独证明旋律准确。\n\n此前前两段重采样采样数各比提案整数预测多 1，原门禁因此失败并停止；当前 librosa 的浮点比值相乘再向上取整机制已只读诊断。用户授权[两常量修正提案]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/code_proposal.md)及[130 项独立静态复核]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/independent_review.json)对应的两处常量修改，预期采样数改为实际 **852001 / 252001 / 501589**，旋律帧数和其他代码不变。新独立 CPU 特征核验 **287 项通过**，原三份 NPZ 未变；[原长度门禁失败快照]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/post_validation_prediction_mismatch_20261008T065950Z.json)与[长度诊断]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/resample_length_diagnosis.json)原样保留，不改写为通过。\n\n2026-10-08 北京时间 **15:21:07–15:21:11**，修正后目标脚本只执行一次 CPU 计算，退出码 0。输入完整伴奏及已核验旋律编号，按已采用的 `0 + k×480`、每步 20 ms 时间网格重算原始 Mel，再按均值 −4.92、方差 8.14 标准化。输出 3 NPZ，原始/标准化目标均为 float32，形状 **[1776,128] / [526,128] / [1045,128]**，编号逐数组保持。原生 Mel 的晚 10 ms、少一帧差异继续保留作追溯；本轮从完整波形重算同网格目标，没有裁齐、插值或补造频谱帧，也没有修改 WAV。\n\n目标独立核验 **512 项全部通过**，包括来源、全长、网格、类型、有限值、编号保持、存盘一致性及标准化关系；反标准化最大绝对误差约 **9.54×10⁻⁷**，低于 **5×10⁻⁶** 门槛。CPU 实测 GNU time **3.91 秒**、控制器 **3.914 秒**，最大 RSS **598.5 MiB**，4 线程、GPU 隐藏；三份新目标共 **2.930 MiB**。本次 CPU 进程已退出，资源释放核验通过。证据：[当前执行汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/report.json)、[CPU 续行汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/report.json)、[CPU 原始目标报告]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets/report.json)、[目标独立核验]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets_post_validation.json)和[资源释放]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/resource_release.json)；旋律来源见[原生特征报告]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/features/report.json)与[修正合同后的独立特征核验]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/feature_post_validation.json)。上轮 GPU 提取 29.36 秒、采样观测进程显存 740 MiB 的历史资源记录保留，不计作本次 CPU 占用。\n\n**R0004四窗有限FM技术核验通过，本次已采用登记三条窗口接口状态。** 用户确认一次有限范围后，[用户授权]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/acceptance.json)及[补丁应用核对]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/patch_application.json)证明新脚本按冻结代码原样应用。输入三份已准备旋律编号和伴奏目标，检查FM能否计算预测、预测误差（主损失）及参数调整方向（梯度）；优化器没有执行，参数内容前后哈希一致。先通过1045帧窗口，再完成其余三窗、固定双样本与一次不求梯度的补齐扰动；6次前向、5次反向全部完成，预测/损失/梯度有限且梯度非零，补齐改变不影响有效位置结果。独立后审119项全部通过。\n\n四窗为 **888 / 888 / 526 / 1045帧**，对编号、原始目标和标准化目标读取同一帧范围，全部3347帧连续、不重叠、恰好覆盖一次。SEG0002/3单窗覆盖各自完整父输入；SEG0001核验的是两个888帧局部窗口，未把1776帧父段全长送入模型。526/1045双样本批次给短样本右侧补519帧，补齐内容不进入有效结果。5个批次的伴奏提示随机开关均未启用，不宣称新增启用提示分支覆盖，也未追加测试。\n\n2026-10-08北京时间 **16:44:28–16:44:51** 单次执行退出码0，GNU time实测 **20.72秒**，控制器 **22.868秒**；CPU最大RSS约 **1.59GiB**，PyTorch已分配/预留显存峰值约 **4.82 / 5.07GiB**，2秒采样观测本进程显存最高 **5666MiB**（不是精确瞬时峰值）。进程与本次显存已释放。证据：[当前汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/report.json)、[模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/fm/report.json)、[后核验]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/post_validation.json)、[119项独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/independent_audit.json)、[实测资源]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/execution_metrics.json)和[资源释放]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/resource_release.json)。模型原始报告中的独立后审pending是计算结束时快照，本次后审已通过；原报告不改写。\n\n2026-10-08北京时间 **17:05:47**，本次只将 `pairs.csv` 的三个R0004 `training_input_status` 从pending改为 `passed_experimental_windowed_fm_main_loss_interface`；旧16行、表头/换行及其他字段保持，另外三份清单未改。正式19对、514.120839秒不变，登记为13对整段＋6对窗口有限接口通过，0 pending、全部unassigned。证据：[R0004采用登记报告]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/report.json)、[三条状态事务记录]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/transaction.json)和[采用说明]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/adoption_review.md)。这次没有处理音频、运行模型、改实验代码或更新参数，只把已有核验结果写入正式清单。四个数字窗口不新增音频。原FM运行报告中的pending及旧清单/规范哈希是当时快照，原文件保持；最新登记以本次记录为准。\n\n下一步可提出R0006结构分段与听验安排：先找自然间隙候选，保留完整唱句、拖腔及前后乐器，再由完整试听确认边界；不按固定秒数硬切。本轮未准备或执行新实验代码、新试听材料、模型或R0006–R0009处理。SEG0001仅两个888帧窗口通过、1776帧父输入全长未运行，5个批次未启用伴奏提示；残留、旋律准确性、跨窗口连贯性、完整作者配方及生成质量仍未证明。\n\n回听与证据：[三组完整回听页]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/listening_previews.md)、[当前汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/current_report.json)、[听验记录]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json)、[收录报告]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json)及[独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json)。原[代码提案]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/code_proposal.md)保留确认前快照，不作为当前待办。更新前原文见[本轮文档备份]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/docs_before/)。\n\n## 6. 已接受的限制与待验证范围\n\n- 分离人声仍可能有伪影；Chroma/VQ 改变模型接收旋律信息的方式，不会直接修复已有 WAV，也不能消除伴奏目标中的缺陷。\n- 没有独立干净双轨真值；共同边界、完整覆盖和特征中心检查不能替代所有细部对齐证明。\n- 公开完整训练加载器缺失，源码与检查点存在已记录差异；当前只验证实验主损失接口，没有验证优化器更新、恢复训练或完整作者配方。\n- CFG 训练丢条件概率与论文不同，REPA/MERT 辅助损失未实现；用户已接受按本轮有限范围验收，不为消除这些差异自动追加研究。\n- 声码器听验覆盖三段代表样本，不能写成全部 13 段神经解码或新生成伴奏均已验收。\n- R0005 三对已采用短窗路径并登记有限接口通过；实际验证 1,108–1,296 帧，1,500 帧是规格上限，不代表任意该长度或新录音已经通过。完整 4,739 帧前向仍为显存不足，超出原 4,096 位置配置的行为未验证；局部窗口不证明跨窗口连贯性或作者完整训练配方，本次未新增伴奏提示启用分支覆盖。\n- 来源与权利状态仍为待核实；当前按内部技术试验记录，不将文件标为已授权发表或共享。\n\n以上限制随数据交付保留。新来源出现具体质量或接口问题时，先说明实际缺口和有限检查方案；新增或修改实验代码仍先展示核心 diff、解释输入输出及逻辑，再等待确认。\n\n## 7. 数据交付与结束条件\n\n929 的最终交付包括：\n\n| 交付项 | 完成要求 | 当前状态 |\n| --- | --- | --- |\n| 固定数据规模 | 达到用户确定的录音数量或合格配对总时长，避免重复计时 | 目标待确定 |\n| 合格配对音频 | 原音与分离轨保留，结构片段成对、边界一致，异常数据不混入合格集 | 19对保持，13对整段＋6对窗口有限输入接口已登记通过；R0006–R0009四份待结构分段及各自核验，最终规模未定 |\n| 来源与审核清单 | 每对可回溯来源、原录音、分离版本、边界、哈希和审核结果 | 九份原音、10个分离版本、19条边界/配对；本次仅更新R0004三条输入状态，旧16行保持，0 pending，残留限制保留 |\n| 输入规格与核验证据 | 明确已采用的特征、尺度、网格、提示及有效长度规则，附范围与限制 | [输入规格]($CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md)本轮仅更新进度、R0004范围与登记证据，数值规则/机器规格不变；完整长段及作者配方限制保留 |\n| 训练/验证/测试划分 | 按原始录音或演出分组，避免同源片段跨集合泄漏 | 尚未执行 |\n| 统计、文档与最终验收 | 交付数量/时长、通过/剔除统计、处理记录及结论，由用户验收 | 未完成 |\n\n以上固定交付项完成并验收后结束929。当前已登记13对整段＋6对窗口有限接口通过、0 pending，全部尚未划分，正式仍19对；参数更新0次。本次R0004三条状态采用登记后停止，不自动推进模型或R0006。下一步可提出R0006结构分段与听验安排；其余四份、最终规模、分组划分及交付仍待完成。正式微调与生成效果评价另开实验，R0005完整最长段显存不足记录保持。\n\n## 8. 文档、证据与同步状态\n\n| 记录 | 用途 |\n| --- | --- |\n| [项目模型与技术说明]($CLOUD_FINETUNE_ROOT/docs/929项目模型与技术说明.md) | 回看各模型和技术负责什么、输入输出及验证范围 |\n| [训练输入规格]($CLOUD_FINETUNE_ROOT/docs/929训练输入规格.md) / [窗口采用登记]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/report.json) / [登记后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_window_input_adoption_20261007T121100Z/independent_audit.json) | 已采用窗口规则及当前13对整段＋6对窗口接口状态；链接的R0005采用阶段只登记其三条，本次R0004登记另列；窗口算法和机器规格保持，旧报告阶段计数作历史快照 |\n| [R0004 输入准备提案]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/proposal.md) / [核心代码及解释]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/code_proposal.md) / [独立静态审查]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/independent_static_review.json) / [原确认后命令]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_proposal_20261008T062932Z/commands_after_confirmation.md) | 确认前提案和静态快照；用户已确认、脚本原样应用、GPU 特征执行后曾因长度门禁失败停止，后续授权修正并完成CPU目标；旧未应用/未执行/待确认不是当前状态 |\n| [原四窗提案]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/proposal.md)及[核心代码说明]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/code_proposal.md) / [原静态审查]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_proposal_20261008T075328Z/independent_review.md) | 确认前提案与静态依据保持；用户已授权、脚本原样应用并完成本次有限运行，旧待确认/未应用文字不是当前状态 |\n| [R0004采用登记报告]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/report.json)、[三条状态事务记录]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/transaction.json)和[采用说明]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/adoption_review.md) | 本次仅登记R0004三个窗口有限接口状态，旧16行及其余三清单保持；正式19对、13整段＋6窗口通过、0 pending，未新增模型/音频处理 |\n| [当前汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/report.json)、[模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/fm/report.json)、[后核验]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/post_validation.json)、[119项独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/independent_audit.json)、[实测资源]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/execution_metrics.json)和[资源释放]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/resource_release.json) / [用户授权]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/acceptance.json)及[补丁应用核对]($CLOUD_FINETUNE_ROOT/runs/R0004_windowed_fm_v1/patch_application.json) | 四窗、6次前向/5次反向、混合补齐及119项后审通过，资源已释放，参数0更新；运行时CSV pending是结束快照，本次已另行采用登记 |\n| [当前执行汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/report.json)、[CPU 续行汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/report.json)、[CPU 原始目标报告]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets/report.json)、[目标独立核验]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/targets_post_validation.json)和[资源释放]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/resource_release.json) / [原生特征报告]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/features/report.json)与[修正合同后的独立特征核验]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/cpu_continuation_20261008T071749Z/feature_post_validation.json) | 修正合同后的现有特征287项、新CPU目标512项独立核验通过；三份同网格/标准化目标完成，该CPU阶段未运行FM、清单pending是当时快照；后续四窗检查及本次采用登记另列 |\n| [原长度门禁失败快照]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/feature_audit/post_validation_prediction_mismatch_20261008T065950Z.json)与[长度诊断]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/resample_length_diagnosis.json) / [两常量修正提案]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/code_proposal.md)及[130 项独立静态复核]($CLOUD_FINETUNE_ROOT/runs/R0004_input_preparation_v1/length_guard_correction_proposal_20261008T065928Z/independent_review.json) | 原205项中2个长度预测失败的快照保持；用户之后授权两常量修正并完成CPU后续，旧待确认/未应用文字不代表当前状态 |\n| [R0004 完整回听]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/listening_previews.md) / [当前汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/current_report.json) / [生成独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_candidates_v1/independent_audio_audit.json) | 三组完整候选保存与 133 项技术检查通过，完整听验已通过并正式收录；原生成报告边界待验是制作结束时快照，不代表当前状态 |\n| [R0004 完整听验记录]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/listening_acceptance.json) / [正式收录报告]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/report.json) / [收录独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_pair_adoption_20261008T060914Z/independent_adoption_audit.json) | 用户确认“都可以”，本次 35.5/46 秒边界采用；6 WAV 原样复制、两清单各追加 3 行、旧 16 行保持，19 对共 514.120839 秒；复制收录时尚未运行FM、清单pending是当时状态；后续条件/目标、窗口检查和本次采用登记分别记录 |\n| [R0004 主要唱段观察]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/observations.json) / [三组完整候选提案]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/proposal.md) / [核心 diff 与说明]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/code_proposal.md) / [独立静审]($CLOUD_FINETUNE_ROOT/runs/R0004_three_segment_proposal_20261007T130634Z/independent_static_review.json) | 近似唱段及上下文保留依据、确认前代码与静态审查快照；方案已确认、应用并执行，三组完整听验随后通过；旧待确认/未应用文字不代表当前状态 |\n| [R0004 完整复听]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/full_recording_review.md) / [旧三切点不采用反馈]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_feedback_20261007T125619Z/feedback.json) | 现成完整 MP3 继续用于参照，原 LE01–LE03 拒绝不变；新唱段观察不自动接受这些旧切点或任何新边界 |\n| [R0004 三处历史试听]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/listening_previews.md) / [CPU 汇总]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/report.json) / [技术后核验]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_v1/independent_audit.json) | 旧三处材料技术准备通过事实保留，旧 LE01–LE03 人工全部不采用；该阶段没有新增正式段或配对。后来的新边界接受与三对收录另行记录，不改写旧证据 |\n| [R0004 原代码提案]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_proposal_20261007T121100Z/proposal.md) / [核心 diff 与说明]($CLOUD_FINETUNE_ROOT/runs/R0004_structure_review_proposal_20261007T121100Z/code_proposal.md) | 确认前静态快照；已确认、应用并执行，其中未应用/待确认文字不代表当前状态 |\n| [recordings.csv]($CLOUD_FINETUNE_ROOT/data/manifests/recordings.csv) / [separations.csv]($CLOUD_FINETUNE_ROOT/data/manifests/separations.csv) | 原录音来源、哈希和分离版本 |\n| [segments.csv]($CLOUD_FINETUNE_ROOT/data/manifests/segments.csv) / [pairs.csv]($CLOUD_FINETUNE_ROOT/data/manifests/pairs.csv) | 结构边界、配对文件及最新输入接口状态 |\n| [R0005 三组完整候选听验]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/listening_acceptance.json) | 2026-10-06 用户确认“都通过”；完整候选听验通过，保留残留限制，不是训练输入验收 |\n| [R0005 正式收录报告]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/report.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/independent_audit.json) | 6 WAV 原样复制、3 对追加、旧 13 行保留、16 对音频总时长与输入待核验状态；记录的是收录时快照 |\n| [候选短窗口 FM 汇总]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/report.json) / [模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/fm/report.json) / [后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/independent_audit.json) / [资源释放]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_v1/resource_release.json) | 用户确认后原样应用，7 单窗、1 混合批次及补齐扰动有限检查通过，9 次前向、8 次反向均完成；该次运行参数和四份清单保持，三条输入当时为 pending；最新采用登记另行记录；未随机启用提示、不增加该分支覆盖，不替代完整长段或生成质量核验 |\n| [短窗口原提案]($CLOUD_FINETUNE_ROOT/runs/R0005_windowed_fm_proposal_20261007T073646Z/proposal.md) | 候选窗口、代码与静态资源审查、有限顺序及结束条件的确认前快照；已确认、应用并执行，其中未应用/待确认文字不代表当前状态，不新增正式配对或改写全长 OOM |\n| [最长单样本 FM 汇总]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/report.json) / [模型原始报告]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/fm/report.json) / [失败证据后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/independent_audit.json) / [资源释放]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_v1/resource_release.json) | 用户确认后原样应用，仅最长段完整前向一次尝试；显存不足后停止，无预测、损失、梯度或反向结果，未更新参数或重试；43 项后审通过仅核对失败证据与保护状态，FM 仍失败，原始报告的独立后审 pending 是脚本结束时快照 |\n| [最长单样本原提案]($CLOUD_FINETUNE_ROOT/runs/R0005_single_fm_proposal_20261006T152229Z/proposal.md) | 代码、静态资源审查和结束条件的确认前快照；已确认、应用并执行，其中待确认/未应用文字不代表当前状态 |\n| [CPU 目标执行汇总]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/report.json) / [后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/independent_audit.json) | 用户确认后新增脚本原样应用，三对同网格原始及标准化目标检查、独立后核验通过，报告后停止；该 CPU 阶段未运行 FM，输入 pending 是当时快照，最新登记见窗口采用记录 |\n| [CPU 目标原始计算报告]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_v1/targets/report.json) | 实际目标形状、编号保持与尺度检查；其中独立后核验 pending 是脚本结束时快照，最终结果以后核验为准 |\n| [CPU 目标代码提案]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/code_proposal.md) / [计划]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/plan.json) / [独立静态审查]($CLOUD_FINETUNE_ROOT/runs/R0005_target_preparation_proposal_20261006T125856Z/independent_review.json) | 确认前代码与静态检查快照；其中未应用/执行、待确认是旧状态，实际结果见执行报告 |\n| [阶段 A 确认与执行]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/acceptance.json) / [执行记录]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/execution.json) / [补丁应用检查]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/patch_application.json) | 展示与解释后用户确认继续，四文件补丁原样应用；仅限定三对 CPU 位置部件与冻结特征，报告后停止 |\n| [阶段 A CPU 位置报告]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/position_preflight/report.json) / [三对原生特征报告]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/features/report.json) | 全位置 FP32/BF16 部件检查，三对实际帧数与合法编号；局部通过不替代原生特征适配、完整 FM 或残留影响验证 |\n| [阶段 A 汇总报告]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/report.json) / [特征后核验]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/feature_audit/post_validation.json) / [独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/independent_audit.json) / [资源释放]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_v1/resource_release.json) | 三份 NPZ 形状、类型、有限值与编号通过，输入/清单/权重/旧证据保持；该阶段进程与显存已释放，未运行完整 FM，输入 pending 是该阶段快照，最新登记见窗口采用记录 |\n| [三对输入核验代码提案]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/proposal.md) / [独立静态审查]($CLOUD_FINETUNE_ROOT/runs/R0005_input_validation_proposal_20261006T110530Z/independent_review.json) | 确切补丁、核心逻辑与阶段 A 计划的确认前快照；其中未应用/待确认是旧状态，实际执行见阶段 A 记录 |\n| [R0005 执行前输入只读审查]($CLOUD_FINETUNE_ROOT/runs/R0005_pair_adoption_20261006T105438Z/next_input_readonly_review.json) | 三对范围、旧脚本兼容问题、帧数估算与位置/资源限制的执行前快照；当时未改代码、提取特征或运行模型，实际帧数以阶段 A 报告为准 |\n| [分段覆盖报告]($CLOUD_FINETUNE_ROOT/runs/segmentation_finalize_20261001/report.json) | 13 对片段完整覆盖与逐样本重拼证据 |\n| [FM 提示/补齐后核验]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_fm_prompt_smoke_20261001/post_validation.json) | 前向、反向、有效学习位置及补齐扰动证据 |\n| [声码器听验记录]($CLOUD_FINETUNE_ROOT/runs/anyaccomp_vocoder_timing_20261001/acceptance.json) | 三段时间/长度修正版的用户验收 |\n| [小规模有限验收记录]($CLOUD_FINETUNE_ROOT/runs/small_scale_acceptance_20261001T085524Z/acceptance.json) | 用户确认范围、清单状态与明确限制 |\n| [首批来源清单]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/source_candidates.csv) / [元数据记录]($CLOUD_FINETUNE_ROOT/runs/scaled_dataset_prepare_20261001T090202Z/source_inventory.json) | 收录前的页面及文件头核查快照，正式编号以录音清单为准 |\n| [首批收录报告]($CLOUD_FINETUNE_ROOT/runs/collection_batch01_20261002T035130Z/collection_report.json) | 六份完整下载、哈希去重、解码与正式登记 |\n| [R0005 分离技术检查]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/technical_check.json) / [后核验]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/post_validation.json) | 执行当时的双轨、资源与完整性快照；其中听验待定是旧状态，当前以听验记录为准 |\n| [R0005 初次听验反馈]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_feedback_20261003.json) / [最新澄清]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_clarification_20261003T061006Z.json) | 保留原话；当前问题是人声轨伴奏残留及其伪影，唱前、唱后及演唱中可闻，并非遍布全曲；不据此推断唱声受损 |\n| [R0005 采用记录]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/listening_acceptance_20261003T061710Z.json) | 用户明确接受伴奏残留限制并采用本轮分离结果，后续条件和生成效果待验证 |\n| [其余五份分离前核查]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/preflight.json) | 当前批次输入、环境、权重、GPU、磁盘与输出路径依据；不作为完成或听验通过证据 |\n| [其余五份分离批次报告]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/batch_report.json) | 五份技术检查通过、资源实测与完整试听清单入口；听验待定是执行当时快照，当前以最新反馈和清单为准 |\n| [其余五份完整试听]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_previews.md) | 逐份原音参照、人声、伴奏的完整 MP3；用户听验入口 |\n| [录音审核状态刷新]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/recording_review_refresh.json) | 分离完成时刷新录音审核状态的快照，原音元数据和哈希保持；后续反馈状态以最新清单为准 |\n| [其余五份共性听验反馈]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_feedback_20261003T082548Z/feedback.json) | 保留人声轨伴奏残留伪影较多、伴奏效果还不错的原话；其中核心事实待补齐是先前阶段快照 |\n| [其余五份听验采用记录]($CLOUD_FINETUNE_ROOT/runs/separation_batch01_remaining_20261003T061710Z/listening_acceptance_20261003T083058Z/acceptance.json) | 用户确认“五份都完整，伴奏无清晰唱词”，沿用已接受残留原则，本轮门槛通过；不代表最终配对交付或后续效果已验证 |\n| [R0005 定位与切点试听提案]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_proposal_20261003/proposal.md) / [静态核查]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_proposal_20261003/proposal_validation.json) | 确认前的代码及静态检查快照；用户确认后已原样应用，实际执行结果见本次报告 |\n| [R0005 候选准备报告]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/materials/review_report.json) / [执行日志]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/execution.log) | CPU 执行、输入哈希、同步上下文、解码及正式清单保持不变的生成时快照；结构状态以最新反馈为准 |\n| [R0005 候选材料独立后审]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/independent_audit.json) | 生成时 63 项技术检查通过，涵盖输入与清单保留、三路同时间及试听文件索引/哈希；不替代结构听验 |\n| [低能量候选清单]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/materials/low_energy_candidates.csv) / [六处同步试听]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_previews.md) | 原六处候选与上下文保留；正式分段只用 LE02、LE05，不自动采用其他切点 |\n| [R0005 逐项结构反馈]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/feedback.json) / [试听结束澄清]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/clarification.json) | 接受两处候选位置、待复核三处、拒绝一处；截断主要在试听结束，不据此判定原切点或源音频受损 |\n| [三处完整复听]($CLOUD_FINETUNE_ROOT/runs/segmentation_review_R0005_20261004T012245Z/listening_feedback_20261004T025027Z/relocation_review.md) | 引用现成完整 MP3 核对完整唱句与候选位置，无新增音频处理或正式配对 |\n| [R0005 完整复听与三段提案]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/observations.json) / [分段表]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/candidate_plan.csv) / [候选试听代码提案]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_proposal_20261004/code_proposal.md) | 保留确认前快照；其中“未应用、未执行”不代表当前状态，最新确认与执行见下列记录 |\n| [R0005 三段方案与代码确认]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/acceptance.json) | 用户确认原样应用并仅 CPU 准备候选；不是生成后完整候选的人工验收 |\n| [R0005 三组候选生成报告]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_candidates_v1/report.json) / [执行记录]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.json) / [执行日志]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/execution.log) | 2026-10-04 生成时的 9 WAV/9 MP3、共同边界、逐样本完整覆盖、解码与裁切资源证据；清单不变及听验待定是历史状态，最新收录见 2026-10-06 报告 |\n| [R0005 三组候选独立后审]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/independent_audit.json) | 生成时源文件、四份清单、9 WAV/9 MP3 及试听索引的技术检查；其中人工验收待定是历史快照 |\n| [R0005 三组完整候选试听]($CLOUD_FINETUNE_ROOT/runs/R0005_three_segment_execution_20261004T114458Z/listening_previews.md) | CAND01–03 各含完整原音参照、人声和伴奏，三组现已听验通过并正式收录双轨；用于回听 |\n| [R0005 试听清单]($CLOUD_FINETUNE_ROOT/runs/separation_R0005_SEP01/preview_manifest.json) | 三份完整 MP3 的路径与哈希 |\n| [完整历史归档]($CLOUD_FINETUNE_ROOT/docs/archive/929训练数据采集_历史记录_20261001T093748Z.md) | 重整前的原文完整副本，保存每轮提案、执行、旧状态与详细证据 |\n\n主工作区在云端 `$CLOUD_FINETUNE_ROOT`；Windows 本地目录为 `$PROJECT_ROOT\\anyaccomp_gezi_finetune`。两端不自动同步，传输需备份旧版并核对 SHA-256。\n\n此前已提供文档同步包和本地执行提示词，但尚未收到成功回执，旧包不包含最新R0004采用登记。此次更新云端README、主文档、技术说明和输入规格的当前事实，原文保存在[本轮文档备份]($CLOUD_FINETUNE_ROOT/runs/R0004_window_input_adoption_20261008T090343Z/docs_before/)；数值输入规则、机器规格及所有历史运行文件保持。Windows本地尚未确认同步，本轮未更新网页；后续传输最新快照、备份旧版并核对哈希，云端更新不代表本地或网页更新。\n\n后续每完成一个阶段，更新对应的状态、数量、结论与下一步，保持本文为当前摘要。完整运行日志和连续对话记录保存在历史归档或 `runs/`，不再逐轮追加到主文档末尾；不把旧报告中的待办状态当作最新结论。\n"}</script><script src="../src/data-reader.js"></script></body></html>
+<p>音频听验、技术核验和最终数据交付分别记录；正式统计以 <code>data/manifests/</code> 清单为准。内容版本更新不代表本地或网页已经同步。</p></div>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p><p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/929训练数据采集.md（路径已脱敏）","sha256":"83eb6c08cb5ba9162088eee06c43f9704c9a7617be5ba28d35ba09168e17349d","text":"# 929 歌仔戏配对数据准备\n\n更新日期：2026-10-22。本文是网页展示的唯一正文内容源，可独立使用；技术细节和证据按需查阅配套文档。\n\n**当前结论：929已验收完成。40首、60对、3316.363242633秒（约55分16秒）；训练／验证／测试32／4／4首、51／4／5对；正式微调尚未开始，参数更新0次**。\n\n## 1. 项目目标\n\n将歌仔戏录音整理成来源可追溯、具有质量审核和训练输入核验证据的人声—伴奏配对数据，为后续伴奏生成模型微调做准备。逐首人工听验与按批次规则采用分别标注，未抽中者不记为逐首人工通过。原始录音、配对音频及来源/听验记录可供后续其他方法复用；模型专用特征按所用方法适配。\n\n**流程：完整录音 → 人声/伴奏分离 → 整首或自然段落配对 → 质量与输入核验 → 数据划分与交付**。\n\n## 2. 本周工作成果\n\n**统计口径：截至2026-10-22的已验收累计成果；本次没有另行核定当周新增量**。 原10月3日至10日周报保留为历史快照，查阅入口见[证据索引](929证据索引.md)，不再与当前累计成果并列展示。\n\n| 工作 | 本期已验收成果 |\n| --- | --- |\n| 采集与分离 | 40首完整录音已收录，完整原音和分离双轨保留 |\n| 质量采用 | 36首有完整双轨听验记录，R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验 |\n| 正式配对 | 前9首29对自然段落、后31首31对整首，共60对、约55分16秒 |\n| 有限输入核验 | 13对整段＋47对窗口接口通过，0待核验；139个读取单元已有索引 |\n| 划分与交付 | 训练／验证／测试32／4／4首、51／4／5对；交付与用户最终验收完成 |\n\n前奏、过门、尾奏和完整唱句保留；模型数字窗口和双轨不增加正式音频数量或时长。正式微调与生成效果评价另开实验。\n\n## 3. 核验成果与当前阶段\n\n截至2026-10-22，**40份录音正式收录60对，合计3316.363242633秒（约55分16秒）**。前9首自然段落29对，后31首各保留一对整首。36首有实际完整双轨听验记录；R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验。\n\n**采集、分离、采用、有限输入核验、划分与交付均已完成；用户于2026-10-22接受最终交付，929已验收完成**。\n\n| 集合 | 录音数 | 配对数 | 音频时长 | 时长比例 |\n| --- | ---: | ---: | --- | ---: |\n| 训练 | 32 | 51 | 44分28秒 | 80.44% |\n| 验证 | 4 | 4 | 5分35秒 | 10.11% |\n| 测试 | 4 | 5 | 5分13秒 | 9.44% |\n\n评测目标是面对同类歌仔戏的新录音。完整录音不跨集合，演唱者可以重叠；各录音的片段与数字窗口继承相同归属。验证集涵盖5位、测试集6位演唱者，均在训练中出现。\n\n60对有限输入检查全部登记：13整段＋47窗口，0待核验。486份音频与特征资产、139个模型读取单元及来源/核验证据已有统一索引；划分登记与交付检查通过。见[929数据交付说明]($CLOUD_FINETUNE_ROOT/docs/929数据交付说明.md)和[数据交付入口]($CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md)。\n\n**正式微调未开始，参数更新0次**。 输入检查证明已有数据能按对应实验路径计算误差和梯度，不证明旋律准确性、残留影响、完整作者训练配方或生成效果。人声轨伴奏残留、小样本、录制场次未知及测试数据曾用于技术排查的限制均保留；原音与历史失败证据不改写。\n\n## 4. 各录音进度\n\n40份录音已收录60对：36首有完整双轨听验记录，4首按批次规则采用；前9首自然段落29对，后31首整首31对。\n\n| 录音 | 曲调 | 正式配对 | 输入状态 |\n| --- | --- | --- | --- |\n| R0001 | 七字調 | 4 对 | 整段有限接口通过 |\n| R0002 | 雜唸調 | 5 对 | 整段有限接口通过 |\n| R0003 | 江湖調 | 4 对 | 整段有限接口通过 |\n| R0004 | 古早七字仔 | 3 对 | 窗口有限接口通过 |\n| R0005 | 都馬調 | 3 对 | 窗口有限接口通过 |\n| R0006 | 西樂都馬 | 4 对 | 窗口有限接口通过 |\n| R0007 | 崁仔腳調 | 2 对 | 自身有限模型接口已独立核验通过并登记采用 |\n| R0008 | 臺東調（平埔調） | 2 对 | 自身四窗有限模型接口独立核验通过，已登记采用 |\n| R0009 | 思想起（恆春調） | 2 对 | 四窗有限模型技术检查及独立核验通过，已登记窗口接口状态 |\n| R0010–R0014 | 病囝歌、五更鼓、雪梅思君、萬枝調、百家春 | 各1对，共5对整首 | 17窗有限FM技术检查和独立后审通过；五条窗口接口状态已登记 |\n| R0015–R0019 | 人道、相思引、牛犁歌、安安趕雞、更鼓反 | 各1对，共5对整首 | 完整双轨听验、整首收录、同网格目标与18窗有限接口核验通过；五条状态已登记 |\n| R0020–R0024 | 春宵吟、南風謠、秋夜曲、望鄉調、運河二調 | 各1对，共5对整首 | 四首完整双轨听验＋R0020按批次规则采用；15窗有限接口核验通过并登记 |\n| R0025–R0029 | 梆子腔、十二丈、緊疊仔、桃花過渡、點燈籠（點燈紅） | 各1对，共5对整首 | 五首完整双轨听验通过；同网格目标与15窗有限接口核验通过并登记 |\n| R0030–R0034 | 都馬哭、破窯一調、破窯二調、破窯三調、南光調 | 各1对，共5对整首 | 三首完整听验＋R0032/R0034按规则采用；同网格目标与16窗有限接口通过并登记 |\n| R0035–R0040 | 寶島調、寶島二調、河洛一調、清風調、三盆水仙、六角美人 | 各1对，共6对整首 | 五首完整听验＋R0040按规则采用；同网格目标与20窗有限接口通过并登记 |\n\nR0010–R0040均从第0帧到末帧保留整首，见[B4收录与输入核验报告]($CLOUD_FINETUNE_ROOT/runs/B4_adoption_input_20261022/report.md)及各批次证据。完整WAV与模型每窗最多1500帧的数字窗口分别记录；窗口不增加配对数量或时长。\n\n## 5. 下一步与结束条件\n\n**929已验收完成并按约定收尾**。 用户于2026-10-22回复“接受”，确认本次40首60对、训练/验证/测试32/4/4首的划分、交付索引及已说明的限制。见[最终验收记录]($CLOUD_FINETUNE_ROOT/runs/929_final_acceptance_20261022/acceptance.json)与[929数据交付说明]($CLOUD_FINETUNE_ROOT/docs/929数据交付说明.md)。\n\n本次范围为官方第四届40首常规示范音档，40首采用、0首剔除。约定的数据准备、核验、划分和交付均已完成，停止继续扩充或重复逐首听验。正式微调、长期训练和新伴奏生成评价另开实验。\n\n数据按云端实际文件与冻结索引就地交付，音频及模型特征保留原路径；已完成本地文档同步；音频及模型特征继续保留在云端，网站尚未更新。实际同步状态见[文档同步记录](929文档同步记录.md)。来源权利仍未核实，当前按内部技术试验记录。\n\n## 6. 配套文档\n\n网页概览、进度表和本周成果只需本文。扩展技术详情或提供报告下载时，再按需使用下列资料；不要将所有配套文档拼接到网页正文。\n\n| 文档 | 用途 |\n| --- | --- |\n| [数据交付说明](929数据交付说明.md) | 划分、交付索引、使用方法与最终验收范围 |\n| [项目模型与技术说明](929项目模型与技术说明.md) | 模型职责、输入输出及技术限制 |\n| [训练输入规格](929训练输入规格.md) | 采样、频谱尺度、时间网格和窗口规则 |\n| [处理与核验记录](929处理与核验记录.md) | 各录音处理细节、有限核验范围及交付明细 |\n| [证据索引](929证据索引.md) | 运行报告、听验及审核证据入口 |\n| [文档同步记录](929文档同步记录.md) | 云端、本地及网页的实际同步状态 |\n\n音频听验、技术核验和最终数据交付分别记录；正式统计以 `data/manifests/` 清单为准。内容版本更新不代表本地或网页已经同步。\n"}</script><script src="../src/data-reader.js"></script></body></html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>929数据交付说明.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>929数据交付说明.md</h1><p>Markdown 文档 · 5,106 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#929">929数据交付说明</a><ul>
+<li><a href="#1">1. 本次交付了什么</a></li>
+<li><a href="#2">2. 数据如何划分</a></li>
+<li><a href="#3">3. 模型输入及核验范围</a></li>
+<li><a href="#4">4. 如何使用与结束</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\929数据交付说明.md</p><p>SHA-256：7c19470ef780ef48bb37ef8047588e1fbf1e12d0d5cc943d8d83063ed3a3d9de</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="929">929数据交付说明</h1>
+<p>更新：2026-10-22。<strong>采集、分离、采用、输入核验、划分与交付已完成；用户于2026-10-22接受最终交付，929已验收完成并收尾</strong>。</p>
+<h2 id="1">1. 本次交付了什么</h2>
+<p>官方第四届40首常规示范音档全部筛查并采用，形成60对、约55分16秒。前9首保留29个自然段落，后31首各一对整首；原音及完整分离双轨保留。36首有实际完整双轨听验记录；R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验。</p>
+<p>交付入口为<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md">数据交付入口（本轮未发布此证据文件）</span>。486份已有音频与特征资产共6,020,541,081字节（不同路径计数，包含完整轨与配对副本），有逐文件哈希与相对路径索引；253份证据有单独索引。当前以云端工作区内的实际文件和冻结清单交付，没有把所有资产再复制一份；不是脱离工作区即可使用的完整音频压缩包。</p>
+<h2 id="2">2. 数据如何划分</h2>
+<p>目标是评测同类歌仔戏中的新录音，采用<strong>录音隔离、演唱者允许重叠</strong>。同一完整录音的所有片段、双轨和窗口留在同一集合。</p>
+<table>
+<thead>
+<tr>
+<th>集合</th>
+<th style="text-align: right;">录音数</th>
+<th style="text-align: right;">配对数</th>
+<th>音频时长</th>
+<th style="text-align: right;">时长比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">51</td>
+<td>44分28秒</td>
+<td style="text-align: right;">80.44%</td>
+</tr>
+<tr>
+<td>验证</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td>5分35秒</td>
+<td style="text-align: right;">10.11%</td>
+</tr>
+<tr>
+<td>测试</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td>5分13秒</td>
+<td style="text-align: right;">9.44%</td>
+</tr>
+</tbody>
+</table>
+<p>验证名单：R0011「五更鼓」、R0021「南風謠」、R0028「桃花過渡」、R0032「破窯二調」。测试名单：R0008「臺東調（平埔調）」、R0010「病囝歌」、R0017「牛犁歌（送哥調）」、R0035「寶島調」。其余32首用于训练。</p>
+<p>训练涵盖9位演唱者，验证涵盖5位、测试涵盖6位；三个集合的两位编曲者录音数分别为16/16、2/2、2/2。划分以种子20261022固定生成200,000个32/4/4候选，其中17,273个满足保留集各占9%～11%时长、各至少4位演唱者、训练覆盖全部演唱者、各集合包含两位编曲者的约束；再依据演唱署名出现比例和编曲比例的偏差选择，最后以时长差异及录音ID确定平局。未用音质、听验等级、模型损失或生成效果挑名单。</p>
+<p>这是样本有限条件下的分布平衡，不是保证每种曲调或每位演员均匀出现。多位演唱者在同首作品各记一次署名，不能当作实际演唱秒数。录制场次未知，声学近重复未系统检测；已知原音URL和逐字节哈希没有跨集合重复。测试集应从此冻结，不能根据其结果调参或换曲。</p>
+<h2 id="3">3. 模型输入及核验范围</h2>
+<p>60对保留完整旋律编号和同网格伴奏目标；13对按早期整段路径、47对按126个窗口路径通过有限FM检查，总计139个读取单元、165,856帧。训练112个单元／133,420帧，验证13个／16,774帧，测试14个／15,662帧。单元数不增加音频对数或时长。</p>
+<p>后续窗口上限1500帧；早期两份已验证整段为1506帧和1503帧，索引明确保留。若正式训练改用统一长度策略，需另行适配核验。此次没有运行模型或更新参数，不能称正式训练已经通过。</p>
+<p>本步只改变60条配对的dataset_split，并依据官方来源将R0001演唱者由待核对补齐为張閔鈞／陳琬儒。登记126项、交付索引2587项核对通过；音频、特征、已有输入状态与历史证据保留。索引检查最初误套1500上限后，已依据原模型报告修正为保留早期实测整段范围；这不是修改音频或放宽未验证输入。旧B4窗口报告中的听验人数模板句不作为最终采用依据，实际五首必听记录与一首批次采用标识保持。</p>
+<h2 id="4">4. 如何使用与结束</h2>
+<p>音频复用看配对清单；当前AnyAccomp有限输入看各集合inputs.csv；来源与采用依据看录音清单、分离清单和evidence.csv。清单相对路径以云端工作区为根，后续换方法可从完整WAV重新提取特征。已有实验脚本固定了当时的清单哈希和输出目录，不能直接拿历史脚本覆盖重跑。</p>
+<p>人声轨伴奏残留、来源权利未核实、小样本与非盲测限制继续保留；输入通过不等于旋律准确或生成质量通过。正式微调另开实验。本地文档已同步并整理；本次未下载完整音频、权重或特征数组，网站尚未更新。当前同步状态见<a href="929%E6%96%87%E6%A1%A3%E5%90%8C%E6%AD%A5%E8%AE%B0%E5%BD%95-984b24975095.html">文档同步记录</a>。</p>
+<p><strong>验收依据与停止条件</strong>：<a href="acceptance-786e933ce507.html">验收记录</a>绑定此前交付版本和清单哈希；本次只登记验收并更新文档，不改数据或追加实验。详见<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md">数据交付入口（本轮未发布此证据文件）</span>及<span class="reader-missing" title="$CLOUD_FINETUNE_ROOT/runs/929_recording_split_20261022_v1/report.md">执行报告（本轮未发布此证据文件）</span>。</p>
+<p>整理前完整原文：<span class="reader-missing" title="archive/document_restructure_20261022T193557/docs/929数据交付说明.md">验收版文档快照（本轮未发布此证据文件）</span>。冻结交付目录及原验收记录保持原样。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/929数据交付说明.md（路径已脱敏）","sha256":"7c19470ef780ef48bb37ef8047588e1fbf1e12d0d5cc943d8d83063ed3a3d9de","text":"# 929数据交付说明\r\n\r\n更新：2026-10-22。**采集、分离、采用、输入核验、划分与交付已完成；用户于2026-10-22接受最终交付，929已验收完成并收尾**。\r\n\r\n## 1. 本次交付了什么\r\n\r\n官方第四届40首常规示范音档全部筛查并采用，形成60对、约55分16秒。前9首保留29个自然段落，后31首各一对整首；原音及完整分离双轨保留。36首有实际完整双轨听验记录；R0020、R0032、R0034、R0040按已确认批次规则采用，未单独听验。\r\n\r\n交付入口为[数据交付入口]($CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md)。486份已有音频与特征资产共6,020,541,081字节（不同路径计数，包含完整轨与配对副本），有逐文件哈希与相对路径索引；253份证据有单独索引。当前以云端工作区内的实际文件和冻结清单交付，没有把所有资产再复制一份；不是脱离工作区即可使用的完整音频压缩包。\r\n\r\n## 2. 数据如何划分\r\n\r\n目标是评测同类歌仔戏中的新录音，采用**录音隔离、演唱者允许重叠**。同一完整录音的所有片段、双轨和窗口留在同一集合。\r\n\r\n| 集合 | 录音数 | 配对数 | 音频时长 | 时长比例 |\r\n| --- | ---: | ---: | --- | ---: |\r\n| 训练 | 32 | 51 | 44分28秒 | 80.44% |\r\n| 验证 | 4 | 4 | 5分35秒 | 10.11% |\r\n| 测试 | 4 | 5 | 5分13秒 | 9.44% |\r\n\r\n验证名单：R0011「五更鼓」、R0021「南風謠」、R0028「桃花過渡」、R0032「破窯二調」。测试名单：R0008「臺東調（平埔調）」、R0010「病囝歌」、R0017「牛犁歌（送哥調）」、R0035「寶島調」。其余32首用于训练。\r\n\r\n训练涵盖9位演唱者，验证涵盖5位、测试涵盖6位；三个集合的两位编曲者录音数分别为16/16、2/2、2/2。划分以种子20261022固定生成200,000个32/4/4候选，其中17,273个满足保留集各占9%～11%时长、各至少4位演唱者、训练覆盖全部演唱者、各集合包含两位编曲者的约束；再依据演唱署名出现比例和编曲比例的偏差选择，最后以时长差异及录音ID确定平局。未用音质、听验等级、模型损失或生成效果挑名单。\r\n\r\n这是样本有限条件下的分布平衡，不是保证每种曲调或每位演员均匀出现。多位演唱者在同首作品各记一次署名，不能当作实际演唱秒数。录制场次未知，声学近重复未系统检测；已知原音URL和逐字节哈希没有跨集合重复。测试集应从此冻结，不能根据其结果调参或换曲。\r\n\r\n## 3. 模型输入及核验范围\r\n\r\n60对保留完整旋律编号和同网格伴奏目标；13对按早期整段路径、47对按126个窗口路径通过有限FM检查，总计139个读取单元、165,856帧。训练112个单元／133,420帧，验证13个／16,774帧，测试14个／15,662帧。单元数不增加音频对数或时长。\r\n\r\n后续窗口上限1500帧；早期两份已验证整段为1506帧和1503帧，索引明确保留。若正式训练改用统一长度策略，需另行适配核验。此次没有运行模型或更新参数，不能称正式训练已经通过。\r\n\r\n本步只改变60条配对的dataset_split，并依据官方来源将R0001演唱者由待核对补齐为張閔鈞／陳琬儒。登记126项、交付索引2587项核对通过；音频、特征、已有输入状态与历史证据保留。索引检查最初误套1500上限后，已依据原模型报告修正为保留早期实测整段范围；这不是修改音频或放宽未验证输入。旧B4窗口报告中的听验人数模板句不作为最终采用依据，实际五首必听记录与一首批次采用标识保持。\r\n\r\n## 4. 如何使用与结束\r\n\r\n音频复用看配对清单；当前AnyAccomp有限输入看各集合inputs.csv；来源与采用依据看录音清单、分离清单和evidence.csv。清单相对路径以云端工作区为根，后续换方法可从完整WAV重新提取特征。已有实验脚本固定了当时的清单哈希和输出目录，不能直接拿历史脚本覆盖重跑。\r\n\r\n人声轨伴奏残留、来源权利未核实、小样本与非盲测限制继续保留；输入通过不等于旋律准确或生成质量通过。正式微调另开实验。本地文档已同步并整理；本次未下载完整音频、权重或特征数组，网站尚未更新。当前同步状态见[文档同步记录](929文档同步记录.md)。\r\n\r\n**验收依据与停止条件**：[验收记录]($CLOUD_FINETUNE_ROOT/runs/929_final_acceptance_20261022/acceptance.json)绑定此前交付版本和清单哈希；本次只登记验收并更新文档，不改数据或追加实验。详见[数据交付入口]($CLOUD_FINETUNE_ROOT/deliverables/929_dataset_v1/README.md)及[执行报告]($CLOUD_FINETUNE_ROOT/runs/929_recording_split_20261022_v1/report.md)。\r\n\r\n\r\n整理前完整原文：[验收版文档快照](archive/document_restructure_20261022T193557/docs/929数据交付说明.md)。冻结交付目录及原验收记录保持原样。\r\n"}</script><script src="../../src/data-reader.js"></script></body></html>

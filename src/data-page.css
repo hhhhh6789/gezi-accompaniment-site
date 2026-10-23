@@ -127,3 +127,6 @@ body.data-page .footer { background: #090909; color: #b5b5b0; border-color: var(
   .dp-record { transition: none !important; transform: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* Accepted dataset split: compact metadata in the existing data page. */
+.dp-splits{width:100%;border-collapse:collapse;margin:20px 0}.dp-splits th,.dp-splits td{text-align:left;padding:12px;border-bottom:1px solid currentColor}.dp-record h3,.dp-record-status{overflow-wrap:anywhere}.dp-record-status{line-height:1.6}

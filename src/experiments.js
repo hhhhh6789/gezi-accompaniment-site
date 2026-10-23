@@ -8,13 +8,13 @@ window.GeziExperiments = {
       <section class="ft-summary" aria-label="目标与当前状态">
         <article class="ft-stat"><div class="ft-label">01 / 模型目标 <span aria-hidden="true">↗</span></div><h2>生成歌仔戏伴奏</h2><p>用经过核验的唱腔—伴奏配对数据进行模型微调。</p></article>
         <article class="ft-stat"><div class="ft-label">02 / 当前状态 <span aria-hidden="true">○</span></div><h2>正式微调<br>尚未启动</h2><p>正式训练与效果评价作为后续独立实验开展。</p></article>
-        <article class="ft-stat"><div class="ft-label">03 / 当前重点 <span aria-hidden="true">→</span></div><h2>数据准备<br>与输入核验</h2><p>当前要交付：经核验的数据集与训练输入兼容性证据。</p></article>
+        <article class="ft-stat"><div class="ft-label">03 / 当前重点 <span aria-hidden="true">→</span></div><h2>数据交付<br>已经验收</h2><p>40首60对已完成数据交付；训练入口和正式实验仍需单独核验。</p></article>
         <div class="ft-goal-note"><span>近期目标</span><p>${esc(data.project.short_term_goal)}</p></div>
       </section>
       <section class="ft-roadmap ft-white" aria-labelledby="ft-route-title">
         <div class="ft-section-head"><div><span class="ft-small-label">PREPARATION</span><h2 id="ft-route-title">正式实验，先过三道关</h2></div><span class="ft-caption">启动条件 · 非时间排期</span></div>
         <div class="ft-route" role="list">
-          <article class="ft-step" role="listitem"><div class="ft-step-top"><span class="ft-step-number">01</span><span class="ft-badge">待交付</span></div><h3>数据交付</h3><p>配对数据通过核验，确认能作为训练输入。</p><ul><li>小规模链路验收</li><li>规模化处理</li><li>数据交付关口</li></ul><button data-goto="data" class="ft-inline-link">查看数据关口 <span aria-hidden="true">↗</span></button></article>
+          <article class="ft-step" role="listitem"><div class="ft-step-top"><span class="ft-step-number">01</span><span class="ft-badge">已验收</span></div><h3>数据交付</h3><p>配对数据、对应有限输入检查和录音级划分已验收；完整训练器另行验证。</p><ul><li>小规模链路验收</li><li>规模化处理</li><li>数据交付关口</li></ul><button data-goto="data" class="ft-inline-link">查看数据关口 <span aria-hidden="true">↗</span></button></article>
           <article class="ft-step" role="listitem"><div class="ft-step-top"><span class="ft-step-number">02</span><span class="ft-badge">待核验</span></div><h3>训练准备</h3><p>另行确认实际可运行的训练入口与记录方式。</p><ul><li>可运行的训练入口</li><li>正式训练配置</li><li>训练日志与产物记录</li></ul><div class="ft-inline-link">${envLink}</div></article>
           <article class="ft-step" role="listitem"><div class="ft-step-top"><span class="ft-step-number">03</span><span class="ft-badge">待确认</span></div><h3>评价安排</h3><p>正式启动前，固定比较样本与评价方法。</p><ul><li>固定比较样本</li><li>自动评价指标</li><li>专业听评安排</li></ul><button class="ft-inline-link" data-ft-scroll="ft-evaluation">查看评价安排 <span aria-hidden="true">↓</span></button></article>
         </div>

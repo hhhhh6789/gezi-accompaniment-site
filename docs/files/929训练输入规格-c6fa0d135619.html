@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-Hans"><head>
+<link rel="icon" type="image/svg+xml" href="../../assets/opera-musician-dark.svg"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>929训练输入规格.md · 歌仔戏伴奏研究</title><link rel="stylesheet" href="../../src/typography.css">
+<link rel="stylesheet" href="../../src/file-reader-fonts.css"><link rel="stylesheet" href="../../src/data-reader.css">
+<link rel="stylesheet" href="../../src/file-reader.css"></head><body class="data-reader file-reader">
+<header class="reader-bar"><a href="../../index.html#data">← 返回数据准备</a><a href="#reader-directory">文档目录</a><span>Markdown 文档 · 完整阅读</span></header>
+<main class="reader-main"><div id="reader-error" class="reader-error" role="alert" tabindex="-1" hidden></div>
+<header class="file-heading"><p class="file-kicker">GEZI OPERA / PROJECT RECORDS</p><h1>929训练输入规格.md</h1><p>Markdown 文档 · 9,501 字节 · 全文快照</p></header>
+<nav id="reader-directory" class="reader-index" aria-label="文档目录"><h2>文档目录</h2><div class="toc">
+<ul>
+<li><a href="#929-v1">929 训练输入规格 v1：完整音频与短窗口</a><ul>
+<li><a href="#1">1. 音频保存与模型读取各做什么</a></li>
+<li><a href="#2">2. 输入数组与同一时间网格</a></li>
+<li><a href="#3">3. 已采用的短窗规则与实际验证范围</a><ul>
+<li><a href="#31">3.1 窗口规则</a></li>
+<li><a href="#32-47">3.2 当前交付的47对窗口路径</a></li>
+<li><a href="#33">3.3 早期整段例外与长度限制</a></li>
+</ul>
+</li>
+<li><a href="#4">4. “输入通过”具体证明什么</a></li>
+<li><a href="#5">5. 后续数据、划分和历史记录</a></li>
+<li><a href="#6-2026-10-22">6. 划分与交付读取约定（2026-10-22）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><div class="reader-meta"><details><summary>查看来源与版本</summary><p>来源：$PROJECT_ROOT\anyaccomp_gezi_finetune\docs\929训练输入规格.md</p><p>SHA-256：b66c6eb777c3f61251275315a31610671ce75c121b23154cd1bb6fd9ce9cb345</p><p>文件更新后，双击“更新看板”刷新此页。</p></details></div>
+<article id="file-content" class="reader-content file-content" data-file-type="md"><h1 id="929-v1">929 训练输入规格 v1：完整音频与短窗口</h1>
+<p>更新日期：2026-10-22。数值规格v1保持。<strong>929已验收完成；40首、60对、3316.363242633秒（约55分16秒）；训练／验证／测试32／4／4首、51／4／5对；正式微调尚未开始，参数更新0次</strong>。</p>
+<p>本文件只规定当前已采用的读取合同和已测范围。逐次运行、资源、登记事务及旧状态移至<span class="reader-missing" title="archive/document_restructure_20261022T193557/docs/929训练输入规格.md">整理前完整规格（本轮未发布此证据文件）</span>，查证入口见<a href="929%E8%AF%81%E6%8D%AE%E7%B4%A2%E5%BC%95-1f6c7da19c35.html">证据索引</a>。文档重排不改变数组、音频、机器JSON或模型计算。</p>
+<h2 id="1">1. 音频保存与模型读取各做什么</h2>
+<p>正式音频按已接受的自然段落或整首保留，包含唱句、拖腔、前奏、过门和尾奏。当前前9首29对自然段落、后31首31对整首，共60对；模型读取单元来自这些音频的数字特征，不能重复计入正式音频数量或时长。</p>
+<p>数字窗口可以在唱词中间结束，完整WAV保持不变；窗口检查仅覆盖对应局部上下文，不能证明跨窗口音乐连贯性或所有完整父序列FM通过。</p>
+<h2 id="2">2. 输入数组与同一时间网格</h2>
+<table>
+<thead>
+<tr>
+<th>数组</th>
+<th>含义</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tokens</code></td>
+<td>人声经 Chroma/冻结 VQ 转成的旋律编号，尽量减少直接传入音色和分离细节</td>
+<td>int64 <code>[T]</code>，编号0–511</td>
+</tr>
+<tr>
+<td><code>target_raw_logmel</code></td>
+<td>对应伴奏的原始频谱，保留以便核验</td>
+<td>float32 <code>[T,128]</code></td>
+</tr>
+<tr>
+<td><code>target_mel</code></td>
+<td>模型使用的标准化伴奏目标</td>
+<td>float32 <code>[T,128]</code>，<code>(raw−(−4.92))/sqrt(8.14)</code></td>
+</tr>
+</tbody>
+</table>
+<p>24 kHz单声道、步长480点，旋律与目标共用<code>0+k×480</code>帧中心，间隔20 ms；三数组使用同一个半开帧区间<code>[start:end)</code>。帧数乘20 ms只是网格数量，正式时长仍按波形帧数和采样率计算。</p>
+<p>CPU目标分析窗1920点、两侧各反射补边960点，只为分析提供上下文，不修改保存的WAV。原生<code>accompaniment_raw_logmel</code>的<code>240+k×480</code>中心及可能少一帧的结果保留用于诊断；同网格目标从完整伴奏另算，不靠裁齐、插值或补一行伪造对应。</p>
+<h2 id="3">3. 已采用的短窗规则与实际验证范围</h2>
+<h3 id="31">3.1 窗口规则</h3>
+<p>每窗最多1500帧（名义约30秒）。父序列T帧取<code>n=ceil(T/1500)</code>，以<code>edge_i=floor(i×T/n)</code>均分；相邻窗口连续、不重叠，完整覆盖父帧一次。tokens、原始目标与标准化目标同步取窗，局部位置从0开始，父配对、绝对帧范围和哈希用于追溯。</p>
+<p>规格上限不等于任意新录音、任意1500帧或完整训练器已通过。完整父序列本身不足1500帧时，可以形成覆盖全父输入的一个窗口，但清单仍按其实际采用的窗口路径登记。</p>
+<h3 id="32-47">3.2 当前交付的47对窗口路径</h3>
+<p>下表按冻结<code>indexes/model_inputs.csv</code>列出126个窗口，不新增或重算特征。详细半开帧区间、来源与实测报告见<span class="reader-missing" title="../deliverables/929_dataset_v1/indexes/model_inputs.csv">模型读取索引（本轮未发布此证据文件）</span>。</p>
+<table>
+<thead>
+<tr>
+<th>父配对</th>
+<th style="text-align: right;">完整父帧数</th>
+<th>交付窗口帧数（按起点顺序）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>R0004_SEP01_SEG0001</code></td>
+<td style="text-align: right;">1776</td>
+<td>888 / 888</td>
+</tr>
+<tr>
+<td><code>R0004_SEP01_SEG0002</code></td>
+<td style="text-align: right;">526</td>
+<td>526</td>
+</tr>
+<tr>
+<td><code>R0004_SEP01_SEG0003</code></td>
+<td style="text-align: right;">1045</td>
+<td>1045</td>
+</tr>
+<tr>
+<td><code>R0005_SEP01_SEG0001</code></td>
+<td style="text-align: right;">2216</td>
+<td>1108 / 1108</td>
+</tr>
+<tr>
+<td><code>R0005_SEP01_SEG0002</code></td>
+<td style="text-align: right;">4739</td>
+<td>1184 / 1185 / 1185 / 1185</td>
+</tr>
+<tr>
+<td><code>R0005_SEP01_SEG0003</code></td>
+<td style="text-align: right;">1296</td>
+<td>1296</td>
+</tr>
+<tr>
+<td><code>R0006_SEP01_SEG0001</code></td>
+<td style="text-align: right;">851</td>
+<td>851</td>
+</tr>
+<tr>
+<td><code>R0006_SEP01_SEG0002</code></td>
+<td style="text-align: right;">1101</td>
+<td>1101</td>
+</tr>
+<tr>
+<td><code>R0006_SEP01_SEG0003</code></td>
+<td style="text-align: right;">551</td>
+<td>551</td>
+</tr>
+<tr>
+<td><code>R0006_SEP01_SEG0004</code></td>
+<td style="text-align: right;">1222</td>
+<td>1222</td>
+</tr>
+<tr>
+<td><code>R0007_SEP01_SEG0001</code></td>
+<td style="text-align: right;">1201</td>
+<td>1201</td>
+</tr>
+<tr>
+<td><code>R0007_SEP01_SEG0002</code></td>
+<td style="text-align: right;">1370</td>
+<td>1370</td>
+</tr>
+<tr>
+<td><code>R0008_SEP01_SEG0001</code></td>
+<td style="text-align: right;">1576</td>
+<td>788 / 788</td>
+</tr>
+<tr>
+<td><code>R0008_SEP01_SEG0002</code></td>
+<td style="text-align: right;">2128</td>
+<td>1064 / 1064</td>
+</tr>
+<tr>
+<td><code>R0009_SEP01_SEG0001</code></td>
+<td style="text-align: right;">1751</td>
+<td>875 / 876</td>
+</tr>
+<tr>
+<td><code>R0009_SEP01_SEG0002</code></td>
+<td style="text-align: right;">1715</td>
+<td>857 / 858</td>
+</tr>
+<tr>
+<td><code>R0010_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3273</td>
+<td>1091 / 1091 / 1091</td>
+</tr>
+<tr>
+<td><code>R0011_SEP01_SEG0001</code></td>
+<td style="text-align: right;">5736</td>
+<td>1434 / 1434 / 1434 / 1434</td>
+</tr>
+<tr>
+<td><code>R0012_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3338</td>
+<td>1112 / 1113 / 1113</td>
+</tr>
+<tr>
+<td><code>R0013_SEP01_SEG0001</code></td>
+<td style="text-align: right;">2529</td>
+<td>1264 / 1265</td>
+</tr>
+<tr>
+<td><code>R0014_SEP01_SEG0001</code></td>
+<td style="text-align: right;">6833</td>
+<td>1366 / 1367 / 1366 / 1367 / 1367</td>
+</tr>
+<tr>
+<td><code>R0015_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3010</td>
+<td>1003 / 1003 / 1004</td>
+</tr>
+<tr>
+<td><code>R0016_SEP01_SEG0001</code></td>
+<td style="text-align: right;">6606</td>
+<td>1321 / 1321 / 1321 / 1321 / 1322</td>
+</tr>
+<tr>
+<td><code>R0017_SEP01_SEG0001</code></td>
+<td style="text-align: right;">5279</td>
+<td>1319 / 1320 / 1320 / 1320</td>
+</tr>
+<tr>
+<td><code>R0018_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3631</td>
+<td>1210 / 1210 / 1211</td>
+</tr>
+<tr>
+<td><code>R0019_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4201</td>
+<td>1400 / 1400 / 1401</td>
+</tr>
+<tr>
+<td><code>R0020_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3632</td>
+<td>1210 / 1211 / 1211</td>
+</tr>
+<tr>
+<td><code>R0021_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3213</td>
+<td>1071 / 1071 / 1071</td>
+</tr>
+<tr>
+<td><code>R0022_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3770</td>
+<td>1256 / 1257 / 1257</td>
+</tr>
+<tr>
+<td><code>R0023_SEP01_SEG0001</code></td>
+<td style="text-align: right;">5388</td>
+<td>1347 / 1347 / 1347 / 1347</td>
+</tr>
+<tr>
+<td><code>R0024_SEP01_SEG0001</code></td>
+<td style="text-align: right;">2968</td>
+<td>1484 / 1484</td>
+</tr>
+<tr>
+<td><code>R0025_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3191</td>
+<td>1063 / 1064 / 1064</td>
+</tr>
+<tr>
+<td><code>R0026_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4117</td>
+<td>1372 / 1372 / 1373</td>
+</tr>
+<tr>
+<td><code>R0027_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3302</td>
+<td>1100 / 1101 / 1101</td>
+</tr>
+<tr>
+<td><code>R0028_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3335</td>
+<td>1111 / 1112 / 1112</td>
+</tr>
+<tr>
+<td><code>R0029_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3550</td>
+<td>1183 / 1183 / 1184</td>
+</tr>
+<tr>
+<td><code>R0030_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4321</td>
+<td>1440 / 1440 / 1441</td>
+</tr>
+<tr>
+<td><code>R0031_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4404</td>
+<td>1468 / 1468 / 1468</td>
+</tr>
+<tr>
+<td><code>R0032_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4490</td>
+<td>1496 / 1497 / 1497</td>
+</tr>
+<tr>
+<td><code>R0033_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4579</td>
+<td>1144 / 1145 / 1145 / 1145</td>
+</tr>
+<tr>
+<td><code>R0034_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3592</td>
+<td>1197 / 1197 / 1198</td>
+</tr>
+<tr>
+<td><code>R0035_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3406</td>
+<td>1135 / 1135 / 1136</td>
+</tr>
+<tr>
+<td><code>R0036_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4821</td>
+<td>1205 / 1205 / 1205 / 1206</td>
+</tr>
+<tr>
+<td><code>R0037_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3427</td>
+<td>1142 / 1142 / 1143</td>
+</tr>
+<tr>
+<td><code>R0038_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4703</td>
+<td>1175 / 1176 / 1176 / 1176</td>
+</tr>
+<tr>
+<td><code>R0039_SEP01_SEG0001</code></td>
+<td style="text-align: right;">4117</td>
+<td>1372 / 1372 / 1373</td>
+</tr>
+<tr>
+<td><code>R0040_SEP01_SEG0001</code></td>
+<td style="text-align: right;">3909</td>
+<td>1303 / 1303 / 1303</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 早期整段例外与长度限制</h3>
+<p>另有13对按早期已验证整段路径交付，不套用后续切窗规则。其中<code>R0002_SEP01_SEG0005</code>为1506帧，<code>R0003_SEP01_SEG0003</code>为1503帧；索引明确保留原整段，不隐式截断。13整段与126窗口合计139个读取单元。</p>
+<p>R0005的SEG0002保留94.77秒完整WAV和4739帧父数组；完整父段前向在注意力计算时显存不足，原失败与4096位置配置保持。局部窗口成功不能替代全长通过或证明完整模型超位置范围可用。</p>
+<h2 id="4">4. “输入通过”具体证明什么</h2>
+<table>
+<thead>
+<tr>
+<th>清单状态</th>
+<th style="text-align: right;">当前配对数</th>
+<th>已确认的范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>passed_experimental_fm_main_loss_interface</code></td>
+<td style="text-align: right;">13</td>
+<td>各自已测整段主损失、梯度及对应接口</td>
+</tr>
+<tr>
+<td><code>passed_experimental_windowed_fm_main_loss_interface</code></td>
+<td style="text-align: right;">47</td>
+<td>各自已测数字窗口及对应有限接口</td>
+</tr>
+<tr>
+<td><code>pending_experimental_feature_and_fm_interface_validation</code></td>
+<td style="text-align: right;">0</td>
+<td>当前60对已登记对应核验结果</td>
+</tr>
+</tbody>
+</table>
+<p>FM根据旋律条件预测从噪声向目标的变化方向，主损失比较方向误差，反向检查误差能传回参数。已测有限结果及混合补齐扰动不等于优化器更新、恢复训练或完整训练器通过；参数更新0次。</p>
+<p>沿用按每条真实有效长度选择伴奏提示的适配器，默认启用概率0.3。首轮已有提示/补齐检查；后续多批窗口随机门未启用，不能新增宣称已覆盖提示启用分支。CFG训练丢条件概率0.2保留，不是生成引导强度。</p>
+<p>eager注意力、4096位置配置、运行时关闭KV缓存、FP32权重／BF16模型计算及FP32主损失保持。REPA/MERT辅助链路未运行，投影冻结；三个未匹配tag张量明确排除，完整作者训练加载器及训练配方未验证。</p>
+<p>三段真实伴奏频谱按已测声码器起点／长度规则重建并通过听验；它们不是FM新生成伴奏。旋律准确性、残留影响、跨窗口连贯性和生成质量仍未由这些输入检查证明。</p>
+<h2 id="5">5. 后续数据、划分和历史记录</h2>
+<p>929数据准备、核验、划分与交付已完成并获最终验收，本轮停止继续扩充或重复核验。新模型、训练器、统一长度策略、参数更新和生成评价另开实验，不因文档整理自动执行。</p>
+<p>历史生产报告中的pending、旧清单／规格哈希和资源记录保留其原日期口径；后续技术后审和正式状态登记分别留证。已有一次性脚本钉住旧哈希和固定输出，不能直接覆盖重跑。</p>
+<p>R0004／R0021重采样长度诊断、R0005完整父段失败及各批次独立检查见<a href="929%E5%A4%84%E7%90%86%E4%B8%8E%E6%A0%B8%E9%AA%8C%E8%AE%B0%E5%BD%95-bd05bfbc4a15.html">处理与核验记录</a>、<a href="929%E8%AF%81%E6%8D%AE%E7%B4%A2%E5%BC%95-1f6c7da19c35.html">证据索引</a>及<span class="reader-missing" title="archive/document_restructure_20261022T193557/docs/929训练输入规格.md">整理前完整规格（本轮未发布此证据文件）</span>。这些历史事实不被最新累计统计改写。</p>
+<h2 id="6-2026-10-22">6. 划分与交付读取约定（2026-10-22）</h2>
+<p>完整录音隔离、演唱者可重叠；训练／验证／测试32／4／4首、51／4／5对。同一录音的片段和窗口继承相同集合，当前划分冻结。</p>
+<p>139个读取单元覆盖165,856个父帧一次：训练112单元／133,420帧，验证13单元／16,774帧，测试14单元／15,662帧。读取各集合<code>inputs.csv</code>指定的NPZ，按索引使用<code>tokens</code>、<code>target_raw_logmel</code>和<code>target_mel</code>；单元数量不等于独立音频数量。</p>
+<p>未来调参仅看验证集。测试材料曾参与数据准备和有限接口排查，不能声称完全未接触的盲测；录制场次未知、声学近重复未系统检测。若训练器统一1500帧上限，需对早期整段例外另行适配和核验，机器v1规格及历史产物保持原样。</p>
+<p>入口：<span class="reader-missing" title="../deliverables/929_dataset_v1/README.md">冻结交付目录（本轮未发布此证据文件）</span>、<a href="929%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BB%98%E8%AF%B4%E6%98%8E-a449710c5b2b.html">数据交付说明</a>。本次本地仅同步文档与元数据，没有下载全部音频、权重或特征数组。</p></article>
+<p class="reader-meta">公开副本已将机器路径替换为占位符；运行示例前请按实际环境填写路径。来源 SHA-256 对应脱敏前的源文件，公开副本不是逐字原文。</p></main><script id="file-source" type="application/json">{"source":"发布资料：anyaccomp_gezi_finetune/docs/929训练输入规格.md（路径已脱敏）","sha256":"b66c6eb777c3f61251275315a31610671ce75c121b23154cd1bb6fd9ce9cb345","text":"# 929 训练输入规格 v1：完整音频与短窗口\r\n\r\n更新日期：2026-10-22。数值规格v1保持。**929已验收完成；40首、60对、3316.363242633秒（约55分16秒）；训练／验证／测试32／4／4首、51／4／5对；正式微调尚未开始，参数更新0次**。\r\n\r\n本文件只规定当前已采用的读取合同和已测范围。逐次运行、资源、登记事务及旧状态移至[整理前完整规格](archive/document_restructure_20261022T193557/docs/929训练输入规格.md)，查证入口见[证据索引](929证据索引.md)。文档重排不改变数组、音频、机器JSON或模型计算。\r\n\r\n## 1. 音频保存与模型读取各做什么\r\n\r\n正式音频按已接受的自然段落或整首保留，包含唱句、拖腔、前奏、过门和尾奏。当前前9首29对自然段落、后31首31对整首，共60对；模型读取单元来自这些音频的数字特征，不能重复计入正式音频数量或时长。\r\n\r\n数字窗口可以在唱词中间结束，完整WAV保持不变；窗口检查仅覆盖对应局部上下文，不能证明跨窗口音乐连贯性或所有完整父序列FM通过。\r\n\r\n## 2. 输入数组与同一时间网格\r\n\r\n| 数组 | 含义 | 格式 |\r\n| --- | --- | --- |\r\n| `tokens` | 人声经 Chroma/冻结 VQ 转成的旋律编号，尽量减少直接传入音色和分离细节 | int64 `[T]`，编号0–511 |\r\n| `target_raw_logmel` | 对应伴奏的原始频谱，保留以便核验 | float32 `[T,128]` |\r\n| `target_mel` | 模型使用的标准化伴奏目标 | float32 `[T,128]`，`(raw−(−4.92))/sqrt(8.14)` |\r\n\r\n24 kHz单声道、步长480点，旋律与目标共用`0+k×480`帧中心，间隔20 ms；三数组使用同一个半开帧区间`[start:end)`。帧数乘20 ms只是网格数量，正式时长仍按波形帧数和采样率计算。\r\n\r\nCPU目标分析窗1920点、两侧各反射补边960点，只为分析提供上下文，不修改保存的WAV。原生`accompaniment_raw_logmel`的`240+k×480`中心及可能少一帧的结果保留用于诊断；同网格目标从完整伴奏另算，不靠裁齐、插值或补一行伪造对应。\r\n\r\n## 3. 已采用的短窗规则与实际验证范围\r\n\r\n### 3.1 窗口规则\r\n\r\n每窗最多1500帧（名义约30秒）。父序列T帧取`n=ceil(T/1500)`，以`edge_i=floor(i×T/n)`均分；相邻窗口连续、不重叠，完整覆盖父帧一次。tokens、原始目标与标准化目标同步取窗，局部位置从0开始，父配对、绝对帧范围和哈希用于追溯。\r\n\r\n规格上限不等于任意新录音、任意1500帧或完整训练器已通过。完整父序列本身不足1500帧时，可以形成覆盖全父输入的一个窗口，但清单仍按其实际采用的窗口路径登记。\r\n\r\n### 3.2 当前交付的47对窗口路径\r\n\r\n下表按冻结`indexes/model_inputs.csv`列出126个窗口，不新增或重算特征。详细半开帧区间、来源与实测报告见[模型读取索引](../deliverables/929_dataset_v1/indexes/model_inputs.csv)。\r\n\r\n| 父配对 | 完整父帧数 | 交付窗口帧数（按起点顺序） |\r\n| --- | ---: | --- |\r\n| `R0004_SEP01_SEG0001` | 1776 | 888 / 888 |\r\n| `R0004_SEP01_SEG0002` | 526 | 526 |\r\n| `R0004_SEP01_SEG0003` | 1045 | 1045 |\r\n| `R0005_SEP01_SEG0001` | 2216 | 1108 / 1108 |\r\n| `R0005_SEP01_SEG0002` | 4739 | 1184 / 1185 / 1185 / 1185 |\r\n| `R0005_SEP01_SEG0003` | 1296 | 1296 |\r\n| `R0006_SEP01_SEG0001` | 851 | 851 |\r\n| `R0006_SEP01_SEG0002` | 1101 | 1101 |\r\n| `R0006_SEP01_SEG0003` | 551 | 551 |\r\n| `R0006_SEP01_SEG0004` | 1222 | 1222 |\r\n| `R0007_SEP01_SEG0001` | 1201 | 1201 |\r\n| `R0007_SEP01_SEG0002` | 1370 | 1370 |\r\n| `R0008_SEP01_SEG0001` | 1576 | 788 / 788 |\r\n| `R0008_SEP01_SEG0002` | 2128 | 1064 / 1064 |\r\n| `R0009_SEP01_SEG0001` | 1751 | 875 / 876 |\r\n| `R0009_SEP01_SEG0002` | 1715 | 857 / 858 |\r\n| `R0010_SEP01_SEG0001` | 3273 | 1091 / 1091 / 1091 |\r\n| `R0011_SEP01_SEG0001` | 5736 | 1434 / 1434 / 1434 / 1434 |\r\n| `R0012_SEP01_SEG0001` | 3338 | 1112 / 1113 / 1113 |\r\n| `R0013_SEP01_SEG0001` | 2529 | 1264 / 1265 |\r\n| `R0014_SEP01_SEG0001` | 6833 | 1366 / 1367 / 1366 / 1367 / 1367 |\r\n| `R0015_SEP01_SEG0001` | 3010 | 1003 / 1003 / 1004 |\r\n| `R0016_SEP01_SEG0001` | 6606 | 1321 / 1321 / 1321 / 1321 / 1322 |\r\n| `R0017_SEP01_SEG0001` | 5279 | 1319 / 1320 / 1320 / 1320 |\r\n| `R0018_SEP01_SEG0001` | 3631 | 1210 / 1210 / 1211 |\r\n| `R0019_SEP01_SEG0001` | 4201 | 1400 / 1400 / 1401 |\r\n| `R0020_SEP01_SEG0001` | 3632 | 1210 / 1211 / 1211 |\r\n| `R0021_SEP01_SEG0001` | 3213 | 1071 / 1071 / 1071 |\r\n| `R0022_SEP01_SEG0001` | 3770 | 1256 / 1257 / 1257 |\r\n| `R0023_SEP01_SEG0001` | 5388 | 1347 / 1347 / 1347 / 1347 |\r\n| `R0024_SEP01_SEG0001` | 2968 | 1484 / 1484 |\r\n| `R0025_SEP01_SEG0001` | 3191 | 1063 / 1064 / 1064 |\r\n| `R0026_SEP01_SEG0001` | 4117 | 1372 / 1372 / 1373 |\r\n| `R0027_SEP01_SEG0001` | 3302 | 1100 / 1101 / 1101 |\r\n| `R0028_SEP01_SEG0001` | 3335 | 1111 / 1112 / 1112 |\r\n| `R0029_SEP01_SEG0001` | 3550 | 1183 / 1183 / 1184 |\r\n| `R0030_SEP01_SEG0001` | 4321 | 1440 / 1440 / 1441 |\r\n| `R0031_SEP01_SEG0001` | 4404 | 1468 / 1468 / 1468 |\r\n| `R0032_SEP01_SEG0001` | 4490 | 1496 / 1497 / 1497 |\r\n| `R0033_SEP01_SEG0001` | 4579 | 1144 / 1145 / 1145 / 1145 |\r\n| `R0034_SEP01_SEG0001` | 3592 | 1197 / 1197 / 1198 |\r\n| `R0035_SEP01_SEG0001` | 3406 | 1135 / 1135 / 1136 |\r\n| `R0036_SEP01_SEG0001` | 4821 | 1205 / 1205 / 1205 / 1206 |\r\n| `R0037_SEP01_SEG0001` | 3427 | 1142 / 1142 / 1143 |\r\n| `R0038_SEP01_SEG0001` | 4703 | 1175 / 1176 / 1176 / 1176 |\r\n| `R0039_SEP01_SEG0001` | 4117 | 1372 / 1372 / 1373 |\r\n| `R0040_SEP01_SEG0001` | 3909 | 1303 / 1303 / 1303 |\r\n\r\n### 3.3 早期整段例外与长度限制\r\n\r\n另有13对按早期已验证整段路径交付，不套用后续切窗规则。其中`R0002_SEP01_SEG0005`为1506帧，`R0003_SEP01_SEG0003`为1503帧；索引明确保留原整段，不隐式截断。13整段与126窗口合计139个读取单元。\r\n\r\nR0005的SEG0002保留94.77秒完整WAV和4739帧父数组；完整父段前向在注意力计算时显存不足，原失败与4096位置配置保持。局部窗口成功不能替代全长通过或证明完整模型超位置范围可用。\r\n\r\n## 4. “输入通过”具体证明什么\r\n\r\n| 清单状态 | 当前配对数 | 已确认的范围 |\r\n| --- | ---: | --- |\r\n| `passed_experimental_fm_main_loss_interface` | 13 | 各自已测整段主损失、梯度及对应接口 |\r\n| `passed_experimental_windowed_fm_main_loss_interface` | 47 | 各自已测数字窗口及对应有限接口 |\r\n| `pending_experimental_feature_and_fm_interface_validation` | 0 | 当前60对已登记对应核验结果 |\r\n\r\nFM根据旋律条件预测从噪声向目标的变化方向，主损失比较方向误差，反向检查误差能传回参数。已测有限结果及混合补齐扰动不等于优化器更新、恢复训练或完整训练器通过；参数更新0次。\r\n\r\n沿用按每条真实有效长度选择伴奏提示的适配器，默认启用概率0.3。首轮已有提示/补齐检查；后续多批窗口随机门未启用，不能新增宣称已覆盖提示启用分支。CFG训练丢条件概率0.2保留，不是生成引导强度。\r\n\r\neager注意力、4096位置配置、运行时关闭KV缓存、FP32权重／BF16模型计算及FP32主损失保持。REPA/MERT辅助链路未运行，投影冻结；三个未匹配tag张量明确排除，完整作者训练加载器及训练配方未验证。\r\n\r\n三段真实伴奏频谱按已测声码器起点／长度规则重建并通过听验；它们不是FM新生成伴奏。旋律准确性、残留影响、跨窗口连贯性和生成质量仍未由这些输入检查证明。\r\n\r\n## 5. 后续数据、划分和历史记录\r\n\r\n929数据准备、核验、划分与交付已完成并获最终验收，本轮停止继续扩充或重复核验。新模型、训练器、统一长度策略、参数更新和生成评价另开实验，不因文档整理自动执行。\r\n\r\n历史生产报告中的pending、旧清单／规格哈希和资源记录保留其原日期口径；后续技术后审和正式状态登记分别留证。已有一次性脚本钉住旧哈希和固定输出，不能直接覆盖重跑。\r\n\r\nR0004／R0021重采样长度诊断、R0005完整父段失败及各批次独立检查见[处理与核验记录](929处理与核验记录.md)、[证据索引](929证据索引.md)及[整理前完整规格](archive/document_restructure_20261022T193557/docs/929训练输入规格.md)。这些历史事实不被最新累计统计改写。\r\n\r\n## 6. 划分与交付读取约定（2026-10-22）\r\n\r\n完整录音隔离、演唱者可重叠；训练／验证／测试32／4／4首、51／4／5对。同一录音的片段和窗口继承相同集合，当前划分冻结。\r\n\r\n139个读取单元覆盖165,856个父帧一次：训练112单元／133,420帧，验证13单元／16,774帧，测试14单元／15,662帧。读取各集合`inputs.csv`指定的NPZ，按索引使用`tokens`、`target_raw_logmel`和`target_mel`；单元数量不等于独立音频数量。\r\n\r\n未来调参仅看验证集。测试材料曾参与数据准备和有限接口排查，不能声称完全未接触的盲测；录制场次未知、声学近重复未系统检测。若训练器统一1500帧上限，需对早期整段例外另行适配和核验，机器v1规格及历史产物保持原样。\r\n\r\n入口：[冻结交付目录](../deliverables/929_dataset_v1/README.md)、[数据交付说明](929数据交付说明.md)。本次本地仅同步文档与元数据，没有下载全部音频、权重或特征数组。\r\n"}</script><script src="../../src/data-reader.js"></script></body></html>

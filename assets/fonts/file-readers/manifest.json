@@ -3,32 +3,32 @@
     "file": "wenkai-regular.woff2",
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Regular.ttf",
     "source_sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
-    "sha256": "f2bb9c72da13146a6bae40ed3dc5d2833732bbd535007b41384ced20b0f2f9e1",
+    "sha256": "8065c0d9b9b5319078fcbe35e6fbd38c00788fc93627e82417f2c4fdc15f2c0b",
     "weight": 400,
-    "characters": 1104
+    "characters": 1174
   },
   {
     "file": "wenkai-medium.woff2",
     "source": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/8bd6319350fb3ae1904c1cb1a41595ab15d21140/fonts/TTF/LXGWWenKai-Medium.ttf",
     "source_sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
-    "sha256": "d119cc069ba09fdfeebada963e8f73f99e0f0f148b60a9cd84656895916f9385",
+    "sha256": "dd0bd974c645a8fd5748a207eb852d29f0300a34292a01b7d716350ca57deaa6",
     "weight": 500,
-    "characters": 1104
+    "characters": 1174
   },
   {
     "file": "gezi-ui-sans-regular.woff2",
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Regular.otf",
     "source_sha256": "f1d8611151880c6c336aabeac4640ef434fa13cbfbf1ffe82d0a71b2a5637256",
-    "sha256": "b692196876219a4554216d95dace3442b463a5c66bd2a39081cc82933f735cb9",
+    "sha256": "75186e9716cf44439c19998884f0eac393537ec28850c2bbd0c31a7eb5b8ae94",
     "weight": 400,
-    "characters": 1101
+    "characters": 1172
   },
   {
     "file": "gezi-ui-sans-medium.woff2",
     "source": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/a4f7cf94edfb9d7ffbdfc4841de276358bd7e0f2/OTF/SimplifiedChinese/SourceHanSansSC-Medium.otf",
     "source_sha256": "1df61d31687d04fd2f928a3bb6ca6cd61f0e988cc267cf317f32406edbb49f70",
-    "sha256": "f524db35bbdc3f78cd6c3c5c14bcde6f28531d9b535539ddedf78e39c0468f46",
+    "sha256": "09bfc96967cfafe8dfe107e1fd69a4d8b829274273c7401841a8944d77ef79e0",
     "weight": 500,
-    "characters": 1101
+    "characters": 1172
   }
 ]

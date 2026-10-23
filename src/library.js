@@ -11,7 +11,7 @@ window.GeziLibrary = {
    };
    function panel(doc){
      if(doc.url && doc.url===(data.progress||{}).document_url){
-       const items=[stage('stage-download','小规模来源与下载'),stage('stage-preserve','完整录音保存'),stage('stage-separation','分离模型小规模比较')];
+       const items=[stage('stage-download','录音来源与收集'),stage('stage-preserve','完整录音保存'),stage('stage-separation','分离方案选择')];
        return '<div class="pl-document"><div class="pl-paper-top"><span class="pl-paper-icon" aria-hidden="true">▤</span><span>数据准备记录</span><small>进度来源</small></div><h3>从完整录音，<br>到配对唱段。</h3><div class="pl-record-list">'+items.map(s=>'<div><span>'+esc(s.name)+'</span><small class="'+(s.done?'pl-checked':'')+'">'+esc(s.status)+'</small></div>').join('')+'</div><div class="pl-paper-foot"><span>929 训练数据采集</span><span aria-hidden="true">↗</span></div></div>';
      }
      if(doc.path==='deploy/cloud_anyaccomp/README.md'){
